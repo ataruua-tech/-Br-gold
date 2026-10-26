@@ -11,14 +11,16 @@ jobs:
     timeout-minutes: 3
 
     steps:
-      - name: Test MOEX API
+      - name: Test MOEX API with trusted CA
         env:
           MOEX_ALGOPACK_TOKEN: ${{ secrets.MOEX_ALGOPACK_TOKEN }}
 
         run: |
           python3 - <<'PY'
+          import hashlib
           import json
           import os
+          import ssl
           import urllib.error
           import urllib.request
 
@@ -34,12 +36,40 @@ jobs:
               print('::error title=AlgoPack connection::' + message)
               raise SystemExit(1)
 
-          if not token:
-              fail('Missing secret: MOEX_ALGOPACK_TOKEN')
-
           class NoRedirect(urllib.request.HTTPRedirectHandler):
               def redirect_request(self, *args, **kwargs):
                   return None
+
+          if not token:
+              fail('Missing secret: MOEX_ALGOPACK_TOKEN')
+
+          certificates = {
+              'russian_trusted_root_ca_pem.crt':
+                  '936a43fea6e8e525bcc0f81acd9c3d21b4fc4b9b68acea7906d698005afc6504',
+              'russian_trusted_sub_ca_pem.crt':
+                  'f0ae589f36774f29ef3648f7984b08d42fcce6f1ffeeb6236d773daeb2744ea6',
+          }
+
+          context = ssl.create_default_context()
+          bootstrap = urllib.request.build_opener(NoRedirect())
+
+          try:
+              for filename, expected_hash in certificates.items():
+                  url = 'https://gu-st.ru/content/lending/' + filename
+
+                  with bootstrap.open(url, timeout=25) as response:
+                      pem = response.read(100000)
+
+                  if hashlib.sha256(pem).hexdigest() != expected_hash:
+                      fail('Certificate file changed: ' + filename)
+
+                  context.load_verify_locations(
+                      cadata=pem.decode('ascii')
+                  )
+                  print('Trusted CA loaded:', filename)
+
+          except Exception as error:
+              fail('CA setup failed: ' + str(error))
 
           url = (
               'https://apim.moex.com/iss/engines/futures/'
@@ -55,23 +85,25 @@ jobs:
               },
           )
 
+          opener = urllib.request.build_opener(
+              NoRedirect(),
+              urllib.request.HTTPSHandler(context=context),
+          )
+
           try:
-              opener = urllib.request.build_opener(NoRedirect())
               with opener.open(request, timeout=30) as response:
-                  status = response.status
+                  if response.status != 200:
+                      fail('Unexpected HTTP status: ' + str(response.status))
                   data = json.load(response)
 
           except urllib.error.HTTPError as error:
               fail('MOEX HTTP ' + str(error.code))
 
           except urllib.error.URLError as error:
-              fail('Network error: ' + str(error.reason))
+              fail('MOEX network error: ' + str(error.reason))
 
           except Exception as error:
-              fail(type(error).__name__ + ': ' + str(error))
-
-          if status != 200:
-              fail('Unexpected HTTP status: ' + str(status))
+              fail('MOEX request failed: ' + str(error))
 
           try:
               table = data['securities']
@@ -81,21 +113,21 @@ jobs:
               ]
 
               for asset in ('BR', 'GOLD'):
-                  contracts = [
+                  ids = [
                       row['SECID']
                       for row in rows
                       if row.get('ASSETCODE') == asset
                   ]
 
-                  if not contracts:
+                  if not ids:
                       fail('Missing contracts: ' + asset)
 
                   print(
                       asset,
                       'contracts:',
-                      len(contracts),
+                      len(ids),
                       'examples:',
-                      ', '.join(contracts[:3]),
+                      ', '.join(ids[:3]),
                   )
 
           except Exception as error:
@@ -103,3 +135,5 @@ jobs:
 
           print('::notice title=AlgoPack::HTTP 200. CONNECTION TEST PASSED')
           PY
+
+              
