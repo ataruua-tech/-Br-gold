@@ -1,0 +1,53 @@
+name: AlgoPack connection test
+
+on: [workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  connect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test MOEX API
+        env:
+          MOEX_ALGOPACK_TOKEN: ${{ secrets.MOEX_ALGOPACK_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error
+
+          token = os.environ.get('MOEX_ALGOPACK_TOKEN', '').strip()
+          if not token:
+              raise SystemExit('Missing secret: MOEX_ALGOPACK_TOKEN')
+
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, *a, **kw):
+                  return None
+
+          url = 'https://apim.moex.com/iss/engines/futures/markets/forts/boards/rfud/securities.json?iss.meta=off&iss.only=securities'
+          req = urllib.request.Request(
+              url,
+              headers={'Authorization': 'Bearer ' + token}
+          )
+
+          try:
+              with urllib.request.build_opener(NoRedirect()).open(req, timeout=30) as r:
+                  data = json.load(r)
+                  if r.status != 200:
+                      raise ValueError('Unexpected HTTP status')
+          except urllib.error.HTTPError as e:
+              raise SystemExit('HTTP ' + str(e.code))
+          except Exception as e:
+              raise SystemExit('Connection failed: ' + type(e).__name__)
+
+          table = data['securities']
+          rows = [dict(zip(table['columns'], row)) for row in table['data']]
+
+          for asset in ('BR', 'GOLD'):
+              ids = [r['SECID'] for r in rows if r.get('ASSETCODE') == asset]
+              if not ids:
+                  raise SystemExit('Missing contracts: ' + asset)
+              print(asset, len(ids), ', '.join(ids[:3]))
+
+          print('HTTP 200. CONNECTION TEST PASSED')
+          PY
