@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "config_hash": "e652e1b5b6ab8d3860d9ff860313f7ac1c27ccb2bd23d0b1e3e641c72dda56c6",
+  "config": {
+    "version": 1,
+    "capital_rub": 100000.0,
+    "risks": [
+      0.01,
+      0.02
+    ],
+    "broker_fraction": 0.00015,
+    "slippage_ticks": 2,
+    "initial_margin_cap": 0.5,
+    "drawdown_halt_fraction": 0.2,
+    "maximum_hold_days": 5,
+    "publication_buffer_minutes": 18,
+    "margin_scope": "Live MOEX exchange margin; broker-specific uplift is not known",
+    "drawdown_limit_status": "Provisional demo guard, not a user-approved real-money limit",
+    "pnl_method": "Minute price increments at last published indicative FX; fees and fills modeled, exact clearing not reconstructed"
+  },
+  "portfolios": {
+    "risk_1": {
+      "risk": 0.01,
+      "equity": 100000.0,
+      "peak": 100000.0,
+      "max_drawdown": 0.0,
+      "positions": {},
+      "closed": [],
+      "seen_setups": [],
+      "halted": null,
+      "closed_count": 0,
+      "realized_pnl_sum": 0.0,
+      "gross_gains": 0.0,
+      "gross_losses": 0.0,
+      "wins": 0
+    },
+    "risk_2": {
+      "risk": 0.02,
+      "equity": 100000.0,
+      "peak": 100000.0,
+      "max_drawdown": 0.0,
+      "positions": {},
+      "closed": [],
+      "seen_setups": [],
+      "halted": null,
+      "closed_count": 0,
+      "realized_pnl_sum": 0.0,
+      "gross_gains": 0.0,
+      "gross_losses": 0.0,
+      "wins": 0
+    }
+  },
+  "events": [],
+  "observations": [
+    {
+      "time": "2026-10-26T18:49:35.220568",
+      "provenance": {
+        "run_id": 40348048104,
+        "attempt": 1,
+        "head_sha": "8472c7d0a4e32b8f1a76e2a22c468ecf17b3b78e",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "aed8f6ac256fc2f6f886ab48fd861f909c7ef2d34bd7d3abeed0bd1162aab180",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40348048104",
+        "controller_commit": "e7051525412a03a8b0ce2859c1afaa1632434006"
+      },
+      "statuses": {
+        "BR": "NO_SIGNAL",
+        "GOLD": "NO_SIGNAL"
+      }
+    }
+  ],
+  "errors": [],
+  "updated_at_msk": "2026-10-26T18:49:35.220568"
+}
