@@ -1,5 +1,5 @@
 # No order APIs. Original H1/control and the 18-minute buffer stay unchanged.
-name: AlgoPack Telegram BR-GOLD
+name: .github/workflows/algopack-telegram.yml
 
 on:
   push:
