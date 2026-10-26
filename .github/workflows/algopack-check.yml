@@ -8,46 +8,98 @@ permissions:
 jobs:
   connect:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
+
     steps:
       - name: Test MOEX API
         env:
           MOEX_ALGOPACK_TOKEN: ${{ secrets.MOEX_ALGOPACK_TOKEN }}
+
         run: |
           python3 - <<'PY'
-          import json, os, urllib.request, urllib.error
+          import json
+          import os
+          import urllib.error
+          import urllib.request
 
           token = os.environ.get('MOEX_ALGOPACK_TOKEN', '').strip()
+
+          def fail(message):
+              message = str(message)
+              if token:
+                  message = message.replace(token, '[REDACTED]')
+              message = message.replace('%', '%25')
+              message = message.replace('\r', '%0D')
+              message = message.replace('\n', '%0A')
+              print('::error title=AlgoPack connection::' + message)
+              raise SystemExit(1)
+
           if not token:
-              raise SystemExit('Missing secret: MOEX_ALGOPACK_TOKEN')
+              fail('Missing secret: MOEX_ALGOPACK_TOKEN')
 
           class NoRedirect(urllib.request.HTTPRedirectHandler):
-              def redirect_request(self, *a, **kw):
+              def redirect_request(self, *args, **kwargs):
                   return None
 
-          url = 'https://apim.moex.com/iss/engines/futures/markets/forts/boards/rfud/securities.json?iss.meta=off&iss.only=securities'
-          req = urllib.request.Request(
+          url = (
+              'https://apim.moex.com/iss/engines/futures/'
+              'markets/forts/boards/rfud/securities.json'
+              '?iss.meta=off&iss.only=securities'
+          )
+
+          request = urllib.request.Request(
               url,
-              headers={'Authorization': 'Bearer ' + token}
+              headers={
+                  'Authorization': 'Bearer ' + token,
+                  'Accept': 'application/json',
+              },
           )
 
           try:
-              with urllib.request.build_opener(NoRedirect()).open(req, timeout=30) as r:
-                  data = json.load(r)
-                  if r.status != 200:
-                      raise ValueError('Unexpected HTTP status')
-          except urllib.error.HTTPError as e:
-              raise SystemExit('HTTP ' + str(e.code))
-          except Exception as e:
-              raise SystemExit('Connection failed: ' + type(e).__name__)
+              opener = urllib.request.build_opener(NoRedirect())
+              with opener.open(request, timeout=30) as response:
+                  status = response.status
+                  data = json.load(response)
 
-          table = data['securities']
-          rows = [dict(zip(table['columns'], row)) for row in table['data']]
+          except urllib.error.HTTPError as error:
+              fail('MOEX HTTP ' + str(error.code))
 
-          for asset in ('BR', 'GOLD'):
-              ids = [r['SECID'] for r in rows if r.get('ASSETCODE') == asset]
-              if not ids:
-                  raise SystemExit('Missing contracts: ' + asset)
-              print(asset, len(ids), ', '.join(ids[:3]))
+          except urllib.error.URLError as error:
+              fail('Network error: ' + str(error.reason))
 
-          print('HTTP 200. CONNECTION TEST PASSED')
+          except Exception as error:
+              fail(type(error).__name__ + ': ' + str(error))
+
+          if status != 200:
+              fail('Unexpected HTTP status: ' + str(status))
+
+          try:
+              table = data['securities']
+              rows = [
+                  dict(zip(table['columns'], row))
+                  for row in table['data']
+              ]
+
+              for asset in ('BR', 'GOLD'):
+                  contracts = [
+                      row['SECID']
+                      for row in rows
+                      if row.get('ASSETCODE') == asset
+                  ]
+
+                  if not contracts:
+                      fail('Missing contracts: ' + asset)
+
+                  print(
+                      asset,
+                      'contracts:',
+                      len(contracts),
+                      'examples:',
+                      ', '.join(contracts[:3]),
+                  )
+
+          except Exception as error:
+              fail('Invalid MOEX response: ' + str(error))
+
+          print('::notice title=AlgoPack::HTTP 200. CONNECTION TEST PASSED')
           PY
