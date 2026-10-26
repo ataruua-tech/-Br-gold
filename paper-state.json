@@ -99,8 +99,24 @@
         "BR": "NO_SIGNAL",
         "GOLD": "NO_SIGNAL"
       }
+    },
+    {
+      "time": "2026-10-26T20:10:11.241791",
+      "provenance": {
+        "run_id": 40365993575,
+        "attempt": 1,
+        "head_sha": "e7051525412a03a8b0ce2859c1afaa1632434006",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "618e35fb3706b5fe719c623c76371dd80c22dbf33ef5b7ffd260b7c3f96a27f1",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40365993575",
+        "controller_commit": "e7051525412a03a8b0ce2859c1afaa1632434006"
+      },
+      "statuses": {
+        "BR": "NO_SIGNAL",
+        "GOLD": "NO_SIGNAL"
+      }
     }
   ],
   "errors": [],
-  "updated_at_msk": "2026-10-26T19:26:10.941406"
+  "updated_at_msk": "2026-10-26T20:10:11.241791"
 }
