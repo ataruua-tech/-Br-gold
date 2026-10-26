@@ -827,7 +827,27 @@ jobs:
               head = branch['object']['sha']
               control_verify_tree(api, head)
               api.api('/actions/workflows/' + CONTROL_WORKFLOW + '/dispatches', 'POST', {'ref': 'main'})
-              return {'status': 'DISPATCHED', 'cycle_utc': cycle.isoformat(), 'reason': 'Missing/failed current H1 run; requested a fresh main run'}
+              return {'status': 'DISPATCHED', 'cycle_utc': cycle.isoformat(), 'previous_run_id': newest['id'] if newest else None, 'reason': 'Missing/failed current H1 run; requested a fresh main run'}
+
+          def control_wait_current(api, previous_run_id=None, target_run_id=None, seconds=90):
+              """Finish the initial cycle even if workflow_run delivery is delayed/suppressed.
+
+              After a dispatch, an older completed run must never satisfy this wait.
+              This is bounded worker polling, not an additional timer service.
+              """
+              started = time.monotonic()
+              while True:
+                  runs = control_runs(api)
+                  now = datetime.now(timezone.utc)
+                  if runs:
+                      run = runs[0]
+                      new_enough = previous_run_id is None or run['id'] > previous_run_id
+                      exact_target = target_run_id is None or run['id'] == target_run_id
+                      if new_enough and exact_target and (run['status'] == 'completed') and (control_run_cycle(run) == control_cycle(now)):
+                          return True
+                  if time.monotonic() - started >= seconds:
+                      return False
+                  time.sleep(5)
 
           def control_load_ledger(api):
               ref = api.api('/git/ref/heads/' + CONTROL_LEDGER_BRANCH, missing=True)
@@ -1025,13 +1045,20 @@ jobs:
                           result['supervisor'] = control_supervise(api, now)
                       except Exception as exc:
                           result['errors'].append('Supervisor: ' + control_safe_error(exc))
-                  if (result.get('supervisor') or {}).get('status') == 'DISPATCHED':
-                      result['paper'] = {'status': 'WAITING', 'reason': 'Fresh H1 run requested; do not consume a cached older result'}
-                  else:
+                  supervisor = result.get('supervisor') or {}
+                  wait_status = supervisor.get('status') in ('DISPATCHED', 'WAITING')
+                  try:
+                      ready = not wait_status or control_wait_current(api, supervisor.get('previous_run_id'), target_run_id=supervisor.get('run_id') if supervisor.get('status') == 'WAITING' else None)
+                  except Exception as exc:
+                      ready = False
+                      result['errors'].append('H1 completion wait: ' + control_safe_error(exc))
+                  if ready:
                       try:
                           result['paper'] = control_paper(api, now)
                       except Exception as exc:
                           result['errors'].append('Paper ledger: ' + control_safe_error(exc))
+                  else:
+                      result['paper'] = {'status': 'WAITING', 'reason': 'Newest H1 has not completed within 90 seconds; next controller run will retry, no older result consumed'}
               except Exception as exc:
                   result['errors'].append(control_safe_error(exc))
               if result['errors'] or (result.get('paper') or {}).get('status') == 'ERROR':
@@ -1049,7 +1076,7 @@ jobs:
                       stream.write(summary)
               compact = json.dumps(result, ensure_ascii=False, allow_nan=False, separators=(',', ':'))
               compact = compact.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
-              print(('::notice' if result['status'] == 'PASSED' else '::error') + ' title=BR-GOLD cloud control::' + compact)
+              print(('::error' if result['status'] == 'FAILED' else '::notice') + ' title=BR-GOLD cloud control::' + compact)
               return 1 if result['status'] == 'FAILED' else 0
 
           sys.exit(control_main())
