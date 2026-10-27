@@ -34,6 +34,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           CONTROL_WEEK_ENABLED: '1'
+          CONTROL_REPLAY_CAPTURE: '1'
           PYTHONUNBUFFERED: '1'
         run: |
           python3 - <<'PY'
@@ -42,6 +43,7 @@ jobs:
           import bisect
           import copy
           import functools
+          import gzip
           import hashlib
           import io
           import json
@@ -1117,6 +1119,8 @@ jobs:
           def control_contract(code, now):
               if not code.isalnum():
                   raise ControlError('Invalid contract code')
+              requested = datetime.now(bg.MSK).replace(tzinfo=None)
+              request_clock = time.monotonic()
               payload = bg.get_json(bg.api_base() + '/' + code + '.json?iss.meta=off&iss.only=securities,marketdata')
               sec = [r for r in bg.table_rows(payload, 'securities') if r.get('SECID') == code]
               quotes = [r for r in bg.table_rows(payload, 'marketdata') if r.get('SECID') == code]
@@ -1126,6 +1130,7 @@ jobs:
               c = {'asset': s['ASSETCODE'], 'expires': s['LASTTRADEDATE'], 'tick': float(s['MINSTEP']), 'point_value': float(s['STEPPRICE']) / float(s['MINSTEP']), 'margin': float(s['INITIALMARGIN']), 'exchange_fee': float(s['BUYSELLFEE']), 'bid': float(q['BID']), 'offer': float(q['OFFER']), 'quote_time': bg.parse_iss_time(q['SYSTIME']).isoformat()}
               received = datetime.now(bg.MSK).replace(tzinfo=None)
               pw.week_validate_exit_quote(c, received)
+              c.update(source='apim.moex.com', request_started_at_msk=requested.isoformat(), received_at_msk=received.isoformat(), request_seconds=time.monotonic() - request_clock, timestamp_scope='SYSTIME plus runner request/receipt clocks; not independently calibrated exchange feed delay')
               return c
 
           def control_financial_binding(token, chat):
@@ -1174,6 +1179,9 @@ jobs:
 
           def control_paper(api, now):
               state, sha, new_branch = control_load_ledger(api)
+              replay = None
+              if os.environ.get('CONTROL_REPLAY_CAPTURE') == '1':
+                  replay = {'schema': 1, 'source': 'apim.moex.com', 'mode': 'VIRTUAL_ONLY', 'orders_enabled': False, 'engine_sha256': CONTROL_WEEK_ENGINE_SHA256 or hashlib.sha256(Path(pw.__file__).read_bytes() + Path(pe.__file__).read_bytes()).hexdigest(), 'state_before': json.loads(json.dumps(state, allow_nan=False)), 'controller_commit': os.environ.get('GITHUB_SHA'), 'controller_run_id': os.environ.get('GITHUB_RUN_ID'), 'controller_attempt': os.environ.get('GITHUB_RUN_ATTEMPT')}
               weekly_enabled = os.environ.get('CONTROL_WEEK_ENABLED') == '1'
               week = state.get('weekly_pilot', pw.week_new())
               pw.week_validate(week)
@@ -1220,7 +1228,14 @@ jobs:
                       fetch_errors.append('Position data: ' + control_safe_error(exc))
               entry_assets = assets if not fetch_errors else {a: {**v, 'status': 'DATA_ERROR', 'errors': fetch_errors} for a, v in assets.items()}
               observed = datetime.now(bg.MSK).replace(tzinfo=None)
+              if replay is not None:
+                  replay['baseline_input'] = {'assets': {} if weekly_enabled or 'weekly_pilot' in state else entry_assets, 'contracts': contracts, 'minutes': minutes, 'rates': rates, 'observed_msk': observed.isoformat(), 'provenance': provenance}
+                  replay['source_assets'] = assets
+                  replay['verification_errors'] = verification_errors
+                  replay['fetch_errors'] = fetch_errors
               updated, details = pe.paper_apply(state, {} if weekly_enabled or 'weekly_pilot' in state else entry_assets, contracts, minutes, rates, observed, provenance)
+              if replay is not None:
+                  replay['expected_baseline_portfolios'] = json.loads(json.dumps(updated['portfolios'], allow_nan=False))
               all_errors = verification_errors + fetch_errors + details['errors']
               week_details = {'status': week['status'], 'events': [], 'errors': []}
               notification_context = None
@@ -1241,6 +1256,8 @@ jobs:
                   except Exception as exc:
                       all_errors.append('Weekly activation/Telegram: ' + control_safe_error(exc))
                   observed_aware = datetime.now(bg.MSK)
+                  if replay is not None:
+                      replay['week_input'] = {'assets': entry_assets, 'contracts': contracts, 'minutes': minutes, 'rates': rates, 'observed_msk': observed_aware.isoformat(), 'binding': financial_binding if notification_context else None, 'activate': activate, 'provenance': provenance}
                   try:
                       week, week_details = pw.week_apply(week, entry_assets, contracts, minutes, rates, observed_aware, binding=financial_binding if notification_context else None, activate=activate, provenance=provenance)
                   except Exception as exc:
@@ -1249,6 +1266,9 @@ jobs:
                   all_errors.extend(week_details['errors'])
               if verification_errors or fetch_errors:
                   updated['errors'] = (updated['errors'] + [{'time': local.isoformat(), 'message': e} for e in verification_errors + fetch_errors])[-200:]
+              if replay is not None:
+                  replay.update(phase='MODELLED_BEFORE_LEDGER_CHECKPOINT', expected_week=week, expected_baseline_events=details['events'], expected_week_events=week_details['events'])
+                  control_archive_replay(replay)
               receipt = control_save_ledger(api, updated, sha, new_branch)
               week_details['deliveries'] = []
               market_delivery = None
@@ -1268,7 +1288,27 @@ jobs:
                   except Exception as exc:
                       all_errors.append('Weekly notification: ' + control_safe_error(exc))
               summary = {name: {'equity_rub': p['equity'], 'max_drawdown_pct': 100 * p['max_drawdown'], 'open_positions': len(p['positions']), 'closed_trades': p['closed_count'], 'halted': p['halted']} for name, p in updated['portfolios'].items()}
-              return {'status': 'ERROR' if all_errors else 'PASSED', 'source': 'apim.moex.com', 'mode': 'VIRTUAL_ONLY', 'orders_enabled': False, 'ledger_saved': True, 'receipt': receipt, 'portfolios': summary, 'events': details['events'], 'errors': all_errors, 'provenance': provenance, 'valuation': details['valuation'], 'market_delivery': market_delivery, 'week': {**week_details, 'id': week['id'], 'started_at_utc': week['started_at_utc'], 'ends_at_utc': week['ends_at_utc'], 'portfolios': {name: {'equity_rub': p['equity'], 'closed_trades': p['closed_count'], 'open_positions': len(p['positions']), 'max_drawdown_pct': 100 * p['max_drawdown']} for name, p in week['book']['portfolios'].items()}}}
+              replay_receipt = None
+              if replay is not None:
+                  replay.update(phase='COMPLETED_AFTER_CHECKPOINT', expected_week=week, expected_baseline_events=details['events'], expected_week_events=week_details['events'], ledger_receipt=receipt, market_delivery=market_delivery, week_deliveries=week_details.get('deliveries', []), completed_at_utc=datetime.now(timezone.utc).isoformat(), timestamp_scope='Exact inputs and decision clocks used by this controller; Telegram receipt is server acceptance, not user read time')
+                  try:
+                      replay_receipt = control_archive_replay(replay)
+                  except Exception as exc:
+                      all_errors.append('Replay input archive: ' + control_safe_error(exc))
+              return {'status': 'ERROR' if all_errors else 'PASSED', 'source': 'apim.moex.com', 'mode': 'VIRTUAL_ONLY', 'orders_enabled': False, 'ledger_saved': True, 'receipt': receipt, 'portfolios': summary, 'events': details['events'], 'errors': all_errors, 'provenance': provenance, 'valuation': details['valuation'], 'market_delivery': market_delivery, 'replay_archive': replay_receipt, 'week': {**week_details, 'id': week['id'], 'started_at_utc': week['started_at_utc'], 'ends_at_utc': week['ends_at_utc'], 'portfolios': {name: {'equity_rub': p['equity'], 'closed_trades': p['closed_count'], 'open_positions': len(p['positions']), 'max_drawdown_pct': 100 * p['max_drawdown']} for name, p in week['book']['portfolios'].items()}}}
+
+          def control_archive_replay(payload):
+              body = json.dumps(payload, ensure_ascii=False, allow_nan=False, sort_keys=True, separators=(',', ':')).encode()
+              for name in ('GH_TOKEN', 'GITHUB_TOKEN', 'MOEX_ALGOPACK_TOKEN', 'TELEGRAM_BOT_TOKEN'):
+                  value = os.environ.get(name, '')
+                  if value and value.encode() in body:
+                      raise ControlError('Protected credential detected; refusing to archive')
+              directory = Path('control-evidence/replay')
+              directory.mkdir(parents=True, exist_ok=True)
+              digest = hashlib.sha256(body).hexdigest()
+              path = directory / (digest + '.json.gz')
+              path.write_bytes(gzip.compress(body, mtime=0))
+              return {'file': str(path), 'uncompressed_sha256': digest, 'schema': 1, 'controller_run_id': payload.get('controller_run_id')}
 
           def control_publish_week(week, details, context, now):
               ledger, token, chat, binding = context
@@ -1689,7 +1729,7 @@ jobs:
           CONTROL_WEEK_ENGINE_SHA256 = 'ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932'
           CONTROL_WEEK_COMPATIBLE_ENGINE_SHA256 = 'ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932'
           CONTROL_WEEK_PREVIOUS_CODE_SHA256 = 'a0867a4d0d940fee66ed75ebaa7def4183acee4101494457a0c8c6b722f18275'
-          NOTIFY_CODE_SHA256 = 'fe62d2e5df7bbeed33df27c0b03664efac319bec4b88f0236205ec65a169b288'
+          NOTIFY_CODE_SHA256 = 'f28f180ab0528d96d287f8c9dc1d024796b44145372eaaa869705508e527f326'
           sys.exit(control_main())
           PY
       - name: Retain control and error evidence
