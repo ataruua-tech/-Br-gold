@@ -936,6 +936,19 @@
         "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c"
       },
       "statuses": {}
+    },
+    {
+      "time": "2026-10-27T22:52:27.242337",
+      "provenance": {
+        "run_id": 40572907947,
+        "attempt": 1,
+        "head_sha": "f6c1424aac8c14c1a735c35baafd3446d194bc6c",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "1fda69f0d3df9f42b1cf13d8079c4fb139b385aaac34b3775e5ce33c6e2d6ae6",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40572907947",
+        "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c"
+      },
+      "statuses": {}
     }
   ],
   "errors": [
@@ -1204,7 +1217,7 @@
       "message": "GDZ6: Current exit quote is stale or in the future"
     }
   ],
-  "updated_at_msk": "2026-10-27T22:13:22.385112",
+  "updated_at_msk": "2026-10-27T22:52:27.242337",
   "weekly_pilot": {
     "schema": 1,
     "status": "RUNNING",
@@ -1661,10 +1674,28 @@
             "BR": "NO_SIGNAL",
             "GOLD": "NO_SIGNAL"
           }
+        },
+        {
+          "time": "2026-10-27T22:52:27.689985",
+          "provenance": {
+            "run_id": 40572907947,
+            "attempt": 1,
+            "head_sha": "f6c1424aac8c14c1a735c35baafd3446d194bc6c",
+            "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+            "artifact_sha256": "1fda69f0d3df9f42b1cf13d8079c4fb139b385aaac34b3775e5ce33c6e2d6ae6",
+            "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40572907947",
+            "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c",
+            "weekly_experiment": "1d88347c8df1a0db74d49667",
+            "observed_at_msk": "2026-10-27T22:52:27.689985"
+          },
+          "statuses": {
+            "BR": "NO_SIGNAL",
+            "GOLD": "NO_SIGNAL"
+          }
         }
       ],
       "errors": [],
-      "updated_at_msk": "2026-10-27T22:13:23.006490"
+      "updated_at_msk": "2026-10-27T22:52:27.689985"
     },
     "notification_events": [
       {
@@ -1675,9 +1706,9 @@
       }
     ],
     "quality": {
-      "checks": 22,
-      "both_assets_fresh": 22,
-      "last_check_utc": "2026-10-27T19:13:23.006490+00:00",
+      "checks": 23,
+      "both_assets_fresh": 23,
+      "last_check_utc": "2026-10-27T19:52:27.689985+00:00",
       "maximum_check_gap_seconds": 3625.959622,
       "h1_keys": [
         "BRZ6:2026-10-27T11:00:00",
@@ -1699,7 +1730,9 @@
         "BRZ6:2026-10-27T19:00:00",
         "GDZ6:2026-10-27T19:00:00",
         "BRZ6:2026-10-27T20:00:00",
-        "GDZ6:2026-10-27T20:00:00"
+        "GDZ6:2026-10-27T20:00:00",
+        "BRZ6:2026-10-27T21:00:00",
+        "GDZ6:2026-10-27T21:00:00"
       ]
     }
   }
