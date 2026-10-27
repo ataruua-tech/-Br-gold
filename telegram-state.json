@@ -286,10 +286,13 @@
       "telegram_date": 1793121009
     },
     "error:2026-10-27T20:BR": {
-      "status": "INTENT",
+      "status": "SENT",
       "created_at_msk": "2026-10-27T20:28:40.171749+03:00",
       "kind": "ERROR",
-      "source_run_id": 40547815067
+      "source_run_id": 40547815067,
+      "confirmed_at_msk": "2026-10-27T20:28:40.171749+03:00",
+      "message_id": 35,
+      "telegram_date": 1793122125
     }
   },
   "acceptance": {
