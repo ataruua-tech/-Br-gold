@@ -637,6 +637,19 @@
         "controller_commit": "5d24438686581294452331d3460631fd2d77183d"
       },
       "statuses": {}
+    },
+    {
+      "time": "2026-10-27T12:07:49.386580",
+      "provenance": {
+        "run_id": 40478375535,
+        "attempt": 1,
+        "head_sha": "5d24438686581294452331d3460631fd2d77183d",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "4793d9db185f23bc3f59b5bac4125f6774a85d94b21eacae14d3394981955196",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40478375535",
+        "controller_commit": "5d24438686581294452331d3460631fd2d77183d"
+      },
+      "statuses": {}
     }
   ],
   "errors": [
@@ -895,9 +908,17 @@
     {
       "time": "2026-10-27T11:52:50.948143",
       "message": "GDZ6: Current exit quote is stale or in the future"
+    },
+    {
+      "time": "2026-10-27T12:07:42.050549",
+      "message": "BRZ6: Current exit quote is stale or in the future"
+    },
+    {
+      "time": "2026-10-27T12:07:42.050549",
+      "message": "GDZ6: Current exit quote is stale or in the future"
     }
   ],
-  "updated_at_msk": "2026-10-27T11:53:26.143431",
+  "updated_at_msk": "2026-10-27T12:07:49.386580",
   "weekly_pilot": {
     "schema": 1,
     "status": "NOT_STARTED",
