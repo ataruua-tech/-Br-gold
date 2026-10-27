@@ -433,10 +433,13 @@
       "telegram_date": 1793134799
     },
     "week:1d88347c8df1a0db74d49667:summary:2026-10-28T00": {
-      "status": "INTENT",
+      "status": "SENT",
       "created_at_msk": "2026-10-28T00:00:01.064613+03:00",
       "kind": "WEEK_SUMMARY",
-      "week_id": "1d88347c8df1a0db74d49667"
+      "week_id": "1d88347c8df1a0db74d49667",
+      "confirmed_at_msk": "2026-10-28T00:00:01.064613+03:00",
+      "message_id": 51,
+      "telegram_date": 1793134802
     }
   },
   "acceptance": {
