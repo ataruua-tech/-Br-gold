@@ -650,6 +650,19 @@
         "controller_commit": "5d24438686581294452331d3460631fd2d77183d"
       },
       "statuses": {}
+    },
+    {
+      "time": "2026-10-27T12:18:28.384900",
+      "provenance": {
+        "run_id": 40479726878,
+        "attempt": 1,
+        "head_sha": "f7a199db766bb28797f2da4a44289d791d8dd14a",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "93bcb89198b03e48e9e920663b7753cb7b751c8d23bd0818d5c60b570c71a422",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40479726878",
+        "controller_commit": "f7a199db766bb28797f2da4a44289d791d8dd14a"
+      },
+      "statuses": {}
     }
   ],
   "errors": [
@@ -918,14 +931,14 @@
       "message": "GDZ6: Current exit quote is stale or in the future"
     }
   ],
-  "updated_at_msk": "2026-10-27T12:07:49.386580",
+  "updated_at_msk": "2026-10-27T12:18:28.384900",
   "weekly_pilot": {
     "schema": 1,
-    "status": "NOT_STARTED",
-    "id": null,
-    "started_at_utc": null,
-    "ends_at_utc": null,
-    "binding": null,
+    "status": "RUNNING",
+    "id": "1d88347c8df1a0db74d49667",
+    "started_at_utc": "2026-10-27T09:18:32.255656+00:00",
+    "ends_at_utc": "2026-11-03T09:18:32.255656+00:00",
+    "binding": "92816f149fc95565056d56d87db37252a71b4d326eaf1c7980002f79e822d597",
     "book": {
       "schema": 1,
       "config_hash": "e652e1b5b6ab8d3860d9ff860313f7ac1c27ccb2bd23d0b1e3e641c72dda56c6",
@@ -979,16 +992,46 @@
         }
       },
       "events": [],
-      "observations": [],
-      "errors": []
+      "observations": [
+        {
+          "time": "2026-10-27T12:18:32.255656",
+          "provenance": {
+            "run_id": 40479726878,
+            "attempt": 1,
+            "head_sha": "f7a199db766bb28797f2da4a44289d791d8dd14a",
+            "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+            "artifact_sha256": "93bcb89198b03e48e9e920663b7753cb7b751c8d23bd0818d5c60b570c71a422",
+            "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40479726878",
+            "controller_commit": "f7a199db766bb28797f2da4a44289d791d8dd14a",
+            "weekly_experiment": "1d88347c8df1a0db74d49667",
+            "observed_at_msk": "2026-10-27T12:18:32.255656"
+          },
+          "statuses": {
+            "BR": "NO_SIGNAL",
+            "GOLD": "NO_SIGNAL"
+          }
+        }
+      ],
+      "errors": [],
+      "updated_at_msk": "2026-10-27T12:18:32.255656"
     },
-    "notification_events": [],
+    "notification_events": [
+      {
+        "recorded_at_utc": "2026-10-27T09:18:32.255656+00:00",
+        "type": "WEEK_STARTED",
+        "started_at_utc": "2026-10-27T09:18:32.255656+00:00",
+        "ends_at_utc": "2026-11-03T09:18:32.255656+00:00"
+      }
+    ],
     "quality": {
-      "checks": 0,
-      "both_assets_fresh": 0,
-      "last_check_utc": null,
+      "checks": 1,
+      "both_assets_fresh": 1,
+      "last_check_utc": "2026-10-27T09:18:32.255656+00:00",
       "maximum_check_gap_seconds": 0.0,
-      "h1_keys": []
+      "h1_keys": [
+        "BRZ6:2026-10-27T11:00:00",
+        "GDZ6:2026-10-27T11:00:00"
+      ]
     }
   }
 }
