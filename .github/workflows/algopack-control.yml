@@ -1124,8 +1124,14 @@ jobs:
                   raise ControlError('Missing/ambiguous contract metadata ' + code)
               s, q = (sec[0], quotes[0])
               c = {'asset': s['ASSETCODE'], 'expires': s['LASTTRADEDATE'], 'tick': float(s['MINSTEP']), 'point_value': float(s['STEPPRICE']) / float(s['MINSTEP']), 'margin': float(s['INITIALMARGIN']), 'exchange_fee': float(s['BUYSELLFEE']), 'bid': float(q['BID']), 'offer': float(q['OFFER']), 'quote_time': bg.parse_iss_time(q['SYSTIME']).isoformat()}
-              pw.week_validate_exit_quote(c, now)
+              received = datetime.now(bg.MSK).replace(tzinfo=None)
+              pw.week_validate_exit_quote(c, received)
               return c
+
+          def control_financial_binding(token, chat):
+              engine = CONTROL_WEEK_ENGINE_SHA256 or hashlib.sha256(Path(pw.__file__).read_bytes() + Path(pe.__file__).read_bytes()).hexdigest()
+              basis = CONTROL_WEEK_PREVIOUS_CODE_SHA256 if engine == CONTROL_WEEK_COMPATIBLE_ENGINE_SHA256 else engine
+              return hashlib.sha256(json.dumps([basis, token, chat], separators=(',', ':')).encode()).hexdigest()
 
           def control_minutes(code, since, now):
               query = {'interval': 1, 'from': since.date().isoformat(), 'till': now.date().isoformat(), 'iss.meta': 'off'}
@@ -1172,7 +1178,7 @@ jobs:
               week = state.get('weekly_pilot', pw.week_new())
               pw.week_validate(week)
               runs = control_runs(api)
-              local = now.astimezone(bg.MSK).replace(tzinfo=None)
+              local = datetime.now(bg.MSK).replace(tzinfo=None)
               assets = {}
               provenance = {}
               verification_errors = []
@@ -1220,21 +1226,23 @@ jobs:
               notification_context = None
               if weekly_enabled or 'weekly_pilot' in state:
                   binding = None
+                  financial_binding = None
                   activate = False
                   try:
                       token, chat, binding = nt.notify_configuration()
                       ledger = nt.NotifyLedger(nt.NotifyAPI(os.environ.get('GH_TOKEN', '')))
-                      if week['status'] == 'NOT_STARTED' and weekly_enabled and (not (verification_errors or fetch_errors)):
-                          pw.week_ready(assets, contracts, observed)
-                          nt.notify_test(ledger, token, chat, binding, datetime.now(bg.MSK))
-                          activate = True
+                      nt.notify_test(ledger, token, chat, binding, datetime.now(bg.MSK))
                       nt.notify_require_acceptance(ledger, binding)
                       notification_context = (ledger, token, chat, binding)
+                      financial_binding = control_financial_binding(token, chat)
+                      if week['status'] == 'NOT_STARTED' and weekly_enabled and (not (verification_errors or fetch_errors)):
+                          pw.week_ready(assets, contracts, observed)
+                          activate = True
                   except Exception as exc:
                       all_errors.append('Weekly activation/Telegram: ' + control_safe_error(exc))
                   observed_aware = datetime.now(bg.MSK)
                   try:
-                      week, week_details = pw.week_apply(week, entry_assets, contracts, minutes, rates, observed_aware, binding=binding if notification_context else None, activate=activate, provenance=provenance)
+                      week, week_details = pw.week_apply(week, entry_assets, contracts, minutes, rates, observed_aware, binding=financial_binding if notification_context else None, activate=activate, provenance=provenance)
                   except Exception as exc:
                       week_details = {'status': week['status'], 'events': [], 'errors': [control_safe_error(exc)]}
                   updated['weekly_pilot'] = week
@@ -1243,6 +1251,15 @@ jobs:
                   updated['errors'] = (updated['errors'] + [{'time': local.isoformat(), 'message': e} for e in verification_errors + fetch_errors])[-200:]
               receipt = control_save_ledger(api, updated, sha, new_branch)
               week_details['deliveries'] = []
+              market_delivery = None
+              if notification_context:
+                  ledger, token, chat, binding = notification_context
+                  try:
+                      market_delivery = nt.notify_publish(ledger.api, ledger, token, chat, binding, datetime.now(bg.MSK))
+                      if market_delivery['status'] == 'DATA_ERRORS':
+                          all_errors.append('Market relay could not verify current H1 data')
+                  except Exception as exc:
+                      all_errors.append('Market relay: ' + control_safe_error(exc))
               if notification_context and week['status'] != 'NOT_STARTED':
                   try:
                       week_details['deliveries'] = control_publish_week(week, week_details, notification_context, datetime.now(bg.MSK))
@@ -1251,7 +1268,7 @@ jobs:
                   except Exception as exc:
                       all_errors.append('Weekly notification: ' + control_safe_error(exc))
               summary = {name: {'equity_rub': p['equity'], 'max_drawdown_pct': 100 * p['max_drawdown'], 'open_positions': len(p['positions']), 'closed_trades': p['closed_count'], 'halted': p['halted']} for name, p in updated['portfolios'].items()}
-              return {'status': 'ERROR' if all_errors else 'PASSED', 'source': 'apim.moex.com', 'mode': 'VIRTUAL_ONLY', 'orders_enabled': False, 'ledger_saved': True, 'receipt': receipt, 'portfolios': summary, 'events': details['events'], 'errors': all_errors, 'provenance': provenance, 'valuation': details['valuation'], 'week': {**week_details, 'id': week['id'], 'started_at_utc': week['started_at_utc'], 'ends_at_utc': week['ends_at_utc'], 'portfolios': {name: {'equity_rub': p['equity'], 'closed_trades': p['closed_count'], 'open_positions': len(p['positions']), 'max_drawdown_pct': 100 * p['max_drawdown']} for name, p in week['book']['portfolios'].items()}}}
+              return {'status': 'ERROR' if all_errors else 'PASSED', 'source': 'apim.moex.com', 'mode': 'VIRTUAL_ONLY', 'orders_enabled': False, 'ledger_saved': True, 'receipt': receipt, 'portfolios': summary, 'events': details['events'], 'errors': all_errors, 'provenance': provenance, 'valuation': details['valuation'], 'market_delivery': market_delivery, 'week': {**week_details, 'id': week['id'], 'started_at_utc': week['started_at_utc'], 'ends_at_utc': week['ends_at_utc'], 'portfolios': {name: {'equity_rub': p['equity'], 'closed_trades': p['closed_count'], 'open_positions': len(p['positions']), 'max_drawdown_pct': 100 * p['max_drawdown']} for name, p in week['book']['portfolios'].items()}}}
 
           def control_publish_week(week, details, context, now):
               ledger, token, chat, binding = context
@@ -1333,6 +1350,8 @@ jobs:
               compact = compact.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
               print(('::error' if result['status'] == 'FAILED' else '::notice') + ' title=BR-GOLD cloud control::' + compact)
               return 1 if result['status'] == 'FAILED' else 0
+
+          cc = sys.modules[__name__]
 
           NOTIFY_REPO = 'ataruua-tech/-Br-gold'
 
@@ -1531,8 +1550,146 @@ jobs:
                   ledger.save()
               return result
 
+          def notify_select_run(api, event_run_id=None):
+              runs = cc.control_runs(api)
+              if not runs:
+                  raise NotifyError('No H1 workflow runs on main')
+              run = runs[0]
+              if event_run_id is not None and run['id'] != event_run_id:
+                  return None
+              if run.get('head_repository', {}).get('full_name', NOTIFY_REPO) != NOTIFY_REPO:
+                  raise NotifyError('Unexpected source repository')
+              cc.control_verify_tree(api, run['head_sha'])
+              if run['status'] != 'completed':
+                  raise NotifyError('Newest H1 run is still queued/running')
+              if run.get('conclusion') != 'success':
+                  raise NotifyError('Newest H1 run failed; an older success cannot replace it')
+              return run
+
+          def notify_validate_signal(value, now):
+              local = now.astimezone(bg.MSK).replace(tzinfo=None)
+              cc.pe.paper_validate_asset(value, local)
+              code = value['contract']
+              if not re.fullmatch('[A-Za-z0-9]{3,20}', code):
+                  raise NotifyError('Invalid real contract code')
+              if not isinstance(value.get('close'), (int, float)) or isinstance(value['close'], bool) or (not math.isfinite(value['close'])) or (value['close'] <= 0):
+                  raise NotifyError('Invalid reported H1 close')
+              if value['status'] not in ('LONG', 'SHORT', 'ENTRY_CANCELLED'):
+                  return
+              setup = value['setup']
+              direction = setup.get('direction') if value['status'] == 'ENTRY_CANCELLED' else value['status']
+              if direction not in ('LONG', 'SHORT'):
+                  raise NotifyError('Invalid cancelled setup direction')
+              side = 'BUY' if direction == 'LONG' else 'SELL'
+              expected = code + ':' + side + ':' + bg.parse_iss_time(value['last_h1_msk']).isoformat()
+              if setup['uid'] != expected or setup.get('direction') != direction:
+                  raise NotifyError('Setup UID/direction does not match this contract and H1')
+              if not math.isclose(setup['entry'], value['close'], rel_tol=0, abs_tol=1e-09):
+                  raise NotifyError('Setup entry is not the reported H1 close')
+              if value['status'] == 'ENTRY_CANCELLED':
+                  return
+              quote = value['quote']['offer' if side == 'BUY' else 'bid']
+              if abs(quote - setup['entry']) > 0.5 * value['indicators']['atr14']:
+                  raise NotifyError('Source quote drift exceeds 0.5 ATR')
+
+          def notify_render_signal(value, provenance):
+              start = bg.parse_iss_time(value['last_h1_msk'])
+              end = start + timedelta(hours=1)
+              setup = value['setup']
+              quote = bg.parse_iss_time(value['quote']['time_msk'])
+              channel = 'максимума' if value['status'] == 'LONG' else 'минимума'
+              return ('🟢 ' if value['status'] == 'LONG' else '🔴 ') + value['status'] + ' · ' + value['asset'] + ' · ' + value['contract'] + f"\nH1: {start:%d.%m.%Y %H:%M}–{end:%H:%M} МСК\nВход по закрытию H1: {setup['entry']:g}\nСтоп: {setup['stop']:g} · Цель: {setup['target']:g}\nПробой Donchian20 {channel}, EMA20/50 H1+H4, ADX14={value['indicators']['adx14']:.1f}, объём подтверждён.\nКотировка из расчёта: {quote:%d.%m.%Y %H:%M:%S} МСК.\nВход — расчётный уровень, текущая цена исполнения может отличаться.\nЭкспериментальная стратегия. Автоматического исполнения нет.\n" + provenance['run_url']
+
+          def notify_no_signal_reason(value):
+              """Explain a failed frozen entry condition, never an invented probability."""
+              i, f = (value['indicators'], value['filters'])
+              h1 = i['ema20'] - i['ema50']
+              h4 = i['h4_ema20'] - i['h4_ema50']
+              if h1 * h4 <= 0:
+                  return 'EMA20/50 H1 и H4 не подтверждают одно направление'
+              if i['adx14'] < 22:
+                  return f"ADX14={i['adx14']:.2f} ниже 22"
+              if f.get('volume') is not True:
+                  return 'объём ниже фильтра стратегии'
+              if f.get('breakout_up' if h1 > 0 else 'breakout_down') is not True:
+                  return 'нет пробоя Donchian20 по направлению тренда'
+              return 'расчёт не подтвердил вход; требуется проверка результата'
+
+          def notify_render_summary(assets, provenance, now):
+              """Only call with independently replayed, current BR and GOLD results."""
+              start = bg.parse_iss_time(assets['BR']['last_h1_msk'])
+              end = start + timedelta(hours=1)
+              local = now.astimezone(bg.MSK)
+              no_signal = all((assets[a]['status'] == 'NO_SIGNAL' for a in ('BR', 'GOLD')))
+              lines = ['⚪ СИГНАЛОВ НЕТ' if no_signal else '📋 Сводка BR/GOLD', f'Проверка: {local:%d.%m.%Y %H:%M:%S} МСК', f'H1: {start:%d.%m.%Y %H:%M}–{end:%H:%M} МСК']
+              for asset in ('BR', 'GOLD'):
+                  value = assets[asset]
+                  if value['status'] == 'NO_SIGNAL':
+                      reason = notify_no_signal_reason(value)
+                  elif value['status'] == 'ENTRY_CANCELLED':
+                      reason = 'вход отменён; уровни входа не публикуются'
+                  else:
+                      reason = value['status'] + '; уровни в отдельном уведомлении о сигнале'
+                  lines.append(f"{asset} · {value['contract']} · закрытие {value['close']:g}: {reason}.")
+                  quote = bg.parse_iss_time(value['quote']['time_msk'])
+                  lines.append(f'Котировка {asset}: {quote:%d.%m.%Y %H:%M:%S} МСК.')
+              lines += ['Расчёт по закрытой H1 с буфером 18 минут. Это время расчётной свечи, не текущая цена. Автоматического исполнения нет.', provenance['run_url']]
+              return '\n'.join(lines)
+
+          def notify_publish(api, ledger, token, chat, fingerprint, now, event_run_id=None, sender=None):
+              notify_require_acceptance(ledger, fingerprint)
+              try:
+                  run = notify_select_run(api, event_run_id)
+                  if run is None:
+                      return {'status': 'SUPERSEDED', 'deliveries': []}
+                  local = now.astimezone(bg.MSK).replace(tzinfo=None)
+                  assets, provenance, replay_errors = cc.control_read_evidence(api, run, local)
+              except Exception as exc:
+                  key = 'error:' + now.astimezone(bg.MSK).strftime('%Y-%m-%dT%H') + ':SYSTEM'
+                  error = notify_safe_error(exc)
+                  local = now.astimezone(bg.MSK).replace(tzinfo=None)
+                  expected = cc.pe.paper_expected_h1(local)
+                  receipt = notify_deliver(ledger, key, f'⚠️ ПРОВЕРКА НЕ УДАЛАСЬ\nПроверка: {local:%d.%m.%Y %H:%M:%S} МСК. Ожидается H1: {expected:%d.%m.%Y %H:%M}–{expected + timedelta(hours=1):%H:%M}.\n' + error + '\nhttps://github.com/' + NOTIFY_REPO + '/actions/workflows/algopack-h1.yml', token, chat, now, {'kind': 'ERROR'}, sender)
+                  return {'status': 'DATA_ERRORS', 'errors': [error], 'deliveries': [receipt]}
+              result = {'status': 'CHECKED', 'source': provenance, 'deliveries': [], 'assets': {}, 'replay_errors': replay_errors}
+              for asset in ('BR', 'GOLD'):
+                  value = assets.get(asset)
+                  try:
+                      if not value or value.get('asset') != asset:
+                          raise NotifyError('Missing/incorrect asset result')
+                      notify_validate_signal(value, now)
+                      status = value['status']
+                  except Exception as exc:
+                      error = notify_safe_error(exc)
+                      result['assets'][asset] = {'status': 'DATA_ERROR', 'errors': [error]}
+                      key = 'error:' + now.astimezone(bg.MSK).strftime('%Y-%m-%dT%H') + ':' + asset
+                      expected = cc.pe.paper_expected_h1(local)
+                      message = '⚠️ ПРОВЕРКА НЕ УДАЛАСЬ · ' + asset + f'\nПроверка: {local:%d.%m.%Y %H:%M:%S} МСК. Ожидается H1: {expected:%d.%m.%Y %H:%M}–{expected + timedelta(hours=1):%H:%M}.\n' + error + '\n' + provenance['run_url']
+                      receipt = notify_deliver(ledger, key, message, token, chat, now, {'kind': 'ERROR', 'source_run_id': run['id']}, sender)
+                      result['deliveries'].append(receipt)
+                      continue
+                  result['assets'][asset] = {'status': status, 'contract': value['contract'], 'last_h1_msk': value['last_h1_msk']}
+                  if status == 'NO_SIGNAL':
+                      continue
+                  key = 'signal:' + value['setup']['uid']
+                  if status == 'ENTRY_CANCELLED':
+                      message = '⚪ Вход отменён · ' + asset + ' · ' + value['contract'] + '\n'
+                      message += 'Котировка ушла от уровня H1 более чем на 0,5 ATR либо отсутствует.\n' + provenance['run_url']
+                  else:
+                      message = notify_render_signal(value, provenance)
+                  result['deliveries'].append(notify_deliver(ledger, key, message, token, chat, now, {'kind': status, 'source_run_id': run['id']}, sender))
+              if any((v['status'] == 'DATA_ERROR' for v in result['assets'].values())):
+                  result['status'] = 'DATA_ERRORS'
+              else:
+                  key = 'summary:' + assets['BR']['last_h1_msk']
+                  result['deliveries'].append(notify_deliver(ledger, key, notify_render_summary(assets, provenance, now), token, chat, now, {'kind': 'SUMMARY', 'source_run_id': run['id'], 'last_h1_msk': assets['BR']['last_h1_msk']}, sender))
+              return result
+
           nt = sys.modules[__name__]
-          NOTIFY_CODE_SHA256 = 'a0867a4d0d940fee66ed75ebaa7def4183acee4101494457a0c8c6b722f18275'
+          CONTROL_WEEK_ENGINE_SHA256 = 'ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932'
+          CONTROL_WEEK_COMPATIBLE_ENGINE_SHA256 = 'ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932'
+          CONTROL_WEEK_PREVIOUS_CODE_SHA256 = 'a0867a4d0d940fee66ed75ebaa7def4183acee4101494457a0c8c6b722f18275'
+          NOTIFY_CODE_SHA256 = 'fe62d2e5df7bbeed33df27c0b03664efac319bec4b88f0236205ec65a169b288'
           sys.exit(control_main())
           PY
       - name: Retain control and error evidence
