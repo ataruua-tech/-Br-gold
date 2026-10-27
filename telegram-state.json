@@ -267,11 +267,14 @@
       "telegram_date": 1793118602
     },
     "summary:2026-10-27T18:00:00": {
-      "status": "INTENT",
+      "status": "SENT",
       "created_at_msk": "2026-10-27T19:59:19.444394+03:00",
       "kind": "SUMMARY",
       "source_run_id": 40546117825,
-      "last_h1_msk": "2026-10-27T18:00:00"
+      "last_h1_msk": "2026-10-27T18:00:00",
+      "confirmed_at_msk": "2026-10-27T19:59:19.444394+03:00",
+      "message_id": 33,
+      "telegram_date": 1793120364
     }
   },
   "acceptance": {
