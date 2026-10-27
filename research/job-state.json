@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "updated_at_utc": "2026-10-27T17:21:15.907998+00:00",
+  "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
+  "phase": "DATA_RECOVERY",
+  "last_completed_step": "Original four M1/H1/FX archives verified; three empty padding windows corroborated by official closure notices",
+  "research_restarts_hourly": false,
+  "chat_research_automation_paused": true,
+  "chat_market_automation_paused": true,
+  "hourly_market_destination": "Existing Telegram bot via preserved live GitHub workflows",
+  "online_shared_lock": "br-gold-telegram-v1; existing ledger/notification serialization preserved",
+  "original_data_run": 40494996964,
+  "additional_inputs_run": 40529837847,
+  "additional_inputs_status": "Four yearly panel jobs failed; all five archives retained; exact errors pending verified archive inspection",
+  "current_main_commit": "a25b25cc86fa688a7dd553b72fa3015661ad61eb",
+  "scenario_testing_allowed": false,
+  "all_required_inputs_ready": false,
+  "exact_agent_replay_ready": false,
+  "profitability_confirmed": false,
+  "S1_S5_status": "Existing provisional specifications require review and primary sources before approval/implementation",
+  "prior_trials_total": "UNKNOWN",
+  "max_drawdown_approved_by_user": null,
+  "deployed_S0_20_percent_entry_halt": "Existing code fact only, not an approved user drawdown tolerance",
+  "new_online_week": {
+    "id": null,
+    "start": null,
+    "end": null,
+    "status": "NOT_STARTED",
+    "allowed_after": [
+      "data sufficiency reviewed",
+      "candidate/version frozen",
+      "notifications and end-of-week exit policy verified"
+    ]
+  },
+  "preserved_online_week": {
+    "id": "1d88347c8df1a0db74d49667",
+    "end_utc": "2026-11-03T09:18:32.255656+00:00",
+    "do_not_reset": true
+  },
+  "next_step": "Read complete chunked audit; restore only missing page offsets from APIM; inspect complete calendar/catalogue and record objective remaining gaps",
+  "blocking_issues_are_not_final": true,
+  "completed_research": false,
+  "specification": "research/PROJECT_SPEC_RU.txt",
+  "data_audit_run": 40547871967,
+  "data_audit_source_commit": "ba92dec0fb3172e7380160f192b9d147cd48db01",
+  "confirmed_errors": {
+    "2023": "7 contract/metric windows had network errors; received earlier pages retained",
+    "2024": "GDM4 OBStats rejected negative/invalid spread values",
+    "2025": "4 OBStats windows rejected negative/invalid spread values",
+    "2026": "Summary truncated at 4096 bytes; complete chunked report and recovery deployed"
+  },
+  "offline_recovery": "Reuse archived raw response pages, preserve bad values, quarantine invalid quote observations; do not clamp or silently fill",
+  "paperclip": {
+    "status": "DEFERRED_BY_USER",
+    "tools_connected": false,
+    "instance_url": null
+  }
+}
