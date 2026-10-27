@@ -1,0 +1,9 @@
+test_auth_failure_stops_and_keeps_redacted_error (research.test_empty_windows.EmptyWindowTests.test_auth_failure_stops_and_keeps_redacted_error) ... ok
+test_empty_both_is_archived_without_asserting_closed_session (research.test_empty_windows.EmptyWindowTests.test_empty_both_is_archived_without_asserting_closed_session) ... ok
+test_nonempty_h1_with_empty_minutes_is_blocking (research.test_empty_windows.EmptyWindowTests.test_nonempty_h1_with_empty_minutes_is_blocking) ... ok
+test_standalone_workflow_matches_source_and_runs_without_local_modules (research.test_empty_windows.EmptyWindowTests.test_standalone_workflow_matches_source_and_runs_without_local_modules) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.030s
+
+OK

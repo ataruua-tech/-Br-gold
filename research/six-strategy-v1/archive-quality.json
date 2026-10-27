@@ -1,0 +1,104 @@
+{
+  "verified_at_utc": "2026-10-27T13:35:38.909710+00:00",
+  "source_run_id": 40494996964,
+  "period": [
+    "2023-01-01",
+    "2026-10-26 exclusive"
+  ],
+  "years": [
+    {
+      "year": 2023,
+      "zip_sha256": "fdbd8f024c12ab110c0d9f15a1aabd107039bde066b0410054a9b7939abf578c",
+      "integrity": "PASSED",
+      "acquisition_status": "ACQUISITION_PASSED",
+      "request_count": 1125,
+      "request_errors": [],
+      "contract_windows": 18,
+      "verified_nonempty_windows": 18,
+      "m1_rows": 500923,
+      "h1_rows_including_warmup": 24335,
+      "reconciled_h1": 8991,
+      "fx_rows": 528,
+      "unresolved_windows": [],
+      "calendar_coverage_verified": false,
+      "exact_agent_replay_ready": false
+    },
+    {
+      "year": 2024,
+      "zip_sha256": "5a99d6eee7f98d7e76a1dffe86dcfeea4b523be14c587b22f8c3000905d4c04c",
+      "integrity": "PASSED",
+      "acquisition_status": "ACQUISITION_PASSED",
+      "request_count": 1091,
+      "request_errors": [],
+      "contract_windows": 18,
+      "verified_nonempty_windows": 18,
+      "m1_rows": 486037,
+      "h1_rows_including_warmup": 24589,
+      "reconciled_h1": 9101,
+      "fx_rows": 532,
+      "unresolved_windows": [],
+      "calendar_coverage_verified": false,
+      "exact_agent_replay_ready": false
+    },
+    {
+      "year": 2025,
+      "zip_sha256": "d8eff7373c9bcaafb570fbd24a44d84709353112396f90c62bd299e86b003253",
+      "integrity": "PASSED",
+      "acquisition_status": "PARTIAL_ERROR",
+      "request_count": 1155,
+      "request_errors": [],
+      "contract_windows": 19,
+      "verified_nonempty_windows": 18,
+      "m1_rows": 516309,
+      "h1_rows_including_warmup": 26089,
+      "reconciled_h1": 10000,
+      "fx_rows": 528,
+      "unresolved_windows": [
+        {
+          "contract": "BRF5",
+          "error": "No M1 rows in a nonempty frozen H1 study window",
+          "status": "ERROR"
+        }
+      ],
+      "calendar_coverage_verified": false,
+      "exact_agent_replay_ready": false
+    },
+    {
+      "year": 2026,
+      "zip_sha256": "b8344fbe990dd1ae069ceef3ae0709ca12375a7205a26f1360e3ba34b66b1ffb",
+      "integrity": "PASSED",
+      "acquisition_status": "PARTIAL_ERROR",
+      "request_count": 1103,
+      "request_errors": [],
+      "contract_windows": 16,
+      "verified_nonempty_windows": 14,
+      "m1_rows": 498300,
+      "h1_rows_including_warmup": 23526,
+      "reconciled_h1": 9424,
+      "fx_rows": 430,
+      "unresolved_windows": [
+        {
+          "contract": "BRF6",
+          "error": "No M1 rows in a nonempty frozen H1 study window",
+          "status": "ERROR"
+        },
+        {
+          "contract": "BRZ6",
+          "error": "No M1 rows in a nonempty frozen H1 study window",
+          "status": "ERROR"
+        }
+      ],
+      "calendar_coverage_verified": false,
+      "exact_agent_replay_ready": false
+    }
+  ],
+  "exact_agent_replay_ready": false,
+  "unconfirmed_exact_inputs": [
+    "Historical executable BBO",
+    "Historical margin, exchange fees and full contract-selection universe",
+    "Historical source/runner/Telegram availability",
+    "Confirmed trading calendar"
+  ],
+  "scenario_data_ready": false,
+  "status": "BLOCKED_PENDING_EMPTY_WINDOW_VERIFICATION"
+}
