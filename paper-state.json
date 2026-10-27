@@ -982,6 +982,13 @@
         "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c"
       },
       "statuses": {}
+    },
+    {
+      "time": "2026-10-28T00:18:33.722401",
+      "provenance": {
+        "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c"
+      },
+      "statuses": {}
     }
   ],
   "errors": [
@@ -1252,9 +1259,13 @@
     {
       "time": "2026-10-27T23:59:54.871129",
       "message": "Newest H1 run failed; no substitution by an older success"
+    },
+    {
+      "time": "2026-10-28T00:18:33.722348",
+      "message": "Newest H1 run failed; no substitution by an older success"
     }
   ],
-  "updated_at_msk": "2026-10-27T23:59:54.871161",
+  "updated_at_msk": "2026-10-28T00:18:33.722401",
   "weekly_pilot": {
     "schema": 1,
     "status": "RUNNING",
@@ -1774,10 +1785,19 @@
             "observed_at_msk": "2026-10-27T23:59:55.375572"
           },
           "statuses": {}
+        },
+        {
+          "time": "2026-10-28T00:18:34.479503",
+          "provenance": {
+            "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c",
+            "weekly_experiment": "1d88347c8df1a0db74d49667",
+            "observed_at_msk": "2026-10-28T00:18:34.479503"
+          },
+          "statuses": {}
         }
       ],
       "errors": [],
-      "updated_at_msk": "2026-10-27T23:59:55.375572"
+      "updated_at_msk": "2026-10-28T00:18:34.479503"
     },
     "notification_events": [
       {
@@ -1788,9 +1808,9 @@
       }
     ],
     "quality": {
-      "checks": 26,
+      "checks": 27,
       "both_assets_fresh": 25,
-      "last_check_utc": "2026-10-27T20:59:55.375572+00:00",
+      "last_check_utc": "2026-10-27T21:18:34.479503+00:00",
       "maximum_check_gap_seconds": 3625.959622,
       "h1_keys": [
         "BRZ6:2026-10-27T11:00:00",
