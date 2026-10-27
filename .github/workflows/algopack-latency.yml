@@ -2,6 +2,8 @@
 name: AlgoPack Latency Probe
 
 on:
+  schedule:
+    - cron: '42 5,9,13,17 * * *'
   push:
     branches: [main]
     paths: ['.github/workflows/algopack-latency.yml']
@@ -15,6 +17,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: algopack-latency-probe
@@ -29,6 +32,7 @@ jobs:
       - name: Measure closed H1 availability and quote timestamps
         env:
           MOEX_ALGOPACK_TOKEN: ${{ secrets.MOEX_ALGOPACK_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           PROBE_WINDOWS: ${{ inputs.windows || '1' }}
           PYTHONUNBUFFERED: '1'
         run: |
@@ -36,6 +40,7 @@ jobs:
           from __future__ import annotations
           import functools
           import hashlib
+          import io
           import json
           import logging
           import math
@@ -46,6 +51,7 @@ jobs:
           import urllib.error
           import urllib.parse
           import urllib.request
+          import zipfile
           from dataclasses import dataclass, asdict
           from datetime import date, datetime, timedelta, timezone
           from pathlib import Path
@@ -225,13 +231,144 @@ jobs:
 
           bg = sys.modules[__name__]
 
+          def latency_review(reports, code_digest):
+              by_asset = {a: [] for a in ('BR', 'GOLD')}
+              seen = set()
+              excluded = 0
+              for report in reports:
+                  if report.get('source') != 'apim.moex.com' or report.get('probe_code_sha256') != code_digest or report.get('observe_after_seconds', 0) < 1800:
+                      excluded += 1
+                      continue
+                  for window in report.get('windows', []):
+                      for asset in ('BR', 'GOLD'):
+                          close = window.get('target_close_msk')
+                          contract = window.get('contracts', {}).get(asset, {}).get('secid')
+                          key = (asset, contract, close)
+                          if key in seen:
+                              continue
+                          seen.add(key)
+                          data = window.get('analysis', {}).get(asset, {})
+                          stable = data.get('earliest_observed_stable_suffix_seconds')
+                          if data.get('status') != 'MEASURED' or not data.get('has_preclose_baseline') or (not data.get('cadence_complete')) or (data.get('errors') != 0) or (not data.get('all_observed_quote_system_timestamps_current')) or (not isinstance(stable, (int, float))) or isinstance(stable, bool) or (not math.isfinite(stable)) or (stable < 0):
+                              excluded += 1
+                              continue
+                          try:
+                              day = datetime.fromisoformat(close).date().isoformat()
+                              poll = float(report['poll_seconds'])
+                              if not math.isfinite(poll) or not 1 <= poll <= 120:
+                                  raise ValueError('Invalid observation cadence')
+                          except (ValueError, TypeError, KeyError):
+                              excluded += 1
+                              continue
+                          by_asset[asset].append({'date': day, 'contract': contract, 'close': close, 'stable_seconds': stable, 'poll_seconds': poll, 'revisions': data.get('postclose_revisions')})
+              result = {'status': 'COLLECTING', 'assets': {}, 'excluded_windows_or_reports': excluded, 'minimum_complete_windows_per_asset': 12, 'minimum_distinct_dates_per_asset': 3, 'candidate_buffer_minutes': None, 'production_buffer_minutes': 18, 'buffer_change_authorized': False, 'note': 'Operational sample minimum, not a confidence guarantee. Stability is relative to the last observed +30-minute reference; later revisions remain possible.'}
+              candidates = []
+              for asset, rows in by_asset.items():
+                  days = len({r['date'] for r in rows})
+                  margin = max((r['stable_seconds'] + 2 * r['poll_seconds'] for r in rows), default=None)
+                  candidate = math.ceil(margin / 60) if margin is not None else None
+                  result['assets'][asset] = {'complete_windows': len(rows), 'distinct_dates': days, 'maximum_observed_stable_seconds': max((r['stable_seconds'] for r in rows), default=None), 'candidate_minutes': candidate}
+                  if len(rows) >= 12 and days >= 3:
+                      candidates.append(candidate)
+              if len(candidates) == 2:
+                  candidate = max(candidates)
+                  result['candidate_buffer_minutes'] = candidate
+                  result['status'] = 'READY_FOR_REVIEW' if candidate < 18 else 'NO_SUPPORTED_REDUCTION'
+              return result
+
           PROBE_POLL_SECONDS = 60
 
           PROBE_BEFORE_SECONDS = 120
 
-          PROBE_AFTER_SECONDS = 1200
+          PROBE_AFTER_SECONDS = 1800
 
           PROBE_REQUEST_BUDGET = 1500
+
+          def probe_safe_error(exc):
+              message = bg.safe_error(exc)
+              for name in ('GH_TOKEN', 'GITHUB_TOKEN'):
+                  secret = os.environ.get(name, '')
+                  if secret:
+                      message = message.replace(secret, '[REDACTED]')
+              return message
+
+          def probe_github(suffix, archive=False):
+              if not suffix.startswith('/') or '..' in suffix:
+                  raise ValueError('Invalid probe GitHub path')
+              token = os.environ.get('GH_TOKEN', '')
+              if not token:
+                  raise ValueError('Probe campaign requires its short-lived read-only GitHub token')
+              url = 'https://api.github.com/repos/ataruua-tech/-Br-gold' + suffix
+              request = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'User-Agent': 'BR-GOLD-Latency/2'})
+              opener = urllib.request.build_opener(bg.NoRedirect())
+              try:
+                  with opener.open(request, timeout=30) as response:
+                      raw = response.read(5000001)
+              except urllib.error.HTTPError as exc:
+                  if not archive or exc.code not in (301, 302, 303, 307, 308):
+                      raise RuntimeError('Probe GitHub HTTP ' + str(exc.code)) from None
+                  target = exc.headers.get('Location', '')
+                  p = urllib.parse.urlsplit(target)
+                  if p.scheme != 'https' or not p.hostname or (not any((p.hostname.endswith(s) for s in ('.blob.core.windows.net', '.actions.githubusercontent.com', '.githubusercontent.com')))) or p.username or (p.port not in (None, 443)):
+                      raise ValueError('Unexpected observation archive redirect') from None
+                  with opener.open(target, timeout=30) as response:
+                      raw = response.read(5000001)
+              if len(raw) > 5000000:
+                  raise ValueError('Probe GitHub response exceeds bounded size')
+              return raw if archive else json.loads(raw)
+
+          def probe_campaign(now, fetch=None):
+              if os.environ.get('GITHUB_EVENT_NAME') not in ('schedule', 'push'):
+                  return {'status': 'MANUAL_OR_INSTALLATION', 'scheduled_campaign_days': 7}
+              fetch = fetch or probe_github
+              sha = os.environ.get('GITHUB_SHA', '')
+              if len(sha) != 40 or any((c not in '0123456789abcdef' for c in sha)):
+                  raise ValueError('Missing campaign source commit')
+              query = urllib.parse.urlencode({'path': '.github/workflows/algopack-latency.yml', 'sha': sha, 'per_page': 1})
+              commits = fetch('/commits?' + query)
+              if not isinstance(commits, list) or len(commits) != 1:
+                  raise ValueError('Cannot establish latency campaign installation')
+              installed = probe_stamp(commits[0]['commit']['committer']['date'])
+              if installed > now + timedelta(minutes=5):
+                  raise ValueError('Campaign installation timestamp is in the future')
+              end = installed + timedelta(days=7)
+              return {'status': 'ACTIVE' if now < end else 'CAMPAIGN_COMPLETE', 'installed_at_msk': installed.isoformat(), 'ends_at_msk': end.isoformat(), 'scheduled_campaign_days': 7}
+
+          def probe_review_history(current, fetch=None):
+              fetch = fetch or probe_github
+              runs = fetch('/actions/workflows/algopack-latency.yml/runs?branch=main&per_page=40').get('workflow_runs', [])
+              reports = [current]
+              errors = []
+              installed = current.get('campaign', {}).get('installed_at_msk')
+              for run in sorted(runs, key=lambda r: (r['created_at'], r['id']), reverse=True):
+                  if str(run['id']) == os.environ.get('GITHUB_RUN_ID') or run.get('status') != 'completed':
+                      continue
+                  if installed and probe_stamp(run['created_at']) < probe_stamp(installed):
+                      continue
+                  try:
+                      expected = f"algopack-latency-{run['id']}-{run.get('run_attempt', 1)}"
+                      docs = fetch('/actions/runs/' + str(run['id']) + '/artifacts?per_page=100').get('artifacts', [])
+                      matches = [a for a in docs if a.get('name') == expected and (not a.get('expired'))]
+                      if len(matches) != 1:
+                          raise ValueError('Missing observation archive for the newest attempt')
+                      artifact = matches[0]
+                      raw = fetch('/actions/artifacts/' + str(artifact['id']) + '/zip', archive=True)
+                      if artifact.get('digest') and artifact['digest'] != 'sha256:' + hashlib.sha256(raw).hexdigest():
+                          raise ValueError('Observation artifact hash mismatch')
+                      with zipfile.ZipFile(io.BytesIO(raw)) as z:
+                          infos = [i for i in z.infolist() if i.filename == 'latency-report.json']
+                          if len(infos) != 1 or infos[0].file_size > 2000000:
+                              raise ValueError('Invalid bounded observation report')
+                          report = json.loads(z.read('latency-report.json'))
+                      reports.append(report)
+                  except Exception as exc:
+                      errors.append({'run_id': run['id'], 'error': probe_safe_error(exc)})
+              review = latency_review(reports, current['probe_code_sha256'])
+              review['history_errors'] = errors
+              if errors:
+                  review['status'] = 'HISTORY_INCOMPLETE'
+                  review['candidate_buffer_minutes'] = None
+              return review
 
           def probe_now():
               return datetime.now(timezone.utc).astimezone(bg.MSK)
@@ -337,14 +474,14 @@ jobs:
                       if candle is not None:
                           result['ohlcv_sha256'] = probe_signature(candle)
                   except Exception as exc:
-                      result['errors'].append(bg.safe_error(exc))
+                      result['errors'].append(probe_safe_error(exc))
                       result['candle_observed_at_msk'] = self.clock().isoformat()
                   if any((probe_fatal_error(e) for e in result['errors'])):
                       return result
                   try:
                       result['quote'], _ = self.quote(contract.secid, close)
                   except Exception as exc:
-                      result['errors'].append(bg.safe_error(exc))
+                      result['errors'].append(probe_safe_error(exc))
                   return result
 
           def probe_fatal_error(message):
@@ -391,7 +528,7 @@ jobs:
 
           def probe_notice(kind, payload):
               message = json.dumps(payload, ensure_ascii=False, allow_nan=False, separators=(',', ':'))
-              message = bg.safe_error(Exception(message)).replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+              message = probe_safe_error(Exception(message)).replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
               print('::' + kind + ' title=AlgoPack latency::' + message, flush=True)
 
           def probe_wait(target, status_path, phase):
@@ -419,9 +556,13 @@ jobs:
               directory = Path('latency-evidence')
               directory.mkdir(exist_ok=True)
               started = probe_now()
-              report = {'version': 1, 'source': 'apim.moex.com', 'started_at_msk': started.isoformat(), 'status': 'RUNNING', 'poll_seconds': PROBE_POLL_SECONDS, 'observe_before_seconds': PROBE_BEFORE_SECONDS, 'observe_after_seconds': PROBE_AFTER_SECONDS, 'windows': [], 'errors': [], 'orders_enabled': False, 'signals_generated': False, 'production_buffer_changed': False, 'clock_basis': 'Runner wall clock in UTC converted to Europe/Moscow; clock offset not independently calibrated'}
+              report = {'version': 2, 'source': 'apim.moex.com', 'started_at_msk': started.isoformat(), 'status': 'RUNNING', 'probe_code_sha256': PROBE_CODE_SHA256, 'poll_seconds': PROBE_POLL_SECONDS, 'observe_before_seconds': PROBE_BEFORE_SECONDS, 'observe_after_seconds': PROBE_AFTER_SECONDS, 'windows': [], 'errors': [], 'orders_enabled': False, 'signals_generated': False, 'production_buffer_changed': False, 'clock_basis': 'Runner wall clock in UTC converted to Europe/Moscow; clock offset not independently calibrated'}
               client = ProbeClient()
               try:
+                  report['campaign'] = probe_campaign(started)
+                  if report['campaign']['status'] == 'CAMPAIGN_COMPLETE':
+                      report['status'] = 'CAMPAIGN_COMPLETE'
+                      return 0
                   windows = int(os.environ.get('PROBE_WINDOWS', '1'))
                   if windows not in (1, 2, 3):
                       raise ValueError('PROBE_WINDOWS must be 1, 2 or 3')
@@ -460,7 +601,7 @@ jobs:
                   analyses = [v for w in report['windows'] for v in w['analysis'].values()]
                   report['status'] = 'MEASURED' if analyses and all((v['status'] == 'MEASURED' for v in analyses)) else 'INCOMPLETE_OR_ERRORS'
               except Exception as exc:
-                  report['errors'].append(bg.safe_error(exc))
+                  report['errors'].append(probe_safe_error(exc))
                   report['status'] = 'FAILED'
               finally:
                   if report['status'] == 'RUNNING':
@@ -471,11 +612,18 @@ jobs:
                           window['analysis'] = {a: probe_analyze(window['observations'][a], target) for a in ('BR', 'GOLD')}
                   report['finished_at_msk'] = probe_now().isoformat()
                   report['measurement_requests'] = client.requests
+                  if os.environ.get('GH_TOKEN') and report['status'] != 'CAMPAIGN_COMPLETE':
+                      try:
+                          review = probe_review_history(report)
+                          (directory / 'campaign-review.json').write_text(json.dumps(review, ensure_ascii=False, allow_nan=False, indent=2) + '\n')
+                          report['campaign_review'] = review
+                      except Exception as exc:
+                          report['campaign_review'] = {'status': 'HISTORY_UNAVAILABLE', 'error': probe_safe_error(exc), 'buffer_change_authorized': False}
                   probe_write_report(directory, report)
                   (directory / 'probe-status.json').write_text(json.dumps({'phase': report['status'], 'finished_at_msk': report['finished_at_msk']}, indent=2))
-                  probe_notice('notice' if report['status'] == 'MEASURED' else 'error', {'phase': 'FINISHED', 'status': report['status'], 'report': 'latency-report.json', 'errors': report['errors'], 'production_buffer_changed': False, 'orders_enabled': False})
+                  probe_notice('notice' if report['status'] in ('MEASURED', 'CAMPAIGN_COMPLETE') else 'error', {'phase': 'FINISHED', 'status': report['status'], 'report': 'latency-report.json', 'errors': report['errors'], 'production_buffer_changed': False, 'orders_enabled': False})
               return 0 if report['status'] == 'MEASURED' else 1
-
+          PROBE_CODE_SHA256 = '8bd347df1565a7ba92fdc5072b793394b6772124be9aa69c57d8b0a97cea863d'
           sys.exit(probe_main())
           PY
       - name: Retain measured observations and errors

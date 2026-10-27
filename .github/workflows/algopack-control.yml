@@ -7,7 +7,7 @@ on:
     branches: [main]
     paths: ['.github/workflows/algopack-control.yml']
   schedule:
-    - cron: '35,45 * * * *'
+    - cron: '19,39,55 * * * *'
   workflow_run:
     workflows: ['AlgoPack H1 BR-GOLD']
     types: [completed]
@@ -18,19 +18,22 @@ permissions:
   actions: write
 
 concurrency:
-  group: br-gold-cloud-control-v1
+  group: br-gold-telegram-v1
   cancel-in-progress: false
 
 jobs:
   control:
     if: github.repository == 'ataruua-tech/-Br-gold'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 35
     steps:
       - name: Supervise reviewed H1 workflow and checkpoint virtual portfolios
         env:
           GH_TOKEN: ${{ github.token }}
           MOEX_ALGOPACK_TOKEN: ${{ secrets.MOEX_ALGOPACK_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CONTROL_WEEK_ENABLED: '1'
           PYTHONUNBUFFERED: '1'
         run: |
           python3 - <<'PY'
@@ -45,6 +48,7 @@ jobs:
           import logging
           import math
           import os
+          import re
           import ssl
           import statistics
           import sys
@@ -718,6 +722,165 @@ jobs:
 
           pe = sys.modules[__name__]
 
+          def week_new():
+              return {'schema': 1, 'status': 'NOT_STARTED', 'id': None, 'started_at_utc': None, 'ends_at_utc': None, 'binding': None, 'book': pe.paper_new_state(), 'notification_events': [], 'quality': {'checks': 0, 'both_assets_fresh': 0, 'last_check_utc': None, 'maximum_check_gap_seconds': 0.0, 'h1_keys': []}}
+
+          def week_time(value):
+              stamp = datetime.fromisoformat(value)
+              if stamp.tzinfo is None:
+                  raise ValueError('Weekly experiment timestamps require an explicit timezone')
+              return stamp.astimezone(timezone.utc)
+
+          def week_validate(week):
+              if week.get('schema') != 1 or week.get('status') not in ('NOT_STARTED', 'RUNNING', 'CLOSING', 'FINISHED'):
+                  raise ValueError('Invalid weekly experiment; refusing to reset history')
+              pe.paper_validate_state(week['book'])
+              if not isinstance(week.get('notification_events'), list) or len(week['notification_events']) > 10000:
+                  raise ValueError('Invalid or oversized weekly notification journal')
+              quality = week.get('quality', {})
+              if type(quality.get('checks')) is not int or type(quality.get('both_assets_fresh')) is not int or (not 0 <= quality['both_assets_fresh'] <= quality['checks']) or (not isinstance(quality.get('h1_keys'), list)) or (len(quality['h1_keys']) > 5000) or (not isinstance(quality.get('maximum_check_gap_seconds'), (float, int))) or (not math.isfinite(quality['maximum_check_gap_seconds'])) or (quality['maximum_check_gap_seconds'] < 0):
+                  raise ValueError('Corrupt weekly observation coverage')
+              if quality.get('last_check_utc'):
+                  week_time(quality['last_check_utc'])
+              if week['status'] == 'NOT_STARTED':
+                  if any((week.get(k) is not None for k in ('id', 'started_at_utc', 'ends_at_utc', 'binding'))):
+                      raise ValueError('Unstarted experiment contains an inconsistent activation')
+              elif not week.get('id') or not week.get('binding') or week_time(week['ends_at_utc']) - week_time(week['started_at_utc']) != timedelta(days=7):
+                  raise ValueError('Weekly deadline or activation binding changed')
+              if week['status'] == 'FINISHED' and any((p['positions'] for p in week['book']['portfolios'].values())):
+                  raise ValueError('Finished experiment still contains open positions')
+
+          def week_ready(assets, contracts, now):
+              for asset in ('BR', 'GOLD'):
+                  value = assets[asset]
+                  pe.paper_validate_asset(value, now)
+                  current = contracts[value['contract']]
+                  pe.paper_validate_contract(current, now)
+                  if current['asset'] != asset or current['expires'] != value['expires']:
+                      raise ValueError('Weekly contract metadata does not match the verified report')
+              return True
+
+          def week_validate_exit_quote(current, now):
+              for key in ('bid', 'offer', 'tick', 'point_value', 'margin', 'exchange_fee'):
+                  value = current.get(key)
+                  if not isinstance(value, (float, int)) or isinstance(value, bool) or (not math.isfinite(value)) or (value <= 0):
+                      raise ValueError('Missing/invalid current quote economics: ' + key)
+              if current['bid'] > current['offer']:
+                  raise ValueError('Inverted current quote')
+              if not now - timedelta(seconds=90) <= pe.paper_time(current['quote_time']) <= now + timedelta(seconds=5):
+                  raise ValueError('Current exit quote is stale or in the future')
+
+          def week_apply(previous, assets, contracts, minutes, rates, observed, binding=None, activate=False, provenance=None):
+              """Return an uncommitted transition; publish only after the remote checkpoint."""
+              week_validate(previous)
+              week = copy.deepcopy(previous)
+              local = observed.astimezone(pe.PAPER_MSK).replace(tzinfo=None)
+              events, errors = ([], [])
+              if week['status'] == 'NOT_STARTED':
+                  if not activate:
+                      return (week, {'events': [], 'errors': [], 'status': 'NOT_STARTED'})
+                  if not binding:
+                      raise ValueError('Verified Telegram/code binding is required before starting the week')
+                  week_ready(assets, contracts, local)
+                  started = observed.astimezone(timezone.utc)
+                  week.update(status='RUNNING', started_at_utc=started.isoformat(), ends_at_utc=(started + timedelta(days=7)).isoformat(), binding=binding, id=hashlib.sha256((binding + started.isoformat()).encode()).hexdigest()[:24])
+                  events.append({'type': 'WEEK_STARTED', 'started_at_utc': week['started_at_utc'], 'ends_at_utc': week['ends_at_utc']})
+              if week['status'] == 'FINISHED':
+                  return (week, {'events': [], 'errors': [], 'status': 'FINISHED'})
+              quality = week['quality']
+              quality['checks'] += 1
+              if quality['last_check_utc']:
+                  gap = (observed.astimezone(timezone.utc) - week_time(quality['last_check_utc'])).total_seconds()
+                  if gap < 0:
+                      raise ValueError('Weekly observation clock moved backwards')
+                  quality['maximum_check_gap_seconds'] = max(quality['maximum_check_gap_seconds'], gap)
+              quality['last_check_utc'] = observed.astimezone(timezone.utc).isoformat()
+              fresh = 0
+              for asset in ('BR', 'GOLD'):
+                  try:
+                      value = assets[asset]
+                      pe.paper_validate_asset(value, local)
+                      key = value['contract'] + ':' + value['last_h1_msk']
+                      if key not in quality['h1_keys']:
+                          quality['h1_keys'].append(key)
+                      fresh += 1
+                  except (ValueError, KeyError, TypeError):
+                      pass
+              quality['both_assets_fresh'] += int(fresh == 2)
+              deadline = week_time(week['ends_at_utc'])
+              if observed.astimezone(timezone.utc) >= deadline:
+                  week['status'] = 'CLOSING'
+              entry_assets = assets if week['status'] == 'RUNNING' and week['binding'] == binding else {}
+              if week['binding'] != binding:
+                  errors.append('Weekly code/destination binding changed; new entries blocked pending review')
+              cutoff = deadline.astimezone(pe.PAPER_MSK).replace(tzinfo=None)
+              usable_minutes = {code: [b for b in rows if pe.paper_time(b['begin']) + timedelta(minutes=1) <= cutoff] for code, rows in minutes.items()}
+              week['book'], detail = pe.paper_apply(week['book'], entry_assets, contracts, usable_minutes, rates, local, {**(provenance or {}), 'weekly_experiment': week['id'], 'observed_at_msk': local.isoformat()})
+              events.extend(detail['events'])
+              errors.extend(detail['errors'])
+              if week['status'] == 'CLOSING' and observed.astimezone(timezone.utc) >= deadline + timedelta(minutes=18):
+                  for name, portfolio in week['book']['portfolios'].items():
+                      for asset, pos in list(portfolio['positions'].items()):
+                          try:
+                              if pos.get('review_required'):
+                                  raise ValueError('Ambiguous entry-minute execution still requires review')
+                              current = contracts[pos['contract']]
+                              week_validate_exit_quote(current, local)
+                              if current['asset'] != asset:
+                                  raise ValueError('Wrong asset for deadline quote')
+                              if detail['errors']:
+                                  raise ValueError('Unresolved minute/FX errors; forced exit is not evaluated')
+                              if not any((pe.paper_time(b['begin']) + timedelta(minutes=1) >= cutoff for b in minutes.get(pos['contract'], []))):
+                                  raise ValueError('Minute history has not reached the weekly deadline')
+                              direction = pos['direction']
+                              raw = current['bid'] if direction == 1 else current['offer']
+                              fill = raw - direction * 2 * pos['tick']
+                              if not math.isfinite(fill) or fill <= 0:
+                                  raise ValueError('Invalid forced virtual exit price')
+                              fee = pe.paper_fee(fill, current['point_value'], pos['exchange_fraction']) * pos['qty']
+                              delta = direction * (fill - pos['last_price']) * current['point_value'] * pos['qty'] - fee
+                              portfolio['equity'] += delta
+                              pos['net'] += delta
+                              closed = {**pos, 'exit': fill, 'exit_time': local.isoformat(), 'reason': 'WEEK_END_OBSERVED_QUOTE', 'pnl_rub': pos['net'], 'pnl_status': 'MODELED_NOT_ACTUAL_FILL', 'net_r': pos['net'] / pos['initial_risk_rub']}
+                              portfolio['closed'].append(closed)
+                              portfolio['closed'] = portfolio['closed'][-2000:]
+                              del portfolio['positions'][asset]
+                              portfolio['closed_count'] += 1
+                              portfolio['realized_pnl_sum'] += pos['net']
+                              portfolio['gross_gains'] += max(0, pos['net'])
+                              portfolio['gross_losses'] += max(0, -pos['net'])
+                              portfolio['wins'] += int(pos['net'] > 0)
+                              pe.paper_mark_risk(portfolio)
+                              events.append({'type': 'CLOSED', 'portfolio': name, 'uid': pos['uid'], 'reason': 'WEEK_END_OBSERVED_QUOTE', 'pnl_rub': pos['net']})
+                          except (ValueError, KeyError, TypeError) as exc:
+                              errors.append(name + ': weekly closure pending — ' + str(exc))
+              if week['status'] == 'CLOSING' and (not any((p['positions'] for p in week['book']['portfolios'].values()))):
+                  week['status'] = 'FINISHED'
+                  events.append({'type': 'WEEK_FINISHED'})
+              week['notification_events'].extend(({'recorded_at_utc': observed.astimezone(timezone.utc).isoformat(), **e} for e in events if e['type'] in ('WEEK_STARTED', 'OPENED', 'CLOSED', 'WEEK_FINISHED')))
+              week_validate(week)
+              return (week, {'events': events, 'errors': errors, 'status': week['status']})
+
+          def week_render(week):
+              week_validate(week)
+              lines = ['🧪 BR/GOLD — виртуальная неделя: ' + week['status']]
+              if week['started_at_utc']:
+                  lines.append('Начало: ' + week_time(week['started_at_utc']).astimezone(pe.PAPER_MSK).strftime('%d.%m.%Y %H:%M МСК'))
+                  lines.append('Конец новых входов: ' + week_time(week['ends_at_utc']).astimezone(pe.PAPER_MSK).strftime('%d.%m.%Y %H:%M МСК'))
+              for name, p in week['book']['portfolios'].items():
+                  profit = p['equity'] - 100000
+                  closed = p['closed_count']
+                  factor = f"{p['gross_gains'] / p['gross_losses']:.2f}" if p['gross_losses'] > 0 else 'нет оценки'
+                  lines.append(f"Риск {p['risk'] * 100:g}%: капитал {p['equity']:.2f} ₽; PnL {profit:+.2f} ₽; открыто {len(p['positions'])}; закрыто {closed}; максимальная просадка {p['max_drawdown'] * 100:.2f}%; PF {factor}.")
+                  if p['halted']:
+                      lines.append(name + ': новые входы остановлены — ' + p['halted'])
+              q = week['quality']
+              lines.append(f"Качество наблюдения: {q['both_assets_fresh']}/{q['checks']} проверок с актуальными обоими активами; максимальный интервал между проверками {q['maximum_check_gap_seconds'] / 60:.1f} мин. Торговый календарь этим не подтверждается.")
+              lines.append('Комиссии и проскальзывание учтены модельно. Выходы по M1 могут быть проверены позже их расчётного времени. Это эксперимент, не доказательство доходности. Реальных заявок нет.')
+              return '\n'.join(lines)
+
+          pw = sys.modules[__name__]
+
           CONTROL_REPO = 'ataruua-tech/-Br-gold'
 
           CONTROL_WORKFLOW = 'algopack-h1.yml'
@@ -797,6 +960,24 @@ jobs:
           def control_cycle(now):
               return (now.astimezone(timezone.utc) - timedelta(minutes=18)).replace(minute=0, second=0, microsecond=0)
 
+          def control_wait_publication(now, clock=None, sleep=None):
+              """Keep an early scheduled runner from calculating the previous cycle.
+
+              This compatibility gate does not claim that 18 minutes was empirically
+              optimal. Latency measurements are collected separately before changing it.
+              """
+              target = now.astimezone(timezone.utc).replace(minute=18, second=2, microsecond=0)
+              if now >= target:
+                  return now
+              clock = clock or (lambda: datetime.now(timezone.utc))
+              sleep = sleep or time.sleep
+              print('Waiting for H1 publication cycle until ' + target.isoformat(), flush=True)
+              current = clock()
+              while current < target:
+                  sleep(min(30, (target - current).total_seconds()))
+                  current = clock()
+              return current
+
           def control_run_cycle(run):
               return control_cycle(control_utc(run.get('run_started_at') or run['created_at']))
 
@@ -819,7 +1000,7 @@ jobs:
               same = [r for r in runs if control_run_cycle(r) == cycle]
               if newest and newest['status'] != 'completed':
                   return {'status': 'WAITING', 'run_id': newest['id'], 'reason': 'Newest H1 run is queued/running; no replacement by an older run'}
-              if same and newest['conclusion'] == 'success':
+              if newest and control_run_cycle(newest) == cycle and (newest['conclusion'] == 'success'):
                   return {'status': 'OK', 'run_id': newest['id'], 'reason': 'H1 run already completed for this publication cycle'}
               if sum((int(r.get('run_attempt', 1)) for r in same)) >= 3:
                   raise ControlError('Three H1 attempts in this cycle already failed; retry limit reached')
@@ -860,10 +1041,14 @@ jobs:
                   raise ControlError('Ledger content unavailable; no capital reset')
               state = json.loads(base64.b64decode(doc['content']), parse_constant=lambda _: (_ for _ in ()).throw(ValueError('Invalid ledger number')))
               pe.paper_validate_state(state)
+              if 'weekly_pilot' in state:
+                  pw.week_validate(state['weekly_pilot'])
               return (state, doc['sha'], False)
 
           def control_save_ledger(api, state, sha, new_branch):
               pe.paper_validate_state(state)
+              if 'weekly_pilot' in state:
+                  pw.week_validate(state['weekly_pilot'])
               text = json.dumps(state, ensure_ascii=False, allow_nan=False, indent=2) + '\n'
               if new_branch:
                   blob = api.api('/git/blobs', 'POST', {'content': text, 'encoding': 'utf-8'})
@@ -939,7 +1124,7 @@ jobs:
                   raise ControlError('Missing/ambiguous contract metadata ' + code)
               s, q = (sec[0], quotes[0])
               c = {'asset': s['ASSETCODE'], 'expires': s['LASTTRADEDATE'], 'tick': float(s['MINSTEP']), 'point_value': float(s['STEPPRICE']) / float(s['MINSTEP']), 'margin': float(s['INITIALMARGIN']), 'exchange_fee': float(s['BUYSELLFEE']), 'bid': float(q['BID']), 'offer': float(q['OFFER']), 'quote_time': bg.parse_iss_time(q['SYSTIME']).isoformat()}
-              pe.paper_validate_contract(c, now)
+              pw.week_validate_exit_quote(c, now)
               return c
 
           def control_minutes(code, since, now):
@@ -982,18 +1167,30 @@ jobs:
               return result
 
           def control_paper(api, now):
-              runs = control_runs(api)
-              if not runs:
-                  return {'status': 'WAITING', 'reason': 'No H1 run; paper entries not evaluated'}
-              run = runs[0]
-              if run['status'] != 'completed':
-                  return {'status': 'WAITING', 'run_id': run['id'], 'reason': 'Newest run is queued/running'}
-              local = now.astimezone(bg.MSK).replace(tzinfo=None)
-              assets, provenance, verification_errors = control_read_evidence(api, run, local)
-              provenance['controller_commit'] = os.environ.get('GITHUB_SHA')
               state, sha, new_branch = control_load_ledger(api)
+              weekly_enabled = os.environ.get('CONTROL_WEEK_ENABLED') == '1'
+              week = state.get('weekly_pilot', pw.week_new())
+              pw.week_validate(week)
+              runs = control_runs(api)
+              local = now.astimezone(bg.MSK).replace(tzinfo=None)
+              assets = {}
+              provenance = {}
+              verification_errors = []
+              try:
+                  if not runs:
+                      raise ControlError('No H1 run; no new entries evaluated')
+                  run = runs[0]
+                  if run['status'] != 'completed':
+                      raise ControlError('Newest H1 run is queued/running')
+                  if run.get('conclusion') != 'success':
+                      raise ControlError('Newest H1 run failed; no substitution by an older success')
+                  assets, provenance, verification_errors = control_read_evidence(api, run, local)
+              except Exception as exc:
+                  verification_errors.append(control_safe_error(exc))
+              provenance['controller_commit'] = os.environ.get('GITHUB_SHA')
               codes = {v['contract'] for v in assets.values() if v.get('contract')}
               positions = [p for book in state['portfolios'].values() for p in book['positions'].values()]
+              positions += [p for book in week['book']['portfolios'].values() for p in book['positions'].values()]
               codes.update((p['contract'] for p in positions))
               contracts = {}
               fetch_errors = []
@@ -1011,19 +1208,76 @@ jobs:
                       for code in sorted({p['contract'] for p in positions}):
                           since = min((pe.paper_time(p['cursor']) for p in positions if p['contract'] == code))
                           minutes[code] = control_minutes(code, since, local)
-                          if not minutes[code]:
+                          if not minutes[code] and since + timedelta(minutes=19) <= local:
                               fetch_errors.append(code + ': no new finalized M1; session may be closed')
                   except Exception as exc:
                       fetch_errors.append('Position data: ' + control_safe_error(exc))
               entry_assets = assets if not fetch_errors else {a: {**v, 'status': 'DATA_ERROR', 'errors': fetch_errors} for a, v in assets.items()}
               observed = datetime.now(bg.MSK).replace(tzinfo=None)
-              updated, details = pe.paper_apply(state, entry_assets, contracts, minutes, rates, observed, provenance)
+              updated, details = pe.paper_apply(state, {} if weekly_enabled or 'weekly_pilot' in state else entry_assets, contracts, minutes, rates, observed, provenance)
               all_errors = verification_errors + fetch_errors + details['errors']
+              week_details = {'status': week['status'], 'events': [], 'errors': []}
+              notification_context = None
+              if weekly_enabled or 'weekly_pilot' in state:
+                  binding = None
+                  activate = False
+                  try:
+                      token, chat, binding = nt.notify_configuration()
+                      ledger = nt.NotifyLedger(nt.NotifyAPI(os.environ.get('GH_TOKEN', '')))
+                      if week['status'] == 'NOT_STARTED' and weekly_enabled and (not (verification_errors or fetch_errors)):
+                          pw.week_ready(assets, contracts, observed)
+                          nt.notify_test(ledger, token, chat, binding, datetime.now(bg.MSK))
+                          activate = True
+                      nt.notify_require_acceptance(ledger, binding)
+                      notification_context = (ledger, token, chat, binding)
+                  except Exception as exc:
+                      all_errors.append('Weekly activation/Telegram: ' + control_safe_error(exc))
+                  observed_aware = datetime.now(bg.MSK)
+                  try:
+                      week, week_details = pw.week_apply(week, entry_assets, contracts, minutes, rates, observed_aware, binding=binding if notification_context else None, activate=activate, provenance=provenance)
+                  except Exception as exc:
+                      week_details = {'status': week['status'], 'events': [], 'errors': [control_safe_error(exc)]}
+                  updated['weekly_pilot'] = week
+                  all_errors.extend(week_details['errors'])
               if verification_errors or fetch_errors:
                   updated['errors'] = (updated['errors'] + [{'time': local.isoformat(), 'message': e} for e in verification_errors + fetch_errors])[-200:]
               receipt = control_save_ledger(api, updated, sha, new_branch)
+              week_details['deliveries'] = []
+              if notification_context and week['status'] != 'NOT_STARTED':
+                  try:
+                      week_details['deliveries'] = control_publish_week(week, week_details, notification_context, datetime.now(bg.MSK))
+                      if any((d.get('status') == 'UNCERTAIN_BLOCKED' for d in week_details['deliveries'])):
+                          all_errors.append('Weekly delivery is uncertain; automatic repeated notification is blocked')
+                  except Exception as exc:
+                      all_errors.append('Weekly notification: ' + control_safe_error(exc))
               summary = {name: {'equity_rub': p['equity'], 'max_drawdown_pct': 100 * p['max_drawdown'], 'open_positions': len(p['positions']), 'closed_trades': p['closed_count'], 'halted': p['halted']} for name, p in updated['portfolios'].items()}
-              return {'status': 'ERROR' if all_errors else 'PASSED', 'source': 'apim.moex.com', 'mode': 'VIRTUAL_ONLY', 'orders_enabled': False, 'ledger_saved': True, 'receipt': receipt, 'portfolios': summary, 'events': details['events'], 'errors': all_errors, 'provenance': provenance, 'valuation': details['valuation']}
+              return {'status': 'ERROR' if all_errors else 'PASSED', 'source': 'apim.moex.com', 'mode': 'VIRTUAL_ONLY', 'orders_enabled': False, 'ledger_saved': True, 'receipt': receipt, 'portfolios': summary, 'events': details['events'], 'errors': all_errors, 'provenance': provenance, 'valuation': details['valuation'], 'week': {**week_details, 'id': week['id'], 'started_at_utc': week['started_at_utc'], 'ends_at_utc': week['ends_at_utc'], 'portfolios': {name: {'equity_rub': p['equity'], 'closed_trades': p['closed_count'], 'open_positions': len(p['positions']), 'max_drawdown_pct': 100 * p['max_drawdown']} for name, p in week['book']['portfolios'].items()}}}
+
+          def control_publish_week(week, details, context, now):
+              ledger, token, chat, binding = context
+              nt.notify_require_acceptance(ledger, binding)
+              deliveries = []
+              for event in week['notification_events']:
+                  kind = event['type']
+                  key = 'week:' + week['id'] + ':' + kind + ':' + event.get('portfolio', '') + ':' + event.get('uid', '')
+                  if kind in ('WEEK_STARTED', 'WEEK_FINISHED'):
+                      message = ('▶️ Начало виртуальной недели\n' if kind == 'WEEK_STARTED' else '🏁 Итог виртуальной недели\n') + pw.week_render(week)
+                  elif kind == 'OPENED':
+                      side = 'LONG' if ':BUY:' in event['uid'] else 'SHORT'
+                      code = event['uid'].split(':', 1)[0]
+                      risk = week['book']['portfolios'][event['portfolio']]['risk'] * 100
+                      message = f"🧪 Виртуальный вход · {code} · {side} · риск {risk:g}%\nКоличество {event['qty']}; вход {event['entry']:g}; стоп {event['stop']:g}; цель {event['target']:g}.\nВремя записи: " + event['recorded_at_utc'] + '\nЭто модельная сделка; реальных заявок нет.'
+                  else:
+                      message = '🧪 Виртуальный выход · ' + event.get('uid', '').split(':', 1)[0] + ' · ' + event['portfolio'] + '\n' + f"Модельный PnL: {event['pnl_rub']:+.2f} ₽; причина: " + event['reason'] + '\nПроверено: ' + event['recorded_at_utc'] + '\nИсполнение рассчитано моделью; реальных заявок нет.'
+                  existing = ledger.state['deliveries'].get(key)
+                  if existing and existing['status'] != 'SENT':
+                      deliveries.append({'key': key, 'status': 'UNCERTAIN_BLOCKED'})
+                      continue
+                  deliveries.append(nt.notify_deliver(ledger, key, message, token, chat, now, {'kind': kind, 'week_id': week['id']}, sender=None))
+              if week['status'] in ('RUNNING', 'CLOSING'):
+                  key = 'week:' + week['id'] + ':summary:' + now.astimezone(bg.MSK).strftime('%Y-%m-%dT%H')
+                  deliveries.append(nt.notify_deliver(ledger, key, pw.week_render(week), token, chat, now, {'kind': 'WEEK_SUMMARY', 'week_id': week['id']}))
+              return deliveries
 
           def control_safe_error(exc):
               message = str(exc)
@@ -1041,10 +1295,11 @@ jobs:
               try:
                   api = ControlAPI(os.environ.get('GH_TOKEN', ''), os.environ.get('GITHUB_REPOSITORY', CONTROL_REPO))
                   if os.environ.get('GITHUB_EVENT_NAME') != 'workflow_run':
-                      try:
-                          result['supervisor'] = control_supervise(api, now)
-                      except Exception as exc:
-                          result['errors'].append('Supervisor: ' + control_safe_error(exc))
+                      now = control_wait_publication(now)
+                  try:
+                      result['supervisor'] = control_supervise(api, now)
+                  except Exception as exc:
+                      result['errors'].append('Supervisor: ' + control_safe_error(exc))
                   supervisor = result.get('supervisor') or {}
                   wait_status = supervisor.get('status') in ('DISPATCHED', 'WAITING')
                   try:
@@ -1079,6 +1334,205 @@ jobs:
               print(('::error' if result['status'] == 'FAILED' else '::notice') + ' title=BR-GOLD cloud control::' + compact)
               return 1 if result['status'] == 'FAILED' else 0
 
+          NOTIFY_REPO = 'ataruua-tech/-Br-gold'
+
+          NOTIFY_BRANCH = 'telegram-ledger'
+
+          NOTIFY_PATH = 'telegram-state.json'
+
+          NOTIFY_LEDGER_LIMIT = 10000
+
+          class NotifyError(RuntimeError):
+              pass
+
+          def notify_safe_error(exc):
+              value = bg.safe_error(exc)
+              for key in ('GH_TOKEN', 'GITHUB_TOKEN', 'TELEGRAM_PAIR_CODE'):
+                  secret = os.environ.get(key, '')
+                  if secret:
+                      value = value.replace(secret, '[REDACTED]')
+              return value
+
+          def notify_json(raw):
+              return json.loads(raw, parse_constant=lambda _: (_ for _ in ()).throw(NotifyError('Non-finite JSON')))
+
+          class NotifyAPI:
+              """GitHub permissions narrowed to one isolated notification-ledger branch."""
+
+              def __init__(self, token):
+                  if not token:
+                      raise NotifyError('Missing short-lived GitHub Actions token')
+                  self.token = token
+
+              def api(self, suffix, method='GET', body=None, missing=False, artifact=False):
+                  if not suffix.startswith('/') or '..' in suffix or method not in ('GET', 'POST', 'PUT'):
+                      raise NotifyError('Unexpected GitHub operation')
+                  if method == 'PUT' and (suffix != '/contents/' + NOTIFY_PATH or (body or {}).get('branch') != NOTIFY_BRANCH):
+                      raise NotifyError('Only the Telegram ledger may be updated')
+                  if method == 'POST':
+                      if suffix not in ('/git/refs', '/git/blobs', '/git/trees', '/git/commits'):
+                          raise NotifyError('Notification workflow cannot dispatch jobs or orders')
+                      if suffix == '/git/refs' and (body or {}).get('ref') != 'refs/heads/' + NOTIFY_BRANCH:
+                          raise NotifyError('Only the Telegram ledger branch may be created')
+                      if suffix == '/git/trees' and ('base_tree' in (body or {}) or [x.get('path') for x in (body or {}).get('tree', [])] != [NOTIFY_PATH]):
+                          raise NotifyError('Initial tree must contain only the Telegram ledger')
+                      if suffix == '/git/commits' and (body or {}).get('parents') != []:
+                          raise NotifyError('Initial ledger commit must be isolated')
+                  headers = {'Authorization': 'Bearer ' + self.token, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'BR-GOLD-Telegram/1'}
+                  data = None if body is None else json.dumps(body, allow_nan=False).encode()
+                  if data is not None:
+                      headers['Content-Type'] = 'application/json'
+                  request = urllib.request.Request('https://api.github.com/repos/' + NOTIFY_REPO + suffix, data=data, headers=headers, method=method)
+                  opener = urllib.request.build_opener(bg.NoRedirect())
+                  try:
+                      with opener.open(request, timeout=30) as response:
+                          raw = response.read(5000001)
+                  except urllib.error.HTTPError as exc:
+                      if exc.code == 404 and missing:
+                          return None
+                      if exc.code in (301, 302, 303, 307, 308) and artifact:
+                          target = exc.headers.get('Location', '')
+                          parsed = urllib.parse.urlsplit(target)
+                          allowed = parsed.hostname and any((parsed.hostname.endswith(s) for s in ('.blob.core.windows.net', '.actions.githubusercontent.com', '.githubusercontent.com')))
+                          if parsed.scheme != 'https' or not allowed or parsed.username or (parsed.port not in (None, 443)):
+                              raise NotifyError('Unexpected artifact-storage redirect') from None
+                          with opener.open(target, timeout=30) as response:
+                              raw = response.read(5000001)
+                      else:
+                          raise NotifyError('GitHub HTTP ' + str(exc.code) + ' during ' + method + ' ' + suffix.split('?')[0]) from None
+                  if len(raw) > 5000000:
+                      raise NotifyError('GitHub response exceeds bounded size')
+                  if artifact:
+                      return raw
+                  return notify_json(raw) if raw else {}
+
+          def notify_new_state():
+              return {'schema': 1, 'deliveries': {}, 'acceptance': {}}
+
+          def notify_validate_state(state):
+              if state.get('schema') != 1 or not isinstance(state.get('deliveries'), dict) or (not isinstance(state.get('acceptance'), dict)):
+                  raise NotifyError('Invalid Telegram ledger; refusing to reset notification history')
+              if len(state['deliveries']) > NOTIFY_LEDGER_LIMIT:
+                  raise NotifyError('Telegram ledger limit reached; manual archival is required')
+              for key, value in state['deliveries'].items():
+                  if not isinstance(key, str) or not isinstance(value, dict) or value.get('status') not in ('INTENT', 'SENT', 'UNCERTAIN'):
+                      raise NotifyError('Corrupt Telegram delivery record')
+
+          class NotifyLedger:
+
+              def __init__(self, api):
+                  self.api = api
+                  ref = api.api('/git/ref/heads/' + NOTIFY_BRANCH, missing=True)
+                  self.new = ref is None
+                  self.sha = None
+                  self.state = notify_new_state()
+                  if not self.new:
+                      doc = api.api('/contents/' + NOTIFY_PATH + '?ref=' + NOTIFY_BRANCH)
+                      if doc.get('encoding') != 'base64':
+                          doc = api.api('/git/blobs/' + doc['sha'])
+                      if doc.get('encoding') != 'base64':
+                          raise NotifyError('Telegram ledger contents unavailable')
+                      self.state = notify_json(base64.b64decode(doc['content']))
+                      self.sha = doc['sha']
+                  notify_validate_state(self.state)
+
+              def save(self):
+                  notify_validate_state(self.state)
+                  raw = (json.dumps(self.state, ensure_ascii=False, allow_nan=False, indent=2) + '\n').encode()
+                  if len(raw) > 4000000:
+                      raise NotifyError('Telegram ledger size limit reached')
+                  if self.new:
+                      blob = self.api.api('/git/blobs', 'POST', {'content': raw.decode(), 'encoding': 'utf-8'})
+                      tree = self.api.api('/git/trees', 'POST', {'tree': [{'path': NOTIFY_PATH, 'mode': '100644', 'type': 'blob', 'sha': blob['sha']}]})
+                      commit = self.api.api('/git/commits', 'POST', {'message': 'Initialize Telegram delivery ledger', 'tree': tree['sha'], 'parents': []})
+                      ref = self.api.api('/git/refs', 'POST', {'ref': 'refs/heads/' + NOTIFY_BRANCH, 'sha': commit['sha']})
+                      if ref.get('object', {}).get('sha') != commit['sha']:
+                          raise NotifyError('Initial Telegram ledger checkpoint not confirmed')
+                      self.new = False
+                      self.sha = blob['sha']
+                  else:
+                      result = self.api.api('/contents/' + NOTIFY_PATH, 'PUT', {'message': 'Checkpoint Telegram delivery intent [skip ci]', 'branch': NOTIFY_BRANCH, 'sha': self.sha, 'content': base64.b64encode(raw).decode()})
+                      if not result.get('commit', {}).get('sha') or not result.get('content', {}).get('sha'):
+                          raise NotifyError('Telegram ledger checkpoint not confirmed')
+                      self.sha = result['content']['sha']
+
+          def notify_code_digest():
+              if NOTIFY_CODE_SHA256:
+                  return NOTIFY_CODE_SHA256
+              root = Path(__file__).parent
+              return hashlib.sha256(b''.join(((root / name).read_bytes() for name in ('telegram_notify.py', 'br_gold_signals.py', 'moex_tls.py', 'cloud_control.py', 'paper_engine.py')))).hexdigest()
+
+          def notify_configuration():
+              token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
+              chat = os.environ.get('TELEGRAM_CHAT_ID', '').strip()
+              if not token or not chat:
+                  raise NotifyError('Add protected GitHub Secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID; never paste them in chat or code')
+              if not re.fullmatch('[1-9][0-9]*:[A-Za-z0-9_-]+', token) or not re.fullmatch('-?[1-9][0-9]*', chat):
+                  raise NotifyError('Invalid Telegram secret format; TELEGRAM_CHAT_ID must be a numeric chat ID')
+              digest = hashlib.sha256(json.dumps([notify_code_digest(), token, chat], separators=(',', ':')).encode()).hexdigest()
+              return (token, chat, digest)
+
+          def notify_telegram_api(method, payload, token):
+              if method not in ('sendMessage', 'getUpdates'):
+                  raise NotifyError('Unexpected Telegram method')
+              body = json.dumps(payload, ensure_ascii=False).encode()
+              request = urllib.request.Request('https://api.telegram.org/bot' + token + '/' + method, data=body, headers={'Content-Type': 'application/json'}, method='POST')
+              try:
+                  with urllib.request.build_opener(bg.NoRedirect()).open(request, timeout=20) as response:
+                      raw = response.read(1000001)
+                      if len(raw) > 1000000:
+                          raise NotifyError('Telegram response exceeds bounded size')
+                      result = notify_json(raw)
+              except urllib.error.HTTPError as exc:
+                  raise NotifyError('Telegram HTTP ' + str(exc.code) + '; delivery not confirmed') from None
+              except Exception:
+                  raise NotifyError('Telegram response unavailable; delivery not confirmed') from None
+              if not isinstance(result, dict) or result.get('ok') is not True:
+                  raise NotifyError('Telegram API refused the request')
+              return result.get('result')
+
+          def notify_telegram(message, token, chat):
+              if not isinstance(message, str) or not 0 < len(message) <= 4096:
+                  raise NotifyError('Invalid Telegram message size')
+              value = notify_telegram_api('sendMessage', {'chat_id': chat, 'text': message, 'disable_web_page_preview': True}, token)
+              if not isinstance(value, dict) or not isinstance(value.get('message_id'), int) or isinstance(value.get('message_id'), bool) or (value['message_id'] <= 0) or (value.get('chat', {}).get('id') != int(chat)):
+                  raise NotifyError('Telegram receipt/destination not confirmed')
+              return {'message_id': value['message_id'], 'telegram_date': value.get('date')}
+
+          def notify_deliver(ledger, key, message, token, chat, now, metadata=None, sender=None):
+              existing = ledger.state['deliveries'].get(key)
+              if existing:
+                  if existing['status'] != 'SENT':
+                      raise NotifyError('Previous delivery is uncertain; automatic repeat blocked: ' + key)
+                  return {'status': 'ALREADY_SENT', 'key': key}
+              ledger.state['deliveries'][key] = {'status': 'INTENT', 'created_at_msk': now.isoformat(), **(metadata or {})}
+              ledger.save()
+              try:
+                  receipt = (sender or notify_telegram)(message, token, chat)
+              except Exception as exc:
+                  ledger.state['deliveries'][key].update(status='UNCERTAIN', error=notify_safe_error(exc))
+                  ledger.save()
+                  raise NotifyError('Telegram delivery uncertain; automatic repeat blocked') from None
+              ledger.state['deliveries'][key].update(status='SENT', confirmed_at_msk=now.isoformat(), **receipt)
+              ledger.save()
+              return {'status': 'SENT', 'key': key, **receipt}
+
+          def notify_require_acceptance(ledger, fingerprint):
+              entry = ledger.state['acceptance'].get(fingerprint)
+              test = ledger.state['deliveries'].get('test:' + fingerprint, {})
+              if not entry or test.get('status') != 'SENT' or entry.get('message_id') != test.get('message_id'):
+                  raise NotifyError('Telegram is not verified for this code and destination: run workflow mode=test first')
+
+          def notify_test(ledger, token, chat, fingerprint, now, sender=None):
+              result = notify_deliver(ledger, 'test:' + fingerprint, '✅ BR/GOLD — тест доставки Telegram.\nКанал подключён. Это технический тест, а не торговый сигнал.\nРыночные сигналы отправляются только после проверки AlgoPack H1/H4. Сделки не исполняются.', token, chat, now, {'kind': 'TEST'}, sender)
+              record = ledger.state['deliveries']['test:' + fingerprint]
+              if fingerprint not in ledger.state['acceptance']:
+                  ledger.state['acceptance'][fingerprint] = {'message_id': record['message_id'], 'verified_at_msk': now.isoformat(), 'code_sha256': notify_code_digest()}
+                  ledger.save()
+              return result
+
+          nt = sys.modules[__name__]
+          NOTIFY_CODE_SHA256 = 'a0867a4d0d940fee66ed75ebaa7def4183acee4101494457a0c8c6b722f18275'
           sys.exit(control_main())
           PY
       - name: Retain control and error evidence
