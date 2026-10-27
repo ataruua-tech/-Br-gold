@@ -358,6 +358,12 @@
       "confirmed_at_msk": "2026-10-27T22:13:26.592243+03:00",
       "message_id": 42,
       "telegram_date": 1793128408
+    },
+    "error:2026-10-27T22:BR": {
+      "status": "INTENT",
+      "created_at_msk": "2026-10-27T22:29:04.341049+03:00",
+      "kind": "ERROR",
+      "source_run_id": 40567024435
     }
   },
   "acceptance": {
