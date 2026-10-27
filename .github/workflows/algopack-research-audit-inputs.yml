@@ -1,0 +1,189 @@
+# Download and verify research archives inside GitHub. No market secrets or fitting.
+name: AlgoPack Research Audit Inputs
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/algopack-research-audit-inputs.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: algopack-research-audit-inputs
+  cancel-in-progress: false
+jobs:
+  audit:
+    if: github.repository == 'ataruua-tech/-Br-gold'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Verify source, artifact and payload hashes and inspect missing inputs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python3 - <<'PY'
+          """Verify acquisition archives inside GitHub, where archive URLs remain fresh.
+
+          Only downloads and audits research data. No broker, Telegram or strategy fitting.
+          """
+          import gzip
+          import hashlib
+          import io
+          import json
+          import os
+          import pathlib
+          import sys
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          import zipfile
+
+          SOURCE_RUN = 40529837847
+          SOURCE_COMMIT = 'a25b25cc86fa688a7dd553b72fa3015661ad61eb'
+          EXPECTED = {
+              12746175473: 'ce800a4708c440a408a7159d892004bf8b74f341e8f59d27b5f1c22fbbc9bc1d',
+              12746843724: '19da1f8ce54a11b8e82ba9aab96b43555efeae219b93e3f686f485755389b24f',
+              12746864412: '6626bf3ce942d6ec588288b617f77d772667ae9fa2e888f523be601baeabd2cb',
+              12750065009: 'a64eeb2b988001c22237be4c8b752c32c474a7bd0703362b815c56a88bcfb1c6',
+              12750371606: 'ce81eb1e8b1c2866086b928418e26fc9adc8d53f76ce9f2b592bc9448cb0de89',
+          }
+
+
+          class NoAuthRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  return None
+
+
+          def github_get(path, archive=False):
+              if not path.startswith('/repos/ataruua-tech/-Br-gold/'):
+                  raise ValueError('Unexpected repository endpoint')
+              token = os.environ.get('GH_TOKEN', '')
+              if not token:
+                  raise ValueError('Missing ephemeral GitHub Actions token')
+              request = urllib.request.Request('https://api.github.com' + path, headers={
+                  'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json',
+                  'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'BR-GOLD-Research-Data-Audit'})
+              opener = urllib.request.build_opener(NoAuthRedirect())
+              try:
+                  with opener.open(request, timeout=30) as response:
+                      body = response.read(96 * 1024 * 1024 + 1)
+              except urllib.error.HTTPError as exc:
+                  if not archive or exc.code != 302:
+                      raise RuntimeError('GitHub HTTP ' + str(exc.code)) from None
+                  location = exc.headers.get('Location', '')
+                  parsed = urllib.parse.urlsplit(location)
+                  if parsed.scheme != 'https' or not (parsed.hostname or '').endswith(('.blob.core.windows.net', '.githubusercontent.com', '.actions.githubusercontent.com')):
+                      raise ValueError('Unapproved artifact redirect destination') from None
+                  # A NEW unauthenticated request: the GitHub token never follows a redirect.
+                  with opener.open(urllib.request.Request(location), timeout=60) as response:
+                      body = response.read(96 * 1024 * 1024 + 1)
+              if len(body) > 96 * 1024 * 1024:
+                  raise ValueError('Archive exceeds bounded size')
+              return body if archive else json.loads(body)
+
+
+          def audit_archive(body, artifact_id, expected_sha256):
+              if hashlib.sha256(body).hexdigest() != expected_sha256:
+                  raise ValueError('ZIP digest mismatch')
+              with zipfile.ZipFile(io.BytesIO(body)) as z:
+                  if z.testzip() is not None:
+                      raise ValueError('ZIP CRC failure')
+                  if sum(e.file_size for e in z.infolist()) > 1024 * 1024 * 1024:
+                      raise ValueError('Uncompressed archive exceeds bounded size')
+                  for e in z.infolist():
+                      q = pathlib.PurePosixPath(e.filename)
+                      if q.is_absolute() or '..' in q.parts or ((e.external_attr >> 16) & 0o170000) == 0o120000:
+                          raise ValueError('Unsafe archive member')
+                  manifest = json.loads(z.read('manifest.json'))
+                  if manifest['source'] != 'apim.moex.com' or manifest['orders_enabled'] is not False or manifest['fitting_or_backtesting_performed'] is not False:
+                      raise ValueError('Unexpected acquisition source/mode')
+                  requests = [json.loads(s) for s in z.read('requests.jsonl').decode().splitlines()]
+                  if len(requests) != manifest['requests'] or [r['request_number'] for r in requests] != list(range(1, len(requests) + 1)):
+                      raise ValueError('Request transcript is incomplete')
+                  request_errors = []
+                  for request in requests:
+                      if urllib.parse.urlsplit(request['url']).hostname != 'apim.moex.com':
+                          raise ValueError('Non-APIM data source')
+                      if request['status'] == 'RECEIVED':
+                          raw = gzip.decompress(z.read(request['file']))
+                          if hashlib.sha256(raw).hexdigest() != request['response_sha256']:
+                              raise ValueError('Raw response hash mismatch')
+                      else:
+                          request_errors.append({'url': request['url'], 'error': request.get('error')})
+                  totals = {'tradestats_rows': 0, 'obstats_rows': 0, 'im_positive_rows': 0, 'im_null_rows': 0}
+                  for record in manifest['records']:
+                      item = record.get('file')
+                      if not item:
+                          continue
+                      raw = gzip.decompress(z.read(item['file']))
+                      if hashlib.sha256(raw).hexdigest() != item['uncompressed_sha256']:
+                          raise ValueError('Normalized payload hash mismatch')
+                      data = json.loads(raw)
+                      if item['rows'] is not None and len(data) != item['rows']:
+                          raise ValueError('Normalized row count mismatch')
+                      if record.get('metric'):
+                          keys = [(r['secid'], r['tradedate'], r['tradetime']) for r in data]
+                          if len(set(keys)) != len(keys):
+                              raise ValueError('Normalized duplicate panel rows')
+                          totals[record['metric'] + '_rows'] += len(data)
+                          if record['metric'] == 'tradestats':
+                              totals['im_positive_rows'] += sum(isinstance(r.get('im'), (int, float)) and r['im'] > 0 for r in data)
+                              totals['im_null_rows'] += sum(r.get('im') is None for r in data)
+                  summary = {'artifact_id': artifact_id, 'zip_sha256': expected_sha256, 'integrity': 'PASSED',
+                             'mode': manifest['mode'], 'year': manifest['year'], 'acquisition_status': manifest['status'],
+                             'requests': len(requests), 'request_errors': request_errors, 'totals': totals,
+                             'acquisition_errors': [r for r in manifest['records'] if r['status'] in ('ERROR', 'UNAVAILABLE')],
+                             'source_empty_panels': [r for r in manifest['records'] if r['status'] == 'SOURCE_EMPTY'],
+                             'exact_agent_replay_ready': False}
+                  return summary, manifest
+
+
+          def main():
+              directory = pathlib.Path('input-audit-evidence')
+              directory.mkdir(exist_ok=True)
+              report = {'source_run_id': SOURCE_RUN, 'source_commit': SOURCE_COMMIT, 'all_required_inputs_ready': False,
+                        'strategy_testing_performed': False, 'artifacts': [], 'errors': []}
+              try:
+                  prefix = '/repos/ataruua-tech/-Br-gold/actions/'
+                  run = github_get(prefix + 'runs/' + str(SOURCE_RUN))
+                  if run['head_sha'] != SOURCE_COMMIT or run['path'] != '.github/workflows/algopack-research-required-inputs.yml':
+                      raise ValueError('Unreviewed acquisition source')
+                  available = github_get(prefix + 'runs/' + str(SOURCE_RUN) + '/artifacts?per_page=100')['artifacts']
+                  for artifact in available:
+                      artifact_id = artifact['id']
+                      if artifact_id not in EXPECTED:
+                          continue
+                      expected = EXPECTED[artifact_id]
+                      if artifact.get('digest') != 'sha256:' + expected:
+                          raise ValueError('GitHub metadata digest changed')
+                      body = github_get(prefix + 'artifacts/' + str(artifact_id) + '/zip', archive=True)
+                      summary, manifest = audit_archive(body, artifact_id, expected)
+                      report['artifacts'].append(summary)
+                      (directory / (artifact['name'] + '-manifest.json')).write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
+                      print('::notice::' + json.dumps({'type': 'RESEARCH_INPUT_AUDIT', 'summary': summary}, ensure_ascii=False), flush=True)
+                      if manifest['mode'] == 'catalogue':
+                          for record in manifest['records']:
+                              print('::notice::' + json.dumps({'type': 'RESEARCH_CATALOGUE_RECORD', 'record': record}, ensure_ascii=False), flush=True)
+                  if {r['artifact_id'] for r in report['artifacts']} != set(EXPECTED):
+                      report['errors'].append('Not all five expected archives available and verified')
+              except Exception as exc:
+                  report['errors'].append(type(exc).__name__ + ': ' + str(exc).replace(os.environ.get('GH_TOKEN') or '\0', '[REDACTED]'))
+              report['status'] = 'AUDIT_FINISHED_REQUIRES_DATA_REVIEW' if not report['errors'] else 'AUDIT_INCOMPLETE'
+              (directory / 'manifest.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
+              print('::notice::' + json.dumps({'type': 'RESEARCH_AUDIT_STATUS', 'status': report['status'], 'errors': report['errors']}, ensure_ascii=False), flush=True)
+              return 1 if report['errors'] else 0
+
+
+          if __name__ == '__main__':
+              raise SystemExit(main())
+
+          PY
+      - name: Preserve verified coverage reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: algopack-research-input-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: input-audit-evidence/
+          if-no-files-found: error
+          retention-days: 90
