@@ -100,10 +100,13 @@
       "telegram_date": 1793092716
     },
     "week:1d88347c8df1a0db74d49667:WEEK_STARTED::": {
-      "status": "INTENT",
+      "status": "SENT",
       "created_at_msk": "2026-10-27T12:18:37.504305+03:00",
       "kind": "WEEK_STARTED",
-      "week_id": "1d88347c8df1a0db74d49667"
+      "week_id": "1d88347c8df1a0db74d49667",
+      "confirmed_at_msk": "2026-10-27T12:18:37.504305+03:00",
+      "message_id": 15,
+      "telegram_date": 1793092718
     }
   },
   "acceptance": {
