@@ -80,6 +80,11 @@
       "confirmed_at_msk": "2026-10-27T12:07:58.628102+03:00",
       "message_id": 12,
       "telegram_date": 1793092083
+    },
+    "test:c311772162105ecd73c75751b09984b5991e61f8bae6454fc16246571587b481": {
+      "status": "INTENT",
+      "created_at_msk": "2026-10-27T12:18:28.719790+03:00",
+      "kind": "TEST"
     }
   },
   "acceptance": {
