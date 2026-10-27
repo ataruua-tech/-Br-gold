@@ -144,6 +144,11 @@
       "confirmed_at_msk": "2026-10-27T14:03:52.133158+03:00",
       "message_id": 19,
       "telegram_date": 1793099033
+    },
+    "test:953b387303a419f385d29ea88b5fd2ea6ad0b8d32775460262dee8ab2acdbcf6": {
+      "status": "INTENT",
+      "created_at_msk": "2026-10-27T14:19:14.365554+03:00",
+      "kind": "TEST"
     }
   },
   "acceptance": {
