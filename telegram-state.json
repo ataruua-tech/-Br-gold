@@ -312,6 +312,12 @@
       "confirmed_at_msk": "2026-10-27T20:56:41.020928+03:00",
       "message_id": 37,
       "telegram_date": 1793123804
+    },
+    "week:1d88347c8df1a0db74d49667:summary:2026-10-27T21": {
+      "status": "INTENT",
+      "created_at_msk": "2026-10-27T21:05:06.427129+03:00",
+      "kind": "WEEK_SUMMARY",
+      "week_id": "1d88347c8df1a0db74d49667"
     }
   },
   "acceptance": {
