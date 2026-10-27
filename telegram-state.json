@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "deliveries": {
+    "setup:060d0b3556a0c01954c1c84d57a76c6d278429e1cd431517d9ac21e7adf868fd": {
+      "status": "INTENT",
+      "created_at_msk": "2026-10-27T09:21:28.628548+03:00",
+      "kind": "SETUP"
+    }
+  },
+  "acceptance": {}
+}
