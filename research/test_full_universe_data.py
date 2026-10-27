@@ -15,6 +15,15 @@ from build_full_universe_workflow import build, ROOT
 
 
 class UniverseDataTests(unittest.TestCase):
+    def test_missing_listing_date_remains_unknown_not_fabricated(self):
+        result = full.contract_dates({'LSTTRADE': '2027-06-18'}, {'secid': 'GDM7', 'calendar_expiration': '2027-06-18'})
+        self.assertIsNone(result['first_trade'])
+        self.assertFalse(result['historical_listing_dates_verified'])
+        self.assertTrue(result['missing_first_trade_is_not_imputed'])
+        self.assertEqual(result['acquisition_start'], '2022-10-08')
+        with self.assertRaises(ValueError):
+            full.contract_dates({}, {'secid': 'GDM7', 'calendar_expiration': None})
+
     def test_half_open_cached_scopes_are_not_requested_again(self):
         first, end = date(2025, 1, 1), date(2025, 1, 10)
         cases = [([], [(first, end)]),
