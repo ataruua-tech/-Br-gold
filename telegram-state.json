@@ -8,6 +8,11 @@
       "confirmed_at_msk": "2026-10-27T09:21:28.628548+03:00",
       "message_id": 4,
       "telegram_date": 1793082091
+    },
+    "test:fb131779091c950c229aca5850a50197f6e3ff8e603f8141ee99a109120a6356": {
+      "status": "INTENT",
+      "created_at_msk": "2026-10-27T09:23:57.453115+03:00",
+      "kind": "TEST"
     }
   },
   "acceptance": {}
