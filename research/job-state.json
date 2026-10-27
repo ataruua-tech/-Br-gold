@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-10-27T17:21:15.907998+00:00",
+  "updated_at_utc": "2026-10-27T17:50:35.420988+00:00",
   "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
-  "phase": "DATA_RECOVERY",
+  "phase": "FULL_UNIVERSE_DATA_ACQUISITION",
   "last_completed_step": "Original four M1/H1/FX archives verified; three empty padding windows corroborated by official closure notices",
   "research_restarts_hourly": false,
   "chat_research_automation_paused": true,
@@ -12,7 +12,7 @@
   "original_data_run": 40494996964,
   "additional_inputs_run": 40529837847,
   "additional_inputs_status": "Four yearly panel jobs failed; all five archives retained; exact errors pending verified archive inspection",
-  "current_main_commit": "a25b25cc86fa688a7dd553b72fa3015661ad61eb",
+  "current_main_commit": "36ad55ae2431c217da44baea4752078ccf0dcf60",
   "scenario_testing_allowed": false,
   "all_required_inputs_ready": false,
   "exact_agent_replay_ready": false,
@@ -37,22 +37,47 @@
     "end_utc": "2026-11-03T09:18:32.255656+00:00",
     "do_not_reset": true
   },
-  "next_step": "Read complete chunked audit; restore only missing page offsets from APIM; inspect complete calendar/catalogue and record objective remaining gaps",
+  "next_step": "Wait for full listed-contract volume/H1 collection; verify every output/hash, assess remaining BBO/margin/calendar/fee gaps, and prepare finite sufficiency report before strategy implementation",
   "blocking_issues_are_not_final": true,
   "completed_research": false,
   "specification": "research/PROJECT_SPEC_RU.txt",
   "data_audit_run": 40547871967,
   "data_audit_source_commit": "ba92dec0fb3172e7380160f192b9d147cd48db01",
   "confirmed_errors": {
-    "2023": "7 contract/metric windows had network errors; received earlier pages retained",
-    "2024": "GDM4 OBStats rejected negative/invalid spread values",
-    "2025": "4 OBStats windows rejected negative/invalid spread values",
-    "2026": "Summary truncated at 4096 bytes; complete chunked report and recovery deployed"
+    "seven_2023_network_windows": "REPAIRED by run40551048097;61requests;10000prefixrowsreused",
+    "nineteen_other_panels": "RECOVERED from saved pages;140056rows;591quoteobservationsquarantined",
+    "historical_schedule": "Three historical filter variants all return current2026-10-27;do not treat as past schedules",
+    "all_ticker_statistics": "from/till filters ignored; date filter verified; asset_code filter ignored"
   },
   "offline_recovery": "Reuse archived raw response pages, preserve bad values, quarantine invalid quote observations; do not clamp or silently fill",
   "paperclip": {
     "status": "DEFERRED_BY_USER",
     "tools_connected": false,
     "instance_url": null
-  }
+  },
+  "missing_ranges_repaired": {
+    "run_id": 40551048097,
+    "windows": 7,
+    "requests": 61,
+    "reused_prefix_rows": 10000,
+    "status": "COMPLETE_PAGE_SEQUENCES"
+  },
+  "offline_data_recovery": {
+    "run_id": 40549452734,
+    "complete_panels": 19,
+    "rows": 140056,
+    "quarantined_in_these_panels": 591
+  },
+  "remaining_input_limits": [
+    "Historical executable BBO absent from aggregate API",
+    "Session API ignores historical date filters",
+    "SYSTIME can be a later recalculation timestamp, not original availability",
+    "Full eligible-contract volume history not yet assembled",
+    "Historical fees and pre-2024 margin coverage not established"
+  ],
+  "active_research_run_id": 40553751489,
+  "active_workflow": ".github/workflows/algopack-research-full-universe.yml",
+  "active_source_commit": "9ef9e42933f2638d7e277d7f69dd8c9c2fc24d72",
+  "source_and_tests_published": true,
+  "financial_engine_sha256": "ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932"
 }
