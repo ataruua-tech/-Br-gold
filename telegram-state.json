@@ -171,6 +171,13 @@
       "confirmed_at_msk": "2026-10-27T15:00:36.997326+03:00",
       "message_id": 22,
       "telegram_date": 1793102438
+    },
+    "summary:2026-10-27T14:00:00": {
+      "status": "INTENT",
+      "created_at_msk": "2026-10-27T15:18:41.358586+03:00",
+      "kind": "SUMMARY",
+      "source_run_id": 40502677259,
+      "last_h1_msk": "2026-10-27T14:00:00"
     }
   },
   "acceptance": {
