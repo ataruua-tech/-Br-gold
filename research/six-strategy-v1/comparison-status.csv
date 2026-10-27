@@ -1,0 +1,7 @@
+strategy,mechanism,implementation,status,agent_net_return,human_net_return,max_drawdown,trades
+S0,trend_breakout,FROZEN_DEPLOYED,BLOCKED_PENDING_VERIFIED_DATA,,,,
+S1,statistical_mean_reversion,SPECIFIED_NOT_IMPLEMENTED,BLOCKED_PENDING_VERIFIED_DATA,,,,
+S2,session_opening_range,SPECIFIED_NOT_IMPLEMENTED,BLOCKED_PENDING_VERIFIED_DATA,,,,
+S3,time_of_day_seasonality,SPECIFIED_NOT_IMPLEMENTED,BLOCKED_PENDING_VERIFIED_DATA,,,,
+S4,cross_asset_allocation,SPECIFIED_NOT_IMPLEMENTED,BLOCKED_PENDING_VERIFIED_DATA,,,,
+S5,signed_candle_volume_proxy,SPECIFIED_NOT_IMPLEMENTED,BLOCKED_PENDING_VERIFIED_DATA,,,,

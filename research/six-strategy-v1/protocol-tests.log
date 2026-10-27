@@ -1,0 +1,9 @@
+test_frozen_baseline_uses_live_engine_and_never_calls_old_holdout_unseen (test_six_strategy_protocol.StudyProtocolTests.test_frozen_baseline_uses_live_engine_and_never_calls_old_holdout_unseen) ... ok
+test_missing_results_and_unregistered_trials_cannot_enter_ranking (test_six_strategy_protocol.StudyProtocolTests.test_missing_results_and_unregistered_trials_cannot_enter_ranking) ... ok
+test_six_hypotheses_are_registered_before_results_and_missing_metrics_are_blank (test_six_strategy_protocol.StudyProtocolTests.test_six_hypotheses_are_registered_before_results_and_missing_metrics_are_blank) ... ok
+test_trial_ledger_detects_tampering_and_rejects_duplicate_or_final_test_selection (test_six_strategy_protocol.StudyProtocolTests.test_trial_ledger_detects_tampering_and_rejects_duplicate_or_final_test_selection) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.006s
+
+OK
