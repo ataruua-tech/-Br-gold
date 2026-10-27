@@ -975,6 +975,13 @@
         "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c"
       },
       "statuses": {}
+    },
+    {
+      "time": "2026-10-27T23:59:54.871161",
+      "provenance": {
+        "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c"
+      },
+      "statuses": {}
     }
   ],
   "errors": [
@@ -1241,9 +1248,13 @@
     {
       "time": "2026-10-27T12:07:42.050549",
       "message": "GDZ6: Current exit quote is stale or in the future"
+    },
+    {
+      "time": "2026-10-27T23:59:54.871129",
+      "message": "Newest H1 run failed; no substitution by an older success"
     }
   ],
-  "updated_at_msk": "2026-10-27T23:24:04.209212",
+  "updated_at_msk": "2026-10-27T23:59:54.871161",
   "weekly_pilot": {
     "schema": 1,
     "status": "RUNNING",
@@ -1754,10 +1765,19 @@
             "BR": "NO_SIGNAL",
             "GOLD": "NO_SIGNAL"
           }
+        },
+        {
+          "time": "2026-10-27T23:59:55.375572",
+          "provenance": {
+            "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c",
+            "weekly_experiment": "1d88347c8df1a0db74d49667",
+            "observed_at_msk": "2026-10-27T23:59:55.375572"
+          },
+          "statuses": {}
         }
       ],
       "errors": [],
-      "updated_at_msk": "2026-10-27T23:24:04.978965"
+      "updated_at_msk": "2026-10-27T23:59:55.375572"
     },
     "notification_events": [
       {
@@ -1768,9 +1788,9 @@
       }
     ],
     "quality": {
-      "checks": 25,
+      "checks": 26,
       "both_assets_fresh": 25,
-      "last_check_utc": "2026-10-27T20:24:04.978965+00:00",
+      "last_check_utc": "2026-10-27T20:59:55.375572+00:00",
       "maximum_check_gap_seconds": 3625.959622,
       "h1_keys": [
         "BRZ6:2026-10-27T11:00:00",
