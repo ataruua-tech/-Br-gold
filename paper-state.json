@@ -371,6 +371,22 @@
         "BR": "DATA_ERROR",
         "GOLD": "DATA_ERROR"
       }
+    },
+    {
+      "time": "2026-10-27T04:20:16.420396",
+      "provenance": {
+        "run_id": 40431914376,
+        "attempt": 1,
+        "head_sha": "eccdc629816baa947e261482971fc38b81ae86ce",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "fa8068611226c9045337890f8bae7139304fcad3a1717f0758808c9875e62c0d",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40431914376",
+        "controller_commit": "eccdc629816baa947e261482971fc38b81ae86ce"
+      },
+      "statuses": {
+        "BR": "DATA_ERROR",
+        "GOLD": "DATA_ERROR"
+      }
     }
   ],
   "errors": [
@@ -517,7 +533,23 @@
     {
       "time": "2026-10-27T04:15:25.771359",
       "message": "GDZ6: Paper entry needs a fresh independently fetched quote"
+    },
+    {
+      "time": "2026-10-27T04:20:16.420396",
+      "message": "BR: Unverified AlgoPack asset"
+    },
+    {
+      "time": "2026-10-27T04:20:16.420396",
+      "message": "GOLD: Unverified AlgoPack asset"
+    },
+    {
+      "time": "2026-10-27T04:19:43.304097",
+      "message": "BRZ6: Paper entry needs a fresh independently fetched quote"
+    },
+    {
+      "time": "2026-10-27T04:19:43.304097",
+      "message": "GDZ6: Paper entry needs a fresh independently fetched quote"
     }
   ],
-  "updated_at_msk": "2026-10-27T04:15:31.582764"
+  "updated_at_msk": "2026-10-27T04:20:16.420396"
 }
