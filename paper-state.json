@@ -464,6 +464,22 @@
         "BR": "DATA_ERROR",
         "GOLD": "DATA_ERROR"
       }
+    },
+    {
+      "time": "2026-10-27T07:09:25.026183",
+      "provenance": {
+        "run_id": 40448120506,
+        "attempt": 1,
+        "head_sha": "eccdc629816baa947e261482971fc38b81ae86ce",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "bc7c1e52c19a750be7134394c1ae8810776947d12f1629e3a117124648184a90",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40448120506",
+        "controller_commit": "eccdc629816baa947e261482971fc38b81ae86ce"
+      },
+      "statuses": {
+        "BR": "DATA_ERROR",
+        "GOLD": "DATA_ERROR"
+      }
     }
   ],
   "errors": [
@@ -690,7 +706,15 @@
     {
       "time": "2026-10-27T07:01:11.814957",
       "message": "GOLD: Unverified AlgoPack asset"
+    },
+    {
+      "time": "2026-10-27T07:09:25.026183",
+      "message": "BR: Unverified AlgoPack asset"
+    },
+    {
+      "time": "2026-10-27T07:09:25.026183",
+      "message": "GOLD: Unverified AlgoPack asset"
     }
   ],
-  "updated_at_msk": "2026-10-27T07:01:11.814957"
+  "updated_at_msk": "2026-10-27T07:09:25.026183"
 }
