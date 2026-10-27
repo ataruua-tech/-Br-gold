@@ -4,6 +4,6 @@ test_six_hypotheses_are_registered_before_results_and_missing_metrics_are_blank 
 test_trial_ledger_detects_tampering_and_rejects_duplicate_or_final_test_selection (test_six_strategy_protocol.StudyProtocolTests.test_trial_ledger_detects_tampering_and_rejects_duplicate_or_final_test_selection) ... ok
 
 ----------------------------------------------------------------------
-Ran 4 tests in 0.006s
+Ran 4 tests in 0.059s
 
 OK

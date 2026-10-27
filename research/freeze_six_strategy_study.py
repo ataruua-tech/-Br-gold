@@ -1,15 +1,15 @@
 """Freeze research definitions without changing a live workflow or paper book."""
 from __future__ import annotations
 import csv
+import ast
 import hashlib
 import json
 import sys
+import textwrap
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT))
-import paper_engine as pe
 
 OUT=ROOT/'research/six-strategy-v1'
 
@@ -19,6 +19,37 @@ def canonical(value):
 
 
 def file_sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def frozen_references():
+    """A repository clone can inspect/regenerate specs without hidden modules.
+
+    Absent old research datasets remain hash references, never verified inputs.
+    Financial constants are parsed as literals from the deployed standalone file.
+    """
+    workflow=(ROOT/'.github/workflows/algopack-control.yml').read_text()
+    source=textwrap.dedent(workflow.split("python3 - <<'PY'\n",1)[1].split('\n          PY\n',1)[0])
+    constants={}
+    for node in ast.parse(source).body:
+        if isinstance(node,ast.Assign):
+            for target in node.targets:
+                if isinstance(target,ast.Name) and target.id in ('PAPER_CONFIG','CONTROL_WEEK_ENGINE_SHA256'):
+                    constants[target.id]=ast.literal_eval(node.value)
+    old_passport=ROOT/'research/six-strategy-v1/baseline-passport.json'
+    old_protocol=ROOT/'research/six-strategy-v1/study-protocol.json'
+    p=json.loads(old_passport.read_text()) if old_passport.exists() else {}
+    s=json.loads(old_protocol.read_text()) if old_protocol.exists() else {}
+    references=s.get('search_accounting',{}).get('legacy_evidence_sha256',{})
+    def source_hash(name):
+        if (ROOT/name).exists():return file_sha(ROOT/name)
+        value=p.get('financial_source_sha256',{}).get(name) or references.get(name)
+        if not value:raise ValueError('Missing declared source reference: '+name)
+        return value
+    if (ROOT/'paper_week.py').exists() and (ROOT/'paper_engine.py').exists():
+        engine=hashlib.sha256((ROOT/'paper_week.py').read_bytes()+(ROOT/'paper_engine.py').read_bytes()).hexdigest()
+        if engine!=constants['CONTROL_WEEK_ENGINE_SHA256']:raise ValueError('Financial source and deployed workflow disagree')
+    else:engine=constants['CONTROL_WEEK_ENGINE_SHA256']
+    return constants['PAPER_CONFIG'],engine,source_hash
 
 
 def validation_result_can_be_ranked(row):
@@ -53,16 +84,17 @@ def write(path,value):Path(path).write_bytes(canonical(value)+b'\n')
 
 def build(now):
     OUT.mkdir(parents=True,exist_ok=True)
+    config,engine,source_hash=frozen_references()
     # Existing studies are evidence of prior inspection, not a fresh holdout.
-    legacy={name:file_sha(ROOT/name) for name in ('research/protocol.json','research/results.json',
+    legacy={name:source_hash(name) for name in ('research/protocol.json','research/results.json',
             'research/tariff/protocol-sber.json','research/agent-audit-v081/results.json')}
     passport={'id':'S0','name':'Donchian H1 with H1/H4 EMA alignment',
         'frozen_at_utc':now.isoformat(),'source_repository':'ataruua-tech/-Br-gold',
         'deployed_commit':'dc5c9ed72c2b34577c5724c18574322df6912e4d',
         'signal_workflow_blob':'38e147112ad48c3959b4dff6838fbec88d66f576',
         'controller_workflow_blob':'dd216ba8ac19e9e52fa9c2b6a5b340ff591cb0dd',
-        'financial_engine_sha256':hashlib.sha256((ROOT/'paper_week.py').read_bytes()+(ROOT/'paper_engine.py').read_bytes()).hexdigest(),
-        'financial_source_sha256':{name:file_sha(ROOT/name) for name in ('paper_engine.py','paper_week.py')},
+        'financial_engine_sha256':engine,
+        'financial_source_sha256':{name:source_hash(name) for name in ('paper_engine.py','paper_week.py')},
         'data_source':'apim.moex.com only; no public ISS live fallback',
         'universe':{'assets':['BR','GOLD'],'contract':'Maximum current VOLTODAY among eligible real contracts',
             'minimum_calendar_days_to_expiry':9,'historical_selection_requires':'Point-in-time eligible universe and VOLTODAY; nearest expiry is only a labelled approximation'},
@@ -86,7 +118,7 @@ def build(now):
             'integer_contracts':True,'initial_margin_cap_fraction':0.5,
             'volume_cap':'1% of median volume of previous 20 H1','one_open_position_per_asset':True,
             'drawdown_entry_halt_fraction':0.2,'never_size_on_unconfirmed_open_profit':True},
-        'costs':{'broker_per_side_notional_fraction':pe.PAPER_CONFIG['broker_fraction'],
+        'costs':{'broker_per_side_notional_fraction':config['broker_fraction'],
             'tariff_scope':'User tariff as a fixed current-cost scenario; not a reconstruction of past broker debits',
             'exchange':'Observed BUYSELLFEE; historical value must not be replaced silently by current metadata',
             'slippage_adverse_ticks_per_side':2,'margin':'Observed exchange INITIALMARGIN; broker-specific uplift unknown',
