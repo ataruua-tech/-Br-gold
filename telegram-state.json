@@ -369,10 +369,13 @@
       "telegram_date": 1793129349
     },
     "error:2026-10-27T22:GOLD": {
-      "status": "INTENT",
+      "status": "SENT",
       "created_at_msk": "2026-10-27T22:29:04.341049+03:00",
       "kind": "ERROR",
-      "source_run_id": 40567024435
+      "source_run_id": 40567024435,
+      "confirmed_at_msk": "2026-10-27T22:29:04.341049+03:00",
+      "message_id": 44,
+      "telegram_date": 1793129352
     }
   },
   "acceptance": {
