@@ -23,6 +23,7 @@ SOURCE_ARCHIVES = {
     'prices2024': (12733895222, '5a99d6eee7f98d7e76a1dffe86dcfeea4b523be14c587b22f8c3000905d4c04c'),
     'prices2025': (12734831380, 'd8eff7373c9bcaafb570fbd24a44d84709353112396f90c62bd299e86b003253'),
     'prices2026': (12735884135, 'b8344fbe990dd1ae069ceef3ae0709ca12375a7205a26f1360e3ba34b66b1ffb'),
+    'metadata_resume': (12755454365, '5faa9c22e70999cc958e1b47cfdd72ffc6b3d3398b6c818f72087e55124f9141'),
 }
 
 
@@ -116,7 +117,24 @@ def merge_rows(rows, metric, contract, first, end):
     return result
 
 
-def collect_catalogue(client, audit, repair):
+def contract_dates(values, record):
+    first, last = values.get('FRSTTRADE'), values.get('LSTTRADE')
+    if first:
+        date.fromisoformat(first)
+    if last:
+        date.fromisoformat(last)
+    end = last or record.get('calendar_expiration')
+    if not end:
+        raise ValueError('No verified end date or calendar query bound for ' + record['secid'])
+    date.fromisoformat(end)
+    return {'first_trade': first, 'last_trade': last,
+            'acquisition_start': first or '2022-10-08', 'acquisition_end': end,
+            'historical_listing_dates_verified': bool(first and last),
+            'missing_first_trade_is_not_imputed': not bool(first),
+            'acquisition_bound_interpretation': 'Query range only; the study start is not asserted to be a listing date'}
+
+
+def collect_catalogue(client, audit, repair, metadata_resume=None):
     instruments, cached_descriptions = {}, {}
     for name in audit.namelist():
         if name.startswith('contract-catalogue-') and name.endswith('-full.json'):
@@ -127,11 +145,26 @@ def collect_catalogue(client, audit, repair):
             data = json.loads(audit.read(name))
             values = {r['name']: r['value'] for r in data['description']}
             cached_descriptions[values['SECID']] = data
+    current = None
+    if metadata_resume is not None:
+        for name in metadata_resume.namelist():
+            if name.startswith('metadata-') and name.endswith('.json.gz'):
+                payload = json.loads(gzip.decompress(metadata_resume.read(name)))
+                values = {r['name']: r['value'] for r in ac.bg.table_rows(payload, 'description')}
+                cached_descriptions[values['SECID']] = {'description': ac.bg.table_rows(payload, 'description')}
+        for line in metadata_resume.read('requests.jsonl').decode().splitlines():
+            request = json.loads(line)
+            if '/boards/rfud/securities.json?' in request['url'] and request['status'] == 'RECEIVED':
+                raw = gzip.decompress(metadata_resume.read(request['file']))
+                if hashlib.sha256(raw).hexdigest() != request['response_sha256']:
+                    raise ValueError('Cached securities catalogue hash mismatch')
+                current = json.loads(raw)
     future = json.loads(gzip.decompress(repair.read('contract-catalogue-2028.json.gz')))
     for row in ac.bg.table_rows(future, 'forts'):
         if row['asset_code'] in ('BR', 'GOLD') and re.fullmatch(r'(BR|GD)[FGHJKMNQUVXZ][0-9]+', row['secid']):
             instruments[row['secid']] = {'secid': row['secid'], 'asset': row['asset_code'], 'calendar_expiration': row['expiration_date'], 'weekend_session': row['weekend_session']}
-    current = client.request('/iss/engines/futures/markets/forts/boards/rfud/securities.json', {'iss.only': 'securities', 'iss.meta': 'off'})
+    if current is None:
+        current = client.request('/iss/engines/futures/markets/forts/boards/rfud/securities.json', {'iss.only': 'securities', 'iss.meta': 'off'})
     for row in ac.bg.table_rows(current, 'securities'):
         if row.get('ASSETCODE') in ('BR', 'GOLD') and re.fullmatch(r'(BR|GD)[FGHJKMNQUVXZ][0-9]+', row['SECID']) and row['SECID'] not in instruments:
             instruments[row['SECID']] = {'secid': row['SECID'], 'asset': row['ASSETCODE'], 'calendar_expiration': row.get('LASTTRADEDATE'), 'weekend_session': None}
@@ -146,9 +179,12 @@ def collect_catalogue(client, audit, repair):
             record['description_source'] = client.save('metadata-' + secid + '.json.gz', payload)
         if values['SECID'] != secid or values['ASSETCODE'] != record['asset']:
             raise ValueError('Contract description identity mismatch')
-        record.update(first_trade=values['FRSTTRADE'], last_trade=values['LSTTRADE'], lot=values.get('LOTSIZE'), unit=values.get('UNIT'))
+        record.update(contract_dates(values, record), lot=values.get('LOTSIZE'), unit=values.get('UNIT'))
         record['expiration_sources_agree'] = record['calendar_expiration'] == record['last_trade']
+        if not record['historical_listing_dates_verified']:
+            emit_record({'type': 'CATALOGUE_METADATA_GAP', 'record': record, 'description_fields_present': sorted(values)}, 'metadata-gap-' + secid)
         result.append(record)
+        client.save('catalogue-progress.json.gz', result)
     client.save('full-contract-catalogue.json.gz', result)
     emit_record({'type': 'FULL_CONTRACT_CATALOGUE', 'contracts': result, 'asof_historical_listing_universe_not_claimed': True}, 'full-universe-catalogue')
     return result
@@ -197,16 +233,16 @@ def full_universe_main(directory=Path('universe-evidence')):
             raise ac.AcquisitionStop('Missing protected MOEX_ALGOPACK_TOKEN')
         for name, reference in SOURCE_ARCHIVES.items():
             zips[name] = verified_zip(reference)
-        catalogue = collect_catalogue(client, zips['audit'], zips['repair'])
+        catalogue = collect_catalogue(client, zips['audit'], zips['repair'], zips['metadata_resume'])
         cache = build_cache(zips, zips['repair'])
         report['catalogue_contracts'] = len(catalogue)
         for year in (2023, 2024, 2025, 2026):
             year_end = min(date(year + 1, 1, 1), date(2026, 10, 26))
             for contract in catalogue:
-                last = min(year_end, date.fromisoformat(contract['last_trade']) + timedelta(days=1))
+                last = min(year_end, date.fromisoformat(contract['acquisition_end']) + timedelta(days=1))
                 for metric in ('tradestats', 'h1'):
                     study_first = date(2022, 10, 8) if metric == 'h1' and year == 2023 else date(year, 1, 1)
-                    first = max(study_first, date.fromisoformat(contract['first_trade']))
+                    first = max(study_first, date.fromisoformat(contract['acquisition_start']))
                     if first >= last:
                         continue
                     row = {'year': year, 'contract': contract['secid'], 'asset': contract['asset'], 'metric': metric, 'first': first.isoformat(), 'end_exclusive': last.isoformat()}
