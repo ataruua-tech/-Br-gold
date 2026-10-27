@@ -467,9 +467,12 @@
       "telegram_date": 1793139742
     },
     "error:2026-10-28T02:SYSTEM": {
-      "status": "INTENT",
+      "status": "SENT",
       "created_at_msk": "2026-10-28T02:18:38.425463+03:00",
-      "kind": "ERROR"
+      "kind": "ERROR",
+      "confirmed_at_msk": "2026-10-28T02:18:38.425463+03:00",
+      "message_id": 55,
+      "telegram_date": 1793143122
     }
   },
   "acceptance": {
