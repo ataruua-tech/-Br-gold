@@ -1,0 +1,78 @@
+{
+  "updated_at_utc": "2026-10-27T14:42:49.423588+00:00",
+  "phase": "DATA_ACQUISITION",
+  "strategy_testing_allowed": false,
+  "all_required_data_ready": false,
+  "full_history_or_profitability_not_claimed": true,
+  "requirements": {
+    "M1_H1_FX": "Four archives downloaded and normalized observed bars reconciled; frozen nearest-expiry study windows, not full selection universe",
+    "three_empty_padding_windows": "Resolved against official closure notices and APIM M1/H1 responses",
+    "full_session_calendar": "APIM calendar endpoints identified; complete historical schedules not acquired yet",
+    "historical_margin": "im officially described as guarantee collateral; positive in 2025-2026 sample days, null in 2023-2024 sample days; full coverage and timing not established",
+    "historical_BBO": "Not acquired. OBStats contains five-minute aggregates, which cannot be called executable quotes",
+    "historical_contract_universe_and_volume": "Complete eligible point-in-time universe not acquired",
+    "historical_exchange_fees_and_contract_economics": "Not acquired as complete historical series",
+    "historical_runner_and_delivery_latency": "Cannot be recovered by downloading candles; only newly recorded real events available"
+  },
+  "margin_probe_rows": [
+    {
+      "year": 2023,
+      "url": "https://apim.moex.com/iss/datashop/algopack/fo/tradestats/BRG3.json?from=2023-01-31&till=2023-01-31&iss.meta=off&start=0",
+      "response_sha256": "7390a8f55fdfe0f47fbd53c6695551e0d22b5a6987f3a9913f6d8b7a39cde174",
+      "rows": 174,
+      "im_nonnull_rows": 0
+    },
+    {
+      "year": 2023,
+      "url": "https://apim.moex.com/iss/datashop/algopack/fo/tradestats/GDH3.json?from=2023-03-16&till=2023-03-16&iss.meta=off&start=0",
+      "response_sha256": "f3e443ef45b68452a5f40df9afbb127db6c0e61ef099183dd020620a7420598e",
+      "rows": 170,
+      "im_nonnull_rows": 0
+    },
+    {
+      "year": 2024,
+      "url": "https://apim.moex.com/iss/datashop/algopack/fo/tradestats/BRG4.json?from=2024-01-31&till=2024-01-31&iss.meta=off&start=0",
+      "response_sha256": "75f663ae4f554b50854032424540db5be43bf58c17707a835cc992d3dcfc97dc",
+      "rows": 174,
+      "im_nonnull_rows": 0
+    },
+    {
+      "year": 2024,
+      "url": "https://apim.moex.com/iss/datashop/algopack/fo/tradestats/GDH4.json?from=2024-03-21&till=2024-03-21&iss.meta=off&start=0",
+      "response_sha256": "d0ffcb2a0a8d55f321f8fd9046369f61d24715892c65d673930646bed135f588",
+      "rows": 174,
+      "im_nonnull_rows": 0
+    },
+    {
+      "year": 2025,
+      "url": "https://apim.moex.com/iss/datashop/algopack/fo/tradestats/BRG5.json?from=2025-01-31&till=2025-01-31&iss.meta=off&start=0",
+      "response_sha256": "42ed11a16cf4a5fb1cd190ea4800376755b1121e822bdf7a396391a382c0bd8f",
+      "rows": 174,
+      "im_nonnull_rows": 174
+    },
+    {
+      "year": 2025,
+      "url": "https://apim.moex.com/iss/datashop/algopack/fo/tradestats/GDH5.json?from=2025-03-20&till=2025-03-20&iss.meta=off&start=0",
+      "response_sha256": "114e732433b15bfb41004b6dac7863a9525d63b357ccb5a36909bf27b1adfc1b",
+      "rows": 171,
+      "im_nonnull_rows": 171
+    },
+    {
+      "year": 2026,
+      "url": "https://apim.moex.com/iss/datashop/algopack/fo/tradestats/BRG6.json?from=2026-02-01&till=2026-02-01&iss.meta=off&start=0",
+      "response_sha256": "db1bc8ac5acc127ab0c9ca15ab8da44871f62baa6b5111c9ead7619ee4a69170",
+      "rows": 94,
+      "im_nonnull_rows": 94
+    },
+    {
+      "year": 2026,
+      "url": "https://apim.moex.com/iss/datashop/algopack/fo/tradestats/GDH6.json?from=2026-03-19&till=2026-03-19&iss.meta=off&start=0",
+      "response_sha256": "b030c162bc2c2c32b2c3542fe26924b6541696423d6e7a6272616117c4acf1bb",
+      "rows": 174,
+      "im_nonnull_rows": 174
+    }
+  ],
+  "official_im_definition_url": "https://moexalgo.github.io/docs/description/supercandles/",
+  "additional_workflow": ".github/workflows/algopack-research-required-inputs.yml",
+  "new_workflow_does_not_fit_or_trade": true
+}

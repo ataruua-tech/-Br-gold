@@ -1,0 +1,34 @@
+{
+  "verified_at_utc": "2026-10-27T14:42:49.423588+00:00",
+  "scope": "Only the three previously empty windows; not a complete 2023-2026 session calendar",
+  "calendar_sources": [
+    {
+      "url": "https://www.moex.com/n75066",
+      "published": "2024-12-24",
+      "closed_dates": [
+        "2025-01-01"
+      ]
+    },
+    {
+      "url": "https://www.moex.com/n96571",
+      "published": "2025-12-30",
+      "closed_dates": [
+        "2026-01-01",
+        "2026-01-02"
+      ]
+    },
+    {
+      "url": "https://www.moex.com/n95564",
+      "published": "2025-11-25",
+      "closed_dates": [
+        "2026-01-03",
+        "2026-10-25"
+      ]
+    }
+  ],
+  "independent_apim_check_run_id": 40513546576,
+  "independent_apim_check_job_id": 122221342825,
+  "source_response_status": "SOURCE_EMPTY_BOTH_INTERVALS in all three windows",
+  "resolution": "The source-empty padding windows are consistent with confirmed market closure; no bars are manufactured and original PARTIAL_ERROR manifests remain unchanged",
+  "full_calendar_verified": false
+}
