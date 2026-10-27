@@ -18,5 +18,11 @@
       "telegram_date": 1793082239
     }
   },
-  "acceptance": {}
+  "acceptance": {
+    "fb131779091c950c229aca5850a50197f6e3ff8e603f8141ee99a109120a6356": {
+      "message_id": 5,
+      "verified_at_msk": "2026-10-27T09:23:57.453115+03:00",
+      "code_sha256": "bce8cf3c8841932892627089c7ca7d9d5458d9bd7eddd9be150c9a88e61f13a3"
+    }
+  }
 }
