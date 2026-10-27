@@ -100,6 +100,11 @@
       "message_id": 8,
       "verified_at_msk": "2026-10-27T10:25:41.447229+03:00",
       "code_sha256": "2b0d690ed72180f0a4843d0bd8954eaadfd823d56bb2d135e9e48293ab46261f"
+    },
+    "c311772162105ecd73c75751b09984b5991e61f8bae6454fc16246571587b481": {
+      "message_id": 13,
+      "verified_at_msk": "2026-10-27T12:18:28.719790+03:00",
+      "code_sha256": "fe62d2e5df7bbeed33df27c0b03664efac319bec4b88f0236205ec65a169b288"
     }
   }
 }
