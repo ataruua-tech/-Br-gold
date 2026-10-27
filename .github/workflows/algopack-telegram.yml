@@ -2,13 +2,15 @@
 name: AlgoPack Telegram BR-GOLD
 
 on:
+  schedule:
+    - cron: '50 * * * *'
   push:
     branches: [main]
     paths: ['.github/workflows/algopack-telegram.yml']
   workflow_dispatch:
     inputs:
       mode:
-        description: 'setup obtains chat ID privately; test verifies delivery; notify checks newest H1'
+        description: 'setup pairs the chat; test verifies delivery; notify sends newest H1 signals and summary'
         type: choice
         default: 'test'
         options: ['setup', 'test', 'notify']
@@ -37,7 +39,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_PAIR_CODE: ${{ secrets.TELEGRAM_PAIR_CODE }}
-          NOTIFY_MODE: ${{ github.event_name == 'workflow_run' && 'notify' || inputs.mode || 'test' }}
+          NOTIFY_MODE: ${{ github.event_name == 'push' && 'enable' || (github.event_name == 'workflow_run' || github.event_name == 'schedule') && 'notify' || inputs.mode || 'test' }}
           NOTIFY_EVENT_RUN_ID: ${{ github.event.workflow_run.id || '' }}
           PYTHONUNBUFFERED: '1'
         run: |
@@ -556,6 +558,8 @@ jobs:
               code = value['contract']
               if not re.fullmatch('[A-Za-z0-9]{3,20}', code):
                   raise NotifyError('Invalid real contract code')
+              if not isinstance(value.get('close'), (int, float)) or isinstance(value['close'], bool) or (not math.isfinite(value['close'])) or (value['close'] <= 0):
+                  raise NotifyError('Invalid reported H1 close')
               if value['status'] not in ('LONG', 'SHORT', 'ENTRY_CANCELLED'):
                   return
               setup = value['setup']
@@ -582,6 +586,42 @@ jobs:
               channel = 'максимума' if value['status'] == 'LONG' else 'минимума'
               return ('🟢 ' if value['status'] == 'LONG' else '🔴 ') + value['status'] + ' · ' + value['asset'] + ' · ' + value['contract'] + f"\nH1: {start:%d.%m.%Y %H:%M}–{end:%H:%M} МСК\nВход по закрытию H1: {setup['entry']:g}\nСтоп: {setup['stop']:g} · Цель: {setup['target']:g}\nПробой Donchian20 {channel}, EMA20/50 H1+H4, ADX14={value['indicators']['adx14']:.1f}, объём подтверждён.\nКотировка из расчёта: {quote:%d.%m.%Y %H:%M:%S} МСК.\nВход — расчётный уровень, текущая цена исполнения может отличаться.\nЭкспериментальная стратегия. Автоматического исполнения нет.\n" + provenance['run_url']
 
+          def notify_no_signal_reason(value):
+              """Explain a failed frozen entry condition, never an invented probability."""
+              i, f = (value['indicators'], value['filters'])
+              h1 = i['ema20'] - i['ema50']
+              h4 = i['h4_ema20'] - i['h4_ema50']
+              if h1 * h4 <= 0:
+                  return 'EMA20/50 H1 и H4 не подтверждают одно направление'
+              if i['adx14'] < 22:
+                  return f"ADX14={i['adx14']:.2f} ниже 22"
+              if f.get('volume') is not True:
+                  return 'объём ниже фильтра стратегии'
+              if f.get('breakout_up' if h1 > 0 else 'breakout_down') is not True:
+                  return 'нет пробоя Donchian20 по направлению тренда'
+              return 'расчёт не подтвердил вход; требуется проверка результата'
+
+          def notify_render_summary(assets, provenance, now):
+              """Only call with independently replayed, current BR and GOLD results."""
+              start = bg.parse_iss_time(assets['BR']['last_h1_msk'])
+              end = start + timedelta(hours=1)
+              local = now.astimezone(bg.MSK)
+              no_signal = all((assets[a]['status'] == 'NO_SIGNAL' for a in ('BR', 'GOLD')))
+              lines = ['⚪ СИГНАЛОВ НЕТ' if no_signal else '📋 Сводка BR/GOLD', f'Проверка: {local:%d.%m.%Y %H:%M:%S} МСК', f'H1: {start:%d.%m.%Y %H:%M}–{end:%H:%M} МСК']
+              for asset in ('BR', 'GOLD'):
+                  value = assets[asset]
+                  if value['status'] == 'NO_SIGNAL':
+                      reason = notify_no_signal_reason(value)
+                  elif value['status'] == 'ENTRY_CANCELLED':
+                      reason = 'вход отменён; уровни входа не публикуются'
+                  else:
+                      reason = value['status'] + '; уровни в отдельном уведомлении о сигнале'
+                  lines.append(f"{asset} · {value['contract']} · закрытие {value['close']:g}: {reason}.")
+                  quote = bg.parse_iss_time(value['quote']['time_msk'])
+                  lines.append(f'Котировка {asset}: {quote:%d.%m.%Y %H:%M:%S} МСК.')
+              lines += ['Расчёт по закрытой H1 с буфером 18 минут. Это время расчётной свечи, не текущая цена. Автоматического исполнения нет.', provenance['run_url']]
+              return '\n'.join(lines)
+
           def notify_publish(api, ledger, token, chat, fingerprint, now, event_run_id=None, sender=None):
               notify_require_acceptance(ledger, fingerprint)
               try:
@@ -593,7 +633,9 @@ jobs:
               except Exception as exc:
                   key = 'error:' + now.astimezone(bg.MSK).strftime('%Y-%m-%dT%H') + ':SYSTEM'
                   error = notify_safe_error(exc)
-                  receipt = notify_deliver(ledger, key, '⚠️ ПРОВЕРКА НЕ УДАЛАСЬ\n' + error + '\nhttps://github.com/' + NOTIFY_REPO + '/actions/workflows/algopack-h1.yml', token, chat, now, {'kind': 'ERROR'}, sender)
+                  local = now.astimezone(bg.MSK).replace(tzinfo=None)
+                  expected = cc.pe.paper_expected_h1(local)
+                  receipt = notify_deliver(ledger, key, f'⚠️ ПРОВЕРКА НЕ УДАЛАСЬ\nПроверка: {local:%d.%m.%Y %H:%M:%S} МСК. Ожидается H1: {expected:%d.%m.%Y %H:%M}–{expected + timedelta(hours=1):%H:%M}.\n' + error + '\nhttps://github.com/' + NOTIFY_REPO + '/actions/workflows/algopack-h1.yml', token, chat, now, {'kind': 'ERROR'}, sender)
                   return {'status': 'DATA_ERRORS', 'errors': [error], 'deliveries': [receipt]}
               result = {'status': 'CHECKED', 'source': provenance, 'deliveries': [], 'assets': {}, 'replay_errors': replay_errors}
               for asset in ('BR', 'GOLD'):
@@ -607,7 +649,8 @@ jobs:
                       error = notify_safe_error(exc)
                       result['assets'][asset] = {'status': 'DATA_ERROR', 'errors': [error]}
                       key = 'error:' + now.astimezone(bg.MSK).strftime('%Y-%m-%dT%H') + ':' + asset
-                      message = '⚠️ ПРОВЕРКА НЕ УДАЛАСЬ · ' + asset + '\n' + error + '\n' + provenance['run_url']
+                      expected = cc.pe.paper_expected_h1(local)
+                      message = '⚠️ ПРОВЕРКА НЕ УДАЛАСЬ · ' + asset + f'\nПроверка: {local:%d.%m.%Y %H:%M:%S} МСК. Ожидается H1: {expected:%d.%m.%Y %H:%M}–{expected + timedelta(hours=1):%H:%M}.\n' + error + '\n' + provenance['run_url']
                       receipt = notify_deliver(ledger, key, message, token, chat, now, {'kind': 'ERROR', 'source_run_id': run['id']}, sender)
                       result['deliveries'].append(receipt)
                       continue
@@ -623,6 +666,9 @@ jobs:
                   result['deliveries'].append(notify_deliver(ledger, key, message, token, chat, now, {'kind': status, 'source_run_id': run['id']}, sender))
               if any((v['status'] == 'DATA_ERROR' for v in result['assets'].values())):
                   result['status'] = 'DATA_ERRORS'
+              else:
+                  key = 'summary:' + assets['BR']['last_h1_msk']
+                  result['deliveries'].append(notify_deliver(ledger, key, notify_render_summary(assets, provenance, now), token, chat, now, {'kind': 'SUMMARY', 'source_run_id': run['id'], 'last_h1_msk': assets['BR']['last_h1_msk']}, sender))
               return result
 
           def notify_main():
@@ -637,10 +683,14 @@ jobs:
                   if mode == 'setup' or (mode == 'test' and (not os.environ.get('TELEGRAM_CHAT_ID', '').strip())):
                       report['notification'] = notify_setup(ledger, now)
                       report['status'] = 'CHAT_ID_SENT_PRIVATELY'
-                  elif mode == 'test':
+                  elif mode in ('test', 'enable'):
                       token, chat, fingerprint = notify_configuration()
                       report['notification'] = notify_test(ledger, token, chat, fingerprint, now)
                       report['status'] = 'TELEGRAM_VERIFIED'
+                      if mode == 'enable':
+                          report['transport_test'] = report['notification']
+                          report['notification'] = notify_publish(api, ledger, token, chat, fingerprint, now)
+                          report['status'] = report['notification']['status']
                   elif mode == 'notify':
                       token, chat, fingerprint = notify_configuration()
                       event_id = os.environ.get('NOTIFY_EVENT_RUN_ID', '')
@@ -661,7 +711,7 @@ jobs:
               message = notify_safe_error(Exception(json.dumps(report, ensure_ascii=False, allow_nan=False, separators=(',', ':'))))
               print('::' + level + ' title=BR-GOLD Telegram::' + message.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A'), flush=True)
               return 1 if report['status'] in ('FAILED', 'DATA_ERRORS') else 0
-          NOTIFY_CODE_SHA256 = 'bce8cf3c8841932892627089c7ca7d9d5458d9bd7eddd9be150c9a88e61f13a3'
+          NOTIFY_CODE_SHA256 = '2b0d690ed72180f0a4843d0bd8954eaadfd823d56bb2d135e9e48293ab46261f'
           sys.exit(notify_main())
           PY
       - name: Retain delivery receipts and errors
