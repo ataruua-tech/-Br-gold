@@ -387,6 +387,19 @@
         "BR": "DATA_ERROR",
         "GOLD": "DATA_ERROR"
       }
+    },
+    {
+      "time": "2026-10-27T05:04:12.321061",
+      "provenance": {
+        "run_id": 40436145121,
+        "attempt": 1,
+        "head_sha": "eccdc629816baa947e261482971fc38b81ae86ce",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "23b4eda0faa76e52aa7e6ab9a8d6746354978e6d1d4213bcff7b80f6accf6b4a",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40436145121",
+        "controller_commit": "eccdc629816baa947e261482971fc38b81ae86ce"
+      },
+      "statuses": {}
     }
   ],
   "errors": [
@@ -549,7 +562,15 @@
     {
       "time": "2026-10-27T04:19:43.304097",
       "message": "GDZ6: Paper entry needs a fresh independently fetched quote"
+    },
+    {
+      "time": "2026-10-27T05:04:10.879580",
+      "message": "BR: missing result"
+    },
+    {
+      "time": "2026-10-27T05:04:10.879580",
+      "message": "GOLD: missing result"
     }
   ],
-  "updated_at_msk": "2026-10-27T04:20:16.420396"
+  "updated_at_msk": "2026-10-27T05:04:12.321061"
 }
