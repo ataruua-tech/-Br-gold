@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-10-28 05:13:19 UTC",
+  "updated_at_utc": "2026-10-28 05:20:50 UTC",
   "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
-  "phase": "AWAITING_EXPLICIT_SCENARIO_BOUNDARIES",
+  "phase": "SCENARIO_PROTOCOL_REGISTRATION",
   "last_completed_step": "All sixteen gaps restored; 238 complete records reconciled with normalized SHA256, OHLCV/volume/chronology checks; complete retained OBStats quality and monthly margin coverage quantified",
   "research_restarts_hourly": false,
   "chat_research_automation_paused": true,
@@ -13,7 +13,7 @@
   "additional_inputs_run": 40529837847,
   "additional_inputs_status": "All required network repairs complete; exact replay lacks executable BBO/availability and historical economics/calendar precision. Candle and aggregate acquisition completion is not full model-input readiness.",
   "current_main_commit": "36ad55ae2431c217da44baea4752078ccf0dcf60",
-  "scenario_testing_allowed": false,
+  "scenario_testing_allowed": true,
   "all_required_inputs_ready": false,
   "exact_agent_replay_ready": false,
   "profitability_confirmed": false,
@@ -37,7 +37,7 @@
     "end_utc": "2026-11-03T09:18:32.255656+00:00",
     "do_not_reset": true
   },
-  "next_step": "Obtain user decision on published approximate boundaries; then register final six specifications/parameter budgets before implementation and comparison. Do not label approximate returns as the deployed agent.",
+  "next_step": "Commit precise six-family passports, execution scenarios and search ledger before any outcome calculation; implement/test causality and compare chronological folds",
   "blocking_issues_are_not_final": true,
   "completed_research": false,
   "specification": "research/PROJECT_SPEC_RU.txt",
@@ -103,11 +103,13 @@
   "data_sufficiency_report": "research/six-strategy-v1/DATA_SUFFICIENCY_RU.txt",
   "primary_source_review": "research/six-strategy-v1/hypothesis-source-review-v2.json",
   "scenario_scope_question": {
-    "pending": true,
+    "pending": false,
     "reason": "User specification requires disclosed assumptions and agreement before approximate tests; exact BBO/historical collateral/availability are not present",
     "asked_via": "ChatGPT asynchronous question",
     "exact_S0_status": "BLOCKED_DATA",
-    "profitability_scoring_started": false
+    "profitability_scoring_started": false,
+    "user_answer": "Да",
+    "authorized_scope": "Six strategies under disclosed assumptions; monetary returns only where required collateral/economics inputs are confirmed; exact S0 remains BLOCKED_DATA"
   },
   "live_readonly_verification": {
     "signal_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
