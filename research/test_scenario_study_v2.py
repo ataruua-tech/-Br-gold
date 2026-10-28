@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 from scenario_features_v2 import ContractData, frozen_signal_definitions, prepare_features, merge_price_rows, minute
-from scenario_engine_v2 import execution_trade, price_book, scenario_clock, monetary_gate, delayed_label, fit_hour_model, fold_windows
+from scenario_engine_v2 import execution_trade, price_book, scenario_clock, monetary_gate, delayed_label, fit_hour_model, fold_windows, make_setups
 
 SCENARIO={'id':'test','delay_minutes':18,'reaction_seconds':0,'spread_ticks':2,'slippage_ticks':2,'fee_multiplier':1}
 
@@ -119,6 +119,15 @@ class ScenarioTests(unittest.TestCase):
         other,again=fit_hour_model([d],SCENARIO,fold,{})
         self.assertEqual(model,other);self.assertEqual(audit['input_sha256'],again['input_sha256'])
         self.assertLessEqual(audit['train_label_end_max'],fold['train_end'])
+
+    def test_time_of_day_model_can_enter_when_forecast_exceeds_costs(self):
+        d,s,f=fixture()
+        d.h1=pd.DataFrame({'t':[s['signal_begin']],'ready':[True],'close':[100.],'high':[101.],'low':[99.],'atr':[2.],'median_volume':[1000.],'volume':[100.]})
+        setups,_=make_setups([d],'S3',SCENARIO,f,{},model={('BR',11):{'mean':.1,'count':100}})
+        self.assertEqual(len(setups),1)
+        self.assertEqual(setups[0]['direction'],1)
+        none,_=make_setups([d],'S3',SCENARIO,f,{},model={('BR',11):{'mean':.000001,'count':100}})
+        self.assertEqual(none,[])
 
     def test_book_reconciles_marks_and_rejects_uid_duplicates(self):
         d,s,f=fixture();d.m1[5,1]=108
