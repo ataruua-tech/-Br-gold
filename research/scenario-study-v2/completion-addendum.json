@@ -1,0 +1,25 @@
+{
+  "generated_at_utc": "2026-10-28T06:29:24.422393+00:00",
+  "no_scores_restarted": true,
+  "no_new_platforms": true,
+  "no_added_strategy": true,
+  "statuses": {
+    "S0": "Требует доработки: преимущество не подтверждено",
+    "S1": "Отклонена в проверенной спецификации",
+    "S2": "Отклонена в проверенной спецификации",
+    "S3": "Требует доработки: нет принятых сделок",
+    "S4": "Отклонена в проверенной спецификации",
+    "S5": "Отклонена в проверенной спецификации"
+  },
+  "position_sizing_guard_tests": 4,
+  "historical_monetary_positions_confirmed": false,
+  "live_access_observation": {
+    "controller_run": 40641819415,
+    "h1_run": 40641783107,
+    "checked_at_utc": "2026-10-28T06:06:14.105165+00:00",
+    "status": "PASSED",
+    "source": "apim.moex.com",
+    "prior_week_id": "1d88347c8df1a0db74d49667"
+  },
+  "online_pilot_launched": false
+}
