@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-10-28 04:58:50 UTC",
+  "updated_at_utc": "2026-10-28 05:07:42 UTC",
   "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
-  "phase": "RESUMING_SIXTEEN_RECORDS",
-  "last_completed_step": "Full-universe archive verified by execution logs: 222 complete records retained, 16 failed network scopes isolated; narrow resumer and five meaningful tests published",
+  "phase": "DATA_SUFFICIENCY_ASSESSED",
+  "last_completed_step": "All sixteen gaps restored; 238 complete records reconciled with normalized SHA256, OHLCV/volume/chronology checks; complete retained OBStats quality and monthly margin coverage quantified",
   "research_restarts_hourly": false,
   "chat_research_automation_paused": true,
   "chat_market_automation_paused": true,
@@ -11,7 +11,7 @@
   "online_shared_lock": "br-gold-telegram-v1; existing ledger/notification serialization preserved",
   "original_data_run": 40494996964,
   "additional_inputs_run": 40529837847,
-  "additional_inputs_status": "All source archives inspected; seven original failed ranges repaired and nineteen panels recovered. Full-universe expansion has 222 complete and 16 pending records.",
+  "additional_inputs_status": "All required network repairs complete; exact replay lacks executable BBO/availability and historical economics/calendar precision. Candle and aggregate acquisition completion is not full model-input readiness.",
   "current_main_commit": "36ad55ae2431c217da44baea4752078ccf0dcf60",
   "scenario_testing_allowed": false,
   "all_required_inputs_ready": false,
@@ -37,7 +37,7 @@
     "end_utc": "2026-11-03T09:18:32.255656+00:00",
     "do_not_reset": true
   },
-  "next_step": "Verify sixteen-record resume; finish data sufficiency register and disclose exact replay gaps before any comparison; retain all live processes unchanged",
+  "next_step": "Publish concrete data register and agree explicit approximate-comparison boundaries; do not fit or score strategies as exact-agent replay",
   "blocking_issues_are_not_final": true,
   "completed_research": false,
   "specification": "research/PROJECT_SPEC_RU.txt",
@@ -69,25 +69,34 @@
     "quarantined_in_these_panels": 591
   },
   "remaining_input_limits": [
-    "Historical executable BBO absent from aggregate API",
-    "Session API ignores historical date filters",
-    "SYSTIME can be a later recalculation timestamp, not original availability",
-    "Full eligible-contract volume history not yet assembled",
-    "Historical fees and pre-2024 margin coverage not established"
+    "Executable historical BBO absent from acquired aggregate series",
+    "2023 im null in all228279 expanded TradeStats rows;64963 null in2024;5098 in2025;6020 in2026",
+    "Historical exchange fees/tick economics and broker margin uplift not fully confirmed",
+    "Original historical publication/runner/Telegram latency unobserved; SYSTIME often recalculation",
+    "Historical selection VOLTODAY vs five-minute/trading-date counters unconfirmed",
+    "Expanded H1/TradeStats do not provide full-universe M1; GDM6 first listing date remains null",
+    "Dated official regular session regimes found; complete exception/availability calendar not verified"
   ],
-  "active_research_run_id": 40635293134,
+  "active_research_run_id": null,
   "active_workflow": ".github/workflows/algopack-research-resume-sixteen.yml",
   "active_source_commit": "0eaec23b19c93cadcb16e311cbd4acc89c677b6d",
   "source_and_tests_published": true,
   "financial_engine_sha256": "ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932",
   "full_universe_checkpoint": {
-    "run_id": 40554978750,
-    "artifact_id": 12762953714,
-    "sha256": "24a2b93e33672546f35b154ab903eb47907439edb896a8bfbc0ec8c98e3104e9",
-    "complete": 222,
-    "incomplete": 16,
-    "requests": 1174,
-    "status": "PARTIAL_ERROR_NOT_COMPLETE",
-    "resume_rule": "Only sixteen incomplete records, verified saved prefixes and original cached observations"
+    "source_run": 40554978750,
+    "source_artifact": 12762953714,
+    "source_sha256": "24a2b93e33672546f35b154ab903eb47907439edb896a8bfbc0ec8c98e3104e9",
+    "resume_run": 40635779399,
+    "resume_artifact": 12793861186,
+    "resume_sha256": "2901b3e1b994d674fa284400cae4548a68add7cdc7602eecc45f205549936a02",
+    "complete": 238,
+    "incomplete": 0,
+    "catalogue_contracts": 72,
+    "status": "SCOPED_ACQUISITIONS_VERIFIED_EXACT_REPLAY_NOT_READY"
+  },
+  "last_data_audit_run_id": 40635933834,
+  "last_data_audit_artifact": {
+    "id": 12793142563,
+    "sha256": "70843676c50f5a379aeaa8f56a5b2e787e5008e89d144d39111d69db28f2a9f0"
   }
 }
