@@ -1,0 +1,461 @@
+{
+  "schema": 2,
+  "verified_at_utc": "2026-10-28T05:05:49.144758+00:00",
+  "timezone": "Europe/Moscow",
+  "acquisition_stage_complete_for_declared_scopes": true,
+  "all_model_inputs_ready": false,
+  "exact_current_agent_return": null,
+  "scoring_started": false,
+  "scenario_boundaries_user_approved": false,
+  "audit_run": 40635933834,
+  "audit_artifact": {
+    "id": 12793142563,
+    "sha256": "70843676c50f5a379aeaa8f56a5b2e787e5008e89d144d39111d69db28f2a9f0"
+  },
+  "restored16_run": 40635779399,
+  "requirements": [
+    {
+      "id": "original_M1_H1",
+      "period": "2023-01-01/2026-10-26 exclusive; H1 warm-up from2022-10-10",
+      "status": "VERIFIED_OBSERVED_BARS_SCOPED_WINDOWS",
+      "source": "apim.moex.com candle archives, run40494996964",
+      "coverage": {
+        "2023": {
+          "M1": {
+            "observed_rows_including_warmup": 500923,
+            "first_begin_msk": "2023-01-03 09:00:00",
+            "last_begin_msk": "2023-12-29 23:49:00"
+          },
+          "H1": {
+            "observed_rows_including_warmup": 24335,
+            "first_begin_msk": "2022-10-10 09:00:00",
+            "last_begin_msk": "2023-12-29 23:00:00"
+          }
+        },
+        "2024": {
+          "M1": {
+            "observed_rows_including_warmup": 486037,
+            "first_begin_msk": "2024-01-03 08:59:00",
+            "last_begin_msk": "2024-12-30 23:49:00"
+          },
+          "H1": {
+            "observed_rows_including_warmup": 24589,
+            "first_begin_msk": "2023-10-09 09:00:00",
+            "last_begin_msk": "2024-12-30 23:00:00"
+          }
+        },
+        "2025": {
+          "M1": {
+            "observed_rows_including_warmup": 516309,
+            "first_begin_msk": "2025-01-03 09:59:00",
+            "last_begin_msk": "2025-12-30 23:49:00"
+          },
+          "H1": {
+            "observed_rows_including_warmup": 26089,
+            "first_begin_msk": "2024-10-08 09:00:00",
+            "last_begin_msk": "2025-12-30 23:00:00"
+          }
+        },
+        "2026": {
+          "M1": {
+            "observed_rows_including_warmup": 498300,
+            "first_begin_msk": "2026-01-05 08:59:00",
+            "last_begin_msk": "2026-10-23 23:49:00"
+          },
+          "H1": {
+            "observed_rows_including_warmup": 23526,
+            "first_begin_msk": "2025-10-08 08:00:00",
+            "last_begin_msk": "2026-10-23 23:00:00"
+          }
+        }
+      },
+      "verification": "ZIP/raw/normalized SHA256, CRC, unique ordered finite OHLCV, M1-H1 observed-bar reconciliation",
+      "limitation": "63 frozen nearest-expiry windows; observed bars do not prove full calendar completeness or live contract selection; latest observed study candle2026-10-23"
+    },
+    {
+      "id": "expanded_H1_TradeStats",
+      "period": "2023-01-01/2026-10-26 exclusive; prior H1 warm-up where listed",
+      "status": "238_COMPLETE_QUERY_RECORDS_VERIFIED",
+      "source": "apim.moex.com + retained original caches",
+      "coverage": {
+        "catalogue_codes": 72,
+        "H1": {
+          "2023": {
+            "rows": 38391
+          },
+          "2024": {
+            "rows": 33958
+          },
+          "2025": {
+            "rows": 37811
+          },
+          "2026": {
+            "rows": 39764
+          }
+        },
+        "TradeStats": {
+          "2023": {
+            "rows": 228279,
+            "duplicates": 0,
+            "out_of_order": 0,
+            "invalid_mid": 0,
+            "invalid_spread": 0,
+            "null_margin": 228279,
+            "positive_margin": 0,
+            "invalid_margin": 0,
+            "invalid_volume": 0,
+            "systime_after_trade_date": 228279
+          },
+          "2024": {
+            "rows": 226588,
+            "duplicates": 0,
+            "out_of_order": 0,
+            "invalid_mid": 0,
+            "invalid_spread": 0,
+            "null_margin": 64963,
+            "positive_margin": 161625,
+            "invalid_margin": 0,
+            "invalid_volume": 0,
+            "systime_after_trade_date": 226588
+          },
+          "2025": {
+            "rows": 251301,
+            "duplicates": 0,
+            "out_of_order": 0,
+            "invalid_mid": 0,
+            "invalid_spread": 0,
+            "null_margin": 5098,
+            "positive_margin": 246203,
+            "invalid_margin": 0,
+            "invalid_volume": 0,
+            "systime_after_trade_date": 77404
+          },
+          "2026": {
+            "rows": 293618,
+            "duplicates": 0,
+            "out_of_order": 0,
+            "invalid_mid": 0,
+            "invalid_spread": 0,
+            "null_margin": 6020,
+            "positive_margin": 287598,
+            "invalid_margin": 0,
+            "invalid_volume": 0,
+            "systime_after_trade_date": 10405
+          }
+        }
+      },
+      "verification": "Original222 + restored16 matched by exact keys; normalized SHA256/counts, raw page hashes, OHLCV/volume, duplicate/order guards",
+      "limitation": "Catalogue includes current/future metadata; GDM6 first listing date null. Query start is not imputed listing date. Five-minute traded volumes do not prove the original live VOLTODAY counter"
+    },
+    {
+      "id": "USD_RUB",
+      "period": "2022-12-19/2026-10-23, shard warm-up overlaps",
+      "status": "VERIFIED_POSITIVE_ORDERED_INDICATIVE_RATES",
+      "source": "apim.moex.com archived USD/RUB indicative clearing rates",
+      "coverage": {
+        "2023": {
+          "rows": 528,
+          "first_msk": "2022-12-19T13:45:00",
+          "last_msk": "2023-12-29T18:49:00",
+          "duplicates": 0,
+          "invalid_rate": 0,
+          "out_of_order": 0
+        },
+        "2024": {
+          "rows": 532,
+          "first_msk": "2023-12-18T13:45:00",
+          "last_msk": "2024-12-30T18:49:00",
+          "duplicates": 0,
+          "invalid_rate": 0,
+          "out_of_order": 0
+        },
+        "2025": {
+          "rows": 528,
+          "first_msk": "2024-12-18T13:45:00",
+          "last_msk": "2025-12-30T18:49:00",
+          "duplicates": 0,
+          "invalid_rate": 0,
+          "out_of_order": 0
+        },
+        "2026": {
+          "rows": 430,
+          "first_msk": "2025-12-18T13:45:00",
+          "last_msk": "2026-10-23T19:00:00",
+          "duplicates": 0,
+          "invalid_rate": 0,
+          "out_of_order": 0
+        }
+      },
+      "verification": "Archive payload hashes, positive finite values, ordered timestamps, zero within-shard duplicates",
+      "limitation": "Indicative-rate incremental valuation does not reconstruct exact historical variation-margin clearing"
+    },
+    {
+      "id": "OBStats",
+      "period": "2023-2026 frozen contract windows",
+      "status": "AGGREGATE_DATA_VERIFIED_NOT_EXECUTABLE_BBO",
+      "source": "apim.moex.com five-minute OBStats",
+      "coverage": {
+        "2023": {
+          "rows": 100333,
+          "duplicates": 0,
+          "out_of_order": 0,
+          "invalid_mid": 0,
+          "invalid_spread": 65,
+          "null_margin": 0,
+          "positive_margin": 0,
+          "invalid_margin": 0,
+          "invalid_volume": 0,
+          "systime_after_trade_date": 100333
+        },
+        "2024": {
+          "rows": 102583,
+          "duplicates": 0,
+          "out_of_order": 0,
+          "invalid_mid": 0,
+          "invalid_spread": 691,
+          "null_margin": 0,
+          "positive_margin": 0,
+          "invalid_margin": 0,
+          "invalid_volume": 0,
+          "systime_after_trade_date": 98984
+        },
+        "2025": {
+          "rows": 108314,
+          "duplicates": 0,
+          "out_of_order": 0,
+          "invalid_mid": 0,
+          "invalid_spread": 139,
+          "null_margin": 0,
+          "positive_margin": 0,
+          "invalid_margin": 0,
+          "invalid_volume": 0,
+          "systime_after_trade_date": 35205
+        },
+        "2026": {
+          "rows": 105072,
+          "duplicates": 0,
+          "out_of_order": 0,
+          "invalid_mid": 12,
+          "invalid_spread": 496,
+          "null_margin": 0,
+          "positive_margin": 0,
+          "invalid_margin": 0,
+          "invalid_volume": 0,
+          "systime_after_trade_date": 1053
+        }
+      },
+      "verification": "All complete original/recovered/repaired panels audited, including previously accepted panels; no clamping or imputation",
+      "limitation": "1391 invalid/missing/negative spreads and12 invalid mids counted separately; counts may overlap. spread_l1 in basis points. No executable timestamped BID/OFFER reconstructed"
+    },
+    {
+      "id": "initial_margin",
+      "period": "2023-2026 expanded TradeStats",
+      "status": "PARTIAL_OBSERVED_IM_COVERAGE",
+      "source": "apim.moex.com TradeStats im; official field definition",
+      "coverage": {
+        "2023-01": {
+          "null_margin": 17181
+        },
+        "2023-02": {
+          "null_margin": 16000
+        },
+        "2023-03": {
+          "null_margin": 21429
+        },
+        "2023-04": {
+          "null_margin": 17198
+        },
+        "2023-05": {
+          "null_margin": 19940
+        },
+        "2023-06": {
+          "null_margin": 19421
+        },
+        "2023-07": {
+          "null_margin": 17458
+        },
+        "2023-08": {
+          "null_margin": 20055
+        },
+        "2023-09": {
+          "null_margin": 18333
+        },
+        "2023-10": {
+          "null_margin": 21325
+        },
+        "2023-11": {
+          "null_margin": 20023
+        },
+        "2023-12": {
+          "null_margin": 19916
+        },
+        "2024-01": {
+          "null_margin": 18672
+        },
+        "2024-02": {
+          "null_margin": 16671
+        },
+        "2024-03": {
+          "null_margin": 19047
+        },
+        "2024-04": {
+          "null_margin": 8005,
+          "positive_margin": 13362
+        },
+        "2024-05": {
+          "positive_margin": 19882
+        },
+        "2024-06": {
+          "positive_margin": 16759,
+          "null_margin": 363
+        },
+        "2024-07": {
+          "positive_margin": 17903,
+          "null_margin": 117
+        },
+        "2024-08": {
+          "positive_margin": 19225,
+          "null_margin": 407
+        },
+        "2024-09": {
+          "positive_margin": 19271,
+          "null_margin": 117
+        },
+        "2024-10": {
+          "null_margin": 135,
+          "positive_margin": 20272
+        },
+        "2024-11": {
+          "positive_margin": 17590,
+          "null_margin": 700
+        },
+        "2024-12": {
+          "null_margin": 729,
+          "positive_margin": 17361
+        },
+        "2025-01": {
+          "null_margin": 88,
+          "positive_margin": 16030
+        },
+        "2025-02": {
+          "positive_margin": 17576,
+          "null_margin": 29
+        },
+        "2025-03": {
+          "positive_margin": 19489,
+          "null_margin": 4
+        },
+        "2025-04": {
+          "positive_margin": 22109,
+          "null_margin": 10
+        },
+        "2025-05": {
+          "positive_margin": 18371
+        },
+        "2025-06": {
+          "positive_margin": 20423
+        },
+        "2025-07": {
+          "positive_margin": 19186
+        },
+        "2025-08": {
+          "positive_margin": 19080,
+          "null_margin": 922
+        },
+        "2025-09": {
+          "positive_margin": 22032,
+          "null_margin": 2083
+        },
+        "2025-10": {
+          "positive_margin": 26925
+        },
+        "2025-11": {
+          "positive_margin": 20762,
+          "null_margin": 868
+        },
+        "2025-12": {
+          "positive_margin": 24220,
+          "null_margin": 1094
+        },
+        "2026-01": {
+          "positive_margin": 22634,
+          "null_margin": 2221
+        },
+        "2026-02": {
+          "positive_margin": 24978,
+          "null_margin": 1140
+        },
+        "2026-03": {
+          "positive_margin": 37988,
+          "null_margin": 14
+        },
+        "2026-04": {
+          "positive_margin": 33072
+        },
+        "2026-05": {
+          "positive_margin": 28949
+        },
+        "2026-06": {
+          "positive_margin": 28826,
+          "null_margin": 1165
+        },
+        "2026-07": {
+          "positive_margin": 29592,
+          "null_margin": 1480
+        },
+        "2026-08": {
+          "positive_margin": 29272
+        },
+        "2026-09": {
+          "positive_margin": 30297
+        },
+        "2026-10": {
+          "positive_margin": 21990
+        }
+      },
+      "verification": "Monthly positive/null/invalid counts; null remains null",
+      "limitation": "2023:228279/228279 null;2024:64963 null;2025:5098 null;2026:6020 null. Broker uplift and effective original publication timing unconfirmed"
+    },
+    {
+      "id": "calendar_and_sessions",
+      "period": "2023-2026",
+      "status": "ANNUAL_EXCEPTIONS_AND_DATED_REGIMES_PARTIAL",
+      "source": "Authenticated futures off_days/series catalogue + dated MOEX and Bank of Russia publications",
+      "coverage": "off_days rows:2023=6,2024=12,2025=39,2026=88; three empty padding windows corroborated",
+      "verification": "Historical session API filters were tested and returned current session; dated regime evidence in historical-session-evidence-v2.json",
+      "limitation": "Not a complete outage/clearing/instrument admission calendar. Evening-to-trading-date assignment changes23March2026. Absent candles are not assumed closures"
+    },
+    {
+      "id": "fees_and_economics",
+      "period": "Past2023-2026 versus current user tariff",
+      "status": "FIXED_TARIFF_SCENARIO_AVAILABLE_HISTORICAL_SERIES_UNCONFIRMED",
+      "source": "User Sber tariff PDF, deployed engine, APIM description/history probes",
+      "coverage": "Broker futures0.015% of contract notional per side; current snapshots are not historical fee/tick/GO series",
+      "verification": "Frozen source hashes and supplied tariff inspected; no present metadata silently backfilled",
+      "limitation": "Full historical exchange fees, point-in-time tick value and broker collateral uplift not established; fee scenario needs explicit scope agreement"
+    },
+    {
+      "id": "availability_and_delivery",
+      "period": "Observed live records from27October2026; no observations for a non-running historical agent",
+      "status": "OBSERVED_LIVE_EVENTS_ONLY_HISTORICAL_LATENCY_REQUIRES_SCENARIOS",
+      "source": "Preserved controller replay and Telegram API receipt journals",
+      "coverage": "Examples: H1 close14:00 -> Telegram summary14:19:23MSK; later19:00 ->19:59:24MSK",
+      "verification": "Controller source/receipts inspected; summary types distinguished from LONG/SHORT delivery",
+      "limitation": "SYSTIME often reflects later recalculation. No assumed historical availability or guaranteed18minute delivery; API acceptance is not human reading"
+    }
+  ],
+  "next_decision": "Agree a separately labelled scenario comparison; exact frozen S0 stays BLOCKED_DATA. Do not declare historical-agent profitability or terminate the overall research.",
+  "proposed_scenario_scope": [
+    "All six families use the same original frozen contract windows, verified common bars and risk; full-universe metadata serves as a selection-bias audit, not a claim of exact VOLTODAY reconstruction",
+    "Entries use the first observed positive-volume M1 opening price after an explicitly assumed information/processing delay; never the already elapsed signal close",
+    "Use fixed disclosed cost/spread/slippage and human reaction scenarios; monetary results only where collateral/economics inputs are confirmed, with exclusions counted",
+    "Unknown-collateral portions may only inform a separately labelled price-logic comparison, without a feasible capital return",
+    "Session-dependent methods exclude unverified boundaries; missing observations are data failures, not zero-return trades",
+    "2023-2026 remain retrospective. No unseen historical holdout or corrected total-search significance with unknown prior trial count"
+  ],
+  "preserved": {
+    "bot": true,
+    "old_virtual_week": "1d88347c8df1a0db74d49667",
+    "chat_hourly_automations_not_resumed": true
+  }
+}
