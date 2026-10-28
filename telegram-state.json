@@ -533,6 +533,11 @@
       "confirmed_at_msk": "2026-10-28T05:20:38.595617+03:00",
       "message_id": 62,
       "telegram_date": 1793154039
+    },
+    "error:2026-10-28T06:SYSTEM": {
+      "status": "INTENT",
+      "created_at_msk": "2026-10-28T06:10:01.669094+03:00",
+      "kind": "ERROR"
     }
   },
   "acceptance": {
