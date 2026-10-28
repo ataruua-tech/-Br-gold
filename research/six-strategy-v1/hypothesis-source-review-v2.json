@@ -1,0 +1,63 @@
+{
+  "checked_at_utc": "2026-10-28 05:12:01 UTC",
+  "status": "SOURCE_REVIEW_ONLY_NO_NEW_TRIAL_OR_PERFORMANCE_SCORE",
+  "data_gate": "Declared acquisition scopes reconciled; exact execution inputs still incomplete; scenario scope awaiting user decision",
+  "families": [
+    {
+      "id": "S0",
+      "name": "Donchian breakout with H1/H4 EMA confirmation",
+      "definition_authority": "Frozen deployed code, not a reconstructed conversation",
+      "blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+      "change": "NONE",
+      "performance": "UNCONFIRMED"
+    },
+    {
+      "id": "S1",
+      "name": "Bollinger-type mean reversion in weak trends",
+      "primary": "https://www.bollingerbands.com/bollinger-band-rules",
+      "supports": "Relative price bands and use with other indicators",
+      "limitation": "Author explicitly warns that a band touch is not by itself a reversal signal. The prior20/sample-SD/ADX<18 entry is our declared adaptation, not an author-validated BR/GOLD strategy.",
+      "proposed_disposition": "Retain provisional specification for comparison only after scenario scope is agreed"
+    },
+    {
+      "id": "S2",
+      "name": "Opening range breakout",
+      "primary": "https://technical.traders.com/archive/archivelogin.asp?file=%5CV06%5CC09%5CPLAYING.pdf&src=SC",
+      "primary_access": "Publisher's author/archive listing and abstract; full text behind subscription, not claimed read",
+      "independent_primary_paper": "https://www.usbe.umu.se/digitalAssets/102/102002_ues845.pdf",
+      "supports": "Established opening-range breakout family",
+      "limitation": "The first-complete-H1 and later closed-H1 trigger are a new preregistered adaptation; exact main-session end/clearing exceptions still affect exits."
+    },
+    {
+      "id": "S3",
+      "name": "Time-of-day return seasonality",
+      "primary": "https://www.kellogg.northwestern.edu/academics-research/research/detail/2010/intraday-patterns-in-the-cross-section-of-stock-returns/",
+      "authors": "Heston, Korajczyk, Sadka (2010)",
+      "doi": "10.1111/j.1540-6261.2010.01573.x",
+      "supports": "Intraday predictability at trading-day multiples studied in equities",
+      "limitation": "Does not validate hourly BR/GOLD seasonality. Coefficients and scaling must use past training folds only; labels must start after scenario execution delay."
+    },
+    {
+      "id": "S4",
+      "name": "Relative strength rotation with own-return sign gate",
+      "primary": "https://www.optimalmomentum.com/dual-relative-absolute-momentum/",
+      "additional_primary": "https://www.aqr.com/Insights/Research/Journal-Article/Time-Series-Momentum",
+      "supports": "Relative strength and time-series momentum are established but different mechanisms",
+      "limitation": "Two futures,20 completed dates, volatility standardization and SHORT fallback are our adaptation, not replication of the cited authors' published portfolios. No claim of uncorrelated strategy returns."
+    },
+    {
+      "id": "S5",
+      "name": "Volume-based alternative under review",
+      "prior_specification": "Signed M1 candle-volume Q proxy, SPECIFIED_NOT_IMPLEMENTED",
+      "finding": "The prior Q proxy lacks a primary source for that exact trading rule; it must not be described as actual aggressor flow or an established profitable strategy.",
+      "possible_known_replacement": "Chaikin Money Flow; replacing Q would require a new preregistered version before any score",
+      "primary": "https://help.chaikinanalytics.com/knowledge-center/chaikin-money-flow",
+      "formula_documentation": "https://ta-lib.org/functions/cmf.html",
+      "limitation": "CMF is also a price-volume proxy. Creator documentation explicitly distinguishes it from directly monitored institutional order flow. No replacement is silently adopted."
+    }
+  ],
+  "selection_rule": "No strategy added because of observed performance. At most five alternatives; any change to S5 is registered before outcome tests. All variants and abandoned specifications remain in the ledger.",
+  "parameter_search": "NONE_RUN",
+  "user_drawdown_limit": null,
+  "already_seen_history": "2023-2026 retrospective only; unknown legacy trial count"
+}
