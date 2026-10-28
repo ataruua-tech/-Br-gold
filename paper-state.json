@@ -1119,6 +1119,19 @@
         "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c"
       },
       "statuses": {}
+    },
+    {
+      "time": "2026-10-28T08:10:58.783321",
+      "provenance": {
+        "run_id": 40636409425,
+        "attempt": 1,
+        "head_sha": "957e7d1a3d4ccc597cd95a7b6858ee8cdf438151",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "869c1f2d20c8d3c8442ee3f282c3d579464e9ca671ca72ae15b70387a44e4922",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40636409425",
+        "controller_commit": "0457dcb0a6bd793016d53674ec88098cd6b54994"
+      },
+      "statuses": {}
     }
   ],
   "errors": [
@@ -1447,7 +1460,7 @@
       "message": "Newest H1 run failed; no substitution by an older success"
     }
   ],
-  "updated_at_msk": "2026-10-28T07:57:56.369831",
+  "updated_at_msk": "2026-10-28T08:10:58.783321",
   "weekly_pilot": {
     "schema": 1,
     "status": "RUNNING",
@@ -2147,10 +2160,28 @@
             "BR": "NO_SIGNAL",
             "GOLD": "NO_SIGNAL"
           }
+        },
+        {
+          "time": "2026-10-28T08:10:59.492786",
+          "provenance": {
+            "run_id": 40636409425,
+            "attempt": 1,
+            "head_sha": "957e7d1a3d4ccc597cd95a7b6858ee8cdf438151",
+            "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+            "artifact_sha256": "869c1f2d20c8d3c8442ee3f282c3d579464e9ca671ca72ae15b70387a44e4922",
+            "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40636409425",
+            "controller_commit": "0457dcb0a6bd793016d53674ec88098cd6b54994",
+            "weekly_experiment": "1d88347c8df1a0db74d49667",
+            "observed_at_msk": "2026-10-28T08:10:59.492786"
+          },
+          "statuses": {
+            "BR": "NO_SIGNAL",
+            "GOLD": "NO_SIGNAL"
+          }
         }
       ],
       "errors": [],
-      "updated_at_msk": "2026-10-28T07:57:56.955743"
+      "updated_at_msk": "2026-10-28T08:10:59.492786"
     },
     "notification_events": [
       {
@@ -2161,9 +2192,9 @@
       }
     ],
     "quality": {
-      "checks": 43,
-      "both_assets_fresh": 28,
-      "last_check_utc": "2026-10-28T04:57:56.955743+00:00",
+      "checks": 44,
+      "both_assets_fresh": 29,
+      "last_check_utc": "2026-10-28T05:10:59.492786+00:00",
       "maximum_check_gap_seconds": 3791.730342,
       "h1_keys": [
         "BRZ6:2026-10-27T11:00:00",
