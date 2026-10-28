@@ -171,7 +171,7 @@ def execution_trade(data, setup, scenario, fold):
     strategy=setup['strategy']
     native=entered+5*1440
     if strategy=='S1':native=entered+1440
-    elif strategy=='S2':native=day_start(entered)+1140
+    elif strategy=='S2':native=setup.get('session_exit_deadline',day_start(entered)+1140)
     elif strategy in ('S3','S5'):native=entered+60
     elif strategy=='S4':native=scenario_clock(setup['next_decision_end'],scenario) if setup['next_decision_end'] is not None else fold['end']
     if entered>=native:return None,'SIGNAL_ALREADY_CANCELLED_AT_DEADLINE'
@@ -204,6 +204,8 @@ def execution_trade(data, setup, scenario, fold):
         if exit_time>fold['end']+5*1440:return None,'UNRESOLVED_EXIT_BOUNDARY'
     else:return None,'UNRESOLVED_EXIT_COVERAGE'
     fill=adverse_round(raw-direction*slip,-direction,tick)
+    if strategy=='S2' and 'session_exit_deadline' in setup and day_start(exit_time)!=day_start(entered):
+        return None,'UNRESOLVED_INTRADAY_SESSION_EXIT'
     risk=abs(entry-stop)+slip+fee(entry,scenario)+fee(stop,scenario)
     net=direction*(fill-entry)-fee(entry,scenario)-fee(fill,scenario)
     if not math.isfinite(risk) or risk<=0:return None,'INVALID_RISK'
