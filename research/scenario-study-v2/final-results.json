@@ -1,0 +1,5186 @@
+{
+  "status": "AGREED_PRICE_SCENARIO_COMPARISON_COMPLETED_WITH_NO_QUALIFYING_CANDIDATE",
+  "generated_at_utc": "2026-10-28T06:04:05.547247+00:00",
+  "source_data_hash": "aaa745cb3342dde16dc01caa8fca02119c2a6dd9a891289294089a2718767d8a",
+  "auxiliary_input_sha256": {
+    "research/scenario-study-v2/protocol.json": "d6efc85feec298071e9831785e407570c41a2324d3571013989f919bef6aed17",
+    "research/scenario-study-v2/session-correction-v21.json": "c12ff56d26617e7fb3f2fa9e96291e0ad92ed8b4e3f98413a9e5d12132ebcf22",
+    "research/data-audit/full-universe-records.json": "58551c7b422f69d9dac7ee36cb8efc23bee490b17d85d6658267ec04ed673ee6",
+    "research/data-audit/complete-records.json": "b3b9a6bfea433d63ff425b5220cb5aa9149f40b8d40f5f9a472f60c2b0e16950",
+    "research/scenario-study-v2/dataset-cache-manifest.json": "96a67e03c5cbb568f206446d688914f8c52679343ecad919adff199335788148"
+  },
+  "versions": {
+    "original_run": "scenario-v2-run001",
+    "original_implementation_commit": "e1cdf71c39aea4be489d375914a7581d2040751a",
+    "S2_correction": "s2-session-correction-v21"
+  },
+  "comparison": [
+    {
+      "strategy": "S0",
+      "name": "Donchian H1/H4",
+      "version": "scenario-v2",
+      "status": "NO_ROBUST_EDGE_ESTABLISHED",
+      "failed_screen": [
+        "positive2025",
+        "positive_human",
+        "positive_stress",
+        "lower90_meanR_positive"
+      ],
+      "agent": {
+        "strategy": "S0",
+        "scenario": "d18-r0-s2-l2-f1",
+        "track": "agent",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 172,
+          "net_R": -5.3533116720118485,
+          "mean_net_R": -0.031123905069836328,
+          "profit_factor": 0.9502155189605631,
+          "win_rate_pct": 37.2093023255814,
+          "max_drawdown_R": 14.355814043532993,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 599,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 371,
+          "ENTRY_DRIFT": 112,
+          "WHOLE_CONTRACT_VOLUME_CAP": 1
+        },
+        "folds": [
+          {
+            "trades": 23,
+            "net_R": -4.479216593031145,
+            "mean_net_R": -0.19474854752309326,
+            "profit_factor": 0.7221067020526305,
+            "win_rate_pct": 30.434782608695652,
+            "max_drawdown_R": 9.400965659790359,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 14
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 20
+            }
+          },
+          {
+            "trades": 14,
+            "net_R": 4.082412706818653,
+            "mean_net_R": 0.2916009076299038,
+            "profit_factor": 1.583203066544861,
+            "win_rate_pct": 50.0,
+            "max_drawdown_R": 4.134900046825413,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 7
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 8
+            }
+          },
+          {
+            "trades": 29,
+            "net_R": 0.9797881087497184,
+            "mean_net_R": 0.03378579685343857,
+            "profit_factor": 1.0576346571706874,
+            "win_rate_pct": 41.37931034482759,
+            "max_drawdown_R": 7.7834726281757565,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 12
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 18,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 24,
+            "net_R": -8.447796089283443,
+            "mean_net_R": -0.3519915037201435,
+            "profit_factor": 0.5134622846535841,
+            "win_rate_pct": 29.166666666666668,
+            "max_drawdown_R": 13.930516458047268,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 599,
+            "admission_skips": {
+              "position_already_open": 16
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 13
+            }
+          },
+          {
+            "trades": 23,
+            "net_R": 8.380569018489508,
+            "mean_net_R": 0.364372566021283,
+            "profit_factor": 1.698384775922245,
+            "win_rate_pct": 47.82608695652174,
+            "max_drawdown_R": 5.516680311707869,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 13
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 18
+            }
+          },
+          {
+            "trades": 28,
+            "net_R": -2.238255290370502,
+            "mean_net_R": -0.07993768894180364,
+            "profit_factor": 0.8756526596882518,
+            "win_rate_pct": 35.714285714285715,
+            "max_drawdown_R": 7.397399214733969,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 11
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 18
+            }
+          },
+          {
+            "trades": 27,
+            "net_R": -2.6721036303355046,
+            "mean_net_R": -0.0989668011235372,
+            "profit_factor": 0.8432622723855416,
+            "win_rate_pct": 33.333333333333336,
+            "max_drawdown_R": 5.784406455853331,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 599,
+            "admission_skips": {
+              "position_already_open": 11
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 16
+            }
+          },
+          {
+            "trades": 4,
+            "net_R": -0.9587099030491333,
+            "mean_net_R": -0.23967747576228332,
+            "profit_factor": 0.6804294306165664,
+            "win_rate_pct": 25.0,
+            "max_drawdown_R": 2.797951686940658,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 2
+            },
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 1
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 90,
+            "net_R": -7.864811866746216,
+            "mean_net_R": -0.0873867985194024,
+            "profit_factor": 0.8631767103637928
+          },
+          "2026": {
+            "trades": 82,
+            "net_R": 2.511500194734367,
+            "mean_net_R": 0.03062805115529716,
+            "profit_factor": 1.0501816302889164
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 88,
+            "net_R": -5.300319600504196,
+            "mean_net_R": -0.060230904551184045,
+            "profit_factor": 0.9076004450112325
+          },
+          "GOLD": {
+            "trades": 84,
+            "net_R": -0.052992071507652644,
+            "mean_net_R": -0.0006308579941387219,
+            "profit_factor": 0.9989436800202556
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        },
+        "bootstrap": {
+          "status": "CONDITIONAL_RETROSPECTIVE_BLOCK_BOOTSTRAP",
+          "block_observed_MSK_dates": 20,
+          "replicates": 2000,
+          "lower90_mean_R": -0.1794496219348055,
+          "upper90_mean_R": 0.12473208046251809,
+          "global_search_significance": "NOT_ESTABLISHED_UNKNOWN_LEGACY_TRIAL_COUNT",
+          "seed": 20261028
+        }
+      },
+      "human": {
+        "strategy": "S0",
+        "scenario": "d18-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 174,
+          "net_R": -8.36904509721142,
+          "mean_net_R": -0.04809796032880126,
+          "profit_factor": 0.9235780614241875,
+          "win_rate_pct": 36.7816091954023,
+          "max_drawdown_R": 17.536316450869595,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 19.0,
+          "timed_exit_max_lateness_minutes": 599,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 371,
+          "ENTRY_DRIFT": 120,
+          "WHOLE_CONTRACT_VOLUME_CAP": 2
+        },
+        "folds": [
+          {
+            "trades": 25,
+            "net_R": -4.461022982464453,
+            "mean_net_R": -0.1784409192985781,
+            "profit_factor": 0.7393638438677775,
+            "win_rate_pct": 32.0,
+            "max_drawdown_R": 9.373713243860964,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 12
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 20
+            }
+          },
+          {
+            "trades": 14,
+            "net_R": 4.0631905523141345,
+            "mean_net_R": 0.2902278965938668,
+            "profit_factor": 1.5804572891663373,
+            "win_rate_pct": 50.0,
+            "max_drawdown_R": 4.226623728087302,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 9
+            }
+          },
+          {
+            "trades": 29,
+            "net_R": 3.1213039711675785,
+            "mean_net_R": 0.10763117141957167,
+            "profit_factor": 1.1950817550880695,
+            "win_rate_pct": 44.827586206896555,
+            "max_drawdown_R": 7.763123428320004,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 10
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 19,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 24,
+            "net_R": -11.286545187864045,
+            "mean_net_R": -0.47027271616100186,
+            "profit_factor": 0.3849210467115791,
+            "win_rate_pct": 25.0,
+            "max_drawdown_R": 16.284474907731536,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 599,
+            "admission_skips": {
+              "position_already_open": 14
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 15
+            }
+          },
+          {
+            "trades": 23,
+            "net_R": 8.341751839474133,
+            "mean_net_R": 0.3626848625858319,
+            "profit_factor": 1.6951500032653548,
+            "win_rate_pct": 47.82608695652174,
+            "max_drawdown_R": 5.249060614556623,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 13
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 18
+            }
+          },
+          {
+            "trades": 28,
+            "net_R": -4.746131809436406,
+            "mean_net_R": -0.16950470747987165,
+            "profit_factor": 0.7502039614689894,
+            "win_rate_pct": 32.142857142857146,
+            "max_drawdown_R": 10.34928659826161,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {
+              "position_already_open": 8
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 21
+            }
+          },
+          {
+            "trades": 27,
+            "net_R": -2.4609030363193836,
+            "mean_net_R": -0.0911445569007179,
+            "profit_factor": 0.8556270843808134,
+            "win_rate_pct": 33.333333333333336,
+            "max_drawdown_R": 5.312506963234407,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 599,
+            "admission_skips": {
+              "position_already_open": 10
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 17
+            }
+          },
+          {
+            "trades": 4,
+            "net_R": -0.9406884440829782,
+            "mean_net_R": -0.23517211102074456,
+            "profit_factor": 0.6864365767226889,
+            "win_rate_pct": 25.0,
+            "max_drawdown_R": 2.7959959061339186,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 2
+            },
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 1
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 92,
+            "net_R": -8.563073646846783,
+            "mean_net_R": -0.09307688746572591,
+            "profit_factor": 0.8535365808827207
+          },
+          "2026": {
+            "trades": 82,
+            "net_R": 0.19402854963536575,
+            "mean_net_R": 0.0023662018248215336,
+            "profit_factor": 1.003801096518859
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 87,
+            "net_R": -5.102483175425683,
+            "mean_net_R": -0.05864923190144464,
+            "profit_factor": 0.9094496949666144
+          },
+          "GOLD": {
+            "trades": 87,
+            "net_R": -3.2665619217857356,
+            "mean_net_R": -0.03754668875615788,
+            "profit_factor": 0.9385537861213714
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "stress": {
+        "strategy": "S0",
+        "scenario": "stress-r0",
+        "track": "joint_cost_stress",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 168,
+          "net_R": -37.75558208393081,
+          "mean_net_R": -0.2247356076424453,
+          "profit_factor": 0.6633048194356523,
+          "win_rate_pct": 32.73809523809524,
+          "max_drawdown_R": 38.39051754038637,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 599,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 371,
+          "ENTRY_DRIFT": 115,
+          "WHOLE_CONTRACT_VOLUME_CAP": 1
+        },
+        "folds": [
+          {
+            "trades": 24,
+            "net_R": -12.743928749570044,
+            "mean_net_R": -0.5309970312320852,
+            "profit_factor": 0.33324298067087554,
+            "win_rate_pct": 20.833333333333332,
+            "max_drawdown_R": 14.940051995161818,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 13
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 20
+            }
+          },
+          {
+            "trades": 14,
+            "net_R": -0.13164989848228148,
+            "mean_net_R": -0.00940356417730582,
+            "profit_factor": 0.9835436922725345,
+            "win_rate_pct": 42.857142857142854,
+            "max_drawdown_R": 4.080658696373864,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 9
+            }
+          },
+          {
+            "trades": 29,
+            "net_R": -8.439690744960693,
+            "mean_net_R": -0.29102381879174805,
+            "profit_factor": 0.5743138789258209,
+            "win_rate_pct": 34.48275862068966,
+            "max_drawdown_R": 10.477515725539645,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 11
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 19,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 20,
+            "net_R": -8.874422940615712,
+            "mean_net_R": -0.44372114703078563,
+            "profit_factor": 0.3688496399783444,
+            "win_rate_pct": 25.0,
+            "max_drawdown_R": 12.91468852089896,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 599,
+            "admission_skips": {
+              "position_already_open": 18
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 15
+            }
+          },
+          {
+            "trades": 23,
+            "net_R": 2.8594265642483183,
+            "mean_net_R": 0.12432289409775298,
+            "profit_factor": 1.2199613386019286,
+            "win_rate_pct": 43.47826086956522,
+            "max_drawdown_R": 6.350967796520535,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 14
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 17
+            }
+          },
+          {
+            "trades": 29,
+            "net_R": -4.020033670214904,
+            "mean_net_R": -0.13862185069706565,
+            "profit_factor": 0.7884203293281279,
+            "win_rate_pct": 34.48275862068966,
+            "max_drawdown_R": 10.0590432899804,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 13
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 15
+            }
+          },
+          {
+            "trades": 25,
+            "net_R": -4.968515072865096,
+            "mean_net_R": -0.19874060291460385,
+            "profit_factor": 0.6920847374832908,
+            "win_rate_pct": 32.0,
+            "max_drawdown_R": 5.77773094409185,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 599,
+            "admission_skips": {
+              "position_already_open": 10
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 19
+            }
+          },
+          {
+            "trades": 4,
+            "net_R": -1.4367675714704038,
+            "mean_net_R": -0.35919189286760095,
+            "profit_factor": 0.5210732917378428,
+            "win_rate_pct": 25.0,
+            "max_drawdown_R": 2.6232338019620123,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 2
+            },
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 1
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 87,
+            "net_R": -30.18969233362873,
+            "mean_net_R": -0.34700795785780153,
+            "profit_factor": 0.5050875648657103
+          },
+          "2026": {
+            "trades": 81,
+            "net_R": -7.565889750302085,
+            "mean_net_R": -0.09340604630002573,
+            "profit_factor": 0.8520429827418259
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 85,
+            "net_R": -21.49588317661144,
+            "mean_net_R": -0.2528927432542522,
+            "profit_factor": 0.6361136365423604
+          },
+          "GOLD": {
+            "trades": 83,
+            "net_R": -16.259698907319375,
+            "mean_net_R": -0.1958999868351732,
+            "profit_factor": 0.6935759069451621
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "delay40_human": {
+        "strategy": "S0",
+        "scenario": "d40-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 148,
+          "net_R": 3.2813253585352347,
+          "mean_net_R": 0.022171117287400233,
+          "profit_factor": 1.0359397044614065,
+          "win_rate_pct": 39.86486486486486,
+          "max_drawdown_R": 10.633897654451767,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 41.0,
+          "timed_exit_max_lateness_minutes": 599,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 371,
+          "ENTRY_DRIFT": 160
+        },
+        "folds": [
+          {
+            "trades": 17,
+            "net_R": -2.6231543170200826,
+            "mean_net_R": -0.1543031951188284,
+            "profit_factor": 0.7615313844389145,
+            "win_rate_pct": 35.294117647058826,
+            "max_drawdown_R": 5.219788640129537,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 9
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 31
+            }
+          },
+          {
+            "trades": 11,
+            "net_R": 3.542430927956494,
+            "mean_net_R": 0.3220391752687722,
+            "profit_factor": 1.539642232768015,
+            "win_rate_pct": 54.54545454545455,
+            "max_drawdown_R": 3.8211750587959443,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 12
+            }
+          },
+          {
+            "trades": 26,
+            "net_R": 2.673476715466286,
+            "mean_net_R": 0.10282602751793408,
+            "profit_factor": 1.178231664379675,
+            "win_rate_pct": 42.30769230769231,
+            "max_drawdown_R": 6.927554524974397,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 10
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 24
+            }
+          },
+          {
+            "trades": 22,
+            "net_R": 0.30230230730919305,
+            "mean_net_R": 0.013741013968599685,
+            "profit_factor": 1.0232539692746092,
+            "win_rate_pct": 40.90909090909091,
+            "max_drawdown_R": 9.367101710696636,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 599,
+            "admission_skips": {
+              "position_already_open": 14
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 17
+            }
+          },
+          {
+            "trades": 22,
+            "net_R": 6.198565528808562,
+            "mean_net_R": 0.2817529785822073,
+            "profit_factor": 1.516550053180353,
+            "win_rate_pct": 45.45454545454545,
+            "max_drawdown_R": 6.705559872283188,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 26
+            }
+          },
+          {
+            "trades": 23,
+            "net_R": -2.2630487136806616,
+            "mean_net_R": -0.09839342233394181,
+            "profit_factor": 0.8491303880712061,
+            "win_rate_pct": 34.78260869565217,
+            "max_drawdown_R": 6.314786437958862,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 8
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 26
+            }
+          },
+          {
+            "trades": 25,
+            "net_R": -4.533513036087744,
+            "mean_net_R": -0.18134052144350973,
+            "profit_factor": 0.7333221015541636,
+            "win_rate_pct": 32.0,
+            "max_drawdown_R": 8.404881651776364,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 599,
+            "admission_skips": {
+              "position_already_open": 9
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 20
+            }
+          },
+          {
+            "trades": 2,
+            "net_R": -0.015734054216812732,
+            "mean_net_R": -0.007867027108406366,
+            "profit_factor": 0.9909391077739074,
+            "win_rate_pct": 50.0,
+            "max_drawdown_R": 2.5817619532780958,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 1
+            },
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 4
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 76,
+            "net_R": 3.8950556337118907,
+            "mean_net_R": 0.05125073202252488,
+            "profit_factor": 1.0854845408231233
+          },
+          "2026": {
+            "trades": 72,
+            "net_R": -0.613730275176656,
+            "mean_net_R": -0.008524031599675777,
+            "profit_factor": 0.9865811414616881
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 75,
+            "net_R": -7.707957745032672,
+            "mean_net_R": -0.10277276993376896,
+            "profit_factor": 0.8505178182777057
+          },
+          "GOLD": {
+            "trades": 73,
+            "net_R": 10.989283103567907,
+            "mean_net_R": 0.15053812470640968,
+            "profit_factor": 1.2765542054728773
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "net_pnl_rub": null,
+      "net_return_pct": null,
+      "monetary_status": "BLOCKED_DATA",
+      "live_promotion": false
+    },
+    {
+      "strategy": "S1",
+      "name": "Возврат к среднему",
+      "version": "scenario-v2",
+      "status": "NO_ROBUST_EDGE_ESTABLISHED",
+      "failed_screen": [
+        "positive2025",
+        "positive2026",
+        "positive_human",
+        "positive_stress",
+        "positive_delay40_human",
+        "lower90_meanR_positive"
+      ],
+      "agent": {
+        "strategy": "S1",
+        "scenario": "d18-r0-s2-l2-f1",
+        "track": "agent",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 138,
+          "net_R": -35.96834902770569,
+          "mean_net_R": -0.2606402103456934,
+          "profit_factor": 0.5831065475386711,
+          "win_rate_pct": 34.78260869565217,
+          "max_drawdown_R": 36.717737632370124,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 1,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 2621,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 257,
+          "ENTRY_DRIFT": 58,
+          "WHOLE_CONTRACT_VOLUME_CAP": 2
+        },
+        "folds": [
+          {
+            "trades": 31,
+            "net_R": -8.993962368958528,
+            "mean_net_R": -0.2901278183535009,
+            "profit_factor": 0.5509579761887635,
+            "win_rate_pct": 32.25806451612903,
+            "max_drawdown_R": 11.484784040101614,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 2441,
+            "admission_skips": {
+              "position_already_open": 22
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 10
+            }
+          },
+          {
+            "trades": 15,
+            "net_R": -0.8451542702693391,
+            "mean_net_R": -0.05634361801795594,
+            "profit_factor": 0.9054954338514604,
+            "win_rate_pct": 40.0,
+            "max_drawdown_R": 5.125368038234395,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 2321,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 9
+            }
+          },
+          {
+            "trades": 16,
+            "net_R": -3.7399879100037903,
+            "mean_net_R": -0.2337492443752369,
+            "profit_factor": 0.5414054129081926,
+            "win_rate_pct": 37.5,
+            "max_drawdown_R": 4.599719509912137,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 2621,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 5,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 25,
+            "net_R": -3.4321716230635007,
+            "mean_net_R": -0.13728686492254003,
+            "profit_factor": 0.7595748242545555,
+            "win_rate_pct": 40.0,
+            "max_drawdown_R": 6.116704555809395,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 7
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 12
+            }
+          },
+          {
+            "trades": 11,
+            "net_R": 0.04795848224739907,
+            "mean_net_R": 0.004359862022490824,
+            "profit_factor": 1.0095916646788647,
+            "win_rate_pct": 54.54545454545455,
+            "max_drawdown_R": 3.270760327924212,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 11
+            }
+          },
+          {
+            "trades": 18,
+            "net_R": -8.576444310597282,
+            "mean_net_R": -0.47646912836651567,
+            "profit_factor": 0.3796404018149905,
+            "win_rate_pct": 22.22222222222222,
+            "max_drawdown_R": 9.33462039881626,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {
+              "position_already_open": 7
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 3
+            }
+          },
+          {
+            "trades": 19,
+            "net_R": -7.428578318417669,
+            "mean_net_R": -0.3909778062325089,
+            "profit_factor": 0.4307221204261887,
+            "win_rate_pct": 31.57894736842105,
+            "max_drawdown_R": 8.068272675813297,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 1,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 8
+            }
+          },
+          {
+            "trades": 3,
+            "net_R": -3.0000087086429827,
+            "mean_net_R": -1.0000029028809942,
+            "profit_factor": 0.0,
+            "win_rate_pct": 0.0,
+            "max_drawdown_R": 3.0000087086429876,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 2
+            },
+            "fold": "2026Q4",
+            "execution_failures": {}
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 87,
+            "net_R": -17.011276172295158,
+            "mean_net_R": -0.19553191002638112,
+            "profit_factor": 0.6690604519555517
+          },
+          "2026": {
+            "trades": 51,
+            "net_R": -18.957072855410534,
+            "mean_net_R": -0.3717073108904026,
+            "profit_factor": 0.45641409520990234
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 68,
+            "net_R": -23.637872875571137,
+            "mean_net_R": -0.34761577758192846,
+            "profit_factor": 0.46625079598878044
+          },
+          "GOLD": {
+            "trades": 70,
+            "net_R": -12.330476152134555,
+            "mean_net_R": -0.17614965931620793,
+            "profit_factor": 0.706351508543495
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        },
+        "bootstrap": {
+          "status": "CONDITIONAL_RETROSPECTIVE_BLOCK_BOOTSTRAP",
+          "block_observed_MSK_dates": 20,
+          "replicates": 2000,
+          "lower90_mean_R": -0.3688194748405718,
+          "upper90_mean_R": -0.13127113075207278,
+          "global_search_significance": "NOT_ESTABLISHED_UNKNOWN_LEGACY_TRIAL_COUNT",
+          "seed": 20261028
+        }
+      },
+      "human": {
+        "strategy": "S1",
+        "scenario": "d18-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 137,
+          "net_R": -35.42946621682437,
+          "mean_net_R": -0.2586092424585721,
+          "profit_factor": 0.5844143302778144,
+          "win_rate_pct": 35.03649635036496,
+          "max_drawdown_R": 36.47847068332705,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 1,
+          "entry_delay_median_minutes": 19.0,
+          "timed_exit_max_lateness_minutes": 2620,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 257,
+          "ENTRY_DRIFT": 65,
+          "WHOLE_CONTRACT_VOLUME_CAP": 1
+        },
+        "folds": [
+          {
+            "trades": 31,
+            "net_R": -9.183049411378487,
+            "mean_net_R": -0.296227400367048,
+            "profit_factor": 0.5423537705129245,
+            "win_rate_pct": 32.25806451612903,
+            "max_drawdown_R": 11.703660341204605,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 2440,
+            "admission_skips": {
+              "position_already_open": 20
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 12
+            }
+          },
+          {
+            "trades": 15,
+            "net_R": -0.9475946005239906,
+            "mean_net_R": -0.06317297336826604,
+            "profit_factor": 0.8945186477197115,
+            "win_rate_pct": 40.0,
+            "max_drawdown_R": 4.784732100548982,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 2320,
+            "admission_skips": {
+              "position_already_open": 4
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 10
+            }
+          },
+          {
+            "trades": 16,
+            "net_R": -4.000717455858237,
+            "mean_net_R": -0.2500448409911398,
+            "profit_factor": 0.5081154924094445,
+            "win_rate_pct": 37.5,
+            "max_drawdown_R": 4.94219346729997,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 2620,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 6,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 24,
+            "net_R": -2.6711269364159476,
+            "mean_net_R": -0.11129695568399782,
+            "profit_factor": 0.797439188413648,
+            "win_rate_pct": 41.666666666666664,
+            "max_drawdown_R": 5.79470607206123,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 1,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 14
+            }
+          },
+          {
+            "trades": 11,
+            "net_R": 0.14770416752976567,
+            "mean_net_R": 0.01342765159361506,
+            "profit_factor": 1.0295407505135263,
+            "win_rate_pct": 54.54545454545455,
+            "max_drawdown_R": 3.2646916465542093,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 11
+            }
+          },
+          {
+            "trades": 17,
+            "net_R": -7.538693948642477,
+            "mean_net_R": -0.44345258521426334,
+            "profit_factor": 0.41262903736957574,
+            "win_rate_pct": 23.529411764705884,
+            "max_drawdown_R": 8.340809067494758,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 5
+            }
+          },
+          {
+            "trades": 20,
+            "net_R": -8.23597869954343,
+            "mean_net_R": -0.4117989349771715,
+            "profit_factor": 0.41371095404777225,
+            "win_rate_pct": 30.0,
+            "max_drawdown_R": 9.063255794569217,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 1,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 7
+            }
+          },
+          {
+            "trades": 3,
+            "net_R": -3.000009331991568,
+            "mean_net_R": -1.000003110663856,
+            "profit_factor": 0.0,
+            "win_rate_pct": 0.0,
+            "max_drawdown_R": 3.000009331991569,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 2
+            },
+            "fold": "2026Q4",
+            "execution_failures": {}
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 86,
+            "net_R": -16.802488404176664,
+            "mean_net_R": -0.1953777721415891,
+            "profit_factor": 0.6664160302262824
+          },
+          "2026": {
+            "trades": 51,
+            "net_R": -18.62697781264771,
+            "mean_net_R": -0.3652348590715237,
+            "profit_factor": 0.46600494536188447
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 68,
+            "net_R": -23.676682212919474,
+            "mean_net_R": -0.3481865031311687,
+            "profit_factor": 0.46480087182506746
+          },
+          "GOLD": {
+            "trades": 69,
+            "net_R": -11.7527840039049,
+            "mean_net_R": -0.17033020295514348,
+            "profit_factor": 0.7134367606984944
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "stress": {
+        "strategy": "S1",
+        "scenario": "stress-r0",
+        "track": "joint_cost_stress",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 138,
+          "net_R": -54.04896749142209,
+          "mean_net_R": -0.3916591847204499,
+          "profit_factor": 0.3941272116291391,
+          "win_rate_pct": 32.608695652173914,
+          "max_drawdown_R": 54.2142973673358,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 1,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 2621,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 257,
+          "ENTRY_DRIFT": 61,
+          "WHOLE_CONTRACT_VOLUME_CAP": 2
+        },
+        "folds": [
+          {
+            "trades": 33,
+            "net_R": -14.6903409174241,
+            "mean_net_R": -0.4451618459825485,
+            "profit_factor": 0.339522991747556,
+            "win_rate_pct": 30.303030303030305,
+            "max_drawdown_R": 15.980211893509278,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 2441,
+            "admission_skips": {
+              "position_already_open": 21
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 9
+            }
+          },
+          {
+            "trades": 15,
+            "net_R": -2.897642623486547,
+            "mean_net_R": -0.19317617489910313,
+            "profit_factor": 0.679103652534412,
+            "win_rate_pct": 40.0,
+            "max_drawdown_R": 6.37764137033019,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 2321,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 9
+            }
+          },
+          {
+            "trades": 14,
+            "net_R": -5.328315688246054,
+            "mean_net_R": -0.380593977731861,
+            "profit_factor": 0.2886082606678213,
+            "win_rate_pct": 35.714285714285715,
+            "max_drawdown_R": 5.666938606911583,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 2621,
+            "admission_skips": {
+              "position_already_open": 4
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 8,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 24,
+            "net_R": -6.339922297471899,
+            "mean_net_R": -0.2641634290613291,
+            "profit_factor": 0.5315403797957984,
+            "win_rate_pct": 37.5,
+            "max_drawdown_R": 6.758721800941479,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 7
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 13
+            }
+          },
+          {
+            "trades": 11,
+            "net_R": -2.7319781081625383,
+            "mean_net_R": -0.2483616461965944,
+            "profit_factor": 0.5446725493713257,
+            "win_rate_pct": 45.45454545454545,
+            "max_drawdown_R": 3.8874251672985594,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 11
+            }
+          },
+          {
+            "trades": 18,
+            "net_R": -9.55366665867427,
+            "mean_net_R": -0.5307592588152372,
+            "profit_factor": 0.31084665843528303,
+            "win_rate_pct": 22.22222222222222,
+            "max_drawdown_R": 10.005869888732926,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 4
+            }
+          },
+          {
+            "trades": 20,
+            "net_R": -9.507062931841268,
+            "mean_net_R": -0.4753531465920634,
+            "profit_factor": 0.3233442727159695,
+            "win_rate_pct": 30.0,
+            "max_drawdown_R": 9.628517144276683,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 1,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 6
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 7
+            }
+          },
+          {
+            "trades": 3,
+            "net_R": -3.000038266115415,
+            "mean_net_R": -1.000012755371805,
+            "profit_factor": 0.0,
+            "win_rate_pct": 0.0,
+            "max_drawdown_R": 3.0000382661154155,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 2
+            },
+            "fold": "2026Q4",
+            "execution_failures": {}
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 86,
+            "net_R": -29.2562215266286,
+            "mean_net_R": -0.3401886224026581,
+            "profit_factor": 0.44055837505683254
+          },
+          "2026": {
+            "trades": 52,
+            "net_R": -24.792745964793493,
+            "mean_net_R": -0.47678357624602874,
+            "profit_factor": 0.32834732119159177
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 67,
+            "net_R": -32.670712270875676,
+            "mean_net_R": -0.4876225712070996,
+            "profit_factor": 0.29136325945197483
+          },
+          "GOLD": {
+            "trades": 71,
+            "net_R": -21.378255220546414,
+            "mean_net_R": -0.30110218620487905,
+            "profit_factor": 0.5040403944682483
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "delay40_human": {
+        "strategy": "S1",
+        "scenario": "d40-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 110,
+          "net_R": -32.615061168735515,
+          "mean_net_R": -0.2965005560794138,
+          "profit_factor": 0.5285879465850535,
+          "win_rate_pct": 33.63636363636363,
+          "max_drawdown_R": 33.201446814909346,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 1,
+          "entry_delay_median_minutes": 41.0,
+          "timed_exit_max_lateness_minutes": 2598,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 257,
+          "ENTRY_DRIFT": 101,
+          "WHOLE_CONTRACT_VOLUME_CAP": 2,
+          "ENTRY_M1_UNAVAILABLE": 1
+        },
+        "folds": [
+          {
+            "trades": 23,
+            "net_R": -10.884144732061376,
+            "mean_net_R": -0.4732236840026685,
+            "profit_factor": 0.35359832875669495,
+            "win_rate_pct": 26.08695652173913,
+            "max_drawdown_R": 11.877133535169994,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 2418,
+            "admission_skips": {
+              "position_already_open": 17
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 23
+            }
+          },
+          {
+            "trades": 14,
+            "net_R": -0.24413118823720364,
+            "mean_net_R": -0.01743794201694312,
+            "profit_factor": 0.9684470982666242,
+            "win_rate_pct": 42.857142857142854,
+            "max_drawdown_R": 4.037159189358561,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 2358,
+            "admission_skips": {
+              "position_already_open": 3
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 12
+            }
+          },
+          {
+            "trades": 16,
+            "net_R": -4.51007754386438,
+            "mean_net_R": -0.28187984649152376,
+            "profit_factor": 0.4496414128481823,
+            "win_rate_pct": 31.25,
+            "max_drawdown_R": 4.996918218346704,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 2598,
+            "admission_skips": {
+              "position_already_open": 3
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 6,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2,
+              "ENTRY_M1_UNAVAILABLE": 1
+            }
+          },
+          {
+            "trades": 19,
+            "net_R": -3.246347671289135,
+            "mean_net_R": -0.17086040375205974,
+            "profit_factor": 0.6844912983967809,
+            "win_rate_pct": 42.10526315789474,
+            "max_drawdown_R": 4.18509089535395,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 20
+            }
+          },
+          {
+            "trades": 10,
+            "net_R": -0.03896210850338078,
+            "mean_net_R": -0.0038962108503380775,
+            "profit_factor": 0.9922076211646051,
+            "win_rate_pct": 50.0,
+            "max_drawdown_R": 2.7467380774960146,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 12
+            }
+          },
+          {
+            "trades": 12,
+            "net_R": -5.575730552927502,
+            "mean_net_R": -0.4646442127439585,
+            "profit_factor": 0.38906268751399287,
+            "win_rate_pct": 25.0,
+            "max_drawdown_R": 6.388746844084326,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 3
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 13
+            }
+          },
+          {
+            "trades": 13,
+            "net_R": -5.11565679159682,
+            "mean_net_R": -0.39351206089206303,
+            "profit_factor": 0.43159554330590966,
+            "win_rate_pct": 30.76923076923077,
+            "max_drawdown_R": 7.19583189971757,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 1,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 5
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 15
+            }
+          },
+          {
+            "trades": 3,
+            "net_R": -3.000010580255717,
+            "mean_net_R": -1.0000035267519056,
+            "profit_factor": 0.0,
+            "win_rate_pct": 0.0,
+            "max_drawdown_R": 3.166779333713746,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 2
+            },
+            "fold": "2026Q4",
+            "execution_failures": {}
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 72,
+            "net_R": -18.884701135452094,
+            "mean_net_R": -0.26228751577016796,
+            "profit_factor": 0.5614257438079272
+          },
+          "2026": {
+            "trades": 38,
+            "net_R": -13.73036003328342,
+            "mean_net_R": -0.3613252640337742,
+            "profit_factor": 0.4744678779646297
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 58,
+            "net_R": -21.169079770422197,
+            "mean_net_R": -0.3649841339727965,
+            "profit_factor": 0.4336073414259217
+          },
+          "GOLD": {
+            "trades": 52,
+            "net_R": -11.445981398313318,
+            "mean_net_R": -0.22011502689064072,
+            "profit_factor": 0.6401835872811823
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "net_pnl_rub": null,
+      "net_return_pct": null,
+      "monetary_status": "BLOCKED_DATA",
+      "live_promotion": false
+    },
+    {
+      "strategy": "S2",
+      "name": "Диапазон открытия v2.1",
+      "version": "session-correction-v21",
+      "status": "NO_ROBUST_EDGE_ESTABLISHED",
+      "failed_screen": [
+        "positive2025",
+        "positive2026",
+        "positive_human",
+        "positive_stress",
+        "positive_delay40_human",
+        "lower90_meanR_positive"
+      ],
+      "agent": {
+        "strategy": "S2",
+        "scenario": "d18-r0-s2-l2-f1",
+        "track": "agent",
+        "version": "s2-session-correction-v21",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 789,
+          "net_R": -92.55903884929549,
+          "mean_net_R": -0.11731183631089416,
+          "profit_factor": 0.7460192609985706,
+          "win_rate_pct": 40.81115335868188,
+          "max_drawdown_R": 101.93406996362087,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 0,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 3835,
+          "ENTRY_DRIFT": 869,
+          "WHOLE_CONTRACT_VOLUME_CAP": 14
+        },
+        "folds": [
+          {
+            "trades": 114,
+            "net_R": -28.402927893044037,
+            "mean_net_R": -0.24914849028985997,
+            "profit_factor": 0.5260865866493357,
+            "win_rate_pct": 35.08771929824562,
+            "max_drawdown_R": 31.492265124687606,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 268,
+              "opening_range_one_trade_per_session": 64
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 132
+            }
+          },
+          {
+            "trades": 104,
+            "net_R": 0.32501305335241515,
+            "mean_net_R": 0.003125125513003992,
+            "profit_factor": 1.0082453525247883,
+            "win_rate_pct": 45.19230769230769,
+            "max_drawdown_R": 11.056441718667692,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 242,
+              "opening_range_one_trade_per_session": 32
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 111
+            }
+          },
+          {
+            "trades": 114,
+            "net_R": -15.37147302650697,
+            "mean_net_R": -0.13483748268865764,
+            "profit_factor": 0.7163565233828042,
+            "win_rate_pct": 42.10526315789474,
+            "max_drawdown_R": 21.88063541912301,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 211,
+              "opening_range_one_trade_per_session": 63
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 128,
+              "WHOLE_CONTRACT_VOLUME_CAP": 8
+            }
+          },
+          {
+            "trades": 112,
+            "net_R": -23.735026050496366,
+            "mean_net_R": -0.2119198754508604,
+            "profit_factor": 0.5647241512882067,
+            "win_rate_pct": 37.5,
+            "max_drawdown_R": 28.547552446150522,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 237,
+              "opening_range_one_trade_per_session": 69
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 144,
+              "WHOLE_CONTRACT_VOLUME_CAP": 4
+            }
+          },
+          {
+            "trades": 97,
+            "net_R": -9.450528106785704,
+            "mean_net_R": -0.09742812481222375,
+            "profit_factor": 0.7734903751791484,
+            "win_rate_pct": 42.2680412371134,
+            "max_drawdown_R": 13.836347503038827,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 208,
+              "opening_range_one_trade_per_session": 44
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 105,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 111,
+            "net_R": 2.767920779398298,
+            "mean_net_R": 0.024936223237822505,
+            "profit_factor": 1.058922967750946,
+            "win_rate_pct": 45.04504504504504,
+            "max_drawdown_R": 8.575759119155814,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 230,
+              "opening_range_one_trade_per_session": 85
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 102
+            }
+          },
+          {
+            "trades": 116,
+            "net_R": -24.627148874704783,
+            "mean_net_R": -0.21230300754055847,
+            "profit_factor": 0.5893780867001566,
+            "win_rate_pct": 37.06896551724138,
+            "max_drawdown_R": 28.49894146829507,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 272,
+              "opening_range_one_trade_per_session": 74
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 126
+            }
+          },
+          {
+            "trades": 21,
+            "net_R": 5.935131269491661,
+            "mean_net_R": 0.28262529854722196,
+            "profit_factor": 1.7719692341377573,
+            "win_rate_pct": 52.38095238095238,
+            "max_drawdown_R": 2.987471275825115,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 52,
+              "opening_range_one_trade_per_session": 12
+            },
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 21
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 444,
+            "net_R": -67.18441391669496,
+            "mean_net_R": -0.1513162475601238,
+            "profit_factor": 0.6771099353231693
+          },
+          "2026": {
+            "trades": 345,
+            "net_R": -25.37462493260053,
+            "mean_net_R": -0.07354963748579864,
+            "profit_factor": 0.8377178930650548
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 397,
+            "net_R": -32.88268559605296,
+            "mean_net_R": -0.08282792341575053,
+            "profit_factor": 0.8179588769536605
+          },
+          "GOLD": {
+            "trades": 392,
+            "net_R": -59.67635325324253,
+            "mean_net_R": -0.15223559503378198,
+            "profit_factor": 0.6753191101431305
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        },
+        "bootstrap": {
+          "status": "CONDITIONAL_RETROSPECTIVE_BLOCK_BOOTSTRAP",
+          "block_observed_MSK_dates": 20,
+          "replicates": 2000,
+          "lower90_mean_R": -0.1748081348890456,
+          "upper90_mean_R": -0.0597125151703915,
+          "global_search_significance": "NOT_ESTABLISHED_UNKNOWN_LEGACY_TRIAL_COUNT",
+          "seed": 20261028
+        }
+      },
+      "human": {
+        "strategy": "S2",
+        "scenario": "d18-r60-s2-l2-f1",
+        "track": "human",
+        "version": "s2-session-correction-v21",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 789,
+          "net_R": -89.40663075922504,
+          "mean_net_R": -0.11331638879496203,
+          "profit_factor": 0.7539545655600947,
+          "win_rate_pct": 40.68441064638783,
+          "max_drawdown_R": 97.35906343092704,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 19.0,
+          "timed_exit_max_lateness_minutes": 0,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 3835,
+          "ENTRY_DRIFT": 888,
+          "WHOLE_CONTRACT_VOLUME_CAP": 15
+        },
+        "folds": [
+          {
+            "trades": 114,
+            "net_R": -29.823756942135606,
+            "mean_net_R": -0.2616119030011895,
+            "profit_factor": 0.5086053526394444,
+            "win_rate_pct": 35.96491228070175,
+            "max_drawdown_R": 32.74319197216152,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 261,
+              "opening_range_one_trade_per_session": 63
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 140
+            }
+          },
+          {
+            "trades": 103,
+            "net_R": -1.501462087881002,
+            "mean_net_R": -0.0145773018240874,
+            "profit_factor": 0.9627582623546399,
+            "win_rate_pct": 44.66019417475728,
+            "max_drawdown_R": 11.909823786271907,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 237,
+              "opening_range_one_trade_per_session": 37
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 112
+            }
+          },
+          {
+            "trades": 114,
+            "net_R": -12.78178058258227,
+            "mean_net_R": -0.11212088230335325,
+            "profit_factor": 0.7597496998983269,
+            "win_rate_pct": 42.98245614035088,
+            "max_drawdown_R": 20.99944884556836,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 212,
+              "opening_range_one_trade_per_session": 62
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 126,
+              "WHOLE_CONTRACT_VOLUME_CAP": 10
+            }
+          },
+          {
+            "trades": 113,
+            "net_R": -20.704404489158264,
+            "mean_net_R": -0.18322481848812625,
+            "profit_factor": 0.6117693313265098,
+            "win_rate_pct": 37.16814159292036,
+            "max_drawdown_R": 27.779347340586508,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 233,
+              "opening_range_one_trade_per_session": 65
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 151,
+              "WHOLE_CONTRACT_VOLUME_CAP": 4
+            }
+          },
+          {
+            "trades": 96,
+            "net_R": -6.8480813020704305,
+            "mean_net_R": -0.07133418022990032,
+            "profit_factor": 0.8305756417413578,
+            "win_rate_pct": 42.708333333333336,
+            "max_drawdown_R": 13.072823479445884,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 211,
+              "opening_range_one_trade_per_session": 45
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 103,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 112,
+            "net_R": 1.924936453764309,
+            "mean_net_R": 0.017186932622895616,
+            "profit_factor": 1.0408497800521146,
+            "win_rate_pct": 43.75,
+            "max_drawdown_R": 8.540203378226197,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 227,
+              "opening_range_one_trade_per_session": 78
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 111
+            }
+          },
+          {
+            "trades": 116,
+            "net_R": -25.418128983474833,
+            "mean_net_R": -0.2191218015816796,
+            "profit_factor": 0.5804723970138095,
+            "win_rate_pct": 36.206896551724135,
+            "max_drawdown_R": 27.805148211919732,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 271,
+              "opening_range_one_trade_per_session": 77
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 124
+            }
+          },
+          {
+            "trades": 21,
+            "net_R": 5.7460471743130626,
+            "mean_net_R": 0.27362129401490776,
+            "profit_factor": 1.745838531608059,
+            "win_rate_pct": 52.38095238095238,
+            "max_drawdown_R": 3.019791668176335,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 53,
+              "opening_range_one_trade_per_session": 11
+            },
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 21
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 444,
+            "net_R": -64.81140410175715,
+            "mean_net_R": -0.1459716308598134,
+            "profit_factor": 0.6877173061116183
+          },
+          "2026": {
+            "trades": 345,
+            "net_R": -24.59522665746789,
+            "mean_net_R": -0.07129051205063157,
+            "profit_factor": 0.842170002421388
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 397,
+            "net_R": -29.320610310281474,
+            "mean_net_R": -0.07385544158761076,
+            "profit_factor": 0.8348340843175427
+          },
+          "GOLD": {
+            "trades": 392,
+            "net_R": -60.08602044894356,
+            "mean_net_R": -0.1532806644105703,
+            "profit_factor": 0.6767001767714781
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "stress": {
+        "strategy": "S2",
+        "scenario": "stress-r0",
+        "track": "joint_cost_stress",
+        "version": "s2-session-correction-v21",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 791,
+          "net_R": -215.0771427833676,
+          "mean_net_R": -0.27190536382220937,
+          "profit_factor": 0.46096790804567306,
+          "win_rate_pct": 33.122629582806574,
+          "max_drawdown_R": 217.63751086900052,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 0,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 3835,
+          "ENTRY_DRIFT": 957,
+          "WHOLE_CONTRACT_VOLUME_CAP": 12
+        },
+        "folds": [
+          {
+            "trades": 114,
+            "net_R": -45.43176504276629,
+            "mean_net_R": -0.39852425476110775,
+            "profit_factor": 0.27979112228724207,
+            "win_rate_pct": 26.31578947368421,
+            "max_drawdown_R": 47.109807305023494,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 242,
+              "opening_range_one_trade_per_session": 58
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 164
+            }
+          },
+          {
+            "trades": 105,
+            "net_R": -21.00879728512807,
+            "mean_net_R": -0.2000837836678864,
+            "profit_factor": 0.5514863508834399,
+            "win_rate_pct": 39.04761904761905,
+            "max_drawdown_R": 22.91341645479246,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 228,
+              "opening_range_one_trade_per_session": 38
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 118
+            }
+          },
+          {
+            "trades": 114,
+            "net_R": -41.57834875108255,
+            "mean_net_R": -0.3647223574656364,
+            "profit_factor": 0.33368967156568485,
+            "win_rate_pct": 30.70175438596491,
+            "max_drawdown_R": 43.06353844225918,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 189,
+              "opening_range_one_trade_per_session": 69
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 146,
+              "WHOLE_CONTRACT_VOLUME_CAP": 6
+            }
+          },
+          {
+            "trades": 113,
+            "net_R": -38.26274518379946,
+            "mean_net_R": -0.3386083644584023,
+            "profit_factor": 0.34694952980985055,
+            "win_rate_pct": 29.20353982300885,
+            "max_drawdown_R": 40.196387657564564,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 228,
+              "opening_range_one_trade_per_session": 55
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 166,
+              "WHOLE_CONTRACT_VOLUME_CAP": 4
+            }
+          },
+          {
+            "trades": 97,
+            "net_R": -21.7519876661864,
+            "mean_net_R": -0.22424729552769482,
+            "profit_factor": 0.5322568813548793,
+            "win_rate_pct": 35.05154639175258,
+            "max_drawdown_R": 25.143468255937346,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 192,
+              "opening_range_one_trade_per_session": 53
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 112,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 111,
+            "net_R": -11.600858873223055,
+            "mean_net_R": -0.10451224210110861,
+            "profit_factor": 0.7661578042625882,
+            "win_rate_pct": 39.63963963963964,
+            "max_drawdown_R": 15.409868033965182,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 234,
+              "opening_range_one_trade_per_session": 89
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 94
+            }
+          },
+          {
+            "trades": 116,
+            "net_R": -35.725079786096984,
+            "mean_net_R": -0.30797482574221535,
+            "profit_factor": 0.4330318402180906,
+            "win_rate_pct": 30.17241379310345,
+            "max_drawdown_R": 37.51805295862724,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 268,
+              "opening_range_one_trade_per_session": 68
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 136
+            }
+          },
+          {
+            "trades": 21,
+            "net_R": 0.28243980491521037,
+            "mean_net_R": 0.013449514519771923,
+            "profit_factor": 1.0314956688610242,
+            "win_rate_pct": 47.61904761904762,
+            "max_drawdown_R": 3.642148182558798,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 51,
+              "opening_range_one_trade_per_session": 13
+            },
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 21
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 446,
+            "net_R": -146.28165626277638,
+            "mean_net_R": -0.32798577637393805,
+            "profit_factor": 0.366510164633504
+          },
+          "2026": {
+            "trades": 345,
+            "net_R": -68.79548652059123,
+            "mean_net_R": -0.1994072073060615,
+            "profit_factor": 0.5907277112230446
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 398,
+            "net_R": -109.51298462287863,
+            "mean_net_R": -0.2751582528213031,
+            "profit_factor": 0.4619416167569396
+          },
+          "GOLD": {
+            "trades": 393,
+            "net_R": -105.56415816048896,
+            "mean_net_R": -0.26861108946689305,
+            "profit_factor": 0.4599540445242655
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "delay40_human": {
+        "strategy": "S2",
+        "scenario": "d40-r60-s2-l2-f1",
+        "track": "human",
+        "version": "s2-session-correction-v21",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 771,
+          "net_R": -118.80120470690612,
+          "mean_net_R": -0.15408716563801053,
+          "profit_factor": 0.6629563612360252,
+          "win_rate_pct": 38.26199740596628,
+          "max_drawdown_R": 120.7121526182705,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 41.0,
+          "timed_exit_max_lateness_minutes": 0,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 3835,
+          "ENTRY_DRIFT": 1511,
+          "WHOLE_CONTRACT_VOLUME_CAP": 9,
+          "ENTRY_M1_UNAVAILABLE": 2
+        },
+        "folds": [
+          {
+            "trades": 111,
+            "net_R": -29.38925558431517,
+            "mean_net_R": -0.2647680683271637,
+            "profit_factor": 0.4862629934480296,
+            "win_rate_pct": 33.333333333333336,
+            "max_drawdown_R": 31.36123641747053,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 175,
+              "opening_range_one_trade_per_session": 34
+            },
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 258
+            }
+          },
+          {
+            "trades": 103,
+            "net_R": -1.188365475767233,
+            "mean_net_R": -0.01153752889094401,
+            "profit_factor": 0.9684764109568637,
+            "win_rate_pct": 46.601941747572816,
+            "max_drawdown_R": 9.194042120858082,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 163,
+              "opening_range_one_trade_per_session": 35
+            },
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 188
+            }
+          },
+          {
+            "trades": 113,
+            "net_R": -20.809010879410508,
+            "mean_net_R": -0.1841505387558452,
+            "profit_factor": 0.6099438484046966,
+            "win_rate_pct": 35.39823008849557,
+            "max_drawdown_R": 26.28828235016326,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 167,
+              "opening_range_one_trade_per_session": 35
+            },
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 203,
+              "WHOLE_CONTRACT_VOLUME_CAP": 4,
+              "ENTRY_M1_UNAVAILABLE": 2
+            }
+          },
+          {
+            "trades": 113,
+            "net_R": -21.738631716718352,
+            "mean_net_R": -0.19237727182936595,
+            "profit_factor": 0.5786673660928979,
+            "win_rate_pct": 35.39823008849557,
+            "max_drawdown_R": 29.060901317582854,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 181,
+              "opening_range_one_trade_per_session": 48
+            },
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 220,
+              "WHOLE_CONTRACT_VOLUME_CAP": 4
+            }
+          },
+          {
+            "trades": 94,
+            "net_R": -6.095675360455245,
+            "mean_net_R": -0.06484761021760899,
+            "profit_factor": 0.8403997454674621,
+            "win_rate_pct": 41.48936170212766,
+            "max_drawdown_R": 12.35781307501461,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 156,
+              "opening_range_one_trade_per_session": 42
+            },
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 163,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 105,
+            "net_R": -7.909225043269969,
+            "mean_net_R": -0.07532595279304732,
+            "profit_factor": 0.8158528760699044,
+            "win_rate_pct": 41.904761904761905,
+            "max_drawdown_R": 17.222722494607297,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 167,
+              "opening_range_one_trade_per_session": 48
+            },
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 208
+            }
+          },
+          {
+            "trades": 113,
+            "net_R": -31.303532830161313,
+            "mean_net_R": -0.2770224144262063,
+            "profit_factor": 0.5032535760618553,
+            "win_rate_pct": 34.51327433628319,
+            "max_drawdown_R": 32.643661250097594,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "opening_range_one_trade_per_session": 68,
+              "position_already_open": 181
+            },
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 226
+            }
+          },
+          {
+            "trades": 19,
+            "net_R": -0.36750781680833344,
+            "mean_net_R": -0.019342516674122814,
+            "profit_factor": 0.956615381930922,
+            "win_rate_pct": 42.10526315789474,
+            "max_drawdown_R": 4.090426724185285,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {
+              "position_already_open": 31,
+              "opening_range_one_trade_per_session": 11
+            },
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 45
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 440,
+            "net_R": -73.12526365621126,
+            "mean_net_R": -0.16619378103684376,
+            "profit_factor": 0.634095896293405
+          },
+          "2026": {
+            "trades": 331,
+            "net_R": -45.67594105069486,
+            "mean_net_R": -0.13799377960935003,
+            "profit_factor": 0.7007447027014339
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 392,
+            "net_R": -47.39015864082246,
+            "mean_net_R": -0.12089326183883281,
+            "profit_factor": 0.733060811976519
+          },
+          "GOLD": {
+            "trades": 379,
+            "net_R": -71.41104606608366,
+            "mean_net_R": -0.18841964661235794,
+            "profit_factor": 0.5918168064812019
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "net_pnl_rub": null,
+      "net_return_pct": null,
+      "monetary_status": "BLOCKED_DATA",
+      "live_promotion": false
+    },
+    {
+      "strategy": "S3",
+      "name": "Временной эффект",
+      "version": "scenario-v2",
+      "status": "NO_ACCEPTED_SIGNALS",
+      "failed_screen": [
+        "at_least50",
+        "positive2025",
+        "positive2026",
+        "positive_human",
+        "positive_stress",
+        "positive_delay40_human",
+        "lower90_meanR_positive"
+      ],
+      "agent": {
+        "strategy": "S3",
+        "scenario": "d18-r0-s2-l2-f1",
+        "track": "agent",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 0,
+          "net_R": null,
+          "mean_net_R": null,
+          "profit_factor": null,
+          "max_drawdown_R": null,
+          "unresolved": 0,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 0
+        },
+        "folds": [
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {}
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          },
+          "2026": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          },
+          "GOLD": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        },
+        "bootstrap": {
+          "status": "INSUFFICIENT_OBSERVATIONS",
+          "lower90_mean_R": null
+        }
+      },
+      "human": {
+        "strategy": "S3",
+        "scenario": "d18-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 0,
+          "net_R": null,
+          "mean_net_R": null,
+          "profit_factor": null,
+          "max_drawdown_R": null,
+          "unresolved": 0,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 0
+        },
+        "folds": [
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {}
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          },
+          "2026": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          },
+          "GOLD": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "stress": {
+        "strategy": "S3",
+        "scenario": "stress-r0",
+        "track": "joint_cost_stress",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 0,
+          "net_R": null,
+          "mean_net_R": null,
+          "profit_factor": null,
+          "max_drawdown_R": null,
+          "unresolved": 0,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 0
+        },
+        "folds": [
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {}
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          },
+          "2026": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          },
+          "GOLD": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "delay40_human": {
+        "strategy": "S3",
+        "scenario": "d40-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 0,
+          "net_R": null,
+          "mean_net_R": null,
+          "profit_factor": null,
+          "max_drawdown_R": null,
+          "unresolved": 0,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 0
+        },
+        "folds": [
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {}
+          },
+          {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null,
+            "max_drawdown_R": null,
+            "unresolved": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {}
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          },
+          "2026": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          },
+          "GOLD": {
+            "trades": 0,
+            "net_R": null,
+            "mean_net_R": null,
+            "profit_factor": null
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "net_pnl_rub": null,
+      "net_return_pct": null,
+      "monetary_status": "BLOCKED_DATA",
+      "live_promotion": false
+    },
+    {
+      "strategy": "S4",
+      "name": "Ротация BR/GOLD",
+      "version": "scenario-v2",
+      "status": "NO_ROBUST_EDGE_ESTABLISHED",
+      "failed_screen": [
+        "positive2025",
+        "positive2026",
+        "positive_human",
+        "positive_stress",
+        "positive_delay40_human",
+        "lower90_meanR_positive"
+      ],
+      "agent": {
+        "strategy": "S4",
+        "scenario": "d18-r0-s2-l2-f1",
+        "track": "agent",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 322,
+          "net_R": -55.718883528906545,
+          "mean_net_R": -0.1730400109593371,
+          "profit_factor": 0.7289736327237891,
+          "win_rate_pct": 33.22981366459627,
+          "max_drawdown_R": 61.04411680212858,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 539,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 401,
+          "ENTRY_DRIFT": 77,
+          "WHOLE_CONTRACT_VOLUME_CAP": 2
+        },
+        "folds": [
+          {
+            "trades": 47,
+            "net_R": -24.318110965140537,
+            "mean_net_R": -0.517406616279586,
+            "profit_factor": 0.31591963362159103,
+            "win_rate_pct": 21.27659574468085,
+            "max_drawdown_R": 24.674460624845675,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 8
+            }
+          },
+          {
+            "trades": 41,
+            "net_R": -10.47243319775187,
+            "mean_net_R": -0.25542519994516755,
+            "profit_factor": 0.6261911625137018,
+            "win_rate_pct": 26.829268292682926,
+            "max_drawdown_R": 13.725100518955127,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 14
+            }
+          },
+          {
+            "trades": 45,
+            "net_R": -3.0564875252599353,
+            "mean_net_R": -0.06792194500577634,
+            "profit_factor": 0.8757144573541501,
+            "win_rate_pct": 42.22222222222222,
+            "max_drawdown_R": 15.343467144972683,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 13,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 49,
+            "net_R": 4.986717970094973,
+            "mean_net_R": 0.10176975449173414,
+            "profit_factor": 1.1871894022424747,
+            "win_rate_pct": 42.857142857142854,
+            "max_drawdown_R": 11.292423489012872,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 9,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 39,
+            "net_R": -1.5750591409855563,
+            "mean_net_R": -0.04038613182014247,
+            "profit_factor": 0.9353391821855874,
+            "win_rate_pct": 35.8974358974359,
+            "max_drawdown_R": 9.741874264719428,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 7
+            }
+          },
+          {
+            "trades": 46,
+            "net_R": -13.900012986700705,
+            "mean_net_R": -0.30217419536305884,
+            "profit_factor": 0.5479468628838952,
+            "win_rate_pct": 30.434782608695652,
+            "max_drawdown_R": 17.994282473435362,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 10
+            }
+          },
+          {
+            "trades": 46,
+            "net_R": -9.30082866072229,
+            "mean_net_R": -0.2021919274070063,
+            "profit_factor": 0.7042639194719396,
+            "win_rate_pct": 30.434782608695652,
+            "max_drawdown_R": 12.78165720656926,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 14
+            }
+          },
+          {
+            "trades": 9,
+            "net_R": 1.9173309775593743,
+            "mean_net_R": 0.21303677528437492,
+            "profit_factor": 1.4531579101826113,
+            "win_rate_pct": 44.44444444444444,
+            "max_drawdown_R": 3.684410382553385,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 2
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 182,
+            "net_R": -32.86031371805737,
+            "mean_net_R": -0.1805511742750405,
+            "profit_factor": 0.7137516463326085
+          },
+          "2026": {
+            "trades": 140,
+            "net_R": -22.858569810849175,
+            "mean_net_R": -0.16327549864892268,
+            "profit_factor": 0.7482209651450671
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 150,
+            "net_R": -32.25380404011856,
+            "mean_net_R": -0.21502536026745706,
+            "profit_factor": 0.6757181868774153
+          },
+          "GOLD": {
+            "trades": 172,
+            "net_R": -23.465079488787985,
+            "mean_net_R": -0.13642488074876735,
+            "profit_factor": 0.7788867893323692
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        },
+        "bootstrap": {
+          "status": "CONDITIONAL_RETROSPECTIVE_BLOCK_BOOTSTRAP",
+          "block_observed_MSK_dates": 20,
+          "replicates": 2000,
+          "lower90_mean_R": -0.2709494407300302,
+          "upper90_mean_R": -0.04937136048751813,
+          "global_search_significance": "NOT_ESTABLISHED_UNKNOWN_LEGACY_TRIAL_COUNT",
+          "seed": 20261028
+        }
+      },
+      "human": {
+        "strategy": "S4",
+        "scenario": "d18-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 317,
+          "net_R": -54.42754488120055,
+          "mean_net_R": -0.1716957251772888,
+          "profit_factor": 0.7322596875384005,
+          "win_rate_pct": 33.753943217665615,
+          "max_drawdown_R": 60.23815648025788,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 19.0,
+          "timed_exit_max_lateness_minutes": 539,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 401,
+          "ENTRY_DRIFT": 83,
+          "WHOLE_CONTRACT_VOLUME_CAP": 1
+        },
+        "folds": [
+          {
+            "trades": 47,
+            "net_R": -24.549039651752217,
+            "mean_net_R": -0.5223199925904727,
+            "profit_factor": 0.30927331755388354,
+            "win_rate_pct": 21.27659574468085,
+            "max_drawdown_R": 24.857700954694586,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 8
+            }
+          },
+          {
+            "trades": 41,
+            "net_R": -10.060460855293647,
+            "mean_net_R": -0.24537709403155236,
+            "profit_factor": 0.6399581333009153,
+            "win_rate_pct": 29.26829268292683,
+            "max_drawdown_R": 13.41381715222828,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 14
+            }
+          },
+          {
+            "trades": 45,
+            "net_R": -1.9233756878651864,
+            "mean_net_R": -0.0427416819525597,
+            "profit_factor": 0.9216489796776076,
+            "win_rate_pct": 44.44444444444444,
+            "max_drawdown_R": 14.741181696459876,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 14
+            }
+          },
+          {
+            "trades": 46,
+            "net_R": 6.372349711542106,
+            "mean_net_R": 0.13852934155526317,
+            "profit_factor": 1.261789390272746,
+            "win_rate_pct": 45.65217391304348,
+            "max_drawdown_R": 8.278516190099552,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 12,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 39,
+            "net_R": -0.8285108390483948,
+            "mean_net_R": -0.02124386766790756,
+            "profit_factor": 0.965897713449655,
+            "win_rate_pct": 35.8974358974359,
+            "max_drawdown_R": 8.320404476975012,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 7
+            }
+          },
+          {
+            "trades": 45,
+            "net_R": -17.030669769993747,
+            "mean_net_R": -0.3784593282220833,
+            "profit_factor": 0.4653607219819764,
+            "win_rate_pct": 26.666666666666668,
+            "max_drawdown_R": 20.968613452439506,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 11
+            }
+          },
+          {
+            "trades": 45,
+            "net_R": -8.82880747066762,
+            "mean_net_R": -0.19619572157039156,
+            "profit_factor": 0.7105490781587845,
+            "win_rate_pct": 31.11111111111111,
+            "max_drawdown_R": 13.446785824919091,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 15
+            }
+          },
+          {
+            "trades": 9,
+            "net_R": 2.4209696818781565,
+            "mean_net_R": 0.2689966313197952,
+            "profit_factor": 1.5682398209805262,
+            "win_rate_pct": 44.44444444444444,
+            "max_drawdown_R": 3.7757111271187,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 2
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 179,
+            "net_R": -30.160526483368944,
+            "mean_net_R": -0.16849456135960303,
+            "profit_factor": 0.7316035963255795
+          },
+          "2026": {
+            "trades": 138,
+            "net_R": -24.267018397831606,
+            "mean_net_R": -0.17584795940457684,
+            "profit_factor": 0.7330706604346302
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 148,
+            "net_R": -28.780942237893075,
+            "mean_net_R": -0.19446582593170997,
+            "profit_factor": 0.7067116914507049
+          },
+          "GOLD": {
+            "trades": 169,
+            "net_R": -25.646602643307475,
+            "mean_net_R": -0.15175504522667144,
+            "profit_factor": 0.7561018559040206
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "stress": {
+        "strategy": "S4",
+        "scenario": "stress-r0",
+        "track": "joint_cost_stress",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 318,
+          "net_R": -83.84563183588098,
+          "mean_net_R": -0.2636655089178647,
+          "profit_factor": 0.5875435492369192,
+          "win_rate_pct": 31.446540880503143,
+          "max_drawdown_R": 88.84043307149487,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 539,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 401,
+          "ENTRY_DRIFT": 80,
+          "WHOLE_CONTRACT_VOLUME_CAP": 3
+        },
+        "folds": [
+          {
+            "trades": 44,
+            "net_R": -24.94874441070177,
+            "mean_net_R": -0.5670169184250402,
+            "profit_factor": 0.24329520334435853,
+            "win_rate_pct": 20.454545454545453,
+            "max_drawdown_R": 25.1000609828908,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 11
+            }
+          },
+          {
+            "trades": 39,
+            "net_R": -14.832546004388806,
+            "mean_net_R": -0.3803216924202258,
+            "profit_factor": 0.4566202768359592,
+            "win_rate_pct": 23.076923076923077,
+            "max_drawdown_R": 15.776391154963063,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 16
+            }
+          },
+          {
+            "trades": 42,
+            "net_R": -6.159943156355363,
+            "mean_net_R": -0.14666531324655624,
+            "profit_factor": 0.7220811716174873,
+            "win_rate_pct": 35.714285714285715,
+            "max_drawdown_R": 14.45306643690661,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 15,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 48,
+            "net_R": -2.4978713410377056,
+            "mean_net_R": -0.05203898627161887,
+            "profit_factor": 0.9056426146369504,
+            "win_rate_pct": 43.75,
+            "max_drawdown_R": 11.090826813332335,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 10,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 42,
+            "net_R": -6.638422650578346,
+            "mean_net_R": -0.1580576821566273,
+            "profit_factor": 0.7493929198970318,
+            "win_rate_pct": 35.714285714285715,
+            "max_drawdown_R": 11.262083592460744,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 4
+            }
+          },
+          {
+            "trades": 47,
+            "net_R": -18.434476652748593,
+            "mean_net_R": -0.3922229075052892,
+            "profit_factor": 0.42362797461608176,
+            "win_rate_pct": 27.659574468085108,
+            "max_drawdown_R": 20.75912688344439,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 9
+            }
+          },
+          {
+            "trades": 47,
+            "net_R": -10.65924968063371,
+            "mean_net_R": -0.22679254639646193,
+            "profit_factor": 0.6626679278352622,
+            "win_rate_pct": 29.78723404255319,
+            "max_drawdown_R": 15.654874839751805,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 13
+            }
+          },
+          {
+            "trades": 9,
+            "net_R": 0.3256220605633107,
+            "mean_net_R": 0.03618022895147897,
+            "profit_factor": 1.0755883680170562,
+            "win_rate_pct": 44.44444444444444,
+            "max_drawdown_R": 3.593579274600089,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 2
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 173,
+            "net_R": -48.43910491248364,
+            "mean_net_R": -0.2799948260837205,
+            "profit_factor": 0.5552131041229512
+          },
+          "2026": {
+            "trades": 145,
+            "net_R": -35.40652692339734,
+            "mean_net_R": -0.24418294429929197,
+            "profit_factor": 0.6248494920393192
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 147,
+            "net_R": -42.22477693487301,
+            "mean_net_R": -0.28724338050934023,
+            "profit_factor": 0.5664291070707169
+          },
+          "GOLD": {
+            "trades": 171,
+            "net_R": -41.620854901007974,
+            "mean_net_R": -0.24339681228659635,
+            "profit_factor": 0.6069618220577427
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "delay40_human": {
+        "strategy": "S4",
+        "scenario": "d40-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 258,
+          "net_R": -48.529172602646014,
+          "mean_net_R": -0.18809756822731014,
+          "profit_factor": 0.7087818371363618,
+          "win_rate_pct": 31.007751937984494,
+          "max_drawdown_R": 52.87617879684251,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 41.0,
+          "timed_exit_max_lateness_minutes": 599,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 401,
+          "ENTRY_DRIFT": 140,
+          "WHOLE_CONTRACT_VOLUME_CAP": 3
+        },
+        "folds": [
+          {
+            "trades": 40,
+            "net_R": -18.372634111313427,
+            "mean_net_R": -0.4593158527828357,
+            "profit_factor": 0.3902032953982028,
+            "win_rate_pct": 20.0,
+            "max_drawdown_R": 18.89328667856709,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 15
+            }
+          },
+          {
+            "trades": 36,
+            "net_R": -8.448699185301614,
+            "mean_net_R": -0.23468608848060038,
+            "profit_factor": 0.6476020334450727,
+            "win_rate_pct": 27.77777777777778,
+            "max_drawdown_R": 11.53404825154063,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 19
+            }
+          },
+          {
+            "trades": 27,
+            "net_R": -0.00653581278811265,
+            "mean_net_R": -0.0002420671403004685,
+            "profit_factor": 0.9995168474976561,
+            "win_rate_pct": 40.74074074074074,
+            "max_drawdown_R": 11.022555745143968,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 599,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 30,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 44,
+            "net_R": 6.107365974048783,
+            "mean_net_R": 0.13880377213747233,
+            "profit_factor": 1.2583295440774642,
+            "win_rate_pct": 43.18181818181818,
+            "max_drawdown_R": 9.524396692175854,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 14,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 27,
+            "net_R": -2.0515562881064646,
+            "mean_net_R": -0.07598356622616535,
+            "profit_factor": 0.8783962874268016,
+            "win_rate_pct": 37.03703703703704,
+            "max_drawdown_R": 6.954771290346131,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 19
+            }
+          },
+          {
+            "trades": 40,
+            "net_R": -12.267235116552108,
+            "mean_net_R": -0.3066808779138027,
+            "profit_factor": 0.5500139426548205,
+            "win_rate_pct": 25.0,
+            "max_drawdown_R": 15.739393541469132,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 539,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 16
+            }
+          },
+          {
+            "trades": 38,
+            "net_R": -14.386050140838782,
+            "mean_net_R": -0.37858026686417845,
+            "profit_factor": 0.4905177813701126,
+            "win_rate_pct": 23.68421052631579,
+            "max_drawdown_R": 16.736748045084017,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 22
+            }
+          },
+          {
+            "trades": 6,
+            "net_R": 0.8961720782057089,
+            "mean_net_R": 0.1493620130342848,
+            "profit_factor": 1.2987257523363949,
+            "win_rate_pct": 50.0,
+            "max_drawdown_R": 3.4086177515692464,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 5
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 147,
+            "net_R": -20.720503135354374,
+            "mean_net_R": -0.1409558036418665,
+            "profit_factor": 0.7729836860672514
+          },
+          "2026": {
+            "trades": 111,
+            "net_R": -27.808669467291644,
+            "mean_net_R": -0.25052855375938415,
+            "profit_factor": 0.6310320525324318
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 115,
+            "net_R": -33.42220011697631,
+            "mean_net_R": -0.29062782710414187,
+            "profit_factor": 0.5764016157124816
+          },
+          "GOLD": {
+            "trades": 143,
+            "net_R": -15.106972485669704,
+            "mean_net_R": -0.10564316423545247,
+            "profit_factor": 0.8278237099780708
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "net_pnl_rub": null,
+      "net_return_pct": null,
+      "monetary_status": "BLOCKED_DATA",
+      "live_promotion": false
+    },
+    {
+      "strategy": "S5",
+      "name": "Chaikin Money Flow",
+      "version": "scenario-v2",
+      "status": "NO_ROBUST_EDGE_ESTABLISHED",
+      "failed_screen": [
+        "positive2025",
+        "positive2026",
+        "positive_human",
+        "positive_stress",
+        "positive_delay40_human",
+        "lower90_meanR_positive"
+      ],
+      "agent": {
+        "strategy": "S5",
+        "scenario": "d18-r0-s2-l2-f1",
+        "track": "agent",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 423,
+          "net_R": -49.746798952315295,
+          "mean_net_R": -0.11760472565559171,
+          "profit_factor": 0.5209600178603597,
+          "win_rate_pct": 39.2434988179669,
+          "max_drawdown_R": 55.52524186596842,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 31,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 582,
+          "ENTRY_DRIFT": 156,
+          "WHOLE_CONTRACT_VOLUME_CAP": 3
+        },
+        "folds": [
+          {
+            "trades": 56,
+            "net_R": -12.739931594559977,
+            "mean_net_R": -0.2274987784742853,
+            "profit_factor": 0.28657943180231404,
+            "win_rate_pct": 23.214285714285715,
+            "max_drawdown_R": 12.838346771508217,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 2,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 18
+            }
+          },
+          {
+            "trades": 45,
+            "net_R": -6.335729446482628,
+            "mean_net_R": -0.14079398769961396,
+            "profit_factor": 0.36355143926506556,
+            "win_rate_pct": 42.22222222222222,
+            "max_drawdown_R": 6.7850013731503065,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 31,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 16
+            }
+          },
+          {
+            "trades": 58,
+            "net_R": -11.163754853927509,
+            "mean_net_R": -0.1924785319642674,
+            "profit_factor": 0.2707903411366601,
+            "win_rate_pct": 27.586206896551722,
+            "max_drawdown_R": 13.037878226931157,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 1,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 24,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 59,
+            "net_R": -8.951133969467378,
+            "mean_net_R": -0.15171413507571826,
+            "profit_factor": 0.4562149262167201,
+            "win_rate_pct": 37.28813559322034,
+            "max_drawdown_R": 10.903053999393093,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 1,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 30
+            }
+          },
+          {
+            "trades": 49,
+            "net_R": -3.6575001352327687,
+            "mean_net_R": -0.07464285990270957,
+            "profit_factor": 0.6127861663983946,
+            "win_rate_pct": 48.97959183673469,
+            "max_drawdown_R": 5.235807525964433,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 16,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 67,
+            "net_R": -3.1117880728058105,
+            "mean_net_R": -0.04644459810157926,
+            "profit_factor": 0.775199646763446,
+            "win_rate_pct": 44.776119402985074,
+            "max_drawdown_R": 7.868128255481731,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 20
+            }
+          },
+          {
+            "trades": 73,
+            "net_R": -8.312941799039073,
+            "mean_net_R": -0.11387591505532978,
+            "profit_factor": 0.5655142575891722,
+            "win_rate_pct": 42.465753424657535,
+            "max_drawdown_R": 10.395151525494331,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 29
+            }
+          },
+          {
+            "trades": 16,
+            "net_R": 4.525980919199851,
+            "mean_net_R": 0.2828738074499907,
+            "profit_factor": 3.455288611611416,
+            "win_rate_pct": 68.75,
+            "max_drawdown_R": 2.1080713954780115,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 3
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 218,
+            "net_R": -39.19054986443749,
+            "mean_net_R": -0.17977316451576833,
+            "profit_factor": 0.34224768894551655
+          },
+          "2026": {
+            "trades": 205,
+            "net_R": -10.556249087877802,
+            "mean_net_R": -0.05149389798964781,
+            "profit_factor": 0.7615179151562661
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 224,
+            "net_R": -24.79715569769295,
+            "mean_net_R": -0.11070158793612925,
+            "profit_factor": 0.5679276620652444
+          },
+          "GOLD": {
+            "trades": 199,
+            "net_R": -24.949643254622345,
+            "mean_net_R": -0.12537509173177058,
+            "profit_factor": 0.46293628650293817
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        },
+        "bootstrap": {
+          "status": "CONDITIONAL_RETROSPECTIVE_BLOCK_BOOTSTRAP",
+          "block_observed_MSK_dates": 20,
+          "replicates": 2000,
+          "lower90_mean_R": -0.15939998691190757,
+          "upper90_mean_R": -0.09240789685815998,
+          "global_search_significance": "NOT_ESTABLISHED_UNKNOWN_LEGACY_TRIAL_COUNT",
+          "seed": 20261028
+        }
+      },
+      "human": {
+        "strategy": "S5",
+        "scenario": "d18-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 418,
+          "net_R": -48.96104556287694,
+          "mean_net_R": -0.11713168794946636,
+          "profit_factor": 0.5223167021594076,
+          "win_rate_pct": 41.14832535885167,
+          "max_drawdown_R": 55.12904777230515,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 19.0,
+          "timed_exit_max_lateness_minutes": 30,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 582,
+          "ENTRY_DRIFT": 161,
+          "WHOLE_CONTRACT_VOLUME_CAP": 3
+        },
+        "folds": [
+          {
+            "trades": 53,
+            "net_R": -12.640522977118858,
+            "mean_net_R": -0.23850043353054448,
+            "profit_factor": 0.21080845820315552,
+            "win_rate_pct": 22.641509433962263,
+            "max_drawdown_R": 12.688376963418518,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 1,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 21
+            }
+          },
+          {
+            "trades": 48,
+            "net_R": -5.56567993062048,
+            "mean_net_R": -0.11595166522125999,
+            "profit_factor": 0.4765100227308642,
+            "win_rate_pct": 45.833333333333336,
+            "max_drawdown_R": 6.664973714674651,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 30,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 13
+            }
+          },
+          {
+            "trades": 58,
+            "net_R": -12.75681705616629,
+            "mean_net_R": -0.21994512165803948,
+            "profit_factor": 0.24738697832483317,
+            "win_rate_pct": 29.310344827586206,
+            "max_drawdown_R": 14.754936707855142,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 23,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 57,
+            "net_R": -8.243084043281684,
+            "mean_net_R": -0.1446155095312576,
+            "profit_factor": 0.4800081109696437,
+            "win_rate_pct": 42.10526315789474,
+            "max_drawdown_R": 10.571726312159152,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 32
+            }
+          },
+          {
+            "trades": 46,
+            "net_R": -3.0741333658048675,
+            "mean_net_R": -0.0668289862131493,
+            "profit_factor": 0.6312550772478313,
+            "win_rate_pct": 47.82608695652174,
+            "max_drawdown_R": 4.852910368632696,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 20,
+              "WHOLE_CONTRACT_VOLUME_CAP": 1
+            }
+          },
+          {
+            "trades": 66,
+            "net_R": -3.4317249504396696,
+            "mean_net_R": -0.05199583258241924,
+            "profit_factor": 0.7495679435697815,
+            "win_rate_pct": 46.96969696969697,
+            "max_drawdown_R": 8.604668970231561,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 21
+            }
+          },
+          {
+            "trades": 73,
+            "net_R": -8.186631605879304,
+            "mean_net_R": -0.1121456384367028,
+            "profit_factor": 0.5685699330713436,
+            "win_rate_pct": 43.83561643835616,
+            "max_drawdown_R": 10.322646290495902,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 29
+            }
+          },
+          {
+            "trades": 17,
+            "net_R": 4.9375483664342115,
+            "mean_net_R": 0.29044402155495364,
+            "profit_factor": 3.432236015110458,
+            "win_rate_pct": 70.58823529411765,
+            "max_drawdown_R": 2.1653502218927647,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 19.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 2
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 216,
+            "net_R": -39.20610400718731,
+            "mean_net_R": -0.1815097407740153,
+            "profit_factor": 0.34053406346236637
+          },
+          "2026": {
+            "trades": 202,
+            "net_R": -9.75494155568963,
+            "mean_net_R": -0.04829178987965163,
+            "profit_factor": 0.7733811127511316
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 222,
+            "net_R": -22.107522945643538,
+            "mean_net_R": -0.09958343669208801,
+            "profit_factor": 0.6021928898940629
+          },
+          "GOLD": {
+            "trades": 196,
+            "net_R": -26.853522617233402,
+            "mean_net_R": -0.13700776845527246,
+            "profit_factor": 0.42771577754962936
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "stress": {
+        "strategy": "S5",
+        "scenario": "stress-r0",
+        "track": "joint_cost_stress",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 410,
+          "net_R": -104.62013849319374,
+          "mean_net_R": -0.2551710694955945,
+          "profit_factor": 0.21141928626331072,
+          "win_rate_pct": 25.853658536585368,
+          "max_drawdown_R": 108.5520570490011,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 18.0,
+          "timed_exit_max_lateness_minutes": 31,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 582,
+          "ENTRY_DRIFT": 167,
+          "WHOLE_CONTRACT_VOLUME_CAP": 5
+        },
+        "folds": [
+          {
+            "trades": 53,
+            "net_R": -22.228637715566386,
+            "mean_net_R": -0.4194082587842714,
+            "profit_factor": 0.07233912012537827,
+            "win_rate_pct": 9.433962264150944,
+            "max_drawdown_R": 22.28717391046324,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 2,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 21
+            }
+          },
+          {
+            "trades": 45,
+            "net_R": -11.811270464568839,
+            "mean_net_R": -0.26247267699041865,
+            "profit_factor": 0.0838707419225857,
+            "win_rate_pct": 20.0,
+            "max_drawdown_R": 12.212513242656458,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 31,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 16
+            }
+          },
+          {
+            "trades": 51,
+            "net_R": -18.60951035521155,
+            "mean_net_R": -0.36489235990610885,
+            "profit_factor": 0.06443710828792826,
+            "win_rate_pct": 9.803921568627452,
+            "max_drawdown_R": 19.729237777878662,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 1,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 29,
+              "WHOLE_CONTRACT_VOLUME_CAP": 3
+            }
+          },
+          {
+            "trades": 59,
+            "net_R": -19.39186755028977,
+            "mean_net_R": -0.328675721191352,
+            "profit_factor": 0.13103218723013776,
+            "win_rate_pct": 22.033898305084747,
+            "max_drawdown_R": 19.96001755209589,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 1,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 30
+            }
+          },
+          {
+            "trades": 44,
+            "net_R": -7.224909933930853,
+            "mean_net_R": -0.16420249849842847,
+            "profit_factor": 0.2744311426900392,
+            "win_rate_pct": 34.09090909090909,
+            "max_drawdown_R": 8.275068107344971,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 21,
+              "WHOLE_CONTRACT_VOLUME_CAP": 2
+            }
+          },
+          {
+            "trades": 69,
+            "net_R": -11.403540773498445,
+            "mean_net_R": -0.1652687068622963,
+            "profit_factor": 0.3915841229540738,
+            "win_rate_pct": 37.68115942028985,
+            "max_drawdown_R": 12.838356518964337,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 18
+            }
+          },
+          {
+            "trades": 72,
+            "net_R": -15.484063591112971,
+            "mean_net_R": -0.21505643876545794,
+            "profit_factor": 0.3010011709362211,
+            "win_rate_pct": 34.72222222222222,
+            "max_drawdown_R": 16.108136073630213,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 30
+            }
+          },
+          {
+            "trades": 17,
+            "net_R": 1.533661890985076,
+            "mean_net_R": 0.0902154053520633,
+            "profit_factor": 1.5567412005101247,
+            "win_rate_pct": 47.05882352941177,
+            "max_drawdown_R": 2.811346136320869,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 18.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 2
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 208,
+            "net_R": -72.04128608563654,
+            "mean_net_R": -0.3463523369501757,
+            "profit_factor": 0.08879819654128727
+          },
+          "2026": {
+            "trades": 202,
+            "net_R": -32.57885240755719,
+            "mean_net_R": -0.1612814475621643,
+            "profit_factor": 0.39226573950637317
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 210,
+            "net_R": -53.42237233844706,
+            "mean_net_R": -0.2543922492307003,
+            "profit_factor": 0.24174403951703408
+          },
+          "GOLD": {
+            "trades": 200,
+            "net_R": -51.19776615474668,
+            "mean_net_R": -0.2559888307737334,
+            "profit_factor": 0.1770783535365708
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "delay40_human": {
+        "strategy": "S5",
+        "scenario": "d40-r60-s2-l2-f1",
+        "track": "human",
+        "status": "COMPLETED_EXPLICIT_PRICE_SCENARIO",
+        "execution_scope": "EXPLICIT_APPROXIMATE_SCENARIO",
+        "exact_S0_replay_status": "BLOCKED_DATA",
+        "metrics": {
+          "trades": 333,
+          "net_R": -37.331374914523316,
+          "mean_net_R": -0.11210623097454449,
+          "profit_factor": 0.5507557460040241,
+          "win_rate_pct": 39.63963963963964,
+          "max_drawdown_R": 41.37120279236333,
+          "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+          "both_levels_stop_first": 0,
+          "entry_delay_median_minutes": 41.0,
+          "timed_exit_max_lateness_minutes": 1,
+          "admission_skips": {}
+        },
+        "generation": {
+          "eligible_H1": 7406,
+          "setups": 582,
+          "ENTRY_DRIFT": 245,
+          "WHOLE_CONTRACT_VOLUME_CAP": 4
+        },
+        "folds": [
+          {
+            "trades": 41,
+            "net_R": -6.486407163395428,
+            "mean_net_R": -0.15820505276574215,
+            "profit_factor": 0.4192006871691293,
+            "win_rate_pct": 24.390243902439025,
+            "max_drawdown_R": 6.742566012772913,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 33
+            }
+          },
+          {
+            "trades": 33,
+            "net_R": -0.20383290384125818,
+            "mean_net_R": -0.006176754661856309,
+            "profit_factor": 0.9613313699822076,
+            "win_rate_pct": 48.484848484848484,
+            "max_drawdown_R": 3.0727999383276816,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2025Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 28
+            }
+          },
+          {
+            "trades": 51,
+            "net_R": -10.874820021040527,
+            "mean_net_R": -0.21323176511844172,
+            "profit_factor": 0.309262338318745,
+            "win_rate_pct": 35.294117647058826,
+            "max_drawdown_R": 12.70231298433783,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 1,
+            "admission_skips": {},
+            "fold": "2025Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 28,
+              "WHOLE_CONTRACT_VOLUME_CAP": 4
+            }
+          },
+          {
+            "trades": 47,
+            "net_R": -11.000808802494618,
+            "mean_net_R": -0.23405976175520463,
+            "profit_factor": 0.24681852222391823,
+            "win_rate_pct": 29.78723404255319,
+            "max_drawdown_R": 12.445263877172948,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 1,
+            "admission_skips": {},
+            "fold": "2025Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 42
+            }
+          },
+          {
+            "trades": 37,
+            "net_R": -1.4257934944141042,
+            "mean_net_R": -0.038534959308489304,
+            "profit_factor": 0.7361875047547659,
+            "win_rate_pct": 56.75675675675676,
+            "max_drawdown_R": 3.1628972418197616,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q1",
+            "execution_failures": {
+              "ENTRY_DRIFT": 30
+            }
+          },
+          {
+            "trades": 50,
+            "net_R": -3.7905359301809227,
+            "mean_net_R": -0.07581071860361846,
+            "profit_factor": 0.6841411504348357,
+            "win_rate_pct": 42.0,
+            "max_drawdown_R": 6.9707790842765665,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q2",
+            "execution_failures": {
+              "ENTRY_DRIFT": 37
+            }
+          },
+          {
+            "trades": 58,
+            "net_R": -5.2844311193295965,
+            "mean_net_R": -0.09111088136775167,
+            "profit_factor": 0.671576908087958,
+            "win_rate_pct": 39.6551724137931,
+            "max_drawdown_R": 7.86347824212733,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q3",
+            "execution_failures": {
+              "ENTRY_DRIFT": 44
+            }
+          },
+          {
+            "trades": 16,
+            "net_R": 1.7352545201731393,
+            "mean_net_R": 0.1084534075108212,
+            "profit_factor": 1.6167278785605326,
+            "win_rate_pct": 56.25,
+            "max_drawdown_R": 2.189951316266625,
+            "max_drawdown_scope": "Minute mark-to-market R, not percent capital; intra-minute equity path unknown",
+            "both_levels_stop_first": 0,
+            "entry_delay_median_minutes": 41.0,
+            "timed_exit_max_lateness_minutes": 0,
+            "admission_skips": {},
+            "fold": "2026Q4",
+            "execution_failures": {
+              "ENTRY_DRIFT": 3
+            }
+          }
+        ],
+        "years": {
+          "2025": {
+            "trades": 172,
+            "net_R": -28.56586889077183,
+            "mean_net_R": -0.16608063308588275,
+            "profit_factor": 0.3894734832864246
+          },
+          "2026": {
+            "trades": 161,
+            "net_R": -8.765506023751485,
+            "mean_net_R": -0.05444413679348748,
+            "profit_factor": 0.758587595986234
+          }
+        },
+        "assets": {
+          "BR": {
+            "trades": 176,
+            "net_R": -19.055299657151853,
+            "mean_net_R": -0.10826874805199917,
+            "profit_factor": 0.56631727446304
+          },
+          "GOLD": {
+            "trades": 157,
+            "net_R": -18.276075257371463,
+            "mean_net_R": -0.11640812265841696,
+            "profit_factor": 0.533295307761277
+          }
+        },
+        "unresolved_setups": 0,
+        "monetary": {
+          "status": "BLOCKED_DATA",
+          "missing": [
+            "historical_tick_and_multiplier_confirmed",
+            "collateral_at_entry_confirmed",
+            "effective_fee_schedule_confirmed",
+            "historical_fx_confirmed"
+          ],
+          "net_return_pct": null,
+          "net_pnl_rub": null
+        }
+      },
+      "net_pnl_rub": null,
+      "net_return_pct": null,
+      "monetary_status": "BLOCKED_DATA",
+      "live_promotion": false
+    }
+  ],
+  "canonical_scenario_cells": 192,
+  "actually_scored_cells_including_superseded_S2": 224,
+  "S3_training_fits": 208,
+  "legacy_trial_count": "UNKNOWN",
+  "independent_historical_holdout": false,
+  "exact_deployed_agent_return_confirmed": false,
+  "monetary_status": "BLOCKED_DATA",
+  "selected_candidate": null,
+  "optimization": "NOT_RUN_NO_QUALIFYING_CANDIDATE",
+  "new_seven_day_test": "NOT_STARTED_NO_QUALIFYING_CANDIDATE",
+  "existing_virtual_week_and_live_service": "PRESERVED",
+  "max_drawdown_user_approved": null,
+  "verification": [
+    {
+      "strategy": "S0",
+      "trade_rows_reconciled": 172,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S1",
+      "trade_rows_reconciled": 138,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S2",
+      "trade_rows_reconciled": 789,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S3",
+      "trade_rows_reconciled": 0,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S4",
+      "trade_rows_reconciled": 322,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S5",
+      "trade_rows_reconciled": 423,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    }
+  ],
+  "unresolved_price_outcomes": 0
+}
