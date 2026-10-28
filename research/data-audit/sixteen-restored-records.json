@@ -1,0 +1,1006 @@
+[
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "BRZ6",
+      "asset": "BR",
+      "metric": "tradestats",
+      "first": "2026-04-23",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-04-23",
+          "2026-10-25"
+        ]
+      ],
+      "cached_query_spans_reused": [
+        [
+          "2026-10-25",
+          "2026-10-26"
+        ]
+      ],
+      "original_rows_reused": 0,
+      "raw_prefix_rows_reused": 6000,
+      "status": "COMPLETE_QUERY_SPANS",
+      "rows": 15621,
+      "file": {
+        "file": "2026-BRZ6-tradestats.json.gz",
+        "uncompressed_sha256": "4aa8a1b9c673a0d52ad12c3866067887580ec44c36997badfbf645a8be32431e",
+        "rows": 15621
+      }
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "BRZ6",
+      "asset": "BR",
+      "metric": "h1",
+      "first": "2026-04-23",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-04-23",
+          "2026-10-26"
+        ]
+      ],
+      "cached_query_spans_reused": [],
+      "file": {
+        "file": "2026-BRZ6-h1.json.gz",
+        "uncompressed_sha256": "40f81af00664835758091f596a8998cc8e9fc95893081939cf55bc0e9469a300",
+        "rows": 2373
+      },
+      "original_rows_reused": 0,
+      "raw_prefix_rows_reused": 0,
+      "rows": 2373,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDH6",
+      "asset": "GOLD",
+      "metric": "tradestats",
+      "first": "2026-01-01",
+      "end_exclusive": "2026-03-21",
+      "new_query_spans": [
+        [
+          "2026-03-19",
+          "2026-03-21"
+        ]
+      ],
+      "cached_query_spans_reused": [
+        [
+          "2026-01-01",
+          "2026-03-19"
+        ]
+      ],
+      "file": {
+        "file": "2026-GDH6-tradestats.json.gz",
+        "uncompressed_sha256": "10aec59a9848145f01538091b9b0abee6a20b5a1166b23bba56d0df092e67a5e",
+        "rows": 10694
+      },
+      "original_rows_reused": 10460,
+      "raw_prefix_rows_reused": 0,
+      "rows": 10694,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDH6",
+      "asset": "GOLD",
+      "metric": "h1",
+      "first": "2026-01-01",
+      "end_exclusive": "2026-03-21",
+      "new_query_spans": [
+        [
+          "2026-03-19",
+          "2026-03-21"
+        ]
+      ],
+      "cached_query_spans_reused": [
+        [
+          "2025-10-08",
+          "2026-03-19"
+        ]
+      ],
+      "file": {
+        "file": "2026-GDH6-h1.json.gz",
+        "uncompressed_sha256": "e4e845b48edc33a56f2f3f4184a99a5fa570cdf0a8be000826baf1ae1a87991b",
+        "rows": 986
+      },
+      "original_rows_reused": 2065,
+      "raw_prefix_rows_reused": 0,
+      "rows": 986,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDH7",
+      "asset": "GOLD",
+      "metric": "tradestats",
+      "first": "2026-03-12",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-03-12",
+          "2026-10-26"
+        ]
+      ],
+      "cached_query_spans_reused": [],
+      "file": {
+        "file": "2026-GDH7-tradestats.json.gz",
+        "uncompressed_sha256": "143a5e2375f9ce407a44a4c776d934f8c45f4685beccbde6068b0d3f694c4d33",
+        "rows": 7811
+      },
+      "original_rows_reused": 0,
+      "raw_prefix_rows_reused": 0,
+      "rows": 7811,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDH7",
+      "asset": "GOLD",
+      "metric": "h1",
+      "first": "2026-03-12",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-03-12",
+          "2026-10-26"
+        ]
+      ],
+      "cached_query_spans_reused": [],
+      "file": {
+        "file": "2026-GDH7-h1.json.gz",
+        "uncompressed_sha256": "09fedde00db25dc0abcf4cd7472924b05be122192dc81bb2e560f82733d9fb3f",
+        "rows": 2011
+      },
+      "original_rows_reused": 0,
+      "raw_prefix_rows_reused": 0,
+      "rows": 2011,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDM6",
+      "asset": "GOLD",
+      "metric": "tradestats",
+      "first": "2026-01-01",
+      "end_exclusive": "2026-06-20",
+      "new_query_spans": [
+        [
+          "2026-01-01",
+          "2026-03-12"
+        ],
+        [
+          "2026-06-18",
+          "2026-06-20"
+        ]
+      ],
+      "cached_query_spans_reused": [
+        [
+          "2026-03-12",
+          "2026-06-18"
+        ]
+      ],
+      "file": {
+        "file": "2026-GDM6-tradestats.json.gz",
+        "uncompressed_sha256": "70e99add8654cecd213149921e97e2bc6d40ddf7ec732d23275ffde89b4adb20",
+        "rows": 23520
+      },
+      "original_rows_reused": 14745,
+      "raw_prefix_rows_reused": 0,
+      "rows": 23520,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDM6",
+      "asset": "GOLD",
+      "metric": "h1",
+      "first": "2026-01-01",
+      "end_exclusive": "2026-06-20",
+      "new_query_spans": [
+        [
+          "2026-01-01",
+          "2026-03-12"
+        ],
+        [
+          "2026-06-18",
+          "2026-06-20"
+        ]
+      ],
+      "cached_query_spans_reused": [
+        [
+          "2026-03-12",
+          "2026-06-18"
+        ]
+      ],
+      "file": {
+        "file": "2026-GDM6-h1.json.gz",
+        "uncompressed_sha256": "dfe94c560ddaea57b116daba44cb49aaef2ffaeabb1e8941e6babe855afbb05e",
+        "rows": 2226
+      },
+      "original_rows_reused": 1351,
+      "raw_prefix_rows_reused": 0,
+      "rows": 2226,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDM7",
+      "asset": "GOLD",
+      "metric": "tradestats",
+      "first": "2026-06-10",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-06-10",
+          "2026-10-26"
+        ]
+      ],
+      "cached_query_spans_reused": [],
+      "file": {
+        "file": "2026-GDM7-tradestats.json.gz",
+        "uncompressed_sha256": "746bc8a5e826affa5a5fb6d33e1aaf7f04e0defdf088e84f7648d050dc96129e",
+        "rows": 1726
+      },
+      "original_rows_reused": 0,
+      "raw_prefix_rows_reused": 0,
+      "rows": 1726,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDM7",
+      "asset": "GOLD",
+      "metric": "h1",
+      "first": "2026-06-10",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-06-10",
+          "2026-10-26"
+        ]
+      ],
+      "cached_query_spans_reused": [],
+      "file": {
+        "file": "2026-GDM7-h1.json.gz",
+        "uncompressed_sha256": "cba0592940e3794a9de2217eeb7261a5e1c67ed574550ddf352caf8d1f4056df",
+        "rows": 906
+      },
+      "original_rows_reused": 0,
+      "raw_prefix_rows_reused": 0,
+      "rows": 906,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDU6",
+      "asset": "GOLD",
+      "metric": "tradestats",
+      "first": "2026-01-01",
+      "end_exclusive": "2026-09-19",
+      "new_query_spans": [
+        [
+          "2026-01-01",
+          "2026-06-11"
+        ],
+        [
+          "2026-09-17",
+          "2026-09-19"
+        ]
+      ],
+      "cached_query_spans_reused": [
+        [
+          "2026-06-11",
+          "2026-09-17"
+        ]
+      ],
+      "file": {
+        "file": "2026-GDU6-tradestats.json.gz",
+        "uncompressed_sha256": "6be56dd995ff423d8277066d2e271314d2a90c0ccd3ee17cfcef902dd579df83",
+        "rows": 31930
+      },
+      "original_rows_reused": 15560,
+      "raw_prefix_rows_reused": 0,
+      "rows": 31930,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDU6",
+      "asset": "GOLD",
+      "metric": "h1",
+      "first": "2026-01-01",
+      "end_exclusive": "2026-09-19",
+      "new_query_spans": [
+        [
+          "2026-01-01",
+          "2026-03-18"
+        ],
+        [
+          "2026-09-17",
+          "2026-09-19"
+        ]
+      ],
+      "cached_query_spans_reused": [
+        [
+          "2026-03-18",
+          "2026-09-17"
+        ]
+      ],
+      "file": {
+        "file": "2026-GDU6-h1.json.gz",
+        "uncompressed_sha256": "b7e784b795f294cedb8445f52a6396ccd4a71c37fd576d3b28e7596cdc0da3ea",
+        "rows": 3445
+      },
+      "original_rows_reused": 2541,
+      "raw_prefix_rows_reused": 0,
+      "rows": 3445,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDU7",
+      "asset": "GOLD",
+      "metric": "tradestats",
+      "first": "2026-09-10",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-09-10",
+          "2026-10-26"
+        ]
+      ],
+      "cached_query_spans_reused": [],
+      "file": {
+        "file": "2026-GDU7-tradestats.json.gz",
+        "uncompressed_sha256": "435f17083cd1b8843ed08b0c232a65aaf464cf7d2e8bcd399df477155fa8493b",
+        "rows": 180
+      },
+      "original_rows_reused": 0,
+      "raw_prefix_rows_reused": 0,
+      "rows": 180,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDU7",
+      "asset": "GOLD",
+      "metric": "h1",
+      "first": "2026-09-10",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-09-10",
+          "2026-10-26"
+        ]
+      ],
+      "cached_query_spans_reused": [],
+      "file": {
+        "file": "2026-GDU7-h1.json.gz",
+        "uncompressed_sha256": "21d5fe190b6d1b0dae3469a82f088945ab98e4168988ff76a87da3163a33cf57",
+        "rows": 125
+      },
+      "original_rows_reused": 0,
+      "raw_prefix_rows_reused": 0,
+      "rows": 125,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDZ6",
+      "asset": "GOLD",
+      "metric": "tradestats",
+      "first": "2026-01-01",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-01-01",
+          "2026-09-10"
+        ]
+      ],
+      "cached_query_spans_reused": [
+        [
+          "2026-09-10",
+          "2026-10-26"
+        ]
+      ],
+      "file": {
+        "file": "2026-GDZ6-tradestats.json.gz",
+        "uncompressed_sha256": "913ebee49221c79c951b104dc3fcae45c6ed22cee70b6b61517eeab2988bb679",
+        "rows": 26068
+      },
+      "original_rows_reused": 7450,
+      "raw_prefix_rows_reused": 0,
+      "rows": 26068,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUMED_RECORD",
+    "record": {
+      "year": 2026,
+      "contract": "GDZ6",
+      "asset": "GOLD",
+      "metric": "h1",
+      "first": "2026-01-01",
+      "end_exclusive": "2026-10-26",
+      "new_query_spans": [
+        [
+          "2026-01-01",
+          "2026-06-17"
+        ]
+      ],
+      "cached_query_spans_reused": [
+        [
+          "2026-06-17",
+          "2026-10-26"
+        ]
+      ],
+      "file": {
+        "file": "2026-GDZ6-h1.json.gz",
+        "uncompressed_sha256": "5149473c1a26efe5918c6b834f4b2f71341c9d645855b75e5c12de9d98d0fa64",
+        "rows": 3727
+      },
+      "original_rows_reused": 1865,
+      "raw_prefix_rows_reused": 0,
+      "rows": 3727,
+      "status": "COMPLETE_QUERY_SPANS",
+      "previously_restored_record_reused": true
+    }
+  },
+  {
+    "type": "UNIVERSE_RESUME_STATUS",
+    "source": "apim.moex.com",
+    "orders_enabled": false,
+    "strategy_testing_performed": false,
+    "all_required_inputs_ready": false,
+    "exact_agent_replay_ready": false,
+    "source_archives": {
+      "universe": [
+        12762953714,
+        "24a2b93e33672546f35b154ab903eb47907439edb896a8bfbc0ec8c98e3104e9"
+      ],
+      "panels2026": [
+        12746864412,
+        "6626bf3ce942d6ec588288b617f77d772667ae9fa2e888f523be601baeabd2cb"
+      ],
+      "prices2026": [
+        12735884135,
+        "b8344fbe990dd1ae069ceef3ae0709ca12375a7205a26f1360e3ba34b66b1ffb"
+      ],
+      "prior_resume": [
+        12792924107,
+        "36f2728b9b35f2e77b8782d6de66c1b5e77e0c9e892a0656738bcf49916b5da3"
+      ]
+    },
+    "repairs": [
+      {
+        "year": 2026,
+        "contract": "BRZ6",
+        "asset": "BR",
+        "metric": "tradestats",
+        "first": "2026-04-23",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-04-23",
+            "2026-10-25"
+          ]
+        ],
+        "cached_query_spans_reused": [
+          [
+            "2026-10-25",
+            "2026-10-26"
+          ]
+        ],
+        "original_rows_reused": 0,
+        "raw_prefix_rows_reused": 6000,
+        "status": "COMPLETE_QUERY_SPANS",
+        "rows": 15621,
+        "file": {
+          "file": "2026-BRZ6-tradestats.json.gz",
+          "uncompressed_sha256": "4aa8a1b9c673a0d52ad12c3866067887580ec44c36997badfbf645a8be32431e",
+          "rows": 15621
+        }
+      },
+      {
+        "year": 2026,
+        "contract": "BRZ6",
+        "asset": "BR",
+        "metric": "h1",
+        "first": "2026-04-23",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-04-23",
+            "2026-10-26"
+          ]
+        ],
+        "cached_query_spans_reused": [],
+        "file": {
+          "file": "2026-BRZ6-h1.json.gz",
+          "uncompressed_sha256": "40f81af00664835758091f596a8998cc8e9fc95893081939cf55bc0e9469a300",
+          "rows": 2373
+        },
+        "original_rows_reused": 0,
+        "raw_prefix_rows_reused": 0,
+        "rows": 2373,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDH6",
+        "asset": "GOLD",
+        "metric": "tradestats",
+        "first": "2026-01-01",
+        "end_exclusive": "2026-03-21",
+        "new_query_spans": [
+          [
+            "2026-03-19",
+            "2026-03-21"
+          ]
+        ],
+        "cached_query_spans_reused": [
+          [
+            "2026-01-01",
+            "2026-03-19"
+          ]
+        ],
+        "file": {
+          "file": "2026-GDH6-tradestats.json.gz",
+          "uncompressed_sha256": "10aec59a9848145f01538091b9b0abee6a20b5a1166b23bba56d0df092e67a5e",
+          "rows": 10694
+        },
+        "original_rows_reused": 10460,
+        "raw_prefix_rows_reused": 0,
+        "rows": 10694,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDH6",
+        "asset": "GOLD",
+        "metric": "h1",
+        "first": "2026-01-01",
+        "end_exclusive": "2026-03-21",
+        "new_query_spans": [
+          [
+            "2026-03-19",
+            "2026-03-21"
+          ]
+        ],
+        "cached_query_spans_reused": [
+          [
+            "2025-10-08",
+            "2026-03-19"
+          ]
+        ],
+        "file": {
+          "file": "2026-GDH6-h1.json.gz",
+          "uncompressed_sha256": "e4e845b48edc33a56f2f3f4184a99a5fa570cdf0a8be000826baf1ae1a87991b",
+          "rows": 986
+        },
+        "original_rows_reused": 2065,
+        "raw_prefix_rows_reused": 0,
+        "rows": 986,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDH7",
+        "asset": "GOLD",
+        "metric": "tradestats",
+        "first": "2026-03-12",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-03-12",
+            "2026-10-26"
+          ]
+        ],
+        "cached_query_spans_reused": [],
+        "file": {
+          "file": "2026-GDH7-tradestats.json.gz",
+          "uncompressed_sha256": "143a5e2375f9ce407a44a4c776d934f8c45f4685beccbde6068b0d3f694c4d33",
+          "rows": 7811
+        },
+        "original_rows_reused": 0,
+        "raw_prefix_rows_reused": 0,
+        "rows": 7811,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDH7",
+        "asset": "GOLD",
+        "metric": "h1",
+        "first": "2026-03-12",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-03-12",
+            "2026-10-26"
+          ]
+        ],
+        "cached_query_spans_reused": [],
+        "file": {
+          "file": "2026-GDH7-h1.json.gz",
+          "uncompressed_sha256": "09fedde00db25dc0abcf4cd7472924b05be122192dc81bb2e560f82733d9fb3f",
+          "rows": 2011
+        },
+        "original_rows_reused": 0,
+        "raw_prefix_rows_reused": 0,
+        "rows": 2011,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDM6",
+        "asset": "GOLD",
+        "metric": "tradestats",
+        "first": "2026-01-01",
+        "end_exclusive": "2026-06-20",
+        "new_query_spans": [
+          [
+            "2026-01-01",
+            "2026-03-12"
+          ],
+          [
+            "2026-06-18",
+            "2026-06-20"
+          ]
+        ],
+        "cached_query_spans_reused": [
+          [
+            "2026-03-12",
+            "2026-06-18"
+          ]
+        ],
+        "file": {
+          "file": "2026-GDM6-tradestats.json.gz",
+          "uncompressed_sha256": "70e99add8654cecd213149921e97e2bc6d40ddf7ec732d23275ffde89b4adb20",
+          "rows": 23520
+        },
+        "original_rows_reused": 14745,
+        "raw_prefix_rows_reused": 0,
+        "rows": 23520,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDM6",
+        "asset": "GOLD",
+        "metric": "h1",
+        "first": "2026-01-01",
+        "end_exclusive": "2026-06-20",
+        "new_query_spans": [
+          [
+            "2026-01-01",
+            "2026-03-12"
+          ],
+          [
+            "2026-06-18",
+            "2026-06-20"
+          ]
+        ],
+        "cached_query_spans_reused": [
+          [
+            "2026-03-12",
+            "2026-06-18"
+          ]
+        ],
+        "file": {
+          "file": "2026-GDM6-h1.json.gz",
+          "uncompressed_sha256": "dfe94c560ddaea57b116daba44cb49aaef2ffaeabb1e8941e6babe855afbb05e",
+          "rows": 2226
+        },
+        "original_rows_reused": 1351,
+        "raw_prefix_rows_reused": 0,
+        "rows": 2226,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDM7",
+        "asset": "GOLD",
+        "metric": "tradestats",
+        "first": "2026-06-10",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-06-10",
+            "2026-10-26"
+          ]
+        ],
+        "cached_query_spans_reused": [],
+        "file": {
+          "file": "2026-GDM7-tradestats.json.gz",
+          "uncompressed_sha256": "746bc8a5e826affa5a5fb6d33e1aaf7f04e0defdf088e84f7648d050dc96129e",
+          "rows": 1726
+        },
+        "original_rows_reused": 0,
+        "raw_prefix_rows_reused": 0,
+        "rows": 1726,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDM7",
+        "asset": "GOLD",
+        "metric": "h1",
+        "first": "2026-06-10",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-06-10",
+            "2026-10-26"
+          ]
+        ],
+        "cached_query_spans_reused": [],
+        "file": {
+          "file": "2026-GDM7-h1.json.gz",
+          "uncompressed_sha256": "cba0592940e3794a9de2217eeb7261a5e1c67ed574550ddf352caf8d1f4056df",
+          "rows": 906
+        },
+        "original_rows_reused": 0,
+        "raw_prefix_rows_reused": 0,
+        "rows": 906,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDU6",
+        "asset": "GOLD",
+        "metric": "tradestats",
+        "first": "2026-01-01",
+        "end_exclusive": "2026-09-19",
+        "new_query_spans": [
+          [
+            "2026-01-01",
+            "2026-06-11"
+          ],
+          [
+            "2026-09-17",
+            "2026-09-19"
+          ]
+        ],
+        "cached_query_spans_reused": [
+          [
+            "2026-06-11",
+            "2026-09-17"
+          ]
+        ],
+        "file": {
+          "file": "2026-GDU6-tradestats.json.gz",
+          "uncompressed_sha256": "6be56dd995ff423d8277066d2e271314d2a90c0ccd3ee17cfcef902dd579df83",
+          "rows": 31930
+        },
+        "original_rows_reused": 15560,
+        "raw_prefix_rows_reused": 0,
+        "rows": 31930,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDU6",
+        "asset": "GOLD",
+        "metric": "h1",
+        "first": "2026-01-01",
+        "end_exclusive": "2026-09-19",
+        "new_query_spans": [
+          [
+            "2026-01-01",
+            "2026-03-18"
+          ],
+          [
+            "2026-09-17",
+            "2026-09-19"
+          ]
+        ],
+        "cached_query_spans_reused": [
+          [
+            "2026-03-18",
+            "2026-09-17"
+          ]
+        ],
+        "file": {
+          "file": "2026-GDU6-h1.json.gz",
+          "uncompressed_sha256": "b7e784b795f294cedb8445f52a6396ccd4a71c37fd576d3b28e7596cdc0da3ea",
+          "rows": 3445
+        },
+        "original_rows_reused": 2541,
+        "raw_prefix_rows_reused": 0,
+        "rows": 3445,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDU7",
+        "asset": "GOLD",
+        "metric": "tradestats",
+        "first": "2026-09-10",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-09-10",
+            "2026-10-26"
+          ]
+        ],
+        "cached_query_spans_reused": [],
+        "file": {
+          "file": "2026-GDU7-tradestats.json.gz",
+          "uncompressed_sha256": "435f17083cd1b8843ed08b0c232a65aaf464cf7d2e8bcd399df477155fa8493b",
+          "rows": 180
+        },
+        "original_rows_reused": 0,
+        "raw_prefix_rows_reused": 0,
+        "rows": 180,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDU7",
+        "asset": "GOLD",
+        "metric": "h1",
+        "first": "2026-09-10",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-09-10",
+            "2026-10-26"
+          ]
+        ],
+        "cached_query_spans_reused": [],
+        "file": {
+          "file": "2026-GDU7-h1.json.gz",
+          "uncompressed_sha256": "21d5fe190b6d1b0dae3469a82f088945ab98e4168988ff76a87da3163a33cf57",
+          "rows": 125
+        },
+        "original_rows_reused": 0,
+        "raw_prefix_rows_reused": 0,
+        "rows": 125,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDZ6",
+        "asset": "GOLD",
+        "metric": "tradestats",
+        "first": "2026-01-01",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-01-01",
+            "2026-09-10"
+          ]
+        ],
+        "cached_query_spans_reused": [
+          [
+            "2026-09-10",
+            "2026-10-26"
+          ]
+        ],
+        "file": {
+          "file": "2026-GDZ6-tradestats.json.gz",
+          "uncompressed_sha256": "913ebee49221c79c951b104dc3fcae45c6ed22cee70b6b61517eeab2988bb679",
+          "rows": 26068
+        },
+        "original_rows_reused": 7450,
+        "raw_prefix_rows_reused": 0,
+        "rows": 26068,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      },
+      {
+        "year": 2026,
+        "contract": "GDZ6",
+        "asset": "GOLD",
+        "metric": "h1",
+        "first": "2026-01-01",
+        "end_exclusive": "2026-10-26",
+        "new_query_spans": [
+          [
+            "2026-01-01",
+            "2026-06-17"
+          ]
+        ],
+        "cached_query_spans_reused": [
+          [
+            "2026-06-17",
+            "2026-10-26"
+          ]
+        ],
+        "file": {
+          "file": "2026-GDZ6-h1.json.gz",
+          "uncompressed_sha256": "5149473c1a26efe5918c6b834f4b2f71341c9d645855b75e5c12de9d98d0fa64",
+          "rows": 3727
+        },
+        "original_rows_reused": 1865,
+        "raw_prefix_rows_reused": 0,
+        "rows": 3727,
+        "status": "COMPLETE_QUERY_SPANS",
+        "previously_restored_record_reused": true
+      }
+    ],
+    "errors": [],
+    "complete_records_reused_without_market_requests": 222,
+    "target_records": 16,
+    "catalogue_contracts": 72,
+    "previously_restored_records_reused_without_market_requests": 15,
+    "status": "SIXTEEN_RECORDS_RESTORED_REQUIRES_SUFFICIENCY_AUDIT",
+    "requests": 12,
+    "finished_at_utc": "2026-10-28T05:04:30.058444+00:00"
+  }
+]
