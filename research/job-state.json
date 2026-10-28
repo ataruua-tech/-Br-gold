@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-10-28 06:13:48 UTC",
+  "updated_at_utc": "2026-10-28T06:34:15.621139+00:00",
   "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
   "phase": "AGREED_SCENARIO_COMPARISON_COMPLETE_NO_CANDIDATE",
-  "last_completed_step": "Six implementations evaluated over192 canonical execution cases;32 superseded S2 cases retained;224 total score cases and208 chronological S3 fits. Registered S2 intraday correction verified.15 unit guards and independent output/accounting checks passed.",
+  "last_completed_step": "Six families compared in192 canonical cases;32 superseded S2 cases retained;224 total score cases and208 chronological S3 fits. Registered S2 session correction verified.15 execution/causality guards plus4 independent sizing guards passed. Clarified comparison, lot limits and online requirements delivered without rescoring.",
   "research_restarts_hourly": false,
   "chat_research_automation_paused": true,
   "chat_market_automation_paused": true,
@@ -12,7 +12,7 @@
   "original_data_run": 40494996964,
   "additional_inputs_run": 40529837847,
   "additional_inputs_status": "All required network repairs complete; exact replay lacks executable BBO/availability and historical economics/calendar precision. Candle and aggregate acquisition completion is not full model-input readiness.",
-  "current_main_commit": "09d01392b46a09374723d535ffbc69cedfe98829",
+  "current_main_commit": "8c77028a171d4b15f6a6de18de892b10f5a437aa",
   "scenario_testing_allowed": true,
   "all_required_inputs_ready": false,
   "exact_agent_replay_ready": false,
@@ -107,7 +107,7 @@
     "reason": "User specification requires disclosed assumptions and agreement before approximate tests; exact BBO/historical collateral/availability are not present",
     "asked_via": "ChatGPT asynchronous question",
     "exact_S0_status": "BLOCKED_DATA",
-    "profitability_scoring_started": false,
+    "profitability_scoring_started": true,
     "user_answer": "Да",
     "authorized_scope": "Six strategies under disclosed assumptions; monetary returns only where required collateral/economics inputs are confirmed; exact S0 remains BLOCKED_DATA"
   },
@@ -119,7 +119,10 @@
     "sampled_run": 40630927125,
     "changed": false,
     "verified_at_utc": "2026-10-28 06:13:48 UTC",
-    "main_tree": "09d01392b46a09374723d535ffbc69cedfe98829"
+    "main_tree": "09d01392b46a09374723d535ffbc69cedfe98829",
+    "latest_access_observation_run": 40641819415,
+    "latest_access_observation_time_utc": "2026-10-28T06:06:14.105165+00:00",
+    "latest_access_observation_status": "PASSED"
   },
   "registered_scenario_protocol": {
     "path": "research/scenario-study-v2/protocol.json",
@@ -137,7 +140,7 @@
   "scenario_results": {
     "path": "research/scenario-study-v2/final-results.json",
     "sha256": "8c2b5bba141d937eb4abb31d416b1d8757e0792726bfaead5577784e4112c93c",
-    "table": "research/scenario-study-v2/COMPARISON_S0_S5.csv",
+    "table": "research/scenario-study-v2/COMPARISON_COMPLETE_RU.csv",
     "report": "research/scenario-study-v2/FINAL_REPORT_RU.txt",
     "canonical_cases": 192,
     "actual_scored_cases": 224,
@@ -145,7 +148,24 @@
     "selected_candidate": null,
     "optimization": "NOT_RUN_NO_QUALIFYING_CANDIDATE",
     "monetary_status": "BLOCKED_DATA",
-    "test_guards_passed": 15
+    "test_guards_passed": 19,
+    "execution_causality_guards": 15,
+    "independent_sizing_guards": 4
   },
-  "hourly_research_task_enabled": false
+  "hourly_research_task_enabled": false,
+  "latest_specification_addendum": {
+    "scope": "Completion of existing comparison, no new strategy/platform or live changes",
+    "path": "research/scenario-study-v2/completion-addendum.json",
+    "reproduction": "research/scenario-study-v2/REPRODUCE_RU.txt",
+    "online_requirements": "research/scenario-study-v2/ONLINE_TEST_REQUIREMENTS_RU.txt",
+    "lot_validation": "research/scenario-study-v2/LOT_VALIDATION_RU.txt",
+    "no_scores_restarted": true,
+    "historical_monetary_positions_confirmed": false
+  },
+  "independent_latency_campaign": {
+    "observed_run": 40642822701,
+    "observed_in_progress_at_utc": "2026-10-28T06:16:08+00:00",
+    "duplicated_or_stopped": false,
+    "not_a_scoring_run": true
+  }
 }
