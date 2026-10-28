@@ -1,0 +1,65 @@
+{
+  "status": "DATED_PRIMARY_EVIDENCE_PARTIAL_NOT_A_COMPLETE_SESSION_CALENDAR",
+  "checked_on_utc": "2026-10-28",
+  "timezone": "Europe/Moscow",
+  "apim_historical_session_filter_status": "Date/from/till/trade_session_date probes returned the current session; not used to describe the past",
+  "sources": [
+    {
+      "url": "https://www.moex.com/n49786",
+      "published": "2022-07-05",
+      "effective": "2022-07-12",
+      "facts": ["Weekday main continuous trading stated as 10:00-18:50", "Evening trading 19:05-23:50", "BR and GOLD are explicitly included in resumed evening instruments"]
+    },
+    {
+      "url": "https://www.moex.com/n51095",
+      "published": "2022-09-01",
+      "effective": "2022-09-12",
+      "facts": ["Futures morning session 09:00-10:00", "Formal main session 10:00-19:00", "Evening session 19:05-23:50"],
+      "limitation": "Formal session bounds do not prove uninterrupted execution during clearing"
+    },
+    {
+      "url": "https://www.moex.com/n70160",
+      "published": "2024-06-13",
+      "effective": "2024-06-13",
+      "facts": ["Opening auction 09:50-10:00; main session starts at 10:00 on that date"]
+    },
+    {
+      "url": "https://www.cbr.ru/press/PR/?file=638539087789554818SUP_MEAS.htm",
+      "published": "2024-06-13",
+      "effective": "2024-06-14",
+      "facts": ["Bank of Russia suspends sessions before 09:50 until the decision is rescinded"],
+      "attribution": "Press Service of the Bank of Russia"
+    },
+    {
+      "url": "https://www.moex.com/n76476",
+      "published": "2024-12-25",
+      "effective": "2025-01-27",
+      "facts": ["Futures auction 08:50-09:00", "Morning continuous session 09:00-10:00", "Main session starts at 10:00", "All main-session instruments admitted to the morning session"]
+    },
+    {
+      "url": "https://www.moex.com/n98363",
+      "published": "2026-03-13",
+      "effective": "2026-03-23",
+      "facts": ["Formal main session 10:00-19:00; evening 19:00-23:50", "Intraday clearing breaks removed; clearing moved to 23:50-00:30", "Evening assigned to the current trading day instead of the next", "Weekend sessions remain assigned to the following business trading day"]
+    },
+    {
+      "url": "https://www.moex.com/n101980",
+      "published": "2026-07-10",
+      "effective": "2026-07-14",
+      "facts": ["Weekday futures auction 06:50-07:00; morning continuous session 07:00-10:00", "Main session 10:00-19:00; evening 19:00-23:50"]
+    },
+    {
+      "url": "https://www.moex.com/n73111",
+      "effective": "2024-09-19",
+      "facts": ["Exceptional evening clearing extended to 19:20"],
+      "limitation": "Example of a dated exception; not a complete outage or special-session inventory"
+    }
+  ],
+  "remaining_work": [
+    "Join annual day exceptions with dated regimes and instrument eligibility",
+    "Verify each session/clearing exception required by a session-dependent test",
+    "Do not convert a missing source candle into proof of an official market closure",
+    "Do not equate calendar-date TradeStats sums with the live point-in-time VOLTODAY counter"
+  ],
+  "live_schedule_changed": false
+}
