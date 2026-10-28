@@ -1,0 +1,238 @@
+{
+  "checked_at_utc": "2026-10-28 05:12:23 UTC",
+  "read_only": true,
+  "live_code_pins_verified": {
+    "signal": "38e147112ad48c3959b4dff6838fbec88d66f576",
+    "controller": "dd216ba8ac19e9e52fa9c2b6a5b340ff591cb0dd",
+    "telegram": "c3052ddc140cdba232e08a192a50ccd8aa9416eb"
+  },
+  "reports": [
+    {
+      "job_id": 122576437945,
+      "level": "error",
+      "report": {
+        "checked_at_utc": "2026-10-28T01:29:31.186846+00:00",
+        "orders_enabled": false,
+        "supervisor": {
+          "status": "DISPATCHED",
+          "cycle_utc": "2026-10-28T01:00:00+00:00",
+          "previous_run_id": 40615299063,
+          "reason": "Missing/failed current H1 run; requested a fresh main run"
+        },
+        "paper": {
+          "status": "ERROR",
+          "source": "apim.moex.com",
+          "mode": "VIRTUAL_ONLY",
+          "orders_enabled": false,
+          "ledger_saved": true,
+          "receipt": {
+            "commit": "8d43aed41e5cfe0f37e951e49a3172811c560eaf",
+            "blob": "a4ecb4e84595f6a201af3f588869e99b40447755",
+            "branch": "paper-ledger"
+          },
+          "portfolios": {
+            "risk_1": {
+              "equity_rub": 100000,
+              "max_drawdown_pct": 0,
+              "open_positions": 0,
+              "closed_trades": 0,
+              "halted": null
+            },
+            "risk_2": {
+              "equity_rub": 100000,
+              "max_drawdown_pct": 0,
+              "open_positions": 0,
+              "closed_trades": 0,
+              "halted": null
+            }
+          },
+          "events": [],
+          "errors": [
+            "Newest H1 run failed; no substitution by an older success",
+            "Market relay could not verify current H1 data"
+          ],
+          "provenance": {
+            "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c"
+          },
+          "valuation": "Minute price increments at last published indicative FX; fees and fills modeled, exact clearing not reconstructed",
+          "market_delivery": {
+            "status": "DATA_ERRORS",
+            "errors": [
+              "Newest H1 run failed; an older success cannot replace it"
+            ],
+            "deliveries": [
+              {
+                "status": "ALREADY_SENT",
+                "key": "error:2026-10-28T04:SYSTEM"
+              }
+            ]
+          },
+          "replay_archive": {
+            "file": "control-evidence/replay/536699dbcf38709aafdd44044a903aec6ad6d6ede01c9a578b55bb1452ec18e3.json.gz",
+            "uncompressed_sha256": "536699dbcf38709aafdd44044a903aec6ad6d6ede01c9a578b55bb1452ec18e3",
+            "schema": 1,
+            "controller_run_id": "40615336816"
+          },
+          "week": {
+            "events": [],
+            "errors": [],
+            "status": "RUNNING",
+            "deliveries": [
+              {
+                "status": "ALREADY_SENT",
+                "key": "week:1d88347c8df1a0db74d49667:WEEK_STARTED::"
+              },
+              {
+                "status": "ALREADY_SENT",
+                "key": "week:1d88347c8df1a0db74d49667:summary:2026-10-28T04"
+              }
+            ],
+            "id": "1d88347c8df1a0db74d49667",
+            "started_at_utc": "2026-10-27T09:18:32.255656+00:00",
+            "ends_at_utc": "2026-11-03T09:18:32.255656+00:00",
+            "portfolios": {
+              "risk_1": {
+                "equity_rub": 100000,
+                "closed_trades": 0,
+                "open_positions": 0,
+                "max_drawdown_pct": 0
+              },
+              "risk_2": {
+                "equity_rub": 100000,
+                "closed_trades": 0,
+                "open_positions": 0,
+                "max_drawdown_pct": 0
+              }
+            }
+          }
+        },
+        "errors": [],
+        "status": "FAILED"
+      }
+    },
+    {
+      "job_id": 122629058936,
+      "level": "notice",
+      "report": {
+        "checked_at_utc": "2026-10-28T04:18:56.041727+00:00",
+        "orders_enabled": false,
+        "supervisor": {
+          "status": "OK",
+          "run_id": 40631543440,
+          "reason": "H1 run already completed for this publication cycle"
+        },
+        "paper": {
+          "status": "PASSED",
+          "source": "apim.moex.com",
+          "mode": "VIRTUAL_ONLY",
+          "orders_enabled": false,
+          "ledger_saved": true,
+          "receipt": {
+            "commit": "57abee20cde023c320d235cfe08885f7c6d40a6b",
+            "blob": "0e7a72f09397e33ffea61810fdb68fdc5c96d876",
+            "branch": "paper-ledger"
+          },
+          "portfolios": {
+            "risk_1": {
+              "equity_rub": 100000,
+              "max_drawdown_pct": 0,
+              "open_positions": 0,
+              "closed_trades": 0,
+              "halted": null
+            },
+            "risk_2": {
+              "equity_rub": 100000,
+              "max_drawdown_pct": 0,
+              "open_positions": 0,
+              "closed_trades": 0,
+              "halted": null
+            }
+          },
+          "events": [],
+          "errors": [],
+          "provenance": {
+            "run_id": 40631543440,
+            "attempt": 1,
+            "head_sha": "f6c1424aac8c14c1a735c35baafd3446d194bc6c",
+            "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+            "artifact_sha256": "5baf1feabe2cab0b6e7a8273141cea41ef1ab2c63c5aa57d704cfade8bde0056",
+            "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40631543440",
+            "controller_commit": "f6c1424aac8c14c1a735c35baafd3446d194bc6c"
+          },
+          "valuation": "Minute price increments at last published indicative FX; fees and fills modeled, exact clearing not reconstructed",
+          "market_delivery": {
+            "status": "CHECKED",
+            "source": {
+              "run_id": 40631543440,
+              "attempt": 1,
+              "head_sha": "f6c1424aac8c14c1a735c35baafd3446d194bc6c",
+              "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+              "artifact_sha256": "5baf1feabe2cab0b6e7a8273141cea41ef1ab2c63c5aa57d704cfade8bde0056",
+              "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40631543440"
+            },
+            "deliveries": [
+              {
+                "status": "ALREADY_SENT",
+                "key": "summary:2026-10-28T06:00:00"
+              }
+            ],
+            "assets": {
+              "BR": {
+                "status": "NO_SIGNAL",
+                "contract": "BRZ6",
+                "last_h1_msk": "2026-10-28T06:00:00"
+              },
+              "GOLD": {
+                "status": "NO_SIGNAL",
+                "contract": "GDZ6",
+                "last_h1_msk": "2026-10-28T06:00:00"
+              }
+            },
+            "replay_errors": []
+          },
+          "replay_archive": {
+            "file": "control-evidence/replay/92911a1554fe028c8b41ad432ddfe4b901c77b58509494e9490cb6fd1dce3f34.json.gz",
+            "uncompressed_sha256": "92911a1554fe028c8b41ad432ddfe4b901c77b58509494e9490cb6fd1dce3f34",
+            "schema": 1,
+            "controller_run_id": "40630927125"
+          },
+          "week": {
+            "events": [],
+            "errors": [],
+            "status": "RUNNING",
+            "deliveries": [
+              {
+                "status": "ALREADY_SENT",
+                "key": "week:1d88347c8df1a0db74d49667:WEEK_STARTED::"
+              },
+              {
+                "status": "ALREADY_SENT",
+                "key": "week:1d88347c8df1a0db74d49667:summary:2026-10-28T07"
+              }
+            ],
+            "id": "1d88347c8df1a0db74d49667",
+            "started_at_utc": "2026-10-27T09:18:32.255656+00:00",
+            "ends_at_utc": "2026-11-03T09:18:32.255656+00:00",
+            "portfolios": {
+              "risk_1": {
+                "equity_rub": 100000,
+                "closed_trades": 0,
+                "open_positions": 0,
+                "max_drawdown_pct": 0
+              },
+              "risk_2": {
+                "equity_rub": 100000,
+                "closed_trades": 0,
+                "open_positions": 0,
+                "max_drawdown_pct": 0
+              }
+            }
+          }
+        },
+        "errors": [],
+        "status": "PASSED"
+      }
+    }
+  ],
+  "interpretation": "Read-only sampled evidence: a failed current data check was retained as DATA_ERRORS, not treated as no signal; later controller check passed. Zero recorded virtual trades at that later observation is not evidence of strategy profitability or continuous market-data coverage. No Telegram message sent by research."
+}
