@@ -606,6 +606,12 @@
       "confirmed_at_msk": "2026-10-28T08:55:49.399076+03:00",
       "message_id": 70,
       "telegram_date": 1793166953
+    },
+    "week:1d88347c8df1a0db74d49667:summary:2026-10-28T09": {
+      "status": "INTENT",
+      "created_at_msk": "2026-10-28T09:06:24.114961+03:00",
+      "kind": "WEEK_SUMMARY",
+      "week_id": "1d88347c8df1a0db74d49667"
     }
   },
   "acceptance": {
