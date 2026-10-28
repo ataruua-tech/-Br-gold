@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-10-28 05:38:19 UTC",
+  "updated_at_utc": "2026-10-28 06:13:48 UTC",
   "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
-  "phase": "RUNNING_REGISTERED_SCENARIO_COMPARISON",
-  "last_completed_step": "All sixteen gaps restored; 238 complete records reconciled with normalized SHA256, OHLCV/volume/chronology checks; complete retained OBStats quality and monthly margin coverage quantified",
+  "phase": "AGREED_SCENARIO_COMPARISON_COMPLETE_NO_CANDIDATE",
+  "last_completed_step": "Six implementations evaluated over192 canonical execution cases;32 superseded S2 cases retained;224 total score cases and208 chronological S3 fits. Registered S2 intraday correction verified.15 unit guards and independent output/accounting checks passed.",
   "research_restarts_hourly": false,
   "chat_research_automation_paused": true,
   "chat_market_automation_paused": true,
@@ -12,12 +12,12 @@
   "original_data_run": 40494996964,
   "additional_inputs_run": 40529837847,
   "additional_inputs_status": "All required network repairs complete; exact replay lacks executable BBO/availability and historical economics/calendar precision. Candle and aggregate acquisition completion is not full model-input readiness.",
-  "current_main_commit": "36ad55ae2431c217da44baea4752078ccf0dcf60",
+  "current_main_commit": "09d01392b46a09374723d535ffbc69cedfe98829",
   "scenario_testing_allowed": true,
   "all_required_inputs_ready": false,
   "exact_agent_replay_ready": false,
   "profitability_confirmed": false,
-  "S1_S5_status": "Scenario implementations registered and12 causality/execution tests passed; full outcome evaluation running",
+  "S1_S5_status": "IMPLEMENTED_AND_SCENARIO_TESTED; no candidate passes predefined stability screen; S5 CMF replaces unimplemented Q spec; S2 corrected before separate32-case rescore",
   "prior_trials_total": "UNKNOWN",
   "max_drawdown_approved_by_user": null,
   "deployed_S0_20_percent_entry_halt": "Existing code fact only, not an approved user drawdown tolerance",
@@ -25,7 +25,7 @@
     "id": null,
     "start": null,
     "end": null,
-    "status": "NOT_STARTED",
+    "status": "NOT_STARTED_NO_QUALIFYING_CANDIDATE",
     "allowed_after": [
       "data sufficiency reviewed",
       "candidate/version frozen",
@@ -37,9 +37,9 @@
     "end_utc": "2026-11-03T09:18:32.255656+00:00",
     "do_not_reset": true
   },
-  "next_step": "Complete192 registered price-scenario cells; assess robustness and economic gates. Do not turn netR into unconfirmed RUB returns or modify live bot/week.",
+  "next_step": "No new candidate or pilot is authorized by these results. Preserve ongoing old experiment and source-latency campaign; any further model change is a separately registered study, not an automatic continuation of parameter search.",
   "blocking_issues_are_not_final": true,
-  "completed_research": false,
+  "completed_research": true,
   "specification": "research/PROJECT_SPEC_RU.txt",
   "data_audit_run": 40549452734,
   "data_audit_source_commit": "ba92dec0fb3172e7380160f192b9d147cd48db01",
@@ -117,7 +117,9 @@
     "telegram_blob": "c3052ddc140cdba232e08a192a50ccd8aa9416eb",
     "previous_week_id": "1d88347c8df1a0db74d49667",
     "sampled_run": 40630927125,
-    "changed": false
+    "changed": false,
+    "verified_at_utc": "2026-10-28 06:13:48 UTC",
+    "main_tree": "09d01392b46a09374723d535ffbc69cedfe98829"
   },
   "registered_scenario_protocol": {
     "path": "research/scenario-study-v2/protocol.json",
@@ -127,6 +129,23 @@
     "cells": 192,
     "user_approved": true
   },
-  "active_local_run_id": "scenario-v2-run001",
-  "registered_implementation_commit": "e1cdf71c39aea4be489d375914a7581d2040751a"
+  "active_local_run_id": null,
+  "registered_implementation_commit": "e1cdf71c39aea4be489d375914a7581d2040751a",
+  "completion_scope": "User-approved retrospective price-scenario comparison with explicit monetary data limits; not a complete financial validation or a completed new online week",
+  "financial_return_proof_complete": false,
+  "overall_new_live_system_ready": false,
+  "scenario_results": {
+    "path": "research/scenario-study-v2/final-results.json",
+    "sha256": "8c2b5bba141d937eb4abb31d416b1d8757e0792726bfaead5577784e4112c93c",
+    "table": "research/scenario-study-v2/COMPARISON_S0_S5.csv",
+    "report": "research/scenario-study-v2/FINAL_REPORT_RU.txt",
+    "canonical_cases": 192,
+    "actual_scored_cases": 224,
+    "training_fits": 208,
+    "selected_candidate": null,
+    "optimization": "NOT_RUN_NO_QUALIFYING_CANDIDATE",
+    "monetary_status": "BLOCKED_DATA",
+    "test_guards_passed": 15
+  },
+  "hourly_research_task_enabled": false
 }
