@@ -30,6 +30,18 @@ class Client:
 
 
 class ResumeTests(unittest.TestCase):
+    def test_verified_empty_cached_scope_is_not_a_missing_cache(self):
+        empty = b'[]'
+        file = {'file': 'empty.gz', 'uncompressed_sha256': hashlib.sha256(empty).hexdigest(), 'rows': 0}
+        manifest = {'records': [{'contract': 'BRZ6', 'metric': 'tradestats', 'status': 'SOURCE_EMPTY', 'first': '2026-10-25', 'end_exclusive': '2026-10-26', 'file': file}]}
+        buffer = io.BytesIO()
+        with zipfile.ZipFile(buffer, 'w') as z:
+            z.writestr('manifest.json', json.dumps(manifest))
+            z.writestr('empty.gz', gzip.compress(empty))
+        with zipfile.ZipFile(buffer) as z:
+            values = resume.old_cached_values({'panels2026': z}, {'contract': 'BRZ6', 'metric': 'tradestats', 'cached_query_spans_reused': [['2026-10-25', '2026-10-26']]})
+            self.assertEqual(values, [])
+
     def test_complete_retained_query_needs_no_market_request(self):
         c = Client([])
         self.assertEqual(resume.resume_pages(c, '/iss/x', 'data', {}, [{'x': 1}], True, None), [{'x': 1}])
