@@ -50,6 +50,21 @@ jobs:
           PYTHONPATH: research
           PYTHONUNBUFFERED: '1'
         run: python research/run_scenarios_v2.py --run-id "$RESEARCH_REPRO_RUN_ID"
+      - name: Reproduce registered ORB session correction separately
+        env:
+          PYTHONPATH: research
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          from datetime import datetime,timezone
+          from freeze_six_strategy_study import add_trial
+          import correct_s2_session_v21 as correction
+          correction.RUN='reproduce-s2-'+os.environ['GITHUB_RUN_ID']+'-'+os.environ['GITHUB_RUN_ATTEMPT']
+          add_trial(Path('research/six-strategy-v1/trial-ledger.jsonl'),{'trial_id':correction.RUN,'registered_at_utc':datetime.now(timezone.utc).isoformat(),'status':'CORRECTION_REPRODUCTION_REGISTERED_BEFORE_SCORING','selection_on_final_test':False,'results_inspected':False,'implementation_sha256':correction.correction_sources(),'same_registered_specification':True})
+          correction.run()
+          PY
       - name: Preserve results and local append-only reproduction ledger
         if: always()
         uses: actions/upload-artifact@v4
