@@ -1,0 +1,28 @@
+ВОСПРОИЗВЕДЕНИЕ BR/GOLD S0–S5
+
+Готовые результаты уже сохранены. Не запускать второй процесс, пока первый выполняется. Для проверки имеющегося результата без новых бэктестов:
+
+  PYTHONPATH=research python -c "from finalize_scenario_study_v2 import verify; p,b,c,cells,trades,curves,checks=verify(); print(len(cells),checks)"
+
+Контрольные тесты (15причинности/исполнения и4расчёта количества):
+
+  PYTHONPATH=research python -m unittest research/test_scenario_study_v2.py research/test_position_sizing_v2.py -v
+
+Для независимого воспроизведения предусмотрен ручной workflow:
+https://github.com/ataruua-tech/-Br-gold/actions/workflows/algopack-research-reproduce-scenarios.yml
+Он получает четыре исходных архива по закреплённым GitHubSHA256, регистрирует отдельный reproductionID до расчёта, запускает базовые192случая и отдельные32исправленныхS2. Доступ к MOEX, Telegram и брокеру в этом workflow не используется. Автоматически он сейчас не запущен и не является часовым заданием.
+
+Команда базового расчёта внутри рабочего checkout:
+
+  PYTHONPATH=research python research/run_scenarios_v2.py --run-id <заранее_зарегистрированный_ID_с_текущими_SHA256_исходников>
+
+Перед ней текущие хеши трёх исполняемых модулей должны быть добавлены в append-only trial-ledger.jsonl, как в шаге Register this reproduction before scoring указанного workflow. Не подменять запись scenario-v2-run001 и не повторять уже завершённый ID.
+Исходный run001 соответствует коммитуe1cdf71c39aea4be489d375914a7581d2040751a; точный старый engine также сохранён в original-run001-engine.py. ИтоговыйS2 использует отдельно зарегистрированную поправку session-correction-v21.json.
+
+Параметры: protocol.json, шесть*-passport.json, session-correction-v21.json.
+Итоговые192случая: all-cells-final.json/ALL_192_SCENARIOS.csv.
+Устаревшие32S2: superseded-S2-v2.json — сохранены, но не входят в итоговую таблицу.
+Основной журнал: VIRTUAL_SCENARIO_TRADES.csv и final-primary-trades.json.
+Обучающие коэффициенты/границы: S3-training-fits.jsonl.
+Реестр входов: data-register-v2.json. Хеши и результаты проверки: verification.json и manifest пакета.
+Файлы сырых рыночных архивов не входят в малый пакет исходников; их идентификаторы и SHA256 сохранены. Никакие публичные ISS-загрузки для воспроизведения не используются.
