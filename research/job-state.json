@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-10-27T17:50:35.420988+00:00",
+  "updated_at_utc": "2026-10-28 04:58:50 UTC",
   "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
-  "phase": "FULL_UNIVERSE_DATA_ACQUISITION",
-  "last_completed_step": "Original four M1/H1/FX archives verified; three empty padding windows corroborated by official closure notices",
+  "phase": "RESUMING_SIXTEEN_RECORDS",
+  "last_completed_step": "Full-universe archive verified by execution logs: 222 complete records retained, 16 failed network scopes isolated; narrow resumer and five meaningful tests published",
   "research_restarts_hourly": false,
   "chat_research_automation_paused": true,
   "chat_market_automation_paused": true,
@@ -11,7 +11,7 @@
   "online_shared_lock": "br-gold-telegram-v1; existing ledger/notification serialization preserved",
   "original_data_run": 40494996964,
   "additional_inputs_run": 40529837847,
-  "additional_inputs_status": "Four yearly panel jobs failed; all five archives retained; exact errors pending verified archive inspection",
+  "additional_inputs_status": "All source archives inspected; seven original failed ranges repaired and nineteen panels recovered. Full-universe expansion has 222 complete and 16 pending records.",
   "current_main_commit": "36ad55ae2431c217da44baea4752078ccf0dcf60",
   "scenario_testing_allowed": false,
   "all_required_inputs_ready": false,
@@ -37,11 +37,11 @@
     "end_utc": "2026-11-03T09:18:32.255656+00:00",
     "do_not_reset": true
   },
-  "next_step": "Wait for full listed-contract volume/H1 collection; verify every output/hash, assess remaining BBO/margin/calendar/fee gaps, and prepare finite sufficiency report before strategy implementation",
+  "next_step": "Verify sixteen-record resume; finish data sufficiency register and disclose exact replay gaps before any comparison; retain all live processes unchanged",
   "blocking_issues_are_not_final": true,
   "completed_research": false,
   "specification": "research/PROJECT_SPEC_RU.txt",
-  "data_audit_run": 40547871967,
+  "data_audit_run": 40549452734,
   "data_audit_source_commit": "ba92dec0fb3172e7380160f192b9d147cd48db01",
   "confirmed_errors": {
     "seven_2023_network_windows": "REPAIRED by run40551048097;61requests;10000prefixrowsreused",
@@ -75,9 +75,19 @@
     "Full eligible-contract volume history not yet assembled",
     "Historical fees and pre-2024 margin coverage not established"
   ],
-  "active_research_run_id": 40553751489,
-  "active_workflow": ".github/workflows/algopack-research-full-universe.yml",
-  "active_source_commit": "9ef9e42933f2638d7e277d7f69dd8c9c2fc24d72",
+  "active_research_run_id": 40635293134,
+  "active_workflow": ".github/workflows/algopack-research-resume-sixteen.yml",
+  "active_source_commit": "0eaec23b19c93cadcb16e311cbd4acc89c677b6d",
   "source_and_tests_published": true,
-  "financial_engine_sha256": "ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932"
+  "financial_engine_sha256": "ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932",
+  "full_universe_checkpoint": {
+    "run_id": 40554978750,
+    "artifact_id": 12762953714,
+    "sha256": "24a2b93e33672546f35b154ab903eb47907439edb896a8bfbc0ec8c98e3104e9",
+    "complete": 222,
+    "incomplete": 16,
+    "requests": 1174,
+    "status": "PARTIAL_ERROR_NOT_COMPLETE",
+    "resume_rule": "Only sixteen incomplete records, verified saved prefixes and original cached observations"
+  }
 }
