@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-10-28 05:20:50 UTC",
+  "updated_at_utc": "2026-10-28 05:38:19 UTC",
   "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
-  "phase": "SCENARIO_PROTOCOL_REGISTRATION",
+  "phase": "RUNNING_REGISTERED_SCENARIO_COMPARISON",
   "last_completed_step": "All sixteen gaps restored; 238 complete records reconciled with normalized SHA256, OHLCV/volume/chronology checks; complete retained OBStats quality and monthly margin coverage quantified",
   "research_restarts_hourly": false,
   "chat_research_automation_paused": true,
@@ -17,7 +17,7 @@
   "all_required_inputs_ready": false,
   "exact_agent_replay_ready": false,
   "profitability_confirmed": false,
-  "S1_S5_status": "Existing provisional specifications require review and primary sources before approval/implementation",
+  "S1_S5_status": "Scenario implementations registered and12 causality/execution tests passed; full outcome evaluation running",
   "prior_trials_total": "UNKNOWN",
   "max_drawdown_approved_by_user": null,
   "deployed_S0_20_percent_entry_halt": "Existing code fact only, not an approved user drawdown tolerance",
@@ -37,7 +37,7 @@
     "end_utc": "2026-11-03T09:18:32.255656+00:00",
     "do_not_reset": true
   },
-  "next_step": "Commit precise six-family passports, execution scenarios and search ledger before any outcome calculation; implement/test causality and compare chronological folds",
+  "next_step": "Complete192 registered price-scenario cells; assess robustness and economic gates. Do not turn netR into unconfirmed RUB returns or modify live bot/week.",
   "blocking_issues_are_not_final": true,
   "completed_research": false,
   "specification": "research/PROJECT_SPEC_RU.txt",
@@ -118,5 +118,15 @@
     "previous_week_id": "1d88347c8df1a0db74d49667",
     "sampled_run": 40630927125,
     "changed": false
-  }
+  },
+  "registered_scenario_protocol": {
+    "path": "research/scenario-study-v2/protocol.json",
+    "sha256": "c53b28df16ba5c978cecf1d85252d66ea5fbca3eac4e1df78cfc305b258c3fc8",
+    "families": 6,
+    "execution_scenarios": 32,
+    "cells": 192,
+    "user_approved": true
+  },
+  "active_local_run_id": "scenario-v2-run001",
+  "registered_implementation_commit": "e1cdf71c39aea4be489d375914a7581d2040751a"
 }
