@@ -80,6 +80,24 @@ class ScenarioTests(unittest.TestCase):
         trade,error=execution_trade(d,s,SCENARIO,f)
         self.assertIsNone(trade);self.assertEqual(error,'UNRESOLVED_EXIT_COVERAGE')
 
+    def test_orb_correction_exits_before_clearing_and_cannot_hold_overnight(self):
+        d,s,f=fixture();s['strategy']='S2'
+        s['session_exit_deadline']=d.m1_times[0]+10
+        trade,error=execution_trade(d,s,SCENARIO,f)
+        self.assertIsNone(error)
+        self.assertEqual(trade['exit_time'],s['session_exit_deadline'])
+        d.m1=d.m1[:2];d.m1_times=d.m1_times[:2];d.m1_times[1]+=1440
+        trade,error=execution_trade(d,s,SCENARIO,f)
+        self.assertIsNone(trade)
+        self.assertEqual(error,'UNRESOLVED_INTRADAY_SESSION_EXIT')
+
+    def test_orb_entry_after_predeclared_close_is_cancelled(self):
+        d,s,f=fixture();s['strategy']='S2'
+        s['session_exit_deadline']=d.m1_times[0]
+        trade,error=execution_trade(d,s,SCENARIO,f)
+        self.assertIsNone(trade)
+        self.assertEqual(error,'SIGNAL_ALREADY_CANCELLED_AT_DEADLINE')
+
     def test_training_label_clock_and_cutoff(self):
         d,s,f=fixture();row=SimpleNamespace(t=s['signal_begin'])
         d.m1[60,0]=101
