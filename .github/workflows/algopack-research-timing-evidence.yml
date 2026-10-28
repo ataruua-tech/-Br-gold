@@ -1,0 +1,89 @@
+name: AlgoPack Research Timing Evidence
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/algopack-research-timing-evidence.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Verify existing archived timing observations
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64,hashlib,io,json,os,urllib.error,urllib.parse,urllib.request,zipfile
+          from pathlib import Path
+
+          def emit_record(value, key):
+              """GitHub annotations truncate messages at 4096 bytes; send bounded parts."""
+              raw = json.dumps(value, ensure_ascii=False, allow_nan=False, separators=(',', ':')).encode()
+              encoded = base64.b64encode(raw).decode()
+              parts = [encoded[i:i + 2400] for i in range(0, len(encoded), 2400)]
+              for index, part in enumerate(parts):
+                  message = {'type': 'RESEARCH_REPORT_PART', 'key': key, 'index': index, 'parts': len(parts), 'base64': part}
+                  print('::notice::' + json.dumps(message, separators=(',', ':')), flush=True)
+
+          class NoAuthRedirect(urllib.request.HTTPRedirectHandler):
+
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  return None
+
+          def github_get(path, archive=False):
+              if not path.startswith('/repos/ataruua-tech/-Br-gold/'):
+                  raise ValueError('Unexpected repository endpoint')
+              token = os.environ.get('GH_TOKEN', '')
+              if not token:
+                  raise ValueError('Missing ephemeral GitHub Actions token')
+              request = urllib.request.Request('https://api.github.com' + path, headers={'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'BR-GOLD-Research-Data-Audit'})
+              opener = urllib.request.build_opener(NoAuthRedirect())
+              try:
+                  with opener.open(request, timeout=30) as response:
+                      body = response.read(96 * 1024 * 1024 + 1)
+              except urllib.error.HTTPError as exc:
+                  if not archive or exc.code != 302:
+                      raise RuntimeError('GitHub HTTP ' + str(exc.code)) from None
+                  location = exc.headers.get('Location', '')
+                  parsed = urllib.parse.urlsplit(location)
+                  if parsed.scheme != 'https' or not (parsed.hostname or '').endswith(('.blob.core.windows.net', '.githubusercontent.com', '.actions.githubusercontent.com')):
+                      raise ValueError('Unapproved artifact redirect destination') from None
+                  with opener.open(urllib.request.Request(location), timeout=60) as response:
+                      body = response.read(96 * 1024 * 1024 + 1)
+              if len(body) > 96 * 1024 * 1024:
+                  raise ValueError('Archive exceeds bounded size')
+              return body if archive else json.loads(body)
+
+          TIMING_ARTIFACTS = [(40476601927, 12722438767, '9d39f83c32427e119439804b6320fc5d675869d62d684acda7f2f14a33ebd30a'), (40558750415, 12764821760, '8499c016dadff4ef0e25e6046cbe6e264195ba53c427b6f98650703a649b1ffd')]
+
+          def timing_main(directory=Path('timing-evidence')):
+              directory.mkdir(exist_ok=True)
+              result = {'mode': 'READ_ONLY_ARCHIVE_ANALYSIS', 'market_requests': 0, 'telegram_messages': 0, 'live_code_changed': False, 'reports': []}
+              for run_id, artifact_id, sha in TIMING_ARTIFACTS:
+                  raw = github_get('/repos/ataruua-tech/-Br-gold/actions/artifacts/' + str(artifact_id) + '/zip', archive=True)
+                  if hashlib.sha256(raw).hexdigest() != sha:
+                      raise ValueError('Timing ZIP digest mismatch')
+                  with zipfile.ZipFile(io.BytesIO(raw)) as z:
+                      if z.testzip() is not None:
+                          raise ValueError('Timing ZIP CRC mismatch')
+                      report = json.loads(z.read('latency-report.json'))
+                  if report.get('source') != 'apim.moex.com' or report.get('orders_enabled') is not False or report.get('production_buffer_changed') is not False:
+                      raise ValueError('Unexpected timing source or live change')
+                  item = {'run_id': run_id, 'artifact_id': artifact_id, 'sha256': sha, 'status': report['status'], 'clock_basis': report.get('clock_basis'), 'campaign_review': report.get('campaign_review'), 'windows': []}
+                  for window in report['windows']:
+                      item['windows'].append({'close_msk': window['target_close_msk'], 'analysis': window['analysis']})
+                  result['reports'].append(item)
+              (directory / 'timing-evidence.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+              emit_record({'type': 'VERIFIED_TIMING_EVIDENCE', **result}, 'timing-final')
+          timing_main()
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: research-timing-evidence-${{ github.run_id }}
+          path: timing-evidence/
+          retention-days: 90
