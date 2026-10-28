@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "updated_at_utc": "2026-10-28 05:07:42 UTC",
+  "updated_at_utc": "2026-10-28 05:13:19 UTC",
   "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
-  "phase": "DATA_SUFFICIENCY_ASSESSED",
+  "phase": "AWAITING_EXPLICIT_SCENARIO_BOUNDARIES",
   "last_completed_step": "All sixteen gaps restored; 238 complete records reconciled with normalized SHA256, OHLCV/volume/chronology checks; complete retained OBStats quality and monthly margin coverage quantified",
   "research_restarts_hourly": false,
   "chat_research_automation_paused": true,
@@ -37,7 +37,7 @@
     "end_utc": "2026-11-03T09:18:32.255656+00:00",
     "do_not_reset": true
   },
-  "next_step": "Publish concrete data register and agree explicit approximate-comparison boundaries; do not fit or score strategies as exact-agent replay",
+  "next_step": "Obtain user decision on published approximate boundaries; then register final six specifications/parameter budgets before implementation and comparison. Do not label approximate returns as the deployed agent.",
   "blocking_issues_are_not_final": true,
   "completed_research": false,
   "specification": "research/PROJECT_SPEC_RU.txt",
@@ -78,8 +78,8 @@
     "Dated official regular session regimes found; complete exception/availability calendar not verified"
   ],
   "active_research_run_id": null,
-  "active_workflow": ".github/workflows/algopack-research-resume-sixteen.yml",
-  "active_source_commit": "0eaec23b19c93cadcb16e311cbd4acc89c677b6d",
+  "active_workflow": null,
+  "active_source_commit": null,
   "source_and_tests_published": true,
   "financial_engine_sha256": "ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932",
   "full_universe_checkpoint": {
@@ -98,5 +98,23 @@
   "last_data_audit_artifact": {
     "id": 12793142563,
     "sha256": "70843676c50f5a379aeaa8f56a5b2e787e5008e89d144d39111d69db28f2a9f0"
+  },
+  "data_register": "research/six-strategy-v1/data-register-v2.json",
+  "data_sufficiency_report": "research/six-strategy-v1/DATA_SUFFICIENCY_RU.txt",
+  "primary_source_review": "research/six-strategy-v1/hypothesis-source-review-v2.json",
+  "scenario_scope_question": {
+    "pending": true,
+    "reason": "User specification requires disclosed assumptions and agreement before approximate tests; exact BBO/historical collateral/availability are not present",
+    "asked_via": "ChatGPT asynchronous question",
+    "exact_S0_status": "BLOCKED_DATA",
+    "profitability_scoring_started": false
+  },
+  "live_readonly_verification": {
+    "signal_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+    "controller_blob": "dd216ba8ac19e9e52fa9c2b6a5b340ff591cb0dd",
+    "telegram_blob": "c3052ddc140cdba232e08a192a50ccd8aa9416eb",
+    "previous_week_id": "1d88347c8df1a0db74d49667",
+    "sampled_run": 40630927125,
+    "changed": false
   }
 }
