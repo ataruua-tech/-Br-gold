@@ -19,6 +19,7 @@ RESUME_REFERENCES = {
     'universe': (12762953714, '24a2b93e33672546f35b154ab903eb47907439edb896a8bfbc0ec8c98e3104e9'),
     'panels2026': (12746864412, '6626bf3ce942d6ec588288b617f77d772667ae9fa2e888f523be601baeabd2cb'),
     'prices2026': (12735884135, 'b8344fbe990dd1ae069ceef3ae0709ca12375a7205a26f1360e3ba34b66b1ffb'),
+    'prior_resume': (12792924107, '36f2728b9b35f2e77b8782d6de66c1b5e77e0c9e892a0656738bcf49916b5da3'),
 }
 
 
@@ -153,9 +154,26 @@ def old_cached_values(zips, row):
             file = next(f for f in item['files'] if '-H1.' in f['file'])
         values.extend(cached_payload(z, file))
         spans.append((item['first'], item['end_exclusive']))
-    if row['cached_query_spans_reused'] and not values:
+    if row['cached_query_spans_reused'] and not spans:
         raise ValueError('Required original cached values were not found')
     return values
+
+
+def prior_completed(z, failed):
+    manifest = json.loads(z.read('manifest.json'))
+    allowed = {(r['year'], r['contract'], r['metric']) for r in failed}
+    result = {}
+    for row in manifest['repairs']:
+        key = (row['year'], row['contract'], row['metric'])
+        if key not in allowed or key in result:
+            raise ValueError('Prior resume record outside the remaining scope or duplicated')
+        if row['status'] == 'COMPLETE_QUERY_SPANS':
+            values = cached_payload(z, row['file'])
+            checked = merge_rows(values, row['metric'], {'secid': row['contract'], 'asset': row['asset']}, date.fromisoformat(row['first']), date.fromisoformat(row['end_exclusive']))
+            if len(checked) != len(values) or len(values) != row['rows']:
+                raise ValueError('Prior completed resume record is inconsistent')
+            result[key] = (row, values)
+    return result
 
 
 def resume_main(directory=Path('universe-resume-evidence')):
@@ -176,10 +194,21 @@ def resume_main(directory=Path('universe-resume-evidence')):
         report['catalogue_contracts'] = source_manifest['catalogue_contracts']
         catalogue = json.loads(gzip.decompress(z.read('full-contract-catalogue.json.gz')))
         by_code = {c['secid']: c for c in catalogue}
+        prior = prior_completed(zips['prior_resume'], failed)
+        report['previously_restored_records_reused_without_market_requests'] = len(prior)
         consecutive_failures = 0
         for source_row in failed:
             row = {k: source_row[k] for k in ('year', 'contract', 'asset', 'metric', 'first', 'end_exclusive', 'new_query_spans', 'cached_query_spans_reused')}
             try:
+                key = (row['year'], row['contract'], row['metric'])
+                if key in prior:
+                    original, values = prior[key]
+                    row.update(original)
+                    row['file'] = client.save(str(row['year']) + '-' + row['contract'] + '-' + row['metric'] + '.json.gz', values)
+                    row['previously_restored_record_reused'] = True
+                    report['repairs'].append(row)
+                    emit_record({'type': 'UNIVERSE_RESUMED_RECORD', 'record': row}, 'resume-' + row['contract'] + '-' + row['metric'])
+                    continue
                 values = old_cached_values(zips, row)
                 row['original_rows_reused'] = len(values)
                 row['raw_prefix_rows_reused'] = 0
