@@ -1,19 +1,9 @@
 # Read-only diagnostic. Existing H1/control workflows remain unchanged.
 name: AlgoPack Latency Probe
 
+# Paused at the owner's request on 2026-10-28. Preserve code and results.
 on:
-  schedule:
-    - cron: '42 5,9,13,17 * * *'
-  push:
-    branches: [main]
-    paths: ['.github/workflows/algopack-latency.yml']
   workflow_dispatch:
-    inputs:
-      windows:
-        description: 'Number of consecutive hourly boundaries to observe'
-        type: choice
-        default: '1'
-        options: ['1', '2', '3']
 
 permissions:
   contents: read
@@ -25,7 +15,7 @@ concurrency:
 
 jobs:
   latency:
-    if: github.repository == 'ataruua-tech/-Br-gold'
+    if: ${{ false }} # Owner-requested pause.
     runs-on: ubuntu-latest
     timeout-minutes: 220
     steps:
