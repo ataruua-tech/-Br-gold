@@ -1,23 +1,9 @@
 # No order APIs. Original H1/control and the 18-minute buffer stay unchanged.
 name: AlgoPack Telegram BR-GOLD
 
+# Paused at the owner's request on 2026-10-28. Preserve code and results.
 on:
-  schedule:
-    - cron: '50 * * * *'
-  push:
-    branches: [main]
-    paths: ['.github/workflows/algopack-telegram.yml']
   workflow_dispatch:
-    inputs:
-      mode:
-        description: 'setup pairs the chat; test verifies delivery; notify sends newest H1 signals and summary'
-        type: choice
-        default: 'test'
-        options: ['setup', 'test', 'notify']
-  workflow_run:
-    workflows: ['AlgoPack H1 BR-GOLD']
-    types: [completed]
-    branches: [main]
 
 permissions:
   contents: write
@@ -29,7 +15,7 @@ concurrency:
 
 jobs:
   telegram:
-    if: github.repository == 'ataruua-tech/-Br-gold' && (github.event_name != 'workflow_run' || github.event.workflow_run.head_repository.full_name == github.repository)
+    if: ${{ false }} # Owner-requested pause; no notifications or pairing.
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
