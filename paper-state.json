@@ -1158,6 +1158,19 @@
         "controller_commit": "9fd38f9d1f765acd85e7f81600e2130a7095e14e"
       },
       "statuses": {}
+    },
+    {
+      "time": "2026-10-28T10:18:36.737127",
+      "provenance": {
+        "run_id": 40649177890,
+        "attempt": 1,
+        "head_sha": "b4e6736d85d005e04df15e77d7e0001e7775f804",
+        "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+        "artifact_sha256": "34df9a0cb782885af6b0efed16409d62d174ffaccf582a0ef1776b2161dced6b",
+        "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40649177890",
+        "controller_commit": "b4e6736d85d005e04df15e77d7e0001e7775f804"
+      },
+      "statuses": {}
     }
   ],
   "errors": [
@@ -1486,7 +1499,7 @@
       "message": "Newest H1 run failed; no substitution by an older success"
     }
   ],
-  "updated_at_msk": "2026-10-28T09:06:20.642476",
+  "updated_at_msk": "2026-10-28T10:18:36.737127",
   "weekly_pilot": {
     "schema": 1,
     "status": "RUNNING",
@@ -2240,10 +2253,28 @@
             "BR": "NO_SIGNAL",
             "GOLD": "NO_SIGNAL"
           }
+        },
+        {
+          "time": "2026-10-28T10:18:37.405074",
+          "provenance": {
+            "run_id": 40649177890,
+            "attempt": 1,
+            "head_sha": "b4e6736d85d005e04df15e77d7e0001e7775f804",
+            "workflow_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
+            "artifact_sha256": "34df9a0cb782885af6b0efed16409d62d174ffaccf582a0ef1776b2161dced6b",
+            "run_url": "https://github.com/ataruua-tech/-Br-gold/actions/runs/40649177890",
+            "controller_commit": "b4e6736d85d005e04df15e77d7e0001e7775f804",
+            "weekly_experiment": "1d88347c8df1a0db74d49667",
+            "observed_at_msk": "2026-10-28T10:18:37.405074"
+          },
+          "statuses": {
+            "BR": "NO_SIGNAL",
+            "GOLD": "NO_SIGNAL"
+          }
         }
       ],
       "errors": [],
-      "updated_at_msk": "2026-10-28T09:06:21.072286"
+      "updated_at_msk": "2026-10-28T10:18:37.405074"
     },
     "notification_events": [
       {
@@ -2254,10 +2285,10 @@
       }
     ],
     "quality": {
-      "checks": 46,
-      "both_assets_fresh": 31,
-      "last_check_utc": "2026-10-28T06:06:21.072286+00:00",
-      "maximum_check_gap_seconds": 3791.730342,
+      "checks": 47,
+      "both_assets_fresh": 32,
+      "last_check_utc": "2026-10-28T07:18:37.405074+00:00",
+      "maximum_check_gap_seconds": 4336.332788,
       "h1_keys": [
         "BRZ6:2026-10-27T11:00:00",
         "GDZ6:2026-10-27T11:00:00",
@@ -2286,7 +2317,9 @@
         "BRZ6:2026-10-28T06:00:00",
         "GDZ6:2026-10-28T06:00:00",
         "BRZ6:2026-10-28T07:00:00",
-        "GDZ6:2026-10-28T07:00:00"
+        "GDZ6:2026-10-28T07:00:00",
+        "BRZ6:2026-10-28T09:00:00",
+        "GDZ6:2026-10-28T09:00:00"
       ]
     }
   }
