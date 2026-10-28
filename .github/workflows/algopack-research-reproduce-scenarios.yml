@@ -1,0 +1,61 @@
+name: AlgoPack Research Reproduce Price Scenarios
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: algopack-research-reproduce-scenarios
+  cancel-in-progress: false
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install declared numerical dependencies
+        run: python -m pip install numpy==2.3.5 pandas==2.2.3
+      - name: Restore only verified archived candles
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PYTHONPATH: research
+        run: python research/restore_scenario_archives_v2.py
+      - name: Verify causality and execution guards
+        env:
+          PYTHONPATH: research
+        run: python -m unittest research/test_scenario_study_v2.py -v
+      - name: Register this reproduction before scoring
+        env:
+          PYTHONPATH: research
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          from datetime import datetime,timezone
+          from freeze_six_strategy_study import add_trial
+          from run_scenarios_v2 import implementation_hashes
+          run_id='reproduce-'+os.environ['GITHUB_RUN_ID']+'-'+os.environ['GITHUB_RUN_ATTEMPT']
+          record=add_trial(Path('research/six-strategy-v1/trial-ledger.jsonl'),{'trial_id':run_id,'registered_at_utc':datetime.now(timezone.utc).isoformat(),'status':'REPRODUCTION_REGISTERED_BEFORE_SCORING','selection_on_final_test':False,'results_inspected':False,'implementation_sha256':implementation_hashes(),'same_registered_protocol':True,'additional_market_requests':0})
+          print(json.dumps(record))
+          with open(os.environ['GITHUB_ENV'],'a') as stream:stream.write('RESEARCH_REPRO_RUN_ID='+run_id+'\n')
+          PY
+      - name: Reproduce finite disclosed price scenarios
+        env:
+          PYTHONPATH: research
+          PYTHONUNBUFFERED: '1'
+        run: python research/run_scenarios_v2.py --run-id "$RESEARCH_REPRO_RUN_ID"
+      - name: Preserve results and local append-only reproduction ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: price-scenario-reproduction-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            research/scenario-study-v2/results/
+            research/six-strategy-v1/trial-ledger.jsonl
+          retention-days: 90
