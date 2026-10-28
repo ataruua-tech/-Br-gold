@@ -1,0 +1,207 @@
+{
+  "type": "VERIFIED_TIMING_EVIDENCE",
+  "mode": "READ_ONLY_ARCHIVE_ANALYSIS",
+  "market_requests": 0,
+  "telegram_messages": 0,
+  "live_code_changed": false,
+  "reports": [
+    {
+      "run_id": 40476601927,
+      "artifact_id": 12722438767,
+      "sha256": "9d39f83c32427e119439804b6320fc5d675869d62d684acda7f2f14a33ebd30a",
+      "status": "MEASURED",
+      "clock_basis": "Runner wall clock in UTC converted to Europe/Moscow; clock offset not independently calibrated",
+      "campaign_review": {
+        "status": "COLLECTING",
+        "assets": {
+          "BR": {
+            "complete_windows": 1,
+            "distinct_dates": 1,
+            "maximum_observed_stable_seconds": 60.834439,
+            "candidate_minutes": 4
+          },
+          "GOLD": {
+            "complete_windows": 1,
+            "distinct_dates": 1,
+            "maximum_observed_stable_seconds": 62.584129,
+            "candidate_minutes": 4
+          }
+        },
+        "excluded_windows_or_reports": 0,
+        "minimum_complete_windows_per_asset": 12,
+        "minimum_distinct_dates_per_asset": 3,
+        "candidate_buffer_minutes": null,
+        "production_buffer_minutes": 18,
+        "buffer_change_authorized": false,
+        "note": "Operational sample minimum, not a confidence guarantee. Stability is relative to the last observed +30-minute reference; later revisions remain possible.",
+        "history_errors": []
+      },
+      "windows": [
+        {
+          "close_msk": "2026-10-27T12:00:00+03:00",
+          "analysis": {
+            "BR": {
+              "status": "MEASURED",
+              "has_preclose_baseline": true,
+              "left_censored": false,
+              "samples_total": 33,
+              "postclose_samples": 31,
+              "poll_seconds": 60,
+              "first_seen_after_close_seconds": 1.050171,
+              "earliest_observed_stable_suffix_seconds": 60.834439,
+              "postclose_revisions": 1,
+              "reference_observed_at_msk": "2026-10-27T12:30:00.799702+03:00",
+              "errors": 0,
+              "buffer_change_authorized": false,
+              "finality_guaranteed": false,
+              "quote_observations": 33,
+              "quotes_within_90_seconds": 33,
+              "all_observed_quote_system_timestamps_current": true,
+              "maximum_observed_quote_system_age_seconds": 2.264877,
+              "maximum_observation_gap_seconds": 61.246364,
+              "cadence_complete": true,
+              "reference_ohlcv": {
+                "begin": "2026-10-27T11:00:00+03:00",
+                "end_raw": "2026-10-27 11:59:59",
+                "open": 111.32,
+                "high": 111.9,
+                "low": 111.15,
+                "close": 111.43,
+                "volume": 15781
+              }
+            },
+            "GOLD": {
+              "status": "MEASURED",
+              "has_preclose_baseline": true,
+              "left_censored": false,
+              "samples_total": 33,
+              "postclose_samples": 31,
+              "poll_seconds": 60,
+              "first_seen_after_close_seconds": 3.08109,
+              "earliest_observed_stable_suffix_seconds": 62.584129,
+              "postclose_revisions": 1,
+              "reference_observed_at_msk": "2026-10-27T12:30:02.751618+03:00",
+              "errors": 0,
+              "buffer_change_authorized": false,
+              "finality_guaranteed": false,
+              "quote_observations": 33,
+              "quotes_within_90_seconds": 33,
+              "all_observed_quote_system_timestamps_current": true,
+              "maximum_observed_quote_system_age_seconds": 3.954162,
+              "maximum_observation_gap_seconds": 62.098836,
+              "cadence_complete": true,
+              "reference_ohlcv": {
+                "begin": "2026-10-27T11:00:00+03:00",
+                "end_raw": "2026-10-27 11:59:59",
+                "open": 4042,
+                "high": 4045.7,
+                "low": 4035.2,
+                "close": 4041.2,
+                "volume": 11177
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "run_id": 40558750415,
+      "artifact_id": 12764821760,
+      "sha256": "8499c016dadff4ef0e25e6046cbe6e264195ba53c427b6f98650703a649b1ffd",
+      "status": "MEASURED",
+      "clock_basis": "Runner wall clock in UTC converted to Europe/Moscow; clock offset not independently calibrated",
+      "campaign_review": {
+        "status": "COLLECTING",
+        "assets": {
+          "BR": {
+            "complete_windows": 3,
+            "distinct_dates": 1,
+            "maximum_observed_stable_seconds": 61.541678,
+            "candidate_minutes": 4
+          },
+          "GOLD": {
+            "complete_windows": 3,
+            "distinct_dates": 1,
+            "maximum_observed_stable_seconds": 62.584129,
+            "candidate_minutes": 4
+          }
+        },
+        "excluded_windows_or_reports": 2,
+        "minimum_complete_windows_per_asset": 12,
+        "minimum_distinct_dates_per_asset": 3,
+        "candidate_buffer_minutes": null,
+        "production_buffer_minutes": 18,
+        "buffer_change_authorized": false,
+        "note": "Operational sample minimum, not a confidence guarantee. Stability is relative to the last observed +30-minute reference; later revisions remain possible.",
+        "history_errors": []
+      },
+      "windows": [
+        {
+          "close_msk": "2026-10-27T22:00:00+03:00",
+          "analysis": {
+            "BR": {
+              "status": "MEASURED",
+              "has_preclose_baseline": true,
+              "left_censored": false,
+              "samples_total": 33,
+              "postclose_samples": 31,
+              "poll_seconds": 60,
+              "first_seen_after_close_seconds": 1.52399,
+              "earliest_observed_stable_suffix_seconds": 61.541678,
+              "postclose_revisions": 1,
+              "reference_observed_at_msk": "2026-10-27T22:30:01.013649+03:00",
+              "errors": 0,
+              "buffer_change_authorized": false,
+              "finality_guaranteed": false,
+              "quote_observations": 33,
+              "quotes_within_90_seconds": 33,
+              "all_observed_quote_system_timestamps_current": true,
+              "maximum_observed_quote_system_age_seconds": 3.104502,
+              "maximum_observation_gap_seconds": 60.668217,
+              "cadence_complete": true,
+              "reference_ohlcv": {
+                "begin": "2026-10-27T21:00:00+03:00",
+                "end_raw": "2026-10-27 21:59:59",
+                "open": 109.54,
+                "high": 109.66,
+                "low": 109.38,
+                "close": 109.55,
+                "volume": 4014
+              }
+            },
+            "GOLD": {
+              "status": "MEASURED",
+              "has_preclose_baseline": true,
+              "left_censored": false,
+              "samples_total": 33,
+              "postclose_samples": 31,
+              "poll_seconds": 60,
+              "first_seen_after_close_seconds": 4.149276,
+              "earliest_observed_stable_suffix_seconds": 4.149276,
+              "postclose_revisions": 0,
+              "reference_observed_at_msk": "2026-10-27T22:30:02.974636+03:00",
+              "errors": 0,
+              "buffer_change_authorized": false,
+              "finality_guaranteed": false,
+              "quote_observations": 33,
+              "quotes_within_90_seconds": 33,
+              "all_observed_quote_system_timestamps_current": true,
+              "maximum_observed_quote_system_age_seconds": 2.011809,
+              "maximum_observation_gap_seconds": 60.474658,
+              "cadence_complete": true,
+              "reference_ohlcv": {
+                "begin": "2026-10-27T21:00:00+03:00",
+                "end_raw": "2026-10-27 21:59:59",
+                "open": 4101,
+                "high": 4102.6,
+                "low": 4098.4,
+                "close": 4101,
+                "volume": 3975
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
