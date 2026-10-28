@@ -1,0 +1,48 @@
+{
+  "status": "PASSED",
+  "canonical_cells": 192,
+  "actual_score_cells": 224,
+  "training_fits": 208,
+  "checks": [
+    {
+      "strategy": "S0",
+      "trade_rows_reconciled": 172,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S1",
+      "trade_rows_reconciled": 138,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S2",
+      "trade_rows_reconciled": 789,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S3",
+      "trade_rows_reconciled": 0,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S4",
+      "trade_rows_reconciled": 322,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    },
+    {
+      "strategy": "S5",
+      "trade_rows_reconciled": 423,
+      "same_asset_overlap": false,
+      "entry_before_information_time": false
+    }
+  ],
+  "source_hash": "aaa745cb3342dde16dc01caa8fca02119c2a6dd9a891289294089a2718767d8a",
+  "economic_gate": "BLOCKED_DATA",
+  "original_result_sha256": "6cc557368fa26169a14b2cc574cca69a203d2c763eae5497c4af6031c7f69d7b",
+  "corrected_S2_result_sha256": "348652df7af4d9f97d2de7018b32e071d44b8b320cd63ed437917118dd862023"
+}
