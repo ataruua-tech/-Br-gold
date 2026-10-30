@@ -1,0 +1,120 @@
+
+// Research observation only. Original strategy above remains byte-identical.
+// No entry/exit/indicator/execution method is replaced.
+namespace __NAMESPACE__
+{
+    [OsEngine.OsTrader.Panels.Attributes.Bot("Audit__ORIGINAL__")]
+    internal class Audit__ORIGINAL__ : __ORIGINAL__
+    {
+        private readonly string _auditFile;
+        private readonly object _auditLock = new object();
+        private long _auditSequence;
+        private BotTabSimple _auditTab;
+
+        public Audit__ORIGINAL__(string name, StartProgram program) : base(name, program)
+        {
+            if (program != StartProgram.IsTester)
+                throw new InvalidOperationException("This observer is permitted only in native Tester");
+            System.IO.Directory.CreateDirectory("ControlAudit");
+            _auditFile = System.IO.Path.Combine("ControlAudit", name + ".jsonl");
+            _auditTab = TabsSimple[0];
+            _auditTab.CandleFinishedEvent += AuditCandle;
+            _auditTab.OrderUpdateEvent += AuditOrder;
+            _auditTab.CancelOrderFailEvent += AuditCancelFailure;
+            _auditTab.MyTradeEvent += AuditTrade;
+            _auditTab.PositionOpeningSuccesEvent += AuditOpen;
+            _auditTab.PositionClosingSuccesEvent += AuditClose;
+            _auditTab.PositionStopActivateEvent += AuditStop;
+            _auditTab.PositionOpeningFailEvent += AuditOpenFail;
+            _auditTab.PositionClosingFailEvent += AuditCloseFail;
+            WriteAudit("observer_created", new { original = "__ORIGINAL__", program = program.ToString() });
+        }
+
+        public override string GetNameStrategyType() { return "Audit__ORIGINAL__"; }
+
+        private object Member(object item, string key)
+        {
+            if (item == null) return null;
+            System.Type type = item.GetType();
+            System.Reflection.PropertyInfo property = type.GetProperty(key);
+            if (property != null && property.GetIndexParameters().Length == 0)
+                return property.GetValue(item);
+            System.Reflection.FieldInfo field = type.GetField(key);
+            return field == null ? null : field.GetValue(item);
+        }
+
+        private object Pick(object item, string keys)
+        {
+            if (item == null) return null;
+            System.Collections.Generic.Dictionary<string, object> data = new System.Collections.Generic.Dictionary<string, object>();
+            foreach (string key in keys.Split(','))
+            {
+                object value = Member(item, key);
+                data[key] = value != null && value.GetType().IsEnum ? value.ToString() : value;
+            }
+            return data;
+        }
+
+        private object OrderInfo(object item)
+        {
+            return Pick(item, "NumberUser,NumberMarket,NumberPosition,Side,Price,StopPrice,Volume,VolumeExecute,State,TypeOrder,TimeCreate,TimeCallBack,TimeDone,TimeCancel,IsStopOrProfit,ServerType,ServerName");
+        }
+
+        private object PositionInfo(object item)
+        {
+            System.Collections.Generic.Dictionary<string, object> data = (System.Collections.Generic.Dictionary<string, object>)Pick(item, "Number,Direction,State,OpenVolume,MaxVolume,EntryPrice,ClosePrice,TimeCreate,TimeOpen,TimeClose,StopOrderIsActive,StopOrderPrice,StopOrderRedLine,StopIsMarket,SignalTypeOpen,SignalTypeClose,SignalTypeStop");
+            foreach (string key in new string[] { "OpenOrders", "CloseOrders" })
+            {
+                System.Collections.Generic.List<object> orders = new System.Collections.Generic.List<object>();
+                System.Collections.IEnumerable values = Member(item, key) as System.Collections.IEnumerable;
+                if (values != null) foreach (object value in values) orders.Add(OrderInfo(value));
+                data[key] = orders;
+            }
+            return data;
+        }
+
+        private void WriteAudit(string kind, object data)
+        {
+            lock (_auditLock)
+            {
+                string line = System.Text.Json.JsonSerializer.Serialize(new { sequence = ++_auditSequence, kind = kind, native_clock = Member(_auditTab, "TimeServerCurrent"), data = data });
+                System.IO.File.AppendAllText(_auditFile, line + "\n", new System.Text.UTF8Encoding(false));
+            }
+        }
+
+        private void AuditCandle(System.Collections.Generic.List<Candle> candles)
+        {
+            Candle last = candles[candles.Count - 1];
+            System.Collections.Generic.List<object> indicators = new System.Collections.Generic.List<object>();
+            foreach (string key in new string[] { "_fastSP", "_slowSP", "_bollinger", "_RSI" })
+            {
+                System.Reflection.FieldInfo field = typeof(__ORIGINAL__).GetField(key, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                Aindicator indicator = field == null ? null : field.GetValue(this) as Aindicator;
+                if (indicator == null) continue;
+                for (int series = 0; series < indicator.DataSeries.Count; series++)
+                {
+                    System.Collections.Generic.List<decimal> values = indicator.DataSeries[series].Values;
+                    indicators.Add(new { field = key, series = series, count = values.Count, value = values.Count == 0 ? 0 : values[values.Count - 1], previous = values.Count < 2 ? 0 : values[values.Count - 2] });
+                }
+            }
+            System.Collections.Generic.List<object> positions = new System.Collections.Generic.List<object>();
+            if (_auditTab.PositionsOpenAll != null)
+                foreach (Position position in _auditTab.PositionsOpenAll) positions.Add(PositionInfo(position));
+            System.Reflection.FieldInfo scheduleField = typeof(__ORIGINAL__).GetField("_tradePeriodsSettings", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            object schedule = scheduleField.GetValue(this);
+            object allowed = schedule.GetType().GetMethod("CanTradeThisTime").Invoke(schedule, new object[] { last.TimeStart });
+            System.Reflection.FieldInfo regimeField = typeof(__ORIGINAL__).GetField("_regime", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            object regime = Member(regimeField.GetValue(this), "ValueString");
+            WriteAudit("candle_after_source_handler", new { count = candles.Count, source_begin = last.TimeStart, information_available_at_msk = last.TimeStart.AddHours(1).ToString("yyyy-MM-ddTHH:mm:ss") + "+03:00", candle = Pick(last, "Open,High,Low,Close,Volume,State"), regime = regime, schedule_allowed = allowed, indicators = indicators, open_positions = positions, security = Pick(_auditTab.Security, "Name,NameClass,PriceStep,PriceStepCost,Lot,Decimals,DecimalsVolume,MarginBuy,MarginSell") });
+        }
+
+        private void AuditOrder(Order order) { WriteAudit("order_update", OrderInfo(order)); }
+        private void AuditCancelFailure(Order order) { WriteAudit("cancel_failure", OrderInfo(order)); }
+        private void AuditTrade(MyTrade trade) { WriteAudit("fill", Pick(trade, "NumberTrade,NumberOrderParent,NumberPosition,SecurityNameCode,Time,Price,Volume,Side,NumberCandleInTester")); }
+        private void AuditOpen(Position position) { WriteAudit("position_opened", PositionInfo(position)); }
+        private void AuditClose(Position position) { WriteAudit("position_closed", PositionInfo(position)); }
+        private void AuditStop(Position position) { WriteAudit("stop_activated", PositionInfo(position)); }
+        private void AuditOpenFail(Position position) { WriteAudit("position_open_failed", PositionInfo(position)); }
+        private void AuditCloseFail(Position position) { WriteAudit("position_close_failed", PositionInfo(position)); }
+    }
+}
