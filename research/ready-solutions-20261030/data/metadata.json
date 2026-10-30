@@ -1,0 +1,319 @@
+{
+  "schema": 1,
+  "analysis": "DESCRIPTIVE_TRADE_PRICE_MOVEMENT_NOT_BACKTEST",
+  "source_run": 40494996964,
+  "source_artifact_id": 12735884135,
+  "source_zip_sha256": "b8344fbe990dd1ae069ceef3ae0709ca12375a7205a26f1360e3ba34b66b1ffb",
+  "collector_source_commit": "5956a722b22e71f342801d01c0fb28e0255684d8",
+  "collector_source_blob": "e7ca5b8bf52425594d0cea9329453b808e995b5c",
+  "collector_file_sha256": "02a54b3e9dfaae74d1d6031275e3c1d6b72eab242af2283b2f1da64e00587968",
+  "timezone": "UTC+03:00 Moscow",
+  "timezone_evidence": "collector MSK definition at92 and timestamp parser at174–176",
+  "population": "Observed completed positive-volume H1 boundaries within intersection of frozen active window and acquired window in2026; all observed sessions, no fabricated calendar",
+  "endpoint_definition": "open of exact M1 at t and t+delay; t=H1.begin+60min, not H1.end",
+  "continuity": "Every intervening M1 exists and has valid OHLCV; endpoints volume>0; same Moscow date and frozen active contract",
+  "tick_status": "ASSUMED_UNVERIFIED_HISTORICAL_SCHEDULE",
+  "tick_assumptions": {
+    "BR": 0.01,
+    "GOLD": 0.1
+  },
+  "quantile_method": "numpy.quantile linear",
+  "accepted_observations": 13608,
+  "candidate_outcomes": 16444,
+  "verified_members": [
+    {
+      "file": "BRG6-M1.json.gz",
+      "rows": 18228,
+      "uncompressed_sha256": "c84ef2888b38428c0208cb7962017da967c0d0a61c5509e2bedeaf292e71af90"
+    },
+    {
+      "file": "BRG6-H1.json.gz",
+      "rows": 1346,
+      "uncompressed_sha256": "5f4c57eee76114cf1727b9cbdcf72f8d43df60ddde087879d264c656c5427150"
+    },
+    {
+      "file": "BRH6-M1.json.gz",
+      "rows": 24546,
+      "uncompressed_sha256": "f9dbc3a0db5c195ef8f5463ea3ae3c14af2ec50d1bd619e4e58d37b80cd07616"
+    },
+    {
+      "file": "BRH6-H1.json.gz",
+      "rows": 1407,
+      "uncompressed_sha256": "c64d4780c8552e0672b9414ba1c14b0ea102c3ef3ffe7e1e544c3e36276a1cfb"
+    },
+    {
+      "file": "BRJ6-M1.json.gz",
+      "rows": 25003,
+      "uncompressed_sha256": "178332bcb365ef9cfdec84474d792247b9d12c3dff8b0e3861cc2bd74c420f88"
+    },
+    {
+      "file": "BRJ6-H1.json.gz",
+      "rows": 1430,
+      "uncompressed_sha256": "a48c6bb7a516cf3ac503091aa41d7fe647716e995fb2e45833ecadee718c9240"
+    },
+    {
+      "file": "BRK6-M1.json.gz",
+      "rows": 31266,
+      "uncompressed_sha256": "c92790a74ffb1ae38597699ee9cd51b82c9a0eda28662d2ab81bd7324a8e9e06"
+    },
+    {
+      "file": "BRK6-H1.json.gz",
+      "rows": 1541,
+      "uncompressed_sha256": "1cd9246b258f5765930bc8568e68c73afc1fd0d89e5463a3375b27e35d2c9735"
+    },
+    {
+      "file": "BRM6-M1.json.gz",
+      "rows": 26221,
+      "uncompressed_sha256": "97719348a2d81b6682c43df3efb72160b5fc015f0504113509a60efc15ce45d3"
+    },
+    {
+      "file": "BRM6-H1.json.gz",
+      "rows": 1580,
+      "uncompressed_sha256": "706bc14b0f824db41e920b0d9b5b5f81ba0b83405128780130f13feeb907877d"
+    },
+    {
+      "file": "BRN6-M1.json.gz",
+      "rows": 27756,
+      "uncompressed_sha256": "2f9fa69e6ea55531dd64c5ba7506d09c29575b0c6b73c695e218d2104a188338"
+    },
+    {
+      "file": "BRN6-H1.json.gz",
+      "rows": 1619,
+      "uncompressed_sha256": "cb7e8027a84e3488a29f7b5eb282cdfa2bfea2330a8ca35b3855bcfcf0c0f659"
+    },
+    {
+      "file": "BRQ6-M1.json.gz",
+      "rows": 32466,
+      "uncompressed_sha256": "2426576a5780f0c7ecdf0bc21db375e381b4fb27bd0c3cbdf08b875e4f9b48d2"
+    },
+    {
+      "file": "BRQ6-H1.json.gz",
+      "rows": 1717,
+      "uncompressed_sha256": "a2b4a5c2ad5f7026bb01fef8852ee9d2093a50f2d231b426653984b92488479e"
+    },
+    {
+      "file": "BRU6-M1.json.gz",
+      "rows": 27910,
+      "uncompressed_sha256": "4f0de648fe77bf11b861741f4bd7aa8d44da701bac149e940bd6b0d9c725fcc4"
+    },
+    {
+      "file": "BRU6-H1.json.gz",
+      "rows": 1652,
+      "uncompressed_sha256": "bae066f67921717abfac4e4ec87c202479c515c894d004373d2639fa7a803d29"
+    },
+    {
+      "file": "BRV6-M1.json.gz",
+      "rows": 30865,
+      "uncompressed_sha256": "2c15a32fe706eb136fb3e503a9a67f934f140b745c27c4da7de7e8bc57d7204a"
+    },
+    {
+      "file": "BRV6-H1.json.gz",
+      "rows": 1726,
+      "uncompressed_sha256": "9a5c894186c6a61886c2fc5531e251eceda3f7491358450ba5bbd9fd388a834a"
+    },
+    {
+      "file": "BRX6-M1.json.gz",
+      "rows": 27017,
+      "uncompressed_sha256": "ecb726eaac66159da3c569f8fcd6b739614eb41f99df8fa07048b52ce8266dd7"
+    },
+    {
+      "file": "BRX6-H1.json.gz",
+      "rows": 1686,
+      "uncompressed_sha256": "a51019e1cb530366aed2bdb6bd36feb6feeb7be31f235406ca91f588f21bd13c"
+    },
+    {
+      "file": "GDH6-M1.json.gz",
+      "rows": 49980,
+      "uncompressed_sha256": "9bfc7edf09d1fef31c406e5038f40dbf64d7e2a8a4e10352a937a53214fbd288"
+    },
+    {
+      "file": "GDH6-H1.json.gz",
+      "rows": 2065,
+      "uncompressed_sha256": "8c44dfcdf1d7f8c26e1d75fb67090b79264aacab3366cb80e1ee3d2b0f3942a8"
+    },
+    {
+      "file": "GDM6-M1.json.gz",
+      "rows": 69491,
+      "uncompressed_sha256": "8799b9aeed0bfb4ab7bf7fa6121ad520023c20a907309b573b89944e15644f20"
+    },
+    {
+      "file": "GDM6-H1.json.gz",
+      "rows": 1351,
+      "uncompressed_sha256": "34218ed3b497635ba9ab3b7b585983c69d28fdb03fe9b00d67479ee8ce150219"
+    },
+    {
+      "file": "GDU6-M1.json.gz",
+      "rows": 73206,
+      "uncompressed_sha256": "0dcb4fc980add51c1038c53e54819319f0ddf71e49be0b834d4ffe208f106dd7"
+    },
+    {
+      "file": "GDU6-H1.json.gz",
+      "rows": 2541,
+      "uncompressed_sha256": "83c59eac40fa77891aa2558203c12ae06438225ceaac0d8869fb433d9a1616bd"
+    },
+    {
+      "file": "GDZ6-M1.json.gz",
+      "rows": 34345,
+      "uncompressed_sha256": "900bd163821b9469f70fb5b05c6eef767853946b9e30f5da99286006b3f4a6a9"
+    },
+    {
+      "file": "GDZ6-H1.json.gz",
+      "rows": 1865,
+      "uncompressed_sha256": "f5f435c1478b5e9e721c88d5d1fac568e90ed1a67e9e2eb9e1df4ca7f4f45695"
+    }
+  ],
+  "scope": [
+    {
+      "contract": "BRF6",
+      "asset": "BR",
+      "status": "SOURCE_WINDOW_NOT_ACQUIRED",
+      "active_start": "2026-01-01T00:00:00+03:00",
+      "active_end_exclusive": "2025-12-28T00:00:00+03:00",
+      "positive_active_interval": false,
+      "source_error": "No M1 rows in a nonempty frozen H1 study window"
+    },
+    {
+      "contract": "BRG6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-01-01T00:00:00+03:00",
+      "active_end_exclusive": "2026-01-25T00:00:00+03:00",
+      "candidate_H1_boundaries": 254
+    },
+    {
+      "contract": "BRH6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-01-25T00:00:00+03:00",
+      "active_end_exclusive": "2026-02-22T00:00:00+03:00",
+      "candidate_H1_boundaries": 379
+    },
+    {
+      "contract": "BRJ6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-02-22T00:00:00+03:00",
+      "active_end_exclusive": "2026-03-24T00:00:00+03:00",
+      "candidate_H1_boundaries": 373
+    },
+    {
+      "contract": "BRK6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-03-24T00:00:00+03:00",
+      "active_end_exclusive": "2026-04-26T00:00:00+03:00",
+      "candidate_H1_boundaries": 475
+    },
+    {
+      "contract": "BRM6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-04-26T00:00:00+03:00",
+      "active_end_exclusive": "2026-05-24T00:00:00+03:00",
+      "candidate_H1_boundaries": 379
+    },
+    {
+      "contract": "BRN6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-05-24T00:00:00+03:00",
+      "active_end_exclusive": "2026-06-23T00:00:00+03:00",
+      "candidate_H1_boundaries": 404
+    },
+    {
+      "contract": "BRQ6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-06-23T00:00:00+03:00",
+      "active_end_exclusive": "2026-07-26T00:00:00+03:00",
+      "candidate_H1_boundaries": 492
+    },
+    {
+      "contract": "BRU6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-07-26T00:00:00+03:00",
+      "active_end_exclusive": "2026-08-23T00:00:00+03:00",
+      "candidate_H1_boundaries": 400
+    },
+    {
+      "contract": "BRV6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-08-23T00:00:00+03:00",
+      "active_end_exclusive": "2026-09-23T00:00:00+03:00",
+      "candidate_H1_boundaries": 464
+    },
+    {
+      "contract": "BRX6",
+      "asset": "BR",
+      "status": "INCLUDED",
+      "active_start": "2026-09-23T00:00:00+03:00",
+      "active_end_exclusive": "2026-10-25T00:00:00+03:00",
+      "candidate_H1_boundaries": 495
+    },
+    {
+      "contract": "BRZ6",
+      "asset": "BR",
+      "status": "SOURCE_WINDOW_NOT_ACQUIRED",
+      "active_start": "2026-10-25T00:00:00+03:00",
+      "active_end_exclusive": "2026-10-26T00:00:00+03:00",
+      "positive_active_interval": true,
+      "source_error": "No M1 rows in a nonempty frozen H1 study window"
+    },
+    {
+      "contract": "GDH6",
+      "asset": "GOLD",
+      "status": "INCLUDED",
+      "active_start": "2026-01-01T00:00:00+03:00",
+      "active_end_exclusive": "2026-03-12T00:00:00+03:00",
+      "candidate_H1_boundaries": 864
+    },
+    {
+      "contract": "GDM6",
+      "asset": "GOLD",
+      "status": "INCLUDED",
+      "active_start": "2026-03-12T00:00:00+03:00",
+      "active_end_exclusive": "2026-06-11T00:00:00+03:00",
+      "candidate_H1_boundaries": 1251
+    },
+    {
+      "contract": "GDU6",
+      "asset": "GOLD",
+      "status": "INCLUDED",
+      "active_start": "2026-06-11T00:00:00+03:00",
+      "active_end_exclusive": "2026-09-10T00:00:00+03:00",
+      "candidate_H1_boundaries": 1318
+    },
+    {
+      "contract": "GDZ6",
+      "asset": "GOLD",
+      "status": "INCLUDED",
+      "active_start": "2026-09-10T00:00:00+03:00",
+      "active_end_exclusive": "2026-10-26T00:00:00+03:00",
+      "candidate_H1_boundaries": 674
+    }
+  ],
+  "output_files": [
+    {
+      "file": "observations.csv",
+      "sha256": "1aad5a56d38b0c7f463844a81fbf5d0349c0512a1948608cf55a4268f77d9d85",
+      "bytes": 1371346
+    },
+    {
+      "file": "boundary_outcomes.csv",
+      "sha256": "6875424c7dcf0402d845220bd6c441f738c69d41d026ff2555088e0e5f98bbc5",
+      "bytes": 1402485
+    },
+    {
+      "file": "contract_scope.csv",
+      "sha256": "13744a0ae6babd9eb98dd12b971b2ac1db5a90e20c9b5ab9393dba020d72252e",
+      "bytes": 1478
+    },
+    {
+      "file": "summary.csv",
+      "sha256": "2665e358d49273b4afc8b82be10e802c7320b2bda0ac549329eee9fe149faa66",
+      "bytes": 26352
+    }
+  ]
+}

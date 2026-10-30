@@ -1,171 +1,59 @@
 {
-  "schema": 1,
-  "updated_at_utc": "2026-10-28T06:34:15.621139+00:00",
-  "responsible_executor": "Primary assistant /root; GitHub research jobs are execution workers, not independent strategy selectors",
-  "phase": "AGREED_SCENARIO_COMPARISON_COMPLETE_NO_CANDIDATE",
-  "last_completed_step": "Six families compared in192 canonical cases;32 superseded S2 cases retained;224 total score cases and208 chronological S3 fits. Registered S2 session correction verified.15 execution/causality guards plus4 independent sizing guards passed. Clarified comparison, lot limits and online requirements delivered without rescoring.",
-  "research_restarts_hourly": false,
-  "chat_research_automation_paused": true,
-  "chat_market_automation_paused": true,
-  "hourly_market_destination": "Existing Telegram bot via preserved live GitHub workflows",
-  "online_shared_lock": "br-gold-telegram-v1; existing ledger/notification serialization preserved",
-  "original_data_run": 40494996964,
-  "additional_inputs_run": 40529837847,
-  "additional_inputs_status": "All required network repairs complete; exact replay lacks executable BBO/availability and historical economics/calendar precision. Candle and aggregate acquisition completion is not full model-input readiness.",
-  "current_main_commit": "8c77028a171d4b15f6a6de18de892b10f5a437aa",
-  "scenario_testing_allowed": true,
-  "all_required_inputs_ready": false,
-  "exact_agent_replay_ready": false,
-  "profitability_confirmed": false,
-  "S1_S5_status": "IMPLEMENTED_AND_SCENARIO_TESTED; no candidate passes predefined stability screen; S5 CMF replaces unimplemented Q spec; S2 corrected before separate32-case rescore",
-  "prior_trials_total": "UNKNOWN",
-  "max_drawdown_approved_by_user": null,
-  "deployed_S0_20_percent_entry_halt": "Existing code fact only, not an approved user drawdown tolerance",
-  "new_online_week": {
-    "id": null,
-    "start": null,
-    "end": null,
-    "status": "NOT_STARTED_NO_QUALIFYING_CANDIDATE",
-    "allowed_after": [
-      "data sufficiency reviewed",
-      "candidate/version frozen",
-      "notifications and end-of-week exit policy verified"
-    ]
-  },
-  "preserved_online_week": {
-    "id": "1d88347c8df1a0db74d49667",
-    "end_utc": "2026-11-03T09:18:32.255656+00:00",
-    "do_not_reset": true
-  },
-  "next_step": "No new candidate or pilot is authorized by these results. Preserve ongoing old experiment and source-latency campaign; any further model change is a separately registered study, not an automatic continuation of parameter search.",
-  "blocking_issues_are_not_final": true,
-  "completed_research": true,
+  "schema": 2,
+  "updated_at_utc": "2026-10-30T15:48:59Z",
+  "scope": "BR_GOLD_READY_SOLUTIONS_RESEARCH_20261030",
+  "status": "CANDIDATE_SELECTION_AND_PRICE_DIAGNOSTIC_COMPLETE",
   "specification": "research/PROJECT_SPEC_RU.txt",
-  "data_audit_run": 40549452734,
-  "data_audit_source_commit": "ba92dec0fb3172e7380160f192b9d147cd48db01",
-  "confirmed_errors": {
-    "seven_2023_network_windows": "REPAIRED by run40551048097;61requests;10000prefixrowsreused",
-    "nineteen_other_panels": "RECOVERED from saved pages;140056rows;591quoteobservationsquarantined",
-    "historical_schedule": "Three historical filter variants all return current2026-10-27;do not treat as past schedules",
-    "all_ticker_statistics": "from/till filters ignored; date filter verified; asset_code filter ignored"
-  },
-  "offline_recovery": "Reuse archived raw response pages, preserve bad values, quarantine invalid quote observations; do not clamp or silently fill",
-  "paperclip": {
-    "status": "DEFERRED_BY_USER",
-    "tools_connected": false,
-    "instance_url": null
-  },
-  "missing_ranges_repaired": {
-    "run_id": 40551048097,
-    "windows": 7,
-    "requests": 61,
-    "reused_prefix_rows": 10000,
-    "status": "COMPLETE_PAGE_SEQUENCES"
-  },
-  "offline_data_recovery": {
-    "run_id": 40549452734,
-    "complete_panels": 19,
-    "rows": 140056,
-    "quarantined_in_these_panels": 591
-  },
-  "remaining_input_limits": [
-    "Executable historical BBO absent from acquired aggregate series",
-    "2023 im null in all228279 expanded TradeStats rows;64963 null in2024;5098 in2025;6020 in2026",
-    "Historical exchange fees/tick economics and broker margin uplift not fully confirmed",
-    "Original historical publication/runner/Telegram latency unobserved; SYSTIME often recalculation",
-    "Historical selection VOLTODAY vs five-minute/trading-date counters unconfirmed",
-    "Expanded H1/TradeStats do not provide full-universe M1; GDM6 first listing date remains null",
-    "Dated official regular session regimes found; complete exception/availability calendar not verified"
-  ],
-  "active_research_run_id": null,
-  "active_workflow": null,
-  "active_source_commit": null,
-  "source_and_tests_published": true,
-  "financial_engine_sha256": "ce4b80188eefa457179bb2b5129e6fbc762d701bd6deea6585467e2ac518f932",
-  "full_universe_checkpoint": {
-    "source_run": 40554978750,
-    "source_artifact": 12762953714,
-    "source_sha256": "24a2b93e33672546f35b154ab903eb47907439edb896a8bfbc0ec8c98e3104e9",
-    "resume_run": 40635779399,
-    "resume_artifact": 12793861186,
-    "resume_sha256": "2901b3e1b994d674fa284400cae4548a68add7cdc7602eecc45f205549936a02",
-    "complete": 238,
-    "incomplete": 0,
-    "catalogue_contracts": 72,
-    "status": "SCOPED_ACQUISITIONS_VERIFIED_EXACT_REPLAY_NOT_READY"
-  },
-  "last_data_audit_run_id": 40635933834,
-  "last_data_audit_artifact": {
-    "id": 12793142563,
-    "sha256": "70843676c50f5a379aeaa8f56a5b2e787e5008e89d144d39111d69db28f2a9f0"
-  },
-  "data_register": "research/six-strategy-v1/data-register-v2.json",
-  "data_sufficiency_report": "research/six-strategy-v1/DATA_SUFFICIENCY_RU.txt",
-  "primary_source_review": "research/six-strategy-v1/hypothesis-source-review-v2.json",
-  "scenario_scope_question": {
-    "pending": false,
-    "reason": "User specification requires disclosed assumptions and agreement before approximate tests; exact BBO/historical collateral/availability are not present",
-    "asked_via": "ChatGPT asynchronous question",
-    "exact_S0_status": "BLOCKED_DATA",
-    "profitability_scoring_started": true,
-    "user_answer": "Да",
-    "authorized_scope": "Six strategies under disclosed assumptions; monetary returns only where required collateral/economics inputs are confirmed; exact S0 remains BLOCKED_DATA"
-  },
-  "live_readonly_verification": {
-    "signal_blob": "38e147112ad48c3959b4dff6838fbec88d66f576",
-    "controller_blob": "dd216ba8ac19e9e52fa9c2b6a5b340ff591cb0dd",
-    "telegram_blob": "c3052ddc140cdba232e08a192a50ccd8aa9416eb",
-    "previous_week_id": "1d88347c8df1a0db74d49667",
-    "sampled_run": 40630927125,
-    "changed": false,
-    "verified_at_utc": "2026-10-28 06:13:48 UTC",
-    "main_tree": "09d01392b46a09374723d535ffbc69cedfe98829",
-    "latest_access_observation_run": 40641819415,
-    "latest_access_observation_time_utc": "2026-10-28T06:06:14.105165+00:00",
-    "latest_access_observation_status": "PASSED"
-  },
-  "registered_scenario_protocol": {
-    "path": "research/scenario-study-v2/protocol.json",
-    "sha256": "c53b28df16ba5c978cecf1d85252d66ea5fbca3eac4e1df78cfc305b258c3fc8",
-    "families": 6,
-    "execution_scenarios": 32,
-    "cells": 192,
-    "user_approved": true
-  },
-  "active_local_run_id": null,
-  "registered_implementation_commit": "e1cdf71c39aea4be489d375914a7581d2040751a",
-  "completion_scope": "User-approved retrospective price-scenario comparison with explicit monetary data limits; not a complete financial validation or a completed new online week",
-  "financial_return_proof_complete": false,
+  "baseline_spec_url": "https://chatgpt.com/library?file_id=libfile_8ebf52af996881918130d636ab8d5ac6&account_id=personal",
+  "completed_research": false,
   "overall_new_live_system_ready": false,
-  "scenario_results": {
-    "path": "research/scenario-study-v2/final-results.json",
-    "sha256": "8c2b5bba141d937eb4abb31d416b1d8757e0792726bfaead5577784e4112c93c",
-    "table": "research/scenario-study-v2/COMPARISON_COMPLETE_RU.csv",
-    "report": "research/scenario-study-v2/FINAL_REPORT_RU.txt",
-    "canonical_cases": 192,
-    "actual_scored_cases": 224,
-    "training_fits": 208,
-    "selected_candidate": null,
-    "optimization": "NOT_RUN_NO_QUALIFYING_CANDIDATE",
-    "monetary_status": "BLOCKED_DATA",
-    "test_guards_passed": 19,
-    "execution_causality_guards": 15,
-    "independent_sizing_guards": 4
+  "profitable_strategy_verified": false,
+  "capital_rub": 100000,
+  "active_asset_policy": "BR_OR_GOLD_ONE_ACCOUNT",
+  "max_loss_from_initial_rub": 40000,
+  "equity_boundary_before_external_cashflows_rub": 60000,
+  "loss_cap_is_guaranteed": false,
+  "human_reaction_seconds_after_receipt": 120,
+  "technical_latency_additional": true,
+  "global_holding_days_limit": null,
+  "execution": "MANUAL_ONLY",
+  "paid_services": [
+    "AlgoPack",
+    "TradingView"
+  ],
+  "purchase_authorization": "PURPOSE_AND_PRICE_REQUIRED",
+  "research_candidate": "OsEngine IntersectionOfSuperTrends",
+  "research_reserve": "OsEngine CountertrendBollingerRSI",
+  "selection_basis": "SOURCE_AUDIT_AND_REPRODUCIBILITY_NOT_PROFITABILITY",
+  "osengine_source_commit": "09b0eefc7ac6cf5a73e461cc3a81ded9c34cd54b",
+  "native_compile_status": "NOT_RUN",
+  "native_backtest_status": "NOT_RUN",
+  "completed_this_stage": [
+    "Ready strategy source audit",
+    "Five named external signal services screened",
+    "2025/2026 source ZIPs downloaded and SHA256 verified",
+    "OHLCV and duplicate checks on used rows",
+    "Descriptive minute-bar price-reaction diagnostic",
+    "Independent recomputation of all 136 summary groups and raw-source checks",
+    "Public delayed ISS contract snapshots"
+  ],
+  "data_run_id": 40494996964,
+  "data_artifact_ids": {
+    "2025": 12734831380,
+    "2026": 12735884135
   },
-  "hourly_research_task_enabled": false,
-  "latest_specification_addendum": {
-    "scope": "Completion of existing comparison, no new strategy/platform or live changes",
-    "path": "research/scenario-study-v2/completion-addendum.json",
-    "reproduction": "research/scenario-study-v2/REPRODUCE_RU.txt",
-    "online_requirements": "research/scenario-study-v2/ONLINE_TEST_REQUIREMENTS_RU.txt",
-    "lot_validation": "research/scenario-study-v2/LOT_VALIDATION_RU.txt",
-    "no_scores_restarted": true,
-    "historical_monetary_positions_confirmed": false
-  },
-  "independent_latency_campaign": {
-    "observed_run": 40642822701,
-    "observed_in_progress_at_utc": "2026-10-28T06:16:08+00:00",
-    "duplicated_or_stopped": false,
-    "not_a_scoring_run": true
-  }
+  "normalized_rows": 1064224,
+  "data_limits": [
+    "Not an untouched holdout",
+    "Archive source errors retained",
+    "Trade candles are not executable bid/ask",
+    "Historical collateral/fees and monetary model not fully established",
+    "Observed H1 boundaries do not establish calendar completeness"
+  ],
+  "reaction_diagnostic_status": "VERIFIED_DESCRIPTIVE_ONLY_NOT_BACKTEST",
+  "telegram_or_trading_workflows_restarted": false,
+  "next_step": "research/ready-solutions-20261030/NEXT_TEST_RU.txt",
+  "legacy_state": "research/archive/2026-10-28/job-state.json",
+  "confirmed_goals_from_user": "Latest explicit financial and manual-execution constraints retained; freedom concerns research methods/resources, not assumed authorization for orders or purchases"
 }
+

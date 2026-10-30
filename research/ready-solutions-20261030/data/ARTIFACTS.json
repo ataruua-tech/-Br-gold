@@ -1,0 +1,21 @@
+{
+  "run_id": 40494996964,
+  "collector_commit": "5956a722b22e71f342801d01c0fb28e0255684d8",
+  "collector_path": ".github/workflows/algopack-research-data.yml",
+  "archives": [
+    {
+      "year": 2025,
+      "artifact_id": 12734831380,
+      "filename": "source_2025.zip",
+      "sha256": "d8eff7373c9bcaafb570fbd24a44d84709353112396f90c62bd299e86b003253",
+      "bytes": 15579946
+    },
+    {
+      "year": 2026,
+      "artifact_id": 12735884135,
+      "filename": "source_2026.zip",
+      "sha256": "b8344fbe990dd1ae069ceef3ae0709ca12375a7205a26f1360e3ba34b66b1ffb",
+      "bytes": 16204563
+    }
+  ]
+}
