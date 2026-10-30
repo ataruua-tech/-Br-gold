@@ -1,0 +1,9 @@
+{
+  "source_type": "Folder",
+  "set_name": null,
+  "folder_path": "D:\\a\\-Br-gold\\-Br-gold\\isolated-runtimes\\A_BRX6\\ControlData",
+  "type_tester_data": "Candle",
+  "date_from": "2026-06-30T09:00:00.0000000",
+  "date_to": "2026-10-24T00:00:00.0000000",
+  "delete_trades_from_memory": true
+}

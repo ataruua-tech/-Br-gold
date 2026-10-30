@@ -1,0 +1,36 @@
+{
+  "run_id": "A_BRX6",
+  "strategy": "AuditIntersectionOfSuperTrends",
+  "instance_name": "Control_A_BRX6",
+  "params": {
+    "Regime": "On",
+    "Order type": "Market",
+    "Slippage %": 0,
+    "Volume type": "Contracts",
+    "Volume": 1,
+    "Length Fast SP": 10,
+    "Fast SP Deviation": 1,
+    "Type Fast Price": "Median",
+    "Length Slow SP": 50,
+    "Slow SP Deviation": 1,
+    "Type Slow Price": "Median"
+  },
+  "data": {
+    "rows": 1686,
+    "first_begin_msk": "2026-06-30T09:00:00",
+    "last_begin_msk": "2026-10-23T23:00:00",
+    "last_information_available_msk": "2026-10-24T00:00:00",
+    "sha256": "47d7a82639f82350065735c29096dca6d3a2f27327ac182de726a36c34fe460b"
+  },
+  "source_commit": "09b0eefc7ac6cf5a73e461cc3a81ded9c34cd54b",
+  "all_observed_bars_enabled": true,
+  "native_order_execution": "Touch",
+  "slippage_simple": 0,
+  "slippage_stop": 0,
+  "commission": "NOT_MODELLED_AUTHOR_CONTROL",
+  "capital_rub_evaluation": false,
+  "personal_execution": "NOT_RUN",
+  "monetary_result": "NOT_ESTABLISHED",
+  "engine_dll_sha256": "3f099cfa15d71f8162b46c9f2401f6d5138e5680b1904bc78c7f4309c71a8872",
+  "script_sha256": "dcf4973aa1a1f0c58be2dccba02e9630824f147bfa0de28e86b22d4b0d7fe86c"
+}

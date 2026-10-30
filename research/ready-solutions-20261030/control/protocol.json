@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "experiment": "READY_NATIVE_CONTROL_20261030_V1",
+  "base_commit": "5d4f082922df170ca019f2e84e3c5ff657ac4cc8",
+  "osengine_commit": "09b0eefc7ac6cf5a73e461cc3a81ded9c34cd54b",
+  "scope": "Four source-behavior controls, not a personal monetary backtest",
+  "runs": [
+    "A_BRX6",
+    "A_GDZ6",
+    "B_BRX6",
+    "B_GDZ6"
+  ],
+  "A": {
+    "source": "IntersectionOfSuperTrends",
+    "Length Fast SP": 10,
+    "Fast SP Deviation": 1,
+    "Type Fast Price": "Median",
+    "Length Slow SP": 50,
+    "Slow SP Deviation": 1,
+    "Type Slow Price": "Median",
+    "Use candle shadow": false
+  },
+  "B": {
+    "source": "CountertrendBollingerRSI",
+    "Bollinger Length": 21,
+    "Bollinger Deviation": 1,
+    "RSI Length": 14,
+    "Stop Value": 1
+  },
+  "common": {
+    "Regime": "On",
+    "Order type": "Market",
+    "Volume type": "Contracts",
+    "Volume": 1,
+    "Slippage %": 0,
+    "time_frame": "Hour1",
+    "NonTradePeriods": "All seven weekdays allowed, all 40 exclusion intervals disabled"
+  },
+  "data": {
+    "archive_run": 40494996964,
+    "archive_ids": [
+      12734831380,
+      12735884135
+    ],
+    "execution_archive_year": 2026,
+    "series": [
+      "BRX6",
+      "GDZ6"
+    ],
+    "interval": "H1",
+    "selection": "All available H1 bars of the named series, including available warmup; no active-window filter and no stitching",
+    "last_calendar_date_inclusive": "2026-10-23",
+    "timezone": "Europe/Moscow UTC+03:00",
+    "information_available_at": "begin + 60 minutes, never raw end",
+    "publication_timestamp": "NOT_OBSERVED; begin+60min is the nominal earliest completed-H1 boundary, not a measured API delivery time"
+  },
+  "execution": {
+    "engine": "Original OsEngine TesterServer, native candle mode",
+    "paper_or_live": false,
+    "connector": "Tester only",
+    "server_slippage_simple": 0,
+    "server_slippage_stop": 0,
+    "commission": "None in source-behavior control; not an assertion of zero real fees",
+    "human_latency": "Not applied; PERSONAL_EXECUTION NOT_RUN",
+    "cash_capital": "Tester nominal 100000; not RUB-account accounting",
+    "bar_magnifier": false,
+    "terminal_position": "Keep unresolved; do not force liquidation",
+    "native_candle_path": "Synthetic O,H,L,C all stamped TimeStart; native timestamps retained separately from information-availability time"
+  },
+  "platform_position_support_overrides": {
+    "stop_is_on": false,
+    "profit_is_on": false,
+    "second_to_open_is_on": false,
+    "second_to_close_is_on": false,
+    "setback_to_open_is_on": false,
+    "setback_to_close_is_on": false,
+    "double_exit_is_on": false,
+    "reason": "No platform-added protection or repeated exits in this source-behavior control. Platform defaults DoubleExit and 50-second order timers differ; initial/effective settings retained. Source robot rules are unchanged."
+  },
+  "instrumentation": "Generated derived Custom classes observe events after the unchanged source handler; no changes to trading rules, indicators, or execution engine. Original source hashes retained; generated platform copies are not published.",
+  "checks": [
+    "ZIP and inner file SHA256",
+    "OHLCV and strict timestamp order",
+    "Every converted OHLCV row round-trips",
+    "Native compilation and actual tester execution",
+    "All observed bars accounted for; On and schedule explicitly checked",
+    "All native indicators compared with independent formulas",
+    "At least first three available entry/exit events traced to raw candles; fewer disclosed",
+    "All attempts retained"
+  ],
+  "known_before_run": [
+    "Local git download DNS failure; native SDK absent locally",
+    "Independent source audit identifies nonstandard RSI initialization and zero-loss/gain behavior",
+    "Native economic/security defaults are not historical Sber economics"
+  ],
+  "forbidden": [
+    "Real trading",
+    "Broker secrets",
+    "Telegram",
+    "Legacy bot restart",
+    "Cardora",
+    "Parameter optimization",
+    "Claiming profit from this technical control"
+  ],
+  "result_status_fields": [
+    "COMPILATION",
+    "DATA_IMPORT",
+    "RULE_REPRODUCTION",
+    "PERSONAL_EXECUTION",
+    "MONETARY_RESULT"
+  ]
+}

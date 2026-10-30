@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-30",
+  "robots": [
+    {
+      "name": "Control_B_GDZ6",
+      "parameters": [
+        {
+          "name": "Regime",
+          "type": "String",
+          "value": "On"
+        },
+        {
+          "name": "Slippage %",
+          "type": "Decimal",
+          "value": "0"
+        },
+        {
+          "name": "Order type",
+          "type": "String",
+          "value": "Market"
+        },
+        {
+          "name": "Volume type",
+          "type": "String",
+          "value": "Contracts"
+        },
+        {
+          "name": "Volume",
+          "type": "Decimal",
+          "value": "1"
+        },
+        {
+          "name": "Asset in portfolio",
+          "type": "String",
+          "value": "Prime"
+        },
+        {
+          "name": "Bollinger Length",
+          "type": "Int",
+          "value": "21"
+        },
+        {
+          "name": "Bollinger Deviation",
+          "type": "Decimal",
+          "value": "1,0"
+        },
+        {
+          "name": "RSI Length",
+          "type": "Int",
+          "value": "14"
+        },
+        {
+          "name": "Non trade periods",
+          "type": "Button",
+          "value": null
+        },
+        {
+          "name": "Stop Value",
+          "type": "Decimal",
+          "value": "1,0"
+        }
+      ],
+      "sources": [
+        {
+          "security": "GDZ6.txt",
+          "timeframe": "Hour1",
+          "portfolio": "GodMode",
+          "commission_type": "None",
+          "commission_value": 0,
+          "position_support": {
+            "stop_is_on": false,
+            "profit_is_on": false
+          }
+        }
+      ]
+    }
+  ],
+  "data_set": {
+    "name": null,
+    "securities": [
+      "GDZ6.txt"
+    ]
+  },
+  "tester_settings": {
+    "time_start": "2026-06-17T09:00:00.0000000",
+    "time_end": "2026-10-24T00:00:00.0000000",
+    "order_execution_type": "Touch",
+    "slippage_to_simple_order": 0,
+    "slippage_to_stop_order": 0,
+    "margin_trading": false,
+    "start_portfolio": 100000
+  },
+  "statistics_full": {
+    "profit_abs": 20.2,
+    "profit_percent": 0.0202,
+    "trades": 4,
+    "profit_factor": 1.457,
+    "recovery": 0.457,
+    "payoff_ratio": 1.457,
+    "sharpe_ratio": 0.0596,
+    "max_drawdown": -0.0442,
+    "commission": 0,
+    "winning_trades": 2,
+    "winning_trades_percent": 50.0,
+    "average_profit": 5.05,
+    "average_profit_percent": 0.1314,
+    "average_holding_time": "H 61 M 45 S 0"
+  },
+  "robot_results": [
+    {
+      "profit_abs": 20.2,
+      "profit_percent": 0.0202,
+      "trades": 4,
+      "profit_factor": 1.457,
+      "recovery": 0.457,
+      "payoff_ratio": 1.457,
+      "sharpe_ratio": 0.0596,
+      "max_drawdown": -0.0442,
+      "commission": 0,
+      "winning_trades": 2,
+      "winning_trades_percent": 50.0,
+      "average_profit": 5.05,
+      "average_profit_percent": 0.1314,
+      "average_holding_time": "H 61 M 45 S 0",
+      "robot": "Control_B_GDZ6"
+    }
+  ],
+  "positions": [
+    {
+      "number": 1,
+      "bot_name": "Control_B_GDZ6tab0",
+      "security_name": "GDZ6.txt",
+      "direction": "Short",
+      "state": "Done",
+      "open_time": "2026-08-06T13:00:00.0000000",
+      "close_time": "2026-08-07T09:00:00.0000000",
+      "entry_price": 4343.4,
+      "close_price": 4355.4,
+      "volume": 1,
+      "profit_abs": -12.0,
+      "profit_percent": -0.012,
+      "commission": 0
+    },
+    {
+      "number": 2,
+      "bot_name": "Control_B_GDZ6tab0",
+      "security_name": "GDZ6.txt",
+      "direction": "Long",
+      "state": "Done",
+      "open_time": "2026-08-29T15:00:00.0000000",
+      "close_time": "2026-08-31T06:00:00.0000000",
+      "entry_price": 4505.5,
+      "close_price": 4473.3,
+      "volume": 1,
+      "profit_abs": -32.2,
+      "profit_percent": -0.0322,
+      "commission": 0
+    },
+    {
+      "number": 3,
+      "bot_name": "Control_B_GDZ6tab0",
+      "security_name": "GDZ6.txt",
+      "direction": "Long",
+      "state": "Done",
+      "open_time": "2026-09-28T21:00:00.0000000",
+      "close_time": "2026-10-02T18:00:00.0000000",
+      "entry_price": 4204.6,
+      "close_price": 4210.0,
+      "volume": 1,
+      "profit_abs": 5.4,
+      "profit_percent": 0.0054,
+      "commission": 0
+    },
+    {
+      "number": 4,
+      "bot_name": "Control_B_GDZ6tab0",
+      "security_name": "GDZ6.txt",
+      "direction": "Short",
+      "state": "Done",
+      "open_time": "2026-10-11T11:00:00.0000000",
+      "close_time": "2026-10-15T06:00:00.0000000",
+      "entry_price": 4250.2,
+      "close_price": 4191.2,
+      "volume": 1,
+      "profit_abs": 59.0,
+      "profit_percent": 0.059,
+      "commission": 0
+    }
+  ],
+  "cash_flows": []
+}

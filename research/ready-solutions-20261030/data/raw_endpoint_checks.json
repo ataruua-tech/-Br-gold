@@ -1,0 +1,42 @@
+[
+  {
+    "asset": "BR",
+    "seconds": 120,
+    "contract": "BRK6",
+    "t": "2026-04-12T10:00:00+03:00",
+    "open_start": 96.5,
+    "open_end": 98.91,
+    "absolute_change": 2.41,
+    "source_endpoint_match": true
+  },
+  {
+    "asset": "BR",
+    "seconds": 300,
+    "contract": "BRJ6",
+    "t": "2026-03-23T18:00:00+03:00",
+    "open_start": 101.8,
+    "open_end": 99.02,
+    "absolute_change": 2.78,
+    "source_endpoint_match": true
+  },
+  {
+    "asset": "GOLD",
+    "seconds": 120,
+    "contract": "GDH6",
+    "t": "2026-02-02T16:00:00+03:00",
+    "open_start": 4799.9,
+    "open_end": 4746.9,
+    "absolute_change": 53.0,
+    "source_endpoint_match": true
+  },
+  {
+    "asset": "GOLD",
+    "seconds": 300,
+    "contract": "GDH6",
+    "t": "2026-01-29T10:00:00+03:00",
+    "open_start": 5471.1,
+    "open_end": 5551.4,
+    "absolute_change": 80.3,
+    "source_endpoint_match": true
+  }
+]

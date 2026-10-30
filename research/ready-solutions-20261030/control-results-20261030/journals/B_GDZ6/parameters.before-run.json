@@ -1,0 +1,34 @@
+{
+  "run_id": "B_GDZ6",
+  "strategy": "AuditCountertrendBollingerRSI",
+  "instance_name": "Control_B_GDZ6",
+  "params": {
+    "Regime": "On",
+    "Order type": "Market",
+    "Slippage %": 0,
+    "Volume type": "Contracts",
+    "Volume": 1,
+    "Bollinger Length": 21,
+    "Bollinger Deviation": 1,
+    "RSI Length": 14,
+    "Stop Value": 1
+  },
+  "data": {
+    "rows": 1865,
+    "first_begin_msk": "2026-06-17T09:00:00",
+    "last_begin_msk": "2026-10-23T23:00:00",
+    "last_information_available_msk": "2026-10-24T00:00:00",
+    "sha256": "7f6ee769fde6c990de3f8b64f60824b2c296ad3d4c25a7cdfff8d4878d82fad8"
+  },
+  "source_commit": "09b0eefc7ac6cf5a73e461cc3a81ded9c34cd54b",
+  "all_observed_bars_enabled": true,
+  "native_order_execution": "Touch",
+  "slippage_simple": 0,
+  "slippage_stop": 0,
+  "commission": "NOT_MODELLED_AUTHOR_CONTROL",
+  "capital_rub_evaluation": false,
+  "personal_execution": "NOT_RUN",
+  "monetary_result": "NOT_ESTABLISHED",
+  "engine_dll_sha256": "3f099cfa15d71f8162b46c9f2401f6d5138e5680b1904bc78c7f4309c71a8872",
+  "script_sha256": "6d3447418eaaaff36e88589b257aee29ac2465931e4ddbfaed66e6166a7f95ed"
+}
