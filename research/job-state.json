@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "updated_at_utc": "2026-10-30T15:48:59Z",
+  "updated_at_utc": "2026-10-30T17:25:27.178532+00:00",
   "scope": "BR_GOLD_READY_SOLUTIONS_RESEARCH_20261030",
-  "status": "CANDIDATE_SELECTION_AND_PRICE_DIAGNOSTIC_COMPLETE",
+  "status": "FOUR_NATIVE_READY_STRATEGY_CONTROLS_COMPLETED_NOT_PERSONAL_READY",
   "specification": "research/PROJECT_SPEC_RU.txt",
   "baseline_spec_url": "https://chatgpt.com/library?file_id=libfile_8ebf52af996881918130d636ab8d5ac6&account_id=personal",
   "completed_research": false,
@@ -22,12 +22,12 @@
     "TradingView"
   ],
   "purchase_authorization": "PURPOSE_AND_PRICE_REQUIRED",
-  "research_candidate": "OsEngine IntersectionOfSuperTrends",
-  "research_reserve": "OsEngine CountertrendBollingerRSI",
-  "selection_basis": "SOURCE_AUDIT_AND_REPRODUCIBILITY_NOT_PROFITABILITY",
+  "research_candidate": "NONE_ADMITTED_TO_PERSONAL_SIGNALS",
+  "research_reserve": "CountertrendBollingerRSI_v2_PROTOCOL_PROPOSAL_NOT_IMPLEMENTED",
+  "selection_basis": "NATIVE_CONTROL_FINDINGS_NOT_PROFITABILITY",
   "osengine_source_commit": "09b0eefc7ac6cf5a73e461cc3a81ded9c34cd54b",
-  "native_compile_status": "NOT_RUN",
-  "native_backtest_status": "NOT_RUN",
+  "native_compile_status": "PASS_OFFICIAL_BUILD_AND_CUSTOM_ROSLYN",
+  "native_backtest_status": "PASS_SOURCE_BEHAVIOR_CONTROL_ONLY",
   "completed_this_stage": [
     "Ready strategy source audit",
     "Five named external signal services screened",
@@ -35,7 +35,13 @@
     "OHLCV and duplicate checks on used rows",
     "Descriptive minute-bar price-reaction diagnostic",
     "Independent recomputation of all 136 summary groups and raw-source checks",
-    "Public delayed ISS contract snapshots"
+    "Public delayed ISS contract snapshots",
+    "Official frozen OsEngine built on isolated Windows runner",
+    "Four native H1 controls with Contracts=1 and all observed bars enabled",
+    "7102 callbacks and17755 indicator comparisons verified",
+    "223 closed trade chains and446 fills independently reconciled",
+    "11 detailed first-trade traces and explicit end-of-data pending order",
+    "Original RSI readiness, initial-protection gap and optimistic native stop-gap behavior documented"
   ],
   "data_run_id": 40494996964,
   "data_artifact_ids": {
@@ -52,8 +58,15 @@
   ],
   "reaction_diagnostic_status": "VERIFIED_DESCRIPTIVE_ONLY_NOT_BACKTEST",
   "telegram_or_trading_workflows_restarted": false,
-  "next_step": "research/ready-solutions-20261030/NEXT_TEST_RU.txt",
+  "next_step": "research/ready-solutions-20261030/control-results-20261030/NEXT_STEP_RU.txt",
   "legacy_state": "research/archive/2026-10-28/job-state.json",
-  "confirmed_goals_from_user": "Latest explicit financial and manual-execution constraints retained; freedom concerns research methods/resources, not assumed authorization for orders or purchases"
+  "confirmed_goals_from_user": "Latest explicit financial and manual-execution constraints retained; freedom concerns research methods/resources, not assumed authorization for orders or purchases",
+  "native_control": {
+    "report": "research/ready-solutions-20261030/control-results-20261030/RESULT_RU.txt",
+    "summary": "research/ready-solutions-20261030/control-results-20261030/summary.json",
+    "workflow_run_id": 41095864848,
+    "artifact_id": 12995568413,
+    "control_commit": "47272bcf57e8bbc937a979f5d63934bd50edba37",
+    "native_attempts": 1
+  }
 }
-

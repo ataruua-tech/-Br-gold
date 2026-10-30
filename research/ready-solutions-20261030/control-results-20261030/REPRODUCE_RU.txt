@@ -1,0 +1,31 @@
+ВОСПРОИЗВЕДЕНИЕ ПРОВЕРКИ
+
+Этот каталог содержит четыре полных нативных журнала JSONL.gz, записи223 сделок
+JSON.gz, ответы MCP, параметры, первичные H1 двух серий и SHA256 manifest.
+Это сохранённые результаты настоящего OsEngine, а не симуляция на Python.
+Python здесь только проверяет данные/математику/связи событий.
+
+Из корня репозитория, с Python3 стандартной библиотеки:
+
+python research/ready-solutions-20261030/control-results-20261030/restore_review_inputs.py --output work/restored-native-control
+python research/ready-solutions-20261030/control-results-20261030/reconcile_execution.py --evidence work/restored-native-control --output work/rechecked-native-control
+
+Оба каталога назначения должны быть новыми, чтобы не перезаписать прежние попытки.
+Сравнить execution-summary.json с independent/execution-summary.json.
+Этот повторный разбор полностью автономен от истечения срока Actions artifacts.
+Он не является повторной сборкой/запуском платформы.
+
+Настоящая сборка и четыре нативных прогона описаны в workflow
+.github/workflows/ready-solutions-control.yml и frozen control/protocol.json.
+Исходник платформы — только официальный commit09b0eefc7ac6cf5a73e461cc3a81ded9c34cd54b;
+все попытки/изменения адаптера должны иметь новые IDs, не заменять attempt-001.
+Исходные ZIP2025/2026 указаны в data/ARTIFACTS.json родительского этапа и
+сохранены локально control/local-archives/source_2025.zip и source_2026.zip.
+Нативный replay не требует обращения к MOEX, реальных учётных данных или Telegram.
+При повторении через Actions старые workflow и торговые процессы не запускать.
+
+Полная техническая оболочка первой попытки — evidence-attempt-001.zip в локальном
+control/; SHA25656311904dab3365a29c9eb718eee6da53eee2d19a11a2f824c533b07002d8a94.
+GitHub artifact12995568413 — внешний ZIP, который содержит portable-evidence.zip;
+его SHA25661a52047086e386c042dae2e715eabef910e402b0a8d2f71aaf10a186f70fa28.
+Не путать SHA внешнего artifact ZIP и внутреннего evidence ZIP.

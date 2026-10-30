@@ -1,0 +1,6 @@
+{
+  "slippage_to_simple_order": 0,
+  "slippage_to_stop_order": 0,
+  "order_execution_type": "Touch",
+  "non_trade_periods": []
+}

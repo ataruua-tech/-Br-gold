@@ -1,0 +1,18 @@
+[
+  {
+    "source": "IntersectionOfSuperTrends",
+    "original_git_blob": "3c43decdbcd4ebd55e6a3fb2ffe60009d1421415",
+    "original_sha256": "624be31fdb464781dc873ba0981b1aeda9ba446ca4a10b38c7010f11b351694b",
+    "observer_sha256": "dcf4973aa1a1f0c58be2dccba02e9630824f147bfa0de28e86b22d4b0d7fe86c",
+    "original_prefix_unchanged": true,
+    "observer_only": true
+  },
+  {
+    "source": "CountertrendBollingerRSI",
+    "original_git_blob": "a5915e3639d28089c5c0effc6179838cd35f5734",
+    "original_sha256": "050e40f372d194d484db7f0b3bc4d580a36d4f317a06f8ae3ca76b555b7c3e8b",
+    "observer_sha256": "6d3447418eaaaff36e88589b257aee29ac2465931e4ddbfaed66e6166a7f95ed",
+    "original_prefix_unchanged": true,
+    "observer_only": true
+  }
+]

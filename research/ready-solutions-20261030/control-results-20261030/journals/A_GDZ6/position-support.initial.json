@@ -1,0 +1,22 @@
+{
+  "stop_is_on": false,
+  "stop_distance": 30,
+  "stop_slippage": 5,
+  "profit_is_on": false,
+  "profit_distance": 30,
+  "profit_slippage": 5,
+  "second_to_open_is_on": true,
+  "second_to_open": 50,
+  "second_to_close_is_on": true,
+  "second_to_close": 50,
+  "setback_to_open_is_on": false,
+  "setback_to_open_position": 10,
+  "setback_to_close_is_on": false,
+  "setback_to_close_position": 10,
+  "double_exit_is_on": true,
+  "type_double_exit_order": "Limit",
+  "double_exit_slippage": 10,
+  "values_type": "MinPriceStep",
+  "order_type_time": "Specified",
+  "limits_maker_only": false
+}

@@ -1,0 +1,458 @@
+[
+  {
+    "position": 1,
+    "side": "Sell",
+    "entry_signal": {
+      "index": 59,
+      "begin": "2026-06-22 20:00:00",
+      "h1_close_msk": "2026-06-22T21:00:00",
+      "ohlcv": {
+        "open": "4238.4",
+        "high": "4241.4",
+        "low": "4238",
+        "close": "4241.4",
+        "volume": "16"
+      },
+      "fast": {
+        "atr": "15.824454266",
+        "lower": "4244.016935163",
+        "upper": "4255.524454266",
+        "center": "4255.524454266",
+        "direction": -1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "19.435022994",
+        "lower": "4222.515282659",
+        "upper": "4259.135022994",
+        "center": "4259.135022994",
+        "direction": -1,
+        "ready": true
+      },
+      "bollinger": {
+        "upper": "4261.596956",
+        "lower": "4223.879234",
+        "center": "4242.7380952380952380952380952380952380952380952381",
+        "ready": true
+      },
+      "rsi": "41.05",
+      "rsi_ready": true
+    },
+    "entry_order": {
+      "NumberUser": 1,
+      "NumberMarket": "0",
+      "NumberPosition": 1,
+      "Side": "Sell",
+      "Price": "4241.4",
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-06-22T20:00:00",
+      "TimeCallBack": "2026-06-22T20:00:00",
+      "TimeDone": "0001-01-01T00:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": false,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "entry_fill_event": {
+      "sequence": 64,
+      "kind": "fill",
+      "native_clock": "2026-06-22T20:00:00",
+      "data": {
+        "NumberTrade": "0",
+        "NumberOrderParent": "0",
+        "NumberPosition": "1",
+        "SecurityNameCode": "GDZ6.txt",
+        "Time": "2026-06-22T21:00:00",
+        "Price": "4243.2",
+        "Volume": 1,
+        "Side": "Sell",
+        "NumberCandleInTester": 0
+      }
+    },
+    "entry_position_time_open": "2026-06-22T20:00:00",
+    "entry_is_next_observed_h1_open": true,
+    "exit_order": {
+      "NumberUser": 2,
+      "NumberMarket": "1",
+      "NumberPosition": 1,
+      "Side": "Buy",
+      "Price": 4158,
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-06-23T10:00:00",
+      "TimeCallBack": "2026-06-23T10:00:00",
+      "TimeDone": "2026-06-23T11:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": false,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "exit_fill_event": {
+      "sequence": 74,
+      "kind": "fill",
+      "native_clock": "2026-06-23T10:00:00",
+      "data": {
+        "NumberTrade": "1",
+        "NumberOrderParent": "1",
+        "NumberPosition": "1",
+        "SecurityNameCode": "GDZ6.txt",
+        "Time": "2026-06-23T11:00:00",
+        "Price": 4155,
+        "Volume": 1,
+        "Side": "Buy",
+        "NumberCandleInTester": 0
+      }
+    },
+    "stop_at_entry_event": false,
+    "exit_signal": {
+      "index": 65,
+      "begin": "2026-06-23 10:00:00",
+      "h1_close_msk": "2026-06-23T11:00:00",
+      "ohlcv": {
+        "open": "4170.5",
+        "high": "4184.8",
+        "low": "4158",
+        "close": "4158",
+        "volume": "120"
+      },
+      "fast": {
+        "atr": "20.139879400",
+        "lower": "4160.200134000",
+        "upper": "4191.539879400",
+        "center": "4191.539879400",
+        "direction": -1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "19.955942019",
+        "lower": "4159.783732634",
+        "upper": "4191.355942019",
+        "center": "4191.355942019",
+        "direction": -1,
+        "ready": true
+      },
+      "bollinger": {
+        "upper": "4270.912724",
+        "lower": "4210.611086",
+        "center": "4240.7619047619047619047619047619047619047619047619",
+        "ready": true
+      },
+      "rsi": "26.24",
+      "rsi_ready": true
+    },
+    "gross_quote_points": "88.2",
+    "cumulative_closed_quote_points": "88.2",
+    "closed_curve_drawdown_quote_points": "0.0"
+  },
+  {
+    "position": 2,
+    "side": "Sell",
+    "entry_signal": {
+      "index": 66,
+      "begin": "2026-06-23 11:00:00",
+      "h1_close_msk": "2026-06-23T12:00:00",
+      "ohlcv": {
+        "open": "4155",
+        "high": "4170.1",
+        "low": "4153",
+        "close": "4163.5",
+        "volume": "57"
+      },
+      "fast": {
+        "atr": "19.835891460",
+        "lower": "4141.714108540",
+        "upper": "4181.385891460",
+        "center": "4181.385891460",
+        "direction": -1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "19.898823179",
+        "lower": "4141.651176821",
+        "upper": "4181.448823179",
+        "center": "4181.448823179",
+        "direction": -1,
+        "ready": true
+      },
+      "bollinger": {
+        "upper": "4272.132504",
+        "lower": "4203.705591",
+        "center": "4237.9190476190476190476190476190476190476190476190",
+        "ready": true
+      },
+      "rsi": "31.00",
+      "rsi_ready": true
+    },
+    "entry_order": {
+      "NumberUser": 3,
+      "NumberMarket": "2",
+      "NumberPosition": 2,
+      "Side": "Sell",
+      "Price": "4163.5",
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-06-23T11:00:00",
+      "TimeCallBack": "2026-06-23T11:00:00",
+      "TimeDone": "0001-01-01T00:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": false,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "entry_fill_event": {
+      "sequence": 79,
+      "kind": "fill",
+      "native_clock": "2026-06-23T11:00:00",
+      "data": {
+        "NumberTrade": "2",
+        "NumberOrderParent": "2",
+        "NumberPosition": "2",
+        "SecurityNameCode": "GDZ6.txt",
+        "Time": "2026-06-23T12:00:00",
+        "Price": "4173.5",
+        "Volume": 1,
+        "Side": "Sell",
+        "NumberCandleInTester": 0
+      }
+    },
+    "entry_position_time_open": "2026-06-23T11:00:00",
+    "entry_is_next_observed_h1_open": true,
+    "exit_order": {
+      "NumberUser": 4,
+      "NumberMarket": "3",
+      "NumberPosition": 2,
+      "Side": "Buy",
+      "Price": "4182.9",
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-06-23T13:00:00",
+      "TimeCallBack": "2026-06-23T13:00:00",
+      "TimeDone": "2026-06-23T14:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": false,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "exit_fill_event": {
+      "sequence": 85,
+      "kind": "fill",
+      "native_clock": "2026-06-23T13:00:00",
+      "data": {
+        "NumberTrade": "3",
+        "NumberOrderParent": "3",
+        "NumberPosition": "2",
+        "SecurityNameCode": "GDZ6.txt",
+        "Time": "2026-06-23T14:00:00",
+        "Price": 4183,
+        "Volume": 1,
+        "Side": "Buy",
+        "NumberCandleInTester": 0
+      }
+    },
+    "stop_at_entry_event": false,
+    "exit_signal": {
+      "index": 68,
+      "begin": "2026-06-23 13:00:00",
+      "h1_close_msk": "2026-06-23T14:00:00",
+      "ohlcv": {
+        "open": "4185.9",
+        "high": "4195",
+        "low": "4182.9",
+        "close": "4182.9",
+        "volume": "33"
+      },
+      "fast": {
+        "atr": "19.240072083",
+        "lower": "4169.709927917",
+        "upper": "4181.385891460",
+        "center": "4169.709927917",
+        "direction": 1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "19.776949781",
+        "lower": "4169.173050219",
+        "upper": "4181.448823179",
+        "center": "4169.173050219",
+        "direction": 1,
+        "ready": true
+      },
+      "bollinger": {
+        "upper": "4269.665254",
+        "lower": "4194.601413",
+        "center": "4232.1333333333333333333333333333333333333333333333",
+        "ready": true
+      },
+      "rsi": "39.01",
+      "rsi_ready": true
+    },
+    "gross_quote_points": "-9.5",
+    "cumulative_closed_quote_points": "78.7",
+    "closed_curve_drawdown_quote_points": "9.5"
+  },
+  {
+    "position": 3,
+    "side": "Buy",
+    "entry_signal": {
+      "index": 69,
+      "begin": "2026-06-23 14:00:00",
+      "h1_close_msk": "2026-06-23T15:00:00",
+      "ohlcv": {
+        "open": "4183",
+        "high": "4190.8",
+        "low": "4180.3",
+        "close": "4185.7",
+        "volume": "33"
+      },
+      "fast": {
+        "atr": "18.366064875",
+        "lower": "4169.709927917",
+        "upper": "4203.916064875",
+        "center": "4169.709927917",
+        "direction": 1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "19.591410785",
+        "lower": "4169.173050219",
+        "upper": "4205.141410785",
+        "center": "4169.173050219",
+        "direction": 1,
+        "ready": true
+      },
+      "bollinger": {
+        "upper": "4266.652801",
+        "lower": "4190.347199",
+        "center": "4228.5",
+        "ready": true
+      },
+      "rsi": "39.78",
+      "rsi_ready": true
+    },
+    "entry_order": {
+      "NumberUser": 5,
+      "NumberMarket": "4",
+      "NumberPosition": 3,
+      "Side": "Buy",
+      "Price": "4185.7",
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-06-23T14:00:00",
+      "TimeCallBack": "2026-06-23T14:00:00",
+      "TimeDone": "0001-01-01T00:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": false,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "entry_fill_event": {
+      "sequence": 90,
+      "kind": "fill",
+      "native_clock": "2026-06-23T14:00:00",
+      "data": {
+        "NumberTrade": "4",
+        "NumberOrderParent": "4",
+        "NumberPosition": "3",
+        "SecurityNameCode": "GDZ6.txt",
+        "Time": "2026-06-23T15:00:00",
+        "Price": 4187,
+        "Volume": 1,
+        "Side": "Buy",
+        "NumberCandleInTester": 0
+      }
+    },
+    "entry_position_time_open": "2026-06-23T14:00:00",
+    "entry_is_next_observed_h1_open": true,
+    "exit_order": {
+      "NumberUser": 6,
+      "NumberMarket": "5",
+      "NumberPosition": 3,
+      "Side": "Sell",
+      "Price": "4180.9",
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-06-23T21:00:00",
+      "TimeCallBack": "2026-06-23T21:00:00",
+      "TimeDone": "2026-06-23T22:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": false,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "exit_fill_event": {
+      "sequence": 101,
+      "kind": "fill",
+      "native_clock": "2026-06-23T21:00:00",
+      "data": {
+        "NumberTrade": "5",
+        "NumberOrderParent": "5",
+        "NumberPosition": "3",
+        "SecurityNameCode": "GDZ6.txt",
+        "Time": "2026-06-23T22:00:00",
+        "Price": "4184.4",
+        "Volume": 1,
+        "Side": "Sell",
+        "NumberCandleInTester": 0
+      }
+    },
+    "stop_at_entry_event": false,
+    "exit_signal": {
+      "index": 76,
+      "begin": "2026-06-23 21:00:00",
+      "h1_close_msk": "2026-06-23T22:00:00",
+      "ohlcv": {
+        "open": "4193",
+        "high": "4193",
+        "low": "4178",
+        "close": "4180.9",
+        "volume": "70"
+      },
+      "fast": {
+        "atr": "17.436796995",
+        "lower": "4183.995312352",
+        "upper": "4202.936796995",
+        "center": "4202.936796995",
+        "direction": -1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "19.246446972",
+        "lower": "4182.491954423",
+        "upper": "4204.746446972",
+        "center": "4204.746446972",
+        "direction": -1,
+        "ready": true
+      },
+      "bollinger": {
+        "upper": "4238.441715",
+        "lower": "4172.967809",
+        "center": "4205.7047619047619047619047619047619047619047619048",
+        "ready": true
+      },
+      "rsi": "41.79",
+      "rsi_ready": true
+    },
+    "gross_quote_points": "-2.6",
+    "cumulative_closed_quote_points": "76.1",
+    "closed_curve_drawdown_quote_points": "12.1"
+  }
+]

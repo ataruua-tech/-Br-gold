@@ -1,0 +1,126 @@
+{
+  "parameters": [
+    {
+      "name": "Regime",
+      "type": "String",
+      "value": "On",
+      "values": [
+        "Off",
+        "On",
+        "OnlyLong",
+        "OnlyShort",
+        "OnlyClosePosition"
+      ]
+    },
+    {
+      "name": "Slippage %",
+      "type": "Decimal",
+      "value": 0,
+      "default_value": 0,
+      "start": 0,
+      "stop": 20,
+      "step": 1,
+      "step_type": "Absolute"
+    },
+    {
+      "name": "Order type",
+      "type": "String",
+      "value": "Market",
+      "values": [
+        "Market",
+        "Limit"
+      ]
+    },
+    {
+      "name": "Volume type",
+      "type": "String",
+      "value": "Contracts",
+      "values": [
+        "Contracts",
+        "Contract currency",
+        "Deposit percent"
+      ]
+    },
+    {
+      "name": "Volume",
+      "type": "Decimal",
+      "value": 1,
+      "default_value": 20,
+      "start": 1.0,
+      "stop": 50,
+      "step": 4,
+      "step_type": "Absolute"
+    },
+    {
+      "name": "Asset in portfolio",
+      "type": "String",
+      "value": "Prime",
+      "values": [
+        "Prime"
+      ]
+    },
+    {
+      "name": "Length Fast SP",
+      "type": "Int",
+      "value": 10,
+      "default_value": 10,
+      "start": 10,
+      "stop": 200,
+      "step": 10,
+      "step_type": "Absolute"
+    },
+    {
+      "name": "Fast SP Deviation",
+      "type": "Decimal",
+      "value": 1,
+      "default_value": 1,
+      "start": 1,
+      "stop": 10,
+      "step": 1,
+      "step_type": "Absolute"
+    },
+    {
+      "name": "Type Fast Price",
+      "type": "String",
+      "value": "Median",
+      "values": [
+        "Median",
+        "Typical"
+      ]
+    },
+    {
+      "name": "Length Slow SP",
+      "type": "Int",
+      "value": 50,
+      "default_value": 50,
+      "start": 50,
+      "stop": 300,
+      "step": 10,
+      "step_type": "Absolute"
+    },
+    {
+      "name": "Slow SP Deviation",
+      "type": "Decimal",
+      "value": 1,
+      "default_value": 1,
+      "start": 1,
+      "stop": 10,
+      "step": 1,
+      "step_type": "Absolute"
+    },
+    {
+      "name": "Type Slow Price",
+      "type": "String",
+      "value": "Median",
+      "values": [
+        "Median",
+        "Typical"
+      ]
+    },
+    {
+      "name": "Non trade periods",
+      "type": "Button"
+    }
+  ],
+  "count": 13
+}

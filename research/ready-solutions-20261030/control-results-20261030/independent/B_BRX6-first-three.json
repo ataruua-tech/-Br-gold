@@ -1,0 +1,366 @@
+[
+  {
+    "position": 1,
+    "side": "Buy",
+    "entry_signal": {
+      "index": 25,
+      "begin": "2026-07-01 19:00:00",
+      "h1_close_msk": "2026-07-01T20:00:00",
+      "ohlcv": {
+        "open": "74.29",
+        "high": "74.95",
+        "low": "74.29",
+        "close": "74.4",
+        "volume": "57"
+      },
+      "fast": {
+        "atr": "0.407670909",
+        "lower": "74.212329091",
+        "upper": "74.554655443",
+        "center": "74.212329091",
+        "direction": 1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "0E-9",
+        "lower": "0",
+        "upper": "0",
+        "center": "0",
+        "direction": 0,
+        "ready": false
+      },
+      "bollinger": {
+        "upper": "75.136452",
+        "lower": "74.094977",
+        "center": "74.615714285714285714285714285714285714285714285714",
+        "ready": true
+      },
+      "rsi": "0",
+      "rsi_ready": false
+    },
+    "entry_order": {
+      "NumberUser": 1,
+      "NumberMarket": "0",
+      "NumberPosition": 1,
+      "Side": "Buy",
+      "Price": "74.4",
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-07-01T19:00:00",
+      "TimeCallBack": "2026-07-01T19:00:00",
+      "TimeDone": "0001-01-01T00:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": false,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "entry_fill_event": {
+      "sequence": 30,
+      "kind": "fill",
+      "native_clock": "2026-07-01T19:00:00",
+      "data": {
+        "NumberTrade": "0",
+        "NumberOrderParent": "0",
+        "NumberPosition": "1",
+        "SecurityNameCode": "BRX6.txt",
+        "Time": "2026-07-01T20:00:00",
+        "Price": "74.4",
+        "Volume": 1,
+        "Side": "Buy",
+        "NumberCandleInTester": 0
+      }
+    },
+    "entry_position_time_open": "2026-07-01T19:00:00",
+    "entry_is_next_observed_h1_open": true,
+    "exit_order": {
+      "NumberUser": 2,
+      "NumberMarket": "1",
+      "NumberPosition": 1,
+      "Side": "Sell",
+      "Price": "73.76",
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-07-02T09:00:00",
+      "TimeCallBack": "2026-07-02T09:00:00",
+      "TimeDone": "2026-07-02T09:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": true,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "exit_fill_event": {
+      "sequence": 39,
+      "kind": "fill",
+      "native_clock": "2026-07-02T09:00:00",
+      "data": {
+        "NumberTrade": "1",
+        "NumberOrderParent": "1",
+        "NumberPosition": "1",
+        "SecurityNameCode": "BRX6.txt",
+        "Time": "2026-07-02T09:00:00",
+        "Price": "73.76",
+        "Volume": 1,
+        "Side": "Sell",
+        "NumberCandleInTester": 0
+      }
+    },
+    "stop_at_entry_event": false,
+    "entry_previous_candle": {
+      "index": 24,
+      "begin": "2026-07-01 18:00:00",
+      "h1_close_msk": "2026-07-01T19:00:00",
+      "ohlcv": {
+        "open": "74.12",
+        "high": "74.4",
+        "low": "74.11",
+        "close": "74.25",
+        "volume": "30"
+      },
+      "fast": {
+        "atr": "0.375189899",
+        "lower": "73.885382841",
+        "upper": "74.554655443",
+        "center": "73.885382841",
+        "direction": 1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "0E-9",
+        "lower": "0",
+        "upper": "0",
+        "center": "0",
+        "direction": 0,
+        "ready": false
+      },
+      "bollinger": {
+        "upper": "75.189427",
+        "lower": "74.121049",
+        "center": "74.655238095238095238095238095238095238095238095238",
+        "ready": true
+      },
+      "rsi": "0",
+      "rsi_ready": false
+    },
+    "first_stop_snapshot": {
+      "sequence": 32,
+      "native_clock": "2026-07-01T20:00:00",
+      "source_begin": "2026-07-01 20:00:00",
+      "nominal_close_msk": "2026-07-01T21:00:00",
+      "raw_level": "73.656",
+      "ohlcv": {
+        "open": "74.4",
+        "high": "74.52",
+        "low": "74.4",
+        "close": "74.5",
+        "volume": "7"
+      },
+      "nominal_unprotected_seconds_from_fill": 3600
+    },
+    "stop_exit_check": {
+      "stop": "73.755",
+      "last_observed_stop": "73.755",
+      "exit_ohlcv": {
+        "open": "74.28",
+        "high": "74.29",
+        "low": "73.61",
+        "close": "73.61",
+        "volume": "36"
+      },
+      "stop_inside_exit_h1_range": true,
+      "adverse_gap_at_exit_open": false,
+      "fill_favorable_vs_exit_open_points": null,
+      "last_callback_before_close": "2026-07-02T08:00:00"
+    },
+    "gross_quote_points": "-0.64",
+    "cumulative_closed_quote_points": "-0.64",
+    "closed_curve_drawdown_quote_points": "0.64"
+  },
+  {
+    "position": 2,
+    "side": "Sell",
+    "entry_signal": {
+      "index": 1581,
+      "begin": "2026-10-17 14:00:00",
+      "h1_close_msk": "2026-10-17T15:00:00",
+      "ohlcv": {
+        "open": "109.56",
+        "high": "109.59",
+        "low": "109.46",
+        "close": "109.49",
+        "volume": "1344"
+      },
+      "fast": {
+        "atr": "0.513528038",
+        "lower": "109.033857736",
+        "upper": "110.038528038",
+        "center": "109.033857736",
+        "direction": 1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "0.634700876",
+        "lower": "108.966537354",
+        "upper": "110.058053736",
+        "center": "108.966537354",
+        "direction": 1,
+        "ready": true
+      },
+      "bollinger": {
+        "upper": "109.616595",
+        "lower": "105.831977",
+        "center": "107.72428571428571428571428571428571428571428571429",
+        "ready": true
+      },
+      "rsi": "74.93",
+      "rsi_ready": true
+    },
+    "entry_order": {
+      "NumberUser": 3,
+      "NumberMarket": "2",
+      "NumberPosition": 2,
+      "Side": "Sell",
+      "Price": "109.49",
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-10-17T14:00:00",
+      "TimeCallBack": "2026-10-17T14:00:00",
+      "TimeDone": "0001-01-01T00:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": false,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "entry_fill_event": {
+      "sequence": 1595,
+      "kind": "fill",
+      "native_clock": "2026-10-17T14:00:00",
+      "data": {
+        "NumberTrade": "2",
+        "NumberOrderParent": "2",
+        "NumberPosition": "2",
+        "SecurityNameCode": "BRX6.txt",
+        "Time": "2026-10-17T15:00:00",
+        "Price": "109.52",
+        "Volume": 1,
+        "Side": "Sell",
+        "NumberCandleInTester": 0
+      }
+    },
+    "entry_position_time_open": "2026-10-17T14:00:00",
+    "entry_is_next_observed_h1_open": true,
+    "exit_order": {
+      "NumberUser": 4,
+      "NumberMarket": "3",
+      "NumberPosition": 2,
+      "Side": "Buy",
+      "Price": "108.46",
+      "StopPrice": 0,
+      "Volume": 1,
+      "VolumeExecute": 1,
+      "State": "Done",
+      "TypeOrder": "Market",
+      "TimeCreate": "2026-10-19T12:00:00",
+      "TimeCallBack": "2026-10-19T12:00:00",
+      "TimeDone": "2026-10-19T12:00:00",
+      "TimeCancel": "0001-01-01T00:00:00",
+      "IsStopOrProfit": true,
+      "ServerType": "Tester",
+      "ServerName": "Tester"
+    },
+    "exit_fill_event": {
+      "sequence": 1619,
+      "kind": "fill",
+      "native_clock": "2026-10-19T12:00:00",
+      "data": {
+        "NumberTrade": "3",
+        "NumberOrderParent": "3",
+        "NumberPosition": "2",
+        "SecurityNameCode": "BRX6.txt",
+        "Time": "2026-10-19T12:00:00",
+        "Price": "108.46",
+        "Volume": 1,
+        "Side": "Buy",
+        "NumberCandleInTester": 0
+      }
+    },
+    "stop_at_entry_event": false,
+    "entry_previous_candle": {
+      "index": 1580,
+      "begin": "2026-10-17 13:00:00",
+      "h1_close_msk": "2026-10-17T14:00:00",
+      "ohlcv": {
+        "open": "109.62",
+        "high": "109.63",
+        "low": "109.55",
+        "close": "109.56",
+        "volume": "825"
+      },
+      "fast": {
+        "atr": "0.556142264",
+        "lower": "109.033857736",
+        "upper": "110.146142264",
+        "center": "109.033857736",
+        "direction": 1,
+        "ready": true
+      },
+      "slow": {
+        "atr": "0.645000894",
+        "lower": "108.966537354",
+        "upper": "110.058053736",
+        "center": "108.966537354",
+        "direction": 1,
+        "ready": true
+      },
+      "bollinger": {
+        "upper": "109.443590",
+        "lower": "105.583077",
+        "center": "107.51333333333333333333333333333333333333333333333",
+        "ready": true
+      },
+      "rsi": "73.88",
+      "rsi_ready": true
+    },
+    "first_stop_snapshot": {
+      "sequence": 1597,
+      "native_clock": "2026-10-17T15:00:00",
+      "source_begin": "2026-10-17 15:00:00",
+      "nominal_close_msk": "2026-10-17T16:00:00",
+      "raw_level": "110.7263",
+      "ohlcv": {
+        "open": "109.52",
+        "high": "109.63",
+        "low": "109.51",
+        "close": "109.61",
+        "volume": "931"
+      },
+      "nominal_unprotected_seconds_from_fill": 3600
+    },
+    "stop_exit_check": {
+      "stop": "108.4639",
+      "last_observed_stop": "108.4639",
+      "exit_ohlcv": {
+        "open": "108.08",
+        "high": "108.7",
+        "low": "108.06",
+        "close": "108.7",
+        "volume": "55371"
+      },
+      "stop_inside_exit_h1_range": true,
+      "adverse_gap_at_exit_open": false,
+      "fill_favorable_vs_exit_open_points": null,
+      "last_callback_before_close": "2026-10-19T11:00:00"
+    },
+    "gross_quote_points": "1.06",
+    "cumulative_closed_quote_points": "0.42",
+    "closed_curve_drawdown_quote_points": "0.00"
+  }
+]

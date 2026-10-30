@@ -1,0 +1,98 @@
+{
+  "archives": [
+    {
+      "year": 2025,
+      "artifact": 12734831380,
+      "sha256": "d8eff7373c9bcaafb570fbd24a44d84709353112396f90c62bd299e86b003253",
+      "bytes": 15579946
+    },
+    {
+      "year": 2026,
+      "artifact": 12735884135,
+      "sha256": "b8344fbe990dd1ae069ceef3ae0709ca12375a7205a26f1360e3ba34b66b1ffb",
+      "bytes": 16204563
+    }
+  ],
+  "series": {
+    "BRX6": {
+      "rows": 1686,
+      "first_begin": "2026-06-30 09:00:00",
+      "last_begin": "2026-10-23 23:00:00",
+      "last_information_at_msk": "2026-10-24T00:00:00+03:00",
+      "input_sha256": "a51019e1cb530366aed2bdb6bd36feb6feeb7be31f235406ca91f588f21bd13c",
+      "native_text_sha256": "47d7a82639f82350065735c29096dca6d3a2f27327ac182de726a36c34fe460b",
+      "round_trip_checked_rows": 1686,
+      "adjacent_gaps_over_hour": 124,
+      "source_window": {
+        "contract": "BRX6",
+        "crosscheck": {
+          "calendar_coverage_verified": false,
+          "examples": [],
+          "m1_hours_missing_source_h1": 0,
+          "matching_h1": 494,
+          "mismatched_h1": 0,
+          "missing_source_examples": []
+        },
+        "end_exclusive": "2026-10-26",
+        "files": [
+          {
+            "file": "BRX6-M1.json.gz",
+            "rows": 27017,
+            "uncompressed_sha256": "ecb726eaac66159da3c569f8fcd6b739614eb41f99df8fa07048b52ce8266dd7"
+          },
+          {
+            "file": "BRX6-H1.json.gz",
+            "rows": 1686,
+            "uncompressed_sha256": "a51019e1cb530366aed2bdb6bd36feb6feeb7be31f235406ca91f588f21bd13c"
+          }
+        ],
+        "first": "2026-09-23",
+        "missing_examples": [],
+        "nonempty_h1_missing_all_m1": 0,
+        "status": "ACQUIRED"
+      },
+      "processed_all_source_h1_including_warmup": true
+    },
+    "GDZ6": {
+      "rows": 1865,
+      "first_begin": "2026-06-17 09:00:00",
+      "last_begin": "2026-10-23 23:00:00",
+      "last_information_at_msk": "2026-10-24T00:00:00+03:00",
+      "input_sha256": "f5f435c1478b5e9e721c88d5d1fac568e90ed1a67e9e2eb9e1df4ca7f4f45695",
+      "native_text_sha256": "7f6ee769fde6c990de3f8b64f60824b2c296ad3d4c25a7cdfff8d4878d82fad8",
+      "round_trip_checked_rows": 1865,
+      "adjacent_gaps_over_hour": 129,
+      "source_window": {
+        "contract": "GDZ6",
+        "crosscheck": {
+          "calendar_coverage_verified": false,
+          "examples": [],
+          "m1_hours_missing_source_h1": 0,
+          "matching_h1": 673,
+          "mismatched_h1": 0,
+          "missing_source_examples": []
+        },
+        "end_exclusive": "2026-10-26",
+        "files": [
+          {
+            "file": "GDZ6-M1.json.gz",
+            "rows": 34345,
+            "uncompressed_sha256": "900bd163821b9469f70fb5b05c6eef767853946b9e30f5da99286006b3f4a6a9"
+          },
+          {
+            "file": "GDZ6-H1.json.gz",
+            "rows": 1865,
+            "uncompressed_sha256": "f5f435c1478b5e9e721c88d5d1fac568e90ed1a67e9e2eb9e1df4ca7f4f45695"
+          }
+        ],
+        "first": "2026-09-10",
+        "missing_examples": [],
+        "nonempty_h1_missing_all_m1": 0,
+        "status": "ACQUIRED"
+      },
+      "processed_all_source_h1_including_warmup": true
+    }
+  },
+  "calendar_complete": false,
+  "no_stitching": true
+}

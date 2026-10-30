@@ -1,0 +1,16 @@
+{
+  "server_type": "Tester",
+  "server_full_name": "Tester",
+  "portfolio_name": "GodMode",
+  "emulator_is_on": false,
+  "commission_type": "None",
+  "commission_value": 0,
+  "security_class": "TestClass",
+  "security_name": "BRX6.txt",
+  "events_is_on": true,
+  "candle_market_data_type": "Tick",
+  "candle_create_method_type": "Simple",
+  "time_frame": "Hour1",
+  "save_trades_in_candles": false,
+  "build_non_trading_candles": false
+}

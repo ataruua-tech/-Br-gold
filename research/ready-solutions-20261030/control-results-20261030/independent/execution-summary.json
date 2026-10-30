@@ -1,0 +1,115 @@
+[
+  {
+    "run_id": "A_BRX6",
+    "closed_trades": 94,
+    "fills": 188,
+    "gross_quote_points": "-4.82",
+    "max_closed_curve_drawdown_quote_points": "14.44",
+    "drawdown_extrema": {
+      "peak_position": 65,
+      "trough_position": 93,
+      "peak_closed_points": "9.03",
+      "trough_closed_points": "-5.41"
+    },
+    "drawdown_excludes_open_trade_path": true,
+    "monetary_result": null,
+    "costs": null,
+    "entry_next_observed_h1_open_checks": 94,
+    "exit_next_observed_h1_open_checks": 94,
+    "pending_active_orders": [],
+    "errors": [],
+    "audit_sha256": "25a546c65bc9634828de9019addc516addf6187379d3042d4369c2055a389e50",
+    "source_h1_sha256": "a51019e1cb530366aed2bdb6bd36feb6feeb7be31f235406ca91f588f21bd13c"
+  },
+  {
+    "run_id": "A_GDZ6",
+    "closed_trades": 123,
+    "fills": 246,
+    "gross_quote_points": "-20.6",
+    "max_closed_curve_drawdown_quote_points": "281.7",
+    "drawdown_extrema": {
+      "peak_position": 76,
+      "trough_position": 120,
+      "peak_closed_points": "233.1",
+      "trough_closed_points": "-48.6"
+    },
+    "drawdown_excludes_open_trade_path": true,
+    "monetary_result": null,
+    "costs": null,
+    "entry_next_observed_h1_open_checks": 123,
+    "exit_next_observed_h1_open_checks": 123,
+    "pending_active_orders": [
+      {
+        "sequence": 2850,
+        "kind": "order_update",
+        "native_clock": "2026-10-23T23:00:00",
+        "data": {
+          "NumberUser": 247,
+          "NumberMarket": "246",
+          "NumberPosition": 124,
+          "Side": "Sell",
+          "Price": 4044,
+          "StopPrice": 0,
+          "Volume": 1,
+          "VolumeExecute": 0,
+          "State": "Active",
+          "TypeOrder": "Market",
+          "TimeCreate": "2026-10-23T23:00:00",
+          "TimeCallBack": "2026-10-23T23:00:00",
+          "TimeDone": "0001-01-01T00:00:00",
+          "TimeCancel": "0001-01-01T00:00:00",
+          "IsStopOrProfit": false,
+          "ServerType": "Tester",
+          "ServerName": "Tester"
+        }
+      }
+    ],
+    "errors": [],
+    "audit_sha256": "5ce809c84f82d9fab27146c1cb4c71209e64511c9750679ff5e560c77ea56361",
+    "source_h1_sha256": "f5f435c1478b5e9e721c88d5d1fac568e90ed1a67e9e2eb9e1df4ca7f4f45695"
+  },
+  {
+    "run_id": "B_BRX6",
+    "closed_trades": 2,
+    "fills": 4,
+    "gross_quote_points": "0.42",
+    "max_closed_curve_drawdown_quote_points": "0.64",
+    "drawdown_extrema": {
+      "peak_position": 0,
+      "trough_position": 1,
+      "peak_closed_points": "0",
+      "trough_closed_points": "-0.64"
+    },
+    "drawdown_excludes_open_trade_path": true,
+    "monetary_result": null,
+    "costs": null,
+    "entry_next_observed_h1_open_checks": 2,
+    "exit_next_observed_h1_open_checks": 0,
+    "pending_active_orders": [],
+    "errors": [],
+    "audit_sha256": "c7893b5bcd09067a8168e172b7dd61345cad86abf721b42a5dd138bdf8e3cd3e",
+    "source_h1_sha256": "a51019e1cb530366aed2bdb6bd36feb6feeb7be31f235406ca91f588f21bd13c"
+  },
+  {
+    "run_id": "B_GDZ6",
+    "closed_trades": 4,
+    "fills": 8,
+    "gross_quote_points": "20.2",
+    "max_closed_curve_drawdown_quote_points": "44.2",
+    "drawdown_extrema": {
+      "peak_position": 0,
+      "trough_position": 2,
+      "peak_closed_points": "0",
+      "trough_closed_points": "-44.2"
+    },
+    "drawdown_excludes_open_trade_path": true,
+    "monetary_result": null,
+    "costs": null,
+    "entry_next_observed_h1_open_checks": 4,
+    "exit_next_observed_h1_open_checks": 0,
+    "pending_active_orders": [],
+    "errors": [],
+    "audit_sha256": "73030475bbb2857f1b7ecd1d6ce316ebc38a6200e270155142a6992bdbc7bf69",
+    "source_h1_sha256": "f5f435c1478b5e9e721c88d5d1fac568e90ed1a67e9e2eb9e1df4ca7f4f45695"
+  }
+]
